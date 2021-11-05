@@ -8,6 +8,7 @@ import "./App.css";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
+import AddHobby from "./components/AddHobby";
 
 class App extends Component {
   state = {
@@ -57,6 +58,8 @@ class App extends Component {
             path="/login"
             render={(props) => <Login {...props} setUser={this.setUser} />} // <Login {...props} -- to get the params
           />
+          {/* just scecking this all works, where do we put it after, though? */}
+          <Route path="/add-hobby" component={AddHobby} />
         </Switch>
       </div>
     );

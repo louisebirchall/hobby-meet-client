@@ -9,14 +9,28 @@ const Navbar = ({ isLoggedIn, user, setUser }) => {
     });
   };
 
+  const containerStyles = {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+  };
+
+  const linkStyles = {
+    textDecoration: "none",
+  };
+
+  const activeStyles = {
+    textDecoration: "underline",
+  };
+
   return (
-    <div>
+    <div style={containerStyles}>
       <ul>
         {isLoggedIn && (
           <>
             <li>{user.username}</li>
             <li>
-              <NavLink to="/">
+              <NavLink style={linkStyles} activeStyle={activeStyles} to="/">
                 <button onClick={() => logoutUser()}>Logout</button>
               </NavLink>
             </li>
@@ -25,10 +39,22 @@ const Navbar = ({ isLoggedIn, user, setUser }) => {
         {!isLoggedIn && (
           <>
             <li>
-              <NavLink to="/signup">Signup</NavLink>
+              <NavLink
+                style={linkStyles}
+                activeStyle={activeStyles}
+                to="/signup"
+              >
+                Signup
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/login">Login</NavLink>
+              <NavLink
+                style={linkStyles}
+                activeStyle={activeStyles}
+                to="/login"
+              >
+                Login
+              </NavLink>
             </li>
           </>
         )}
