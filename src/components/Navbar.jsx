@@ -30,7 +30,7 @@ const Navbar = ({ isLoggedIn, user, setUser }) => {
           <>
             <li>{user.username}</li>
             <li>
-              <NavLink style={linkStyles} activeStyle={activeStyles} to="/">
+              <NavLink style={linkStyles} activeStyle={activeStyles} exact to="/">
                 <button onClick={() => logoutUser()}>Logout</button>
               </NavLink>
             </li>
@@ -42,7 +42,7 @@ const Navbar = ({ isLoggedIn, user, setUser }) => {
               <NavLink
                 style={linkStyles}
                 activeStyle={activeStyles}
-                to="/signup"
+                exact to="/signup"
               >
                 Signup
               </NavLink>

@@ -5,10 +5,10 @@ import HomePage from "./pages/HomePage";
 import authService from "./services/auth-service";
 import * as PATHS from "./utils/paths";
 import "./App.css";
-import Signup from "./components/Signup";
+import Signup from "./components/User/Signup";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
-import AddHobby from "./components/AddHobby";
+import AddHobby from "./components/Hobby/AddHobby";
 
 class App extends Component {
   state = {
@@ -59,7 +59,10 @@ class App extends Component {
             render={(props) => <Login {...props} setUser={this.setUser} />} // <Login {...props} -- to get the params
           />
           {/* just scecking this all works, where do we put it after, though? */}
-          <Route path="/add-hobby" component={AddHobby} />
+          <Route
+            path="/add-hobby"
+            render={(props) => <AddHobby {...props} isEdit={false} />}
+          />
         </Switch>
       </div>
     );

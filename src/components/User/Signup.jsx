@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import authService from "../services/auth-service";
+import authService from "../../services/auth-service";
 
 class Signup extends Component {
   state = {

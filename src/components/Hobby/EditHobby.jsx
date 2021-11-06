@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { PuffLoader } from "react-spinners";
 
-class AddHobby extends Component {
+class EditHobby extends Component {
   state = {
     name: "",
     typeOfActivity: "",
@@ -23,7 +23,7 @@ class AddHobby extends Component {
     const { name, typeOfActivity, description, hobbyImage, placeOfActivity } =
       this.state;
     axios
-      .post(`${process.env.REACT_APP_SERVER_API}/hobby-meet/create`, {
+      .post(`${process.env.REACT_APP_SERVER_API}/hobby-meet/edit`, {
         name,
         typeOfActivity,
         description,

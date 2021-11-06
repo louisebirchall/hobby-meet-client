@@ -105,19 +105,23 @@ Path | Component | Permissions | Behaviour
 * CommentForm
 * Error
 * ErrorRedirect
-#### Signup
+#### User
     * SignupForm
     * LoginForm
+    * Profile
+    * EditProfile
 #### Hobby
     * HobbyList (with filters)
     * SearchHobbyForm
     * AddHobbyForm
     * EditHobbyForm
+    * HobbyDetails
 #### Event
     * EventList (with filters)
     * SearchEventForm
     * AddEventForm
     * EditEventForm
+    *EventD
 #### Charity
     * CharityList (with filters)
     * SearchCharityForm
