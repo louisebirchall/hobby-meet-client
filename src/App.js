@@ -1,7 +1,6 @@
 import React from "react";
 import { Component } from "react";
 import { Switch, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage";
 import authService from "./services/auth-service";
 import * as PATHS from "./utils/paths";
 import "./App.css";
@@ -9,6 +8,7 @@ import Signup from "./components/User/Signup";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import AddHobby from "./components/Hobby/AddHobby";
+import HobbyForm from "./components/Hobby/HobbyForm";
 
 class App extends Component {
   state = {
@@ -60,8 +60,12 @@ class App extends Component {
           />
           {/* just scecking this all works, where do we put it after, though? */}
           <Route
-            path="/add-hobby"
-            render={(props) => <AddHobby {...props} isEdit={false} />}
+            path="/hobbies/create"
+            render={(props) => <HobbyForm {...props} isEdit={false} />}
+          />
+          <Route
+            path="/hobbies/:id/edit"
+            render={(props) => <HobbyForm {...props} isEdit={true} />}
           />
         </Switch>
       </div>
