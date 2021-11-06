@@ -100,26 +100,30 @@ Path | Component | Permissions | Behaviour
 ### Components
 
 * Homepage
-* SignupForm
-* LoginForm
 * NavBar
 * Footer
-* SearchHobbyForm
-* HobbyList
-* AddHobbyForm
-* HobbyFilter
-* EditHobbyForm
-* CommentHobbyForm
-* SearchEventForm
-* EventList
-* AddEventForm
-* EditEventForm
-* CommentEventForm
-* CharityList
-* AddCharity
-* EditCharity
+* CommentForm
 * Error
 * ErrorRedirect
+#### Signup
+    * SignupForm
+    * LoginForm
+#### Hobby
+    * HobbyList (with filters)
+    * SearchHobbyForm
+    * AddHobbyForm
+    * EditHobbyForm
+#### Event
+    * EventList (with filters)
+    * SearchEventForm
+    * AddEventForm
+    * EditEventForm
+#### Charity
+    * CharityList (with filters)
+    * SearchCharityForm
+    * AddCharity
+    * EditCharity
+    
 
 ### Services
 * Auth Service
