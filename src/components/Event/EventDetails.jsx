@@ -10,7 +10,7 @@ class EventDetails extends Component {
 
   componentDidMount() {
     axios
-      .get(
+      .get( // ! is route correct?
         `${process.env.REACT_APP_SERVER_API}/events/${this.props.match.params.id}`
       )
       .then((response) => {
@@ -76,7 +76,7 @@ class EventDetails extends Component {
                   <textarea name="description" id="" cols="30" rows="10"></textarea>
                   <br />
 
-                  <label for="creater">Who are you?</label>
+                  <label for="creator">Who are you?</label>
                   <select name="creator" id="">
                   </select>
 

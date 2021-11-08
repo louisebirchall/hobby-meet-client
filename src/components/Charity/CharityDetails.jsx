@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-class HobbyDetails extends Component {
+class CharityDetails extends Component {
   state = {
-    singleHobby: null,
+    singleCharity: null,
     isLoading: true,
   };
 
@@ -12,10 +12,10 @@ class HobbyDetails extends Component {
     axios
       .get(
         // ! need routes
-        `${process.env.REACT_APP_SERVER_API}/hobbies/${this.props.match.params.id}`
+        `${process.env.REACT_APP_SERVER_API}/charities/${this.props.match.params.id}`
       )
       .then((response) => {
-        this.setState({ singleHobby: response.data, isLoading: false });
+        this.setState({ singleCharity: response.data, isLoading: false });
       })
       .catch((err) => {
         this.props.history.push("/500");
@@ -25,7 +25,7 @@ class HobbyDetails extends Component {
   handleDelete = () => {
     axios
       .delete(
-        `${process.env.REACT_APP_SERVER_API}/hobbies/${this.props.match.params.id}`
+        `${process.env.REACT_APP_SERVER_API}/charities/${this.props.match.params.id}`
       )
       .then((data) => {
         this.props.history.push("/");
@@ -36,22 +36,22 @@ class HobbyDetails extends Component {
   };
 
   render() {
-    const { isLoading, singleHobby } = this.state;
+    const { isLoading, singleCharity } = this.state;
 
     return (
       <div>
-        <h2>{singleHobby.name}</h2>
+        <h2>{singleCharity.name}</h2>
         {isLoading && <h1>...Loading</h1>}
 
         {!isLoading && (
           <div>
-            {singleHobby.hobbyImage && (
-              <img src={singleHobby.hobbyImage} alt={singleHobby.name} />
+            {singleCharity.image && (
+              <img src={singleCharity.image} alt={singleCharity.name} />
             )}
-            <p>Description: {singleHobby.description} </p>
-            <p>Where: {singleHobby.placeOFActivity} </p>
-            <p>Category: {singleHobby.typeOfActivity} </p>
-            <Link to={`/todo/${singleHobby._id}/edit`}>
+            <p>Description: {singleCharity.description} </p>
+             {/* form for posts then
+             form for reviews */}
+            <Link to={`/todo/${singleCharity._id}/edit`}>
               <button>Edit</button>
             </Link>
             <button onClick={this.handleDelete}>Delete</button>
@@ -62,4 +62,4 @@ class HobbyDetails extends Component {
   }
 }
 
-export default HobbyDetails;
+export default CharityDetails;

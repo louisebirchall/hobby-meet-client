@@ -127,7 +127,7 @@ class EventForm extends Component {
         .then((result) => {
           this.setState({
             eventImage: result.data.eventImage,
-             title: result.data.title,
+            title: result.data.title,
             description: result.data.description,
             equipment: result.data.equipment,
             date: result.data.date,

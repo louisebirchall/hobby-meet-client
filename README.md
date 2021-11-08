@@ -113,15 +113,13 @@ Path | Component | Permissions | Behaviour
 #### Hobby
     * HobbyList (with filters)
     * SearchHobbyForm
-    * AddHobbyForm
-    * EditHobbyForm
+    * HobbyForm
     * HobbyDetails
 #### Event
     * EventList (with filters)
     * SearchEventForm
-    * AddEventForm
-    * EditEventForm
-    *EventD
+    * EventForm
+    * EventDetails
 #### Charity
     * CharityList (with filters)
     * SearchCharityForm

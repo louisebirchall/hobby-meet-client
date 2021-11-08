@@ -1,17 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { PuffLoader } from "react-spinners";
-import hobbyService from "../../services/hobby-service";
+import charityService from "../../services/charity-service";
 
-class HobbyForm extends Component {
+class CharityForm extends Component {
   state = {
     name: "",
-    typeOfActivity: "",
     description: "",
-    hobbyImage: "",
-    imageIsUploading: false,
-    placeOfActivity: "",
+    image: "",
     // post_id: ""
+    // review_id: ""
   };
 
   handleChange = (event) => {
@@ -21,31 +19,24 @@ class HobbyForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { name, typeOfActivity, description, hobbyImage, placeOfActivity } =
+    const { name, description, image } =
       this.state;
     const { id } = this.props.match.params;
 
     if (this.props.isEdit) {
-      hobbyService
-        .edit(
-          id,
-          name,
-          typeOfActivity,
-          description,
-          hobbyImage,
-          placeOfActivity
-        )
+      charityService
+        .edit(id, name, description, image)
         .then(() => {
-          this.props.history.push("/"); // ! to hobbies/:id/details
+          this.props.history.push("/"); // ! to where?
         })
         .catch((err) => {
           this.props.history.push("/500");
         });
     } else {
-      hobbyService
-        .create(name, typeOfActivity, description, hobbyImage, placeOfActivity)
+      charityService
+        .create(name, description, image)
         .then(() => {
-          this.props.history.push("/"); // ! or /hobbies?
+          this.props.history.push("/"); // ! or /charities?
         })
         .catch((err) => {
           this.props.history.push("/500");
@@ -57,13 +48,13 @@ class HobbyForm extends Component {
     this.setState({ imageIsUploading: true });
 
     const uploadData = new FormData();
-    uploadData.append("hobbyImage", event.target.files[0]);
+    uploadData.append("image", event.target.files[0]);
 
     axios
-      .post(`${process.env.REACT_APP_SERVER_API}/hobby-meet/upload`, uploadData)
+      .post(`${process.env.REACT_APP_SERVER_API}/upload`, uploadData)
       .then((result) => {
         this.setState({
-          hobbyImage: result.data.imagePath,
+          image: result.data.imagePath,
           imageIsUploading: false,
         }); // ! what's imagePath? don't remember
       })
@@ -75,15 +66,13 @@ class HobbyForm extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     if (id) {
-      hobbyService
-        .getHobby(id)
+      charityService
+        .getCharity(id)
         .then((result) => {
           this.setState({
             name: result.data.name,
-            typeOfActivity: result.data.typeOfActivity,
             description: result.data.description,
-            hobbyImage: result.data.hobbyImage,
-            placeOfActivity: result.data.placeOfActivity,
+            image: result.data.image,
           });
         })
         .catch((err) => {
@@ -94,11 +83,7 @@ class HobbyForm extends Component {
 
   render() {
     const {
-      name,
-      typeOfActivity,
-      description,
-      hobbyImage,
-      placeOfActivity,
+      name, description, image,
       imageIsUploading,
     } = this.state;
 
@@ -113,14 +98,6 @@ class HobbyForm extends Component {
             value={name}
           />
           <br />
-          <label htmlFor="typeOfActivity">Type of Activity </label>
-          <input
-            onChange={this.handleChange}
-            type="text" // ! what type as it's an option?
-            name="typeOfActivity"
-            value={typeOfActivity}
-          />
-          <br />
           <label htmlFor="description">Description </label>
           <input
             onChange={this.handleChange}
@@ -130,32 +107,23 @@ class HobbyForm extends Component {
           />
           <br />
           <div>
-            {hobbyImage && <img src="{hobbyImage}" alt="" />}
+            {image && <img src="{image}" alt="" />}
             <PuffLoader
               loading={imageIsUploading}
               size="100px"
               color="orchid"
             />
             {/* // ! input still in div, right? */}
-            <label htmlFor="hobbyImage">Representative image </label>
+            <label htmlFor="Image">Representative image </label>
             <input
               onChange={this.handleImageUpload}
               type="file"
-              name="hobby image"
+              name="image"
             />
           </div>
-
-          <br />
-          <label htmlFor="placeOfActivity">Where do we do this hobby? </label>
-          <input
-            onChange={this.handleChange}
-            type="text" // ! what type is it?
-            name="placeOfActivity"
-            value={placeOfActivity}
-          />
           <br />
           <button type="submit" disabled={imageIsUploading}>
-            Add this hobby
+            Add this Charity
           </button>
         </form>
       </div>
@@ -163,4 +131,4 @@ class HobbyForm extends Component {
   }
 }
 
-export default HobbyForm;
+export default CharityForm;

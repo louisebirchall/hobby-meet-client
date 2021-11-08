@@ -2,13 +2,14 @@ import React from "react";
 import { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 import authService from "./services/auth-service";
-import * as PATHS from "./utils/paths";
+// import * as PATHS from "./utils/paths"; // * do we need this, what is it?
 import "./App.css";
 import Signup from "./components/User/Signup";
-import Login from "./components/Login";
+import Login from "./components/User/Login";
 import Navbar from "./components/Navbar";
-import AddHobby from "./components/Hobby/AddHobby";
 import HobbyForm from "./components/Hobby/HobbyForm";
+// * try out all the components - how do they all get arranged in here?
+import Footer from "./components/Footer";
 
 class App extends Component {
   state = {
@@ -68,6 +69,7 @@ class App extends Component {
             render={(props) => <HobbyForm {...props} isEdit={true} />}
           />
         </Switch>
+        <Footer />
       </div>
     );
   }
