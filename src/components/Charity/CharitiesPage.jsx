@@ -11,7 +11,7 @@ class CharitiesPage extends Component {
   componentDidMount() {
     console.log(process.env.REACT_APP_SERVER_API);
     axios
-      .get(`${process.env.REACT_APP_SERVER_API}/charities/hobbies`) // ! routes
+      .get(`${process.env.REACT_APP_SERVER_API}/charities`) // ! routes
       .then((response) => {
         this.setState({ listOfCharities: response.data, isLoading: false });
       })
@@ -33,7 +33,7 @@ class CharitiesPage extends Component {
           listOfCharities.map((eachCharity) => {
             return (
               <div key={eachCharity._id}>
-                <Link to={`/charities/${eachCharity._id}/details`}>
+                <Link to={`/charities/${eachCharity._id}`}>
                   {eachCharity.title}
                 </Link>
               </div>

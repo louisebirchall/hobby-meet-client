@@ -11,7 +11,6 @@ class CharityDetails extends Component {
   componentDidMount() {
     axios
       .get(
-        // ! need routes
         `${process.env.REACT_APP_SERVER_API}/charities/${this.props.match.params.id}`
       )
       .then((response) => {
@@ -28,7 +27,7 @@ class CharityDetails extends Component {
         `${process.env.REACT_APP_SERVER_API}/charities/${this.props.match.params.id}`
       )
       .then((data) => {
-        this.props.history.push("/");
+        this.props.history.push("/charities");
       })
       .catch((err) => {
         this.props.history.push("/500");
@@ -51,7 +50,7 @@ class CharityDetails extends Component {
             <p>Description: {singleCharity.description} </p>
              {/* form for posts then
              form for reviews */}
-            <Link to={`/todo/${singleCharity._id}/edit`}>
+            <Link to={`/charities/${singleCharity._id}/edit`}>
               <button>Edit</button>
             </Link>
             <button onClick={this.handleDelete}>Delete</button>

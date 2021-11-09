@@ -27,7 +27,7 @@ class CharityForm extends Component {
       charityService
         .edit(id, name, description, image)
         .then(() => {
-          this.props.history.push("/"); // ! to where?
+          this.props.history.push("/charities/:id"); // ! to where?
         })
         .catch((err) => {
           this.props.history.push("/500");
