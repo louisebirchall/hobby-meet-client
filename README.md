@@ -196,6 +196,9 @@ Path | Component | Permissions | Behaviour
 ### Git
 Links to client and server repository + deployed Web App 
 
+#### Wireframes
+* [Project Wireframes](https://www.figma.com/file/Un8pPmcCWTmhsaF4WnIG0N/Wireframing-in-Figma?node-id=0%3A420)
+
 #### Frontend
 * [Client Repository](https://github.com/louisebirchall/hobby-meet-client)
 
