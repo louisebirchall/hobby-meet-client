@@ -98,9 +98,33 @@ Path | Component | Permissions | Behaviour
 
 /charity/:id/edit | NavBar, EditCharityForm, Footer | private for loggedin admin | Admin can edit charity. Redirected to edited charity.
 
-/charity/:id/delete |  | private for loggedin admin | Admin can delete charity. Redirected to /charity.
+/charity/:id/delete | - | private for loggedin admin | Admin can delete charity. Redirected to /charity.
 
 /404 | Error, ErrorRedirect | public | Page cannot be found? User needs information about it -> error handling with error 404. Btn ErrorRedirect to get to homepage.
+
+/product | | |
+
+/product/create | | |
+
+/product/:id/edit | | |
+
+/product/:id/delete | | | 
+
+/post | | |
+
+/post/create | | |
+
+/post/:id/edit | | |
+
+/post/:id/delete | | | 
+
+/reviews | | |
+
+/reviews/create | | |
+
+/reviews/:id/edit | | |
+
+/reviews/:id/delete | | | 
 
 ### Components
 
