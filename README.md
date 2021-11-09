@@ -57,7 +57,7 @@
 Path | Component | Permissions | Behaviour
 ---- | --------- | ----------- | ---------
 / | NavBar, specific hobbies, events, users, Footer | public | Homepage with overview and buttons to signup or login. 
---- | --- | --- | --- |
+ |  |  |  |
 /signup | NavBar, SignupForm, Footer | public | User can signup, redirected to profile (private Route).
 
 /login | NavBar, LoginForm, Footer | public | Registered user can login, redirected to profile (private Route).
