@@ -5,39 +5,44 @@
 
 ## User Stories
 
-* Signup/Register - user can signup for our web app.
+* Signup/Register - any user can signup for our web app.
 * Login - registered user will be able to login.
 * Logout - when registered user is logged in they will be able to logout.
-* Edit profile - registered user needs to be logged to be able to edit the private profile.
+* Search profile - registered and logged in users will be able to search the list of profiles.
+* View detailed profile - registered and logged in users will be able to see other users profile.
+* Edit profile - registered user needs to be logged in to be able to edit the private profile.
 * Delete profile - registered user or admin will be able to delete profiles.
 
 * Search hobbies - registered and logged in users will be able to search list of hobbies.
 * Filter hobbies - registered and logged in users will be able to filter the list of hobbies.
-* Add hobbies - registered and logged in users will be able to add new hobbies.
-* Edit hobbies - registered and logged in users will be able to edit hobbies they created. admins will be able to edit all.
-* Delete hobbies - registered and logged in users will be able to delete hobbies they created. admins will be able to delete all.
-* Comment hobbies - 
+* Add hobbies - logged in admins will be able to add hobbies.
+* Edit hobbies - logged in admins will be able to edit hobbies.
+* Delete hobbies - logged in admins will be able to delete hobbies.
+* Comment hobbies - registered and logged in users will be able to comment hobbies.
 
 * Search events - registered and logged in users will be able to search list of events.
-* Add events - registered and logged in users will be able to add new hobbies.
-* Edit events - 
-* Delete events -
-* Comment events - 
+* Add events - registered and logged in users will be able to add new events.
+* Edit events - registered and logged in users will be able to edit the events they created. admins will be able to edit every event.
+* Delete events - registered and logged in users will be able to delete the events they created. admins will be able to delete every event.
+* Comment events - registered and logged in users will be able to comment events.
 
-* Add charities - 
-* Edit charities - 
-* Delete charities -
+* Add charities - logged in admins will be able to add charities.
+* Edit charities - logged in admins will be able to edit charities.
+* Delete charities - logged in admins will be able to delete charities.
 
 ## MVP
 
 * Signup, login, logout
 * Create, edit, delete profile
+* Search list of profiles, view detailed profile
 
 * Create, edit, delete posts
 
 * Create, edit, delete, search, filter hobbies
 
 * Create, edit, delete, search events
+
+* Create, edit, delete charities
 
 ## Bonus
 
@@ -52,7 +57,7 @@
 Path | Component | Permissions | Behaviour
 ---- | --------- | ----------- | ---------
 / | NavBar, specific hobbies, events, users, Footer | public | Homepage with overview and buttons to signup or login. 
-
+--- | --- | --- | --- |
 /signup | NavBar, SignupForm, Footer | public | User can signup, redirected to profile (private Route).
 
 /login | NavBar, LoginForm, Footer | public | Registered user can login, redirected to profile (private Route).
