@@ -33,7 +33,7 @@ class EventsPage extends Component {
           listOfEvents.map((eachEvent) => {
             return (
               <div key={eachEvent._id}>
-                <Link to={`/events/${eachEvent._id}/details`}>
+                <Link to={`/events/${eachEvent._id}`}>
                   {eachEvent.title}
                 </Link>
               </div>

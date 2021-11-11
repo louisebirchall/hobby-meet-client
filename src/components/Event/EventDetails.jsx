@@ -10,7 +10,7 @@ class EventDetails extends Component {
 
   componentDidMount() {
     axios
-      .get( // ! is route correct?
+      .get( 
         `${process.env.REACT_APP_SERVER_API}/events/${this.props.match.params.id}`
       )
       .then((response) => {
@@ -44,8 +44,7 @@ class EventDetails extends Component {
 
         {!isLoading && (
           <div>
-            {singleEvent.eventImage && <img src={singleEvent.eventImage} />}
-            {/* alt=`${singleHobby.name}` */}
+            {singleEvent.eventImage && <img src={singleEvent.eventImage} alt=""/>}
             <p>Description: {singleEvent.description} </p>
             <p>Where: {singleEvent.location} </p>
             <p>
@@ -83,7 +82,7 @@ class EventDetails extends Component {
                   <button type="submit">Add your knee-jerk opinions!</button>
                 </form>
               </div> */}
-            <Link to={`/todo/${singleEvent._id}/edit`}>
+            <Link to={`/events/${singleEvent._id}/edit`}>
               <button>Edit</button>
             </Link>
             <button onClick={this.handleDelete}>Delete</button>

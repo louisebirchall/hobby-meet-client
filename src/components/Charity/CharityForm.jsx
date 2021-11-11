@@ -36,7 +36,7 @@ class CharityForm extends Component {
       charityService
         .create(name, description, image)
         .then(() => {
-          this.props.history.push("/"); // ! or /charities?
+          this.props.history.push("/charities"); // ! or /charities?
         })
         .catch((err) => {
           this.props.history.push("/500");

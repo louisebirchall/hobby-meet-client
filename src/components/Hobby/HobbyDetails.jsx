@@ -28,7 +28,7 @@ class HobbyDetails extends Component {
         `${process.env.REACT_APP_SERVER_API}/hobbies/${this.props.match.params.id}`
       )
       .then((data) => {
-        this.props.history.push("/");
+        this.props.history.push("/hobbies");
       })
       .catch((err) => {
         this.props.history.push("/500");
@@ -51,7 +51,7 @@ class HobbyDetails extends Component {
             <p>Description: {singleHobby.description} </p>
             <p>Where: {singleHobby.placeOFActivity} </p>
             <p>Category: {singleHobby.typeOfActivity} </p>
-            <Link to={`/todo/${singleHobby._id}/edit`}>
+            <Link to={`/hobbies/${singleHobby._id}/edit`}>
               <button>Edit</button>
             </Link>
             <button onClick={this.handleDelete}>Delete</button>

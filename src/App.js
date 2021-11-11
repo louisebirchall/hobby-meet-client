@@ -59,7 +59,7 @@ class App extends Component {
             path="/login"
             render={(props) => <Login {...props} setUser={this.setUser} />} // <Login {...props} -- to get the params
           />
-          {/* just scecking this all works, where do we put it after, though? */}
+          {/* just checking this all works, where do we put it after, though? */}
           <Route
             path="/hobbies/create"
             render={(props) => <HobbyForm {...props} isEdit={false} />}

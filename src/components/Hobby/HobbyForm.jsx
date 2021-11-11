@@ -36,7 +36,7 @@ class HobbyForm extends Component {
           placeOfActivity
         )
         .then(() => {
-          this.props.history.push("/"); // ! to hobbies/:id/details
+          this.props.history.push("/hobbies/:id"); 
         })
         .catch((err) => {
           this.props.history.push("/500");
@@ -45,7 +45,7 @@ class HobbyForm extends Component {
       hobbyService
         .create(name, typeOfActivity, description, hobbyImage, placeOfActivity)
         .then(() => {
-          this.props.history.push("/"); // ! or /hobbies?
+          this.props.history.push("/hobbies"); 
         })
         .catch((err) => {
           this.props.history.push("/500");
@@ -60,7 +60,7 @@ class HobbyForm extends Component {
     uploadData.append("hobbyImage", event.target.files[0]);
 
     axios
-      .post(`${process.env.REACT_APP_SERVER_API}/hobby-meet/upload`, uploadData)
+      .post(`${process.env.REACT_APP_SERVER_API}/upload`, uploadData)
       .then((result) => {
         this.setState({
           hobbyImage: result.data.imagePath,

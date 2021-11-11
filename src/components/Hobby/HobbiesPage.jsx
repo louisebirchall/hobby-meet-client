@@ -11,7 +11,7 @@ class HobbiesPage extends Component {
   componentDidMount() {
     console.log(process.env.REACT_APP_SERVER_API);
     axios
-      .get(`${process.env.REACT_APP_SERVER_API}/hobby-meet/hobbies`)
+      .get(`${process.env.REACT_APP_SERVER_API}/hobbies`)
       .then((response) => {
         this.setState({ listOfHobbies: response.data, isLoading: false });
       })
@@ -33,7 +33,7 @@ class HobbiesPage extends Component {
           listOfHobbies.map((eachHobby) => {
             return (
               <div key={eachHobby._id}>
-                <Link to={`/todo/${eachHobby._id}/details`}>
+                <Link to={`/todo/${eachHobby._id}`}>
                   {eachHobby.title}
                 </Link>
               </div>

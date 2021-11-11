@@ -68,7 +68,7 @@ class EventForm extends Component {
           charity_id
         )
         .then(() => {
-          this.props.history.push("/"); // ! to events/:id/details
+          this.props.history.push("/events/_id"); // ! to events/:id/details
         })
         .catch((err) => {
           this.props.history.push("/500");
@@ -92,7 +92,7 @@ class EventForm extends Component {
           charity_id
         )
         .then(() => {
-          this.props.history.push("/"); // ! or /events?
+          this.props.history.push("/events"); // ! or /events?
         })
         .catch((err) => {
           this.props.history.push("/500");
@@ -156,7 +156,6 @@ class EventForm extends Component {
       equipment,
       date,
       owner_id,
-      attendees,
       attendees_max,
       attendees_min,
       pricePolicy,
@@ -178,14 +177,6 @@ class EventForm extends Component {
             value={title} // ! sat 6 got this far
           />
           <br />
-          <label htmlFor="typeOfActivity">Type of Activity </label>
-          <input
-            onChange={this.handleChange}
-            type="text" // ! what type as it's an option?
-            name="typeOfActivity"
-            value={typeOfActivity}
-          />
-          <br />
           <label htmlFor="description">Description </label>
           <input
             onChange={this.handleChange}
@@ -195,7 +186,7 @@ class EventForm extends Component {
           />
           <br />
           <div>
-            {eventImage && <img src="{hobbyImage}" alt="Hobby image upload" />}
+            {eventImage && <img src="{eventImage}" alt=" " />}
             <PuffLoader
               loading={imageIsUploading}
               size="100px"
@@ -209,7 +200,13 @@ class EventForm extends Component {
               name="event image"
             />
           </div>
-
+          <label htmlFor="equipment">Required equipment </label>
+          <input
+            onChange={this.handleChange}
+            type="text"
+            name="equipment"
+            value={equipment}
+          />
           <br />
           <label htmlFor="placeOfActivity">
             Where shall we hold this event?{" "}
@@ -217,8 +214,74 @@ class EventForm extends Component {
           <input
             onChange={this.handleChange}
             type="text" // ! what type is it?
-            name="placeOfActivity"
-            value={placeOfActivity}
+            name="location"
+            value={location}
+          />
+          <br />
+          <label htmlFor="date">Date </label>
+          <input
+            onChange={this.handleChange}
+            type="date"
+            name="date"
+            value={date}
+          />
+          <br />
+          <label htmlFor="owner_id">Who's in charge? </label>
+          <input
+            onChange={this.handleChange}
+            type="text"
+            name="owner_id"
+            value={owner_id}
+          />
+          <br />
+          <label htmlFor="attendees_max">Maximum number of attendees </label>
+          <input
+            onChange={this.handleChange}
+            type="number"
+            name="attendees_max"
+            value={attendees_max}
+          />
+          <br />
+          <label htmlFor="attendees_min">
+            Set minimum number of attendees (if required){" "}
+          </label>
+          <input
+            onChange={this.handleChange}
+            type="number"
+            name="attendees_min"
+            value={attendees_min}
+          />
+          <br />
+          <label htmlFor="pricePolicy">Price Policy </label>
+          <input
+            onChange={this.handleChange}
+            type="text"
+            name="pricePolicy"
+            value={pricePolicy}
+          />
+          <br />
+          <label htmlFor="price">Price </label>
+          <input
+            onChange={this.handleChange}
+            type="number"
+            name="price"
+            value={price}
+          />
+          <br />
+          <label htmlFor="organizedBy">Who is the organiser? </label>
+          <input
+            onChange={this.handleChange}
+            type="text"
+            name="organizedBy"
+            value={organizedBy}
+          />
+          <br />
+          <label htmlFor="charity_id">Which Charity is it for? </label>
+          <input
+            onChange={this.handleChange}
+            type="text"
+            name="charity_id"
+            value={charity_id}
           />
           <br />
           <button type="submit" disabled={imageIsUploading}>

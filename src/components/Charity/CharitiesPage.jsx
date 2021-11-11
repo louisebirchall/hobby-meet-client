@@ -11,7 +11,7 @@ class CharitiesPage extends Component {
   componentDidMount() {
     console.log(process.env.REACT_APP_SERVER_API);
     axios
-      .get(`${process.env.REACT_APP_SERVER_API}/charities`) // ! routes
+      .get(`${process.env.REACT_APP_SERVER_API}/charities`)
       .then((response) => {
         this.setState({ listOfCharities: response.data, isLoading: false });
       })

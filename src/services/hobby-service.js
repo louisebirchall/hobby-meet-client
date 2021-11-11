@@ -27,7 +27,7 @@ class HobbyService {
     placeOfActivity
   ) => {
     return (
-      this.service.post(`/${id}/edit`),
+      this.service.patch(`/${id}`),
       { name, typeOfActivity, description, hobbyImage, placeOfActivity }
     );
   };
