@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import eventService from "../../services/event-service";
 
 class EventsPage extends Component {
   state = {
@@ -9,9 +9,8 @@ class EventsPage extends Component {
   };
 
   componentDidMount() {
-    console.log(process.env.REACT_APP_SERVER_API);
-    axios
-      .get(`${process.env.REACT_APP_SERVER_API}/events`)
+    // console.log(process.env.REACT_APP_SERVER_API);
+    eventService.getEvents
       .then((response) => {
         this.setState({ listOfEvents: response.data, isLoading: false });
       })
@@ -33,9 +32,7 @@ class EventsPage extends Component {
           listOfEvents.map((eachEvent) => {
             return (
               <div key={eachEvent._id}>
-                <Link to={`/events/${eachEvent._id}`}>
-                  {eachEvent.title}
-                </Link>
+                <Link to={`/events/${eachEvent._id}`}>{eachEvent.title}</Link>
               </div>
             );
           })}

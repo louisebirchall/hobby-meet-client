@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import hobbyService from "../../services/hobby-service";
 
 class HobbyDetails extends Component {
   state = {
@@ -9,12 +9,9 @@ class HobbyDetails extends Component {
   };
 
   componentDidMount() {
-    axios
-      .get(
-        // ! need routes
-        `${process.env.REACT_APP_SERVER_API}/hobbies/${this.props.match.params.id}`
-      )
+    hobbyService.getHobby
       .then((response) => {
+        // pretty sure this isn't right
         this.setState({ singleHobby: response.data, isLoading: false });
       })
       .catch((err) => {
@@ -23,10 +20,7 @@ class HobbyDetails extends Component {
   }
 
   handleDelete = () => {
-    axios
-      .delete(
-        `${process.env.REACT_APP_SERVER_API}/hobbies/${this.props.match.params.id}`
-      )
+    hobbyService.delete
       .then((data) => {
         this.props.history.push("/hobbies");
       })

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import HobbiesPage from "./HobbiesPage";
 import cheeseRolling from "../../images/cheeseRolling.jpeg";
 
 class HobbyLead extends Component {
@@ -18,7 +17,7 @@ class HobbyLead extends Component {
           </p>
         </div>
         <div>
-          <Link to="/hobbies" >See all the Hobbies</Link>
+          <Link to="/hobbies">See all the Hobbies</Link>
         </div>
         <div>
           <h2>Placeholder Featured Hobby</h2>

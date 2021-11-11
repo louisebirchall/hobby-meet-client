@@ -32,7 +32,7 @@ class HobbiesPage extends Component {
           listOfHobbies.map((eachHobby) => {
             return (
               <div key={eachHobby._id}>
-                <Link to={`/todo/${eachHobby._id}`}>
+                <Link to={`/hobbies/${eachHobby._id}`}>
                   {eachHobby.name}
                 </Link>
               </div>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import charityService from "../../services/charity-service";
 
 class CharitiesPage extends Component {
   state = {
@@ -9,9 +9,8 @@ class CharitiesPage extends Component {
   };
 
   componentDidMount() {
-    console.log(process.env.REACT_APP_SERVER_API);
-    axios
-      .get(`${process.env.REACT_APP_SERVER_API}/charities`)
+    // console.log(process.env.REACT_APP_SERVER_API);
+    charityService.getCharities
       .then((response) => {
         this.setState({ listOfCharities: response.data, isLoading: false });
       })

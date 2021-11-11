@@ -80,8 +80,16 @@ class EventService {
     );
   };
 
-  getHobby = (id) => {
+  delete = (id) => {
+    return this.service.delete(`${id}`);
+  };
+
+  getEvent = (id) => {
     return this.service.get(`/${id}`);
+  };
+
+  getEvents = (id) => {
+    return this.service.get();
   };
 }
 

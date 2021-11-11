@@ -32,6 +32,10 @@ class HobbyService {
     );
   };
 
+  delete = (id) => {
+    return this.service.delete(`${id}`)
+  };
+
   getHobby = (id) => {
     return this.service.get(`/${id}`);
   };

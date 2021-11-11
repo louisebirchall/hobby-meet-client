@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import EventsPage from "./EventsPage";
 import bookBitch from "../../images/bookBitch.png";
 
 class EventLead extends Component {

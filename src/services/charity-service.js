@@ -25,8 +25,16 @@ class CharityService {
     );
   };
 
+  delete = (id) => {
+    return this.service.delete(`${id}`);
+  };
+
   getCharity = (id) => {
     return this.service.get(`/${id}`);
+  };
+
+  getCharities = (id) => {
+    return this.service.get();
   };
 }
 

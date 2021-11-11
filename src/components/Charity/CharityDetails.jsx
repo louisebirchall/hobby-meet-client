@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import charityService from "../../services/charity-service";
 
 class CharityDetails extends Component {
   state = {
@@ -9,10 +9,7 @@ class CharityDetails extends Component {
   };
 
   componentDidMount() {
-    axios
-      .get(
-        `${process.env.REACT_APP_SERVER_API}/charities/${this.props.match.params.id}`
-      )
+    charityService.getCharity
       .then((response) => {
         this.setState({ singleCharity: response.data, isLoading: false });
       })
@@ -22,10 +19,7 @@ class CharityDetails extends Component {
   }
 
   handleDelete = () => {
-    axios
-      .delete(
-        `${process.env.REACT_APP_SERVER_API}/charities/${this.props.match.params.id}`
-      )
+    charityService.delete
       .then((data) => {
         this.props.history.push("/charities");
       })
@@ -48,7 +42,7 @@ class CharityDetails extends Component {
               <img src={singleCharity.image} alt={singleCharity.name} />
             )}
             <p>Description: {singleCharity.description} </p>
-             {/* form for posts then
+            {/* form for posts then
              form for reviews */}
             <Link to={`/charities/${singleCharity._id}/edit`}>
               <button>Edit</button>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import eventService from "../../services/event-service";
 
 class EventDetails extends Component {
   state = {
@@ -9,10 +9,7 @@ class EventDetails extends Component {
   };
 
   componentDidMount() {
-    axios
-      .get( 
-        `${process.env.REACT_APP_SERVER_API}/events/${this.props.match.params.id}`
-      )
+    eventService.getEvent
       .then((response) => {
         this.setState({ singleEvent: response.data, isLoading: false });
       })
@@ -22,10 +19,7 @@ class EventDetails extends Component {
   }
 
   handleDelete = () => {
-    axios
-      .delete(
-        `${process.env.REACT_APP_SERVER_API}/events/${this.props.match.params.id}`
-      )
+    eventService.delete
       .then((data) => {
         this.props.history.push("/");
       })
@@ -44,7 +38,9 @@ class EventDetails extends Component {
 
         {!isLoading && (
           <div>
-            {singleEvent.eventImage && <img src={singleEvent.eventImage} alt=""/>}
+            {singleEvent.eventImage && (
+              <img src={singleEvent.eventImage} alt="" />
+            )}
             <p>Description: {singleEvent.description} </p>
             <p>Where: {singleEvent.location} </p>
             <p>
