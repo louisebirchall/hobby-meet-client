@@ -20,7 +20,7 @@ class CharityService {
 
   edit = (id, name, description, image, post_id, review_id) => {
     return (
-      this.service.post(`/${id}/edit`),
+      this.service.patch(`/${id}/edit`),
       { name, description, image, post_id, review_id }
     );
   };

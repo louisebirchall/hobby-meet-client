@@ -1,6 +1,6 @@
-import React from 'react'
-import HobbiesPage from './Hobby/HobbiesPage'
-import axios from 'axios'
+import React, { Component } from "react";
+import HobbyLead from "./Hobby/HobbyLead";
+import EventLead from "./Event/EventLead";
 
 // we need to import
 // Hobby Component -  Intro text (information), Btn (redirect to hobby list)
@@ -15,7 +15,6 @@ we want to display the image of the specific hobby by random
 => comp
 */
 
-
 // Event Component -> Display last event depending on Event.Model
 // Event Carousel for Random Events (Math.Random)
 // Reviews Carousel for previous events
@@ -24,12 +23,15 @@ we want to display the image of the specific hobby by random
 
 // "Banner" for Sign up including Btn (redirect to "Sign up Form")
 
-import React from 'react'
-
-export default function Homepage() {
+class Homepage extends Component {
+  render() {
     return (
-        <div>
-            
-        </div>
-    )
+      <div>
+        <HobbyLead />
+        <EventLead />
+      </div>
+    );
+  }
 }
+
+export default Homepage;

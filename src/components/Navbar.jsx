@@ -23,8 +23,8 @@ const Navbar = ({ isLoggedIn, user, setUser }) => {
   };
 
   return (
-    <div style={containerStyles}>
-      <ul>
+    <div>
+      <ul style={containerStyles}>
         {isLoggedIn && (
           <>
             <li>{user.username}</li>

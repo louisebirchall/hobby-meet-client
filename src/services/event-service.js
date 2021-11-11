@@ -60,7 +60,7 @@ class EventService {
     charity_id
   ) => {
     return (
-      this.service.post(`/${id}/edit`),
+      this.service.patch(`/${id}/edit`),
       {
         eventImage,
         title,
