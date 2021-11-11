@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import HobbyLead from "./Hobby/HobbyLead";
 import EventLead from "./Event/EventLead";
+import Frontpage from "./Frontpage";
 
 // we need to import
 // Hobby Component -  Intro text (information), Btn (redirect to hobby list)
@@ -27,6 +28,7 @@ class Homepage extends Component {
   render() {
     return (
       <div>
+        <Frontpage />
         <HobbyLead />
         <EventLead />
       </div>
