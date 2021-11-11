@@ -30,7 +30,7 @@ class EventLead extends Component {
           </p>
         </div>
         <div>
-          <Link to="/events" component={EventsPage} />
+          <Link to="/events">See all the Events</Link>
         </div>
       </div>
     );

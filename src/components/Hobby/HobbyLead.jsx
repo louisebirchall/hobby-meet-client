@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import HobbiesPage from "./HobbiesPage";
+import cheeseRolling from "../../images/cheeseRolling.jpeg";
 
 class HobbyLead extends Component {
   // use styling to make two columns or cards from bootstrap - hobbies bunf and link on one side, random/featured hobby on the other
@@ -17,12 +18,12 @@ class HobbyLead extends Component {
           </p>
         </div>
         <div>
-          <Link to="/hobbies" component={HobbiesPage} />
+          <Link to="/hobbies" >See all the Hobbies</Link>
         </div>
         <div>
           <h2>Placeholder Featured Hobby</h2>
           <h3>CHEESE ROLLING</h3>
-          <img src="../../../public/cheese-rolling.jpeg" alt="" />
+          <img src={cheeseRolling} alt="cheeseRolling" />
           <p>
             People chase a wheel of Double Gloucester down a very steep hill in
             Gloucestershire. The cheese has a one-second head start, and the

@@ -35,6 +35,10 @@ class HobbyService {
   getHobby = (id) => {
     return this.service.get(`/${id}`);
   };
+
+  getHobbies = () => {
+    return this.service.get();
+  };
 }
 
 const hobbyService = new HobbyService();

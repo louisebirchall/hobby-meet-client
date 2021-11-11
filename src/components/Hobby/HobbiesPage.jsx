@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import hobbyService from "../../services/hobby-service";
 
 class HobbiesPage extends Component {
   state = {
@@ -10,13 +10,12 @@ class HobbiesPage extends Component {
 
   componentDidMount() {
     console.log(process.env.REACT_APP_SERVER_API);
-    axios
-      .get(`${process.env.REACT_APP_SERVER_API}/hobbies`)
+    hobbyService.getHobbies()
       .then((response) => {
         this.setState({ listOfHobbies: response.data, isLoading: false });
       })
       .catch((err) => {
-        this.props.history.push("/500");
+        // this.props.history.push("/500");
       });
   }
 
@@ -34,7 +33,7 @@ class HobbiesPage extends Component {
             return (
               <div key={eachHobby._id}>
                 <Link to={`/todo/${eachHobby._id}`}>
-                  {eachHobby.title}
+                  {eachHobby.name}
                 </Link>
               </div>
             );

@@ -11,6 +11,7 @@ import HobbyForm from "./components/Hobby/HobbyForm";
 // * try out all the components - how do they all get arranged in here?
 import Footer from "./components/Footer";
 import Homepage from "./components/Homepage";
+import HobbiesPage from "./components/Hobby/HobbiesPage";
 
 class App extends Component {
   state = {
@@ -69,7 +70,15 @@ class App extends Component {
             path="/hobbies/:id/edit"
             render={(props) => <HobbyForm {...props} isEdit={true} />}
           />
-          <Homepage />
+          <Route
+            path="/hobbies"
+            render={(props) => <HobbiesPage {...props} />}
+          />
+          <Route
+            exact
+            path="/"
+            render={(props) => <Homepage {...props} />}
+          />
         </Switch>
         <Footer />
       </div>
