@@ -88,7 +88,7 @@ class EventService {
     return this.service.get(`/${id}`);
   };
 
-  getEvents = (id) => {
+  getEvents = () => {
     return this.service.get();
   };
 }

@@ -12,6 +12,8 @@ import HobbyForm from "./components/Hobby/HobbyForm";
 import Footer from "./components/Footer";
 import Homepage from "./components/Homepage";
 import HobbiesPage from "./components/Hobby/HobbiesPage";
+import EventsPage from "./components/Event/EventsPage";
+import CharitiesPage from "./components/Charity/CharitiesPage";
 
 class App extends Component {
   state = {
@@ -71,14 +73,18 @@ class App extends Component {
             render={(props) => <HobbyForm {...props} isEdit={true} />}
           />
           <Route
+            path="/events"
+            render={(props) => <EventsPage {...props} />}
+          />
+          <Route
+            path="/charities"
+            render={(props) => <CharitiesPage {...props} />}
+          />
+          <Route
             path="/hobbies"
             render={(props) => <HobbiesPage {...props} />}
           />
-          <Route
-            exact
-            path="/"
-            render={(props) => <Homepage {...props} />}
-          />
+          <Route exact path="/" render={(props) => <Homepage {...props} />} />
         </Switch>
         <Footer />
       </div>

@@ -33,7 +33,7 @@ class CharityService {
     return this.service.get(`/${id}`);
   };
 
-  getCharities = (id) => {
+  getCharities = () => {
     return this.service.get();
   };
 }

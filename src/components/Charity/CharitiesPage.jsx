@@ -10,12 +10,12 @@ class CharitiesPage extends Component {
 
   componentDidMount() {
     // console.log(process.env.REACT_APP_SERVER_API);
-    charityService.getCharities
+    charityService.getCharities()
       .then((response) => {
         this.setState({ listOfCharities: response.data, isLoading: false });
       })
       .catch((err) => {
-        this.props.history.push("/500");
+        // this.props.history.push("/500");
       });
   }
 

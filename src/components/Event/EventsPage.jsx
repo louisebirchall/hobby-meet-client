@@ -10,12 +10,12 @@ class EventsPage extends Component {
 
   componentDidMount() {
     // console.log(process.env.REACT_APP_SERVER_API);
-    eventService.getEvents
+    eventService.getEvents()
       .then((response) => {
         this.setState({ listOfEvents: response.data, isLoading: false });
       })
       .catch((err) => {
-        this.props.history.push("/500");
+        // this.props.history.push("/500");
       });
   }
 

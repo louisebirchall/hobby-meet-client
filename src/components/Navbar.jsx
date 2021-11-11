@@ -24,6 +24,7 @@ const Navbar = ({ isLoggedIn, user, setUser }) => {
 
   return (
     <div>
+    <NavLink to="/">Home</NavLink>
       <ul style={containerStyles}>
         {isLoggedIn && (
           <>

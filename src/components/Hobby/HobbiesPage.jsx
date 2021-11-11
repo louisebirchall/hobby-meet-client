@@ -9,8 +9,9 @@ class HobbiesPage extends Component {
   };
 
   componentDidMount() {
-    console.log(process.env.REACT_APP_SERVER_API);
-    hobbyService.getHobbies()
+    // console.log(process.env.REACT_APP_SERVER_API);
+    hobbyService
+      .getHobbies()
       .then((response) => {
         this.setState({ listOfHobbies: response.data, isLoading: false });
       })
@@ -32,9 +33,7 @@ class HobbiesPage extends Component {
           listOfHobbies.map((eachHobby) => {
             return (
               <div key={eachHobby._id}>
-                <Link to={`/hobbies/${eachHobby._id}`}>
-                  {eachHobby.name}
-                </Link>
+                <Link to={`/hobbies/${eachHobby._id}`}>{eachHobby.name}</Link>
               </div>
             );
           })}
