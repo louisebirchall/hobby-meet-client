@@ -14,6 +14,8 @@ import Homepage from "./components/Homepage";
 import HobbiesPage from "./components/Hobby/HobbiesPage";
 import EventsPage from "./components/Event/EventsPage";
 import CharitiesPage from "./components/Charity/CharitiesPage";
+import ServerError from "./components/ErrorHandling/ServerError";
+import PageNotFound from "./components/ErrorHandling/PageNotFound";
 
 class App extends Component {
   state = {
@@ -85,6 +87,12 @@ class App extends Component {
             render={(props) => <HobbiesPage {...props} />}
           />
           <Route exact path="/" render={(props) => <Homepage {...props} />} />
+
+          <Route path="/500" component={ServerError} />
+
+          <Route component={PageNotFound} />
+
+
         </Switch>
         <Footer />
       </div>

@@ -15,7 +15,7 @@ class EventsPage extends Component {
         this.setState({ listOfEvents: response.data, isLoading: false });
       })
       .catch((err) => {
-        // this.props.history.push("/500");
+        this.props.history.push("/500");
       });
   }
 
