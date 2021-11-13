@@ -1,7 +1,7 @@
-import axios from "axios";
 import postService from "../../src/services/post-service";
 import { Component } from "react";
 import { PuffLoader } from "react-spinners";
+import imageService from "../services/image-service";
 
 
 class Post extends Component {
@@ -72,8 +72,7 @@ class Post extends Component {
     const uploadImage = new FormData()
     uploadImage.append("postImage", event.target.files[0])
   
-    axios
-    .post(`${process.env.REACT_APP_API_HOST}/upload`, uploadImage)
+    imageService.upload(uploadImage)
     .then((result) => {
       this.setState({
         postImage: result.data.imagePath,

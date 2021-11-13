@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { PuffLoader } from "react-spinners";
 import hobbyService from "../../services/hobby-service";
+import imageService from "../../services/image-service";
 
 class HobbyForm extends Component {
   state = {
@@ -59,8 +59,7 @@ class HobbyForm extends Component {
     const uploadData = new FormData();
     uploadData.append("hobbyImage", event.target.files[0]);
 
-    axios
-      .post(`${process.env.REACT_APP_SERVER_API}/upload`, uploadData)
+ imageService.upload(uploadData)
       .then((result) => {
         this.setState({
           hobbyImage: result.data.imagePath,
