@@ -1,9 +1,7 @@
 import axios from "axios";
-import { Component } from "react";
-import { PuffLoader } from "react-spinners";
 
+/*class Post extends Component {
 
-class Post extends Component {
   state = {
     postImage: "",
     description: "",
@@ -59,7 +57,6 @@ handleImageUpload = (event) => {
   .catch(() => this.props.history.push("/500"));
 }
 
-
   render() {
     const { postImage, description, likes, dislikes, imageIsUploading } = this.state;
 
@@ -108,3 +105,55 @@ handleImageUpload = (event) => {
   }
 }
 export default Post;
+*/
+
+class PostService {
+  constructor() {
+    this.service = axios.create({
+      baseURL: `${process.env.REACT_APP_API_HOST}/posts`,
+      withCredentials: true,
+    });
+  }
+
+  create = (postImage, description, likes, dislikes) => {
+    return (
+      this.service.post("/create"),
+      {
+        postImage,
+        description,
+        likes,
+        dislikes,
+      }
+    );
+  };
+
+  edit = (id, postImage, description, likes, dislikes) => {
+    return (
+      this.service.patch(`/${id}/edit`),
+      {
+        id,
+        postImage,
+        description,
+        likes,
+        dislikes,
+      }
+    );
+  };
+
+  delete = (id) => {
+    return this.service.delete(`${id}`);
+  };
+
+  // for the specific post (id)
+  getPost = (id) => {
+    return this.service.get(`${id}`);
+  };
+
+  // for the list of posts inside the profile
+  getPosts = () => {
+    return this.service.get();
+  };
+}
+
+const postService = new PostService();
+export default postService;

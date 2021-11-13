@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import charityService from "../../services/charity-service";
 
+
 class CharitiesPage extends Component {
   state = {
     listOfCharities: null,

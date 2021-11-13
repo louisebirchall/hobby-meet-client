@@ -19,7 +19,6 @@ class EventForm extends Component {
     location: "",
     organizedBy: "",
     charity_id: "",
-    // post_id: "" etc
     imageIsUploading: false,
   };
 

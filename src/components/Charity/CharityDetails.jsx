@@ -15,7 +15,7 @@ class CharityDetails extends Component {
       })
       .catch((err) => {
         this.props.history.push("/500");
-      });
+      }); 
   }
 
   handleDelete = () => {
@@ -27,6 +27,7 @@ class CharityDetails extends Component {
         this.props.history.push("/500");
       });
   };
+
 
   render() {
     const { isLoading, singleCharity } = this.state;
@@ -42,6 +43,9 @@ class CharityDetails extends Component {
               <img src={singleCharity.image} alt={singleCharity.name} />
             )}
             <p>Description: {singleCharity.description} </p>
+
+            {/* <p>Add your post here: {singleCharity.postService} </p> */}
+            
             {/* form for posts then
              form for reviews */}
             <Link to={`/charities/${singleCharity._id}/edit`}>
