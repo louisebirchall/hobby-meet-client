@@ -14,6 +14,7 @@ import Homepage from "./components/Homepage";
 import HobbiesPage from "./components/Hobby/HobbiesPage";
 import EventsPage from "./components/Event/EventsPage";
 import CharitiesPage from "./components/Charity/CharitiesPage";
+import CharityDetails from "./components/Charity/CharityDetails";
 import ServerError from "./components/ErrorHandling/ServerError";
 import PageNotFound from "./components/ErrorHandling/PageNotFound";
 
@@ -74,13 +75,15 @@ class App extends Component {
             path="/hobbies/:id/edit"
             render={(props) => <HobbyForm {...props} isEdit={true} />}
           />
+          <Route path="/events" render={(props) => <EventsPage {...props} />} />
           <Route
-            path="/events"
-            render={(props) => <EventsPage {...props} />}
-          />
-          <Route
+            exact
             path="/charities"
             render={(props) => <CharitiesPage {...props} />}
+          />
+          <Route
+            path="/charities/:id"
+            render={(props) => <CharityDetails {...props} />}
           />
           <Route
             path="/hobbies"
@@ -91,8 +94,6 @@ class App extends Component {
           <Route path="/500" component={ServerError} />
 
           <Route component={PageNotFound} />
-
-
         </Switch>
         <Footer />
       </div>

@@ -3,18 +3,13 @@ import axios from "axios";
 class ImageService {
   constructor() {
     this.service = axios.create({
-      baseURL: `${process.env.REACT_APP_API_HOST}/upload`,
+      baseURL: process.env.REACT_APP_API_HOST,
       withCredentials: true,
     });
   }
 
-  upload = (image) => {
-    return (
-      this.service.post("/upload"),
-      {
-        image,
-      }
-    );
+  upload = (data) => {
+    return this.service.post("/upload", data);
   };
 }
 

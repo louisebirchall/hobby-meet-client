@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import charityService from "../../services/charity-service";
-import Post from "../Posts";
 
 class CharitiesPage extends Component {
   state = {
@@ -11,7 +10,8 @@ class CharitiesPage extends Component {
 
   componentDidMount() {
     // console.log(process.env.REACT_APP_SERVER_API);
-    charityService.getCharities()
+    charityService
+      .getCharities()
       .then((response) => {
         this.setState({ listOfCharities: response.data, isLoading: false });
       })
@@ -34,9 +34,8 @@ class CharitiesPage extends Component {
             return (
               <div key={eachCharity._id}>
                 <Link to={`/charities/${eachCharity._id}`}>
-                  {eachCharity.title}
+                  {eachCharity.name}
                 </Link>
-                <Post />
               </div>
             );
           })}

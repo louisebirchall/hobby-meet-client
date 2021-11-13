@@ -19,10 +19,13 @@ class CharityService {
   };
 
   edit = (id, name, description, image, post_id, review_id) => {
-    return (
-      this.service.patch(`/${id}/edit`),
-      { name, description, image, post_id, review_id }
-    );
+    return this.service.patch(`/${id}/edit`, {
+      name,
+      description,
+      image,
+      post_id,
+      review_id,
+    });
   };
 
   delete = (id) => {
@@ -35,6 +38,13 @@ class CharityService {
 
   getCharities = () => {
     return this.service.get();
+  };
+
+  createPost = (id, description, image) => {
+    return this.service.post(`/${id}/posts/create`, {
+      description,
+      image,
+    });
   };
 }
 
