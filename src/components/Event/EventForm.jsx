@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { PuffLoader } from "react-spinners";
 import eventService from "../../services/event-service";
+import imageService from "../../services/image-service";
 
 class EventForm extends Component {
   state = {
@@ -105,8 +105,7 @@ class EventForm extends Component {
     const uploadData = new FormData();
     uploadData.append("eventImage", event.target.files[0]);
 
-    axios
-      .post(`${process.env.REACT_APP_SERVER_API}/upload`, uploadData)
+    imageService.upload(uploadData)
       .then((result) => {
         this.setState({
           eventImage: result.data.imagePath,

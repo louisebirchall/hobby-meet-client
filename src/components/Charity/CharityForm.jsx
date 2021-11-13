@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { PuffLoader } from "react-spinners";
 import charityService from "../../services/charity-service";
+import imageService from "../../services/image-service";
 
 class CharityForm extends Component {
   state = {
@@ -50,8 +50,7 @@ class CharityForm extends Component {
     const uploadData = new FormData();
     uploadData.append("image", event.target.files[0]);
 
-    axios
-      .post(`${process.env.REACT_APP_SERVER_API}/upload`, uploadData)
+    imageService.upload(uploadData)
       .then((result) => {
         this.setState({
           image: result.data.imagePath,
