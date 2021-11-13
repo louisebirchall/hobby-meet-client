@@ -1,5 +1,5 @@
 import axios from "axios";
-import postService from "../../services/post-service";
+import postService from "../../src/services/post-service";
 import { Component } from "react";
 import { PuffLoader } from "react-spinners";
 
@@ -81,6 +81,27 @@ class Post extends Component {
       });
     })
     .catch(() => this.props.history.push("/500"));
+  }
+
+  componentDidMount() {
+    const { id } = this.props.match.params;
+  //  if (id) {
+      postService
+        .getPost(id)
+        .then((result) => {
+          this.setState({
+            postImage: result.data.postImage,
+            description: result.data.description,
+            likes: result.data.likes,
+            dislikes: result.data.dislikes,
+          });
+        })
+        .catch((err) => {
+          this.props.history.push("/500");
+        });
+  //  } else {
+    //    res.json
+  //  }
   }
 
   render() {

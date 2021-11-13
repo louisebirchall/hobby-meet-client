@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import charityService from "../../services/charity-service";
-
+import Post from "../Posts";
 
 class CharitiesPage extends Component {
   state = {
@@ -36,6 +36,7 @@ class CharitiesPage extends Component {
                 <Link to={`/charities/${eachCharity._id}`}>
                   {eachCharity.title}
                 </Link>
+                <Post />
               </div>
             );
           })}

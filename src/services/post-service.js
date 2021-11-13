@@ -114,6 +114,8 @@ class PostService {
       withCredentials: true,
     });
   }
+  
+  // here to add the isLoggedIn user part?
 
   create = (postImage, description, likes, dislikes) => {
     return (

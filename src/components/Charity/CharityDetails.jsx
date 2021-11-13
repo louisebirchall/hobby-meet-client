@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import charityService from "../../services/charity-service";
+import Post from "../Posts";
 
 class CharityDetails extends Component {
   state = {
@@ -43,6 +44,8 @@ class CharityDetails extends Component {
               <img src={singleCharity.image} alt={singleCharity.name} />
             )}
             <p>Description: {singleCharity.description} </p>
+              {/* here we need to add  */}
+              <Post />
 
             {/* <p>Add your post here: {singleCharity.postService} </p> */}
             
