@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { PuffLoader } from "react-spinners";
-import imageService from "../services/image-service";
+import imageService from "../../services/image-service";
 
 // editing a post should only be possible for creator of it!
 
