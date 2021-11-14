@@ -7,12 +7,16 @@ import "./App.css";
 import Signup from "./components/User/Signup";
 import Login from "./components/User/Login";
 import Navbar from "./components/Navbar";
-import HobbyForm from "./components/Hobby/HobbyForm";
+
 // * try out all the components - how do they all get arranged in here?
 import Footer from "./components/Footer";
 import Homepage from "./components/Homepage";
 import HobbiesPage from "./components/Hobby/HobbiesPage";
+import HobbyDetails from "./components/Hobby/HobbyDetails";
+import HobbyForm from "./components/Hobby/HobbyForm";
 import EventsPage from "./components/Event/EventsPage";
+import EventDetails from "./components/Event/EventDetails";
+import EventForm from "./components/Event/EventForm";
 import CharitiesPage from "./components/Charity/CharitiesPage";
 import CharityDetails from "./components/Charity/CharityDetails";
 import ServerError from "./components/ErrorHandling/ServerError";
@@ -67,6 +71,17 @@ class App extends Component {
             render={(props) => <Login {...props} setUser={this.setUser} />} // <Login {...props} -- to get the params
           />
           {/* just checking this all works, where do we put it after, though? */}
+
+          {/* Hobbies */}
+          <Route
+            exact
+            path="/hobbies"
+            render={(props) => <HobbiesPage {...props} />}
+          />
+          <Route
+            path="/hobbies/:id"
+            render={(props) => <HobbyDetails {...props} />}
+          />
           <Route
             path="/hobbies/create"
             render={(props) => <HobbyForm {...props} isEdit={false} />}
@@ -75,7 +90,27 @@ class App extends Component {
             path="/hobbies/:id/edit"
             render={(props) => <HobbyForm {...props} isEdit={true} />}
           />
-          <Route path="/events" render={(props) => <EventsPage {...props} />} />
+
+          {/* Events */}
+          <Route 
+            exact
+            path="/events" 
+            render={(props) => <EventsPage {...props} />} 
+          />
+          <Route
+            path="/events/:id"
+            render={(props) => <EventDetails {...props} />}
+          />
+          <Route
+            path="/events/create"
+            render={(props) => <EventForm {...props} isEdit={false} />}
+          />
+          <Route
+            path="/events/:id/edit"
+            render={(props) => <EventForm {...props} isEdit={true} />}
+          />
+
+          {/* Charities */}
           <Route
             exact
             path="/charities"
@@ -85,12 +120,10 @@ class App extends Component {
             path="/charities/:id"
             render={(props) => <CharityDetails {...props} />}
           />
-          <Route
-            path="/hobbies"
-            render={(props) => <HobbiesPage {...props} />}
-          />
+
           <Route exact path="/" render={(props) => <Homepage {...props} />} />
 
+          {/* ErrorHandling */}
           <Route path="/500" component={ServerError} />
 
           <Route component={PageNotFound} />

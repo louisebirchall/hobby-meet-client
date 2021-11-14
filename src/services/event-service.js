@@ -91,6 +91,14 @@ class EventService {
   getEvents = () => {
     return this.service.get();
   };
+
+  createPost = (id, description, image) => {
+    return this.service.post(`/${id}/posts/create`, {
+      description,
+      image,
+    });
+  };
+
 }
 
 const eventService = new EventService();

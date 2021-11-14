@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import eventService from "../../services/event-service";
+import AddPostForm from "../AddPostForm";
 
 class EventDetails extends Component {
   state = {
@@ -9,7 +10,9 @@ class EventDetails extends Component {
   };
 
   componentDidMount() {
-    eventService.getEvent
+    const { id } = this.props.match.params;
+    eventService
+    .getEvent(id)
       .then((response) => {
         this.setState({ singleEvent: response.data, isLoading: false });
       })
@@ -30,14 +33,16 @@ class EventDetails extends Component {
 
   render() {
     const { isLoading, singleEvent } = this.state;
+    const { id } = this.props.match.params;
 
     return (
       <div>
-        <h2>{singleEvent.title}</h2>
+        
         {isLoading && <h1>...Loading</h1>}
 
         {!isLoading && (
           <div>
+          <h2>{singleEvent.title}</h2>
             {singleEvent.eventImage && (
               <img src={singleEvent.eventImage} alt="" />
             )}
@@ -48,7 +53,7 @@ class EventDetails extends Component {
               {singleEvent.equipment}, Category: {singleEvent.hobby_id}
             </p>
             <p> </p>
-            <p>Organiser : {singleEvent.owner_id}</p>
+            <p>Organizer : {singleEvent.owner_id}</p>
             <p>
               Attending: {singleEvent.attendees} - Maximum attendees:{" "}
               {singleEvent.attendees_max}
@@ -56,6 +61,7 @@ class EventDetails extends Component {
             <p>
               In aid of {singleEvent.charity_id}, price: {singleEvent.price}
             </p>
+            <AddPostForm id={id} service={eventService} />
 
             {/* 
             form for posts if wanted

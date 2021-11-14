@@ -43,6 +43,14 @@ class HobbyService {
   getHobbies = () => {
     return this.service.get();
   };
+
+  createPost = (id, description, image) => {
+    return this.service.post(`/${id}/posts/create`, {
+      description,
+      image,
+    });
+  };
+
 }
 
 const hobbyService = new HobbyService();
