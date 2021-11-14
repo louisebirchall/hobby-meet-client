@@ -117,27 +117,23 @@ class PostService {
   
   // here to add the isLoggedIn user part?
 
-  create = (postImage, description, likes, dislikes) => {
+  create = (image, description) => {
     return (
       this.service.post("/create"),
       {
-        postImage,
+        image,
         description,
-        likes,
-        dislikes,
       }
     );
   };
 
-  edit = (id, postImage, description, likes, dislikes) => {
+  edit = (id, image, description) => {
     return (
       this.service.patch(`/${id}/edit`),
       {
         id,
-        postImage,
+        image,
         description,
-        likes,
-        dislikes,
       }
     );
   };

@@ -1,11 +1,13 @@
-// import postService from "../services/post-service";
-import { Component } from "react";
+import React, { Component } from "react";
 import { PuffLoader } from "react-spinners";
 import imageService from "../services/image-service";
-// import charityService from "../services/charity-service";
 
-class AddPostForm extends Component {
+// editing a post should only be possible for creator of it!
+
+class EditPostForm extends Component {
   state = {
+    // should it be empty or recalling the information of the existing post?
+    // if !empty => how possible with hobby/event/charity?
     image: "",
     description: "",
     imageIsUploading: false,
@@ -17,9 +19,10 @@ class AddPostForm extends Component {
     const { id } = this.props;
 
     this.props.service
-      .createPost(id, description, image)
+      .editPost(id, description, image)
       .then(() => {
-        //this.props.history.push("/posts");
+        // back to page with related post that got changed
+        //this.props.history.push("/posts/:id");
       })
       .catch((err) => {
         this.props.history.push("/500");
@@ -27,20 +30,10 @@ class AddPostForm extends Component {
   };
 
   handleChange = (event) => {
-    // console.log(event.target)
-    this.setState({ [event.target.name]: event.target.value });
+      this.setState({ [event.target.name]: event.target.value });
   };
 
-  // handleLikes = (btn) => {
-  //   console.log("Liking/Disliking!");
-
-  //   //this.setState({likes: this.state.number + 1 ? btn === "increase" : btn === "decrease"})
-
-  //   if (btn === "increaseLikes") {
-  //     this.setState({ likes: this.state.number + 1 });
-  //   } else this.setState({ dislikes: this.state.number + 1 });
-  // };
-
+  // for changing the image of the post
   handleImageUpload = (event) => {
     this.setState({ imageIsUploading: true });
 
@@ -64,7 +57,7 @@ class AddPostForm extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          {image && <img src={image} alt="postImg" />}
+          {image && <img src={image} alt="postImage" />}
           <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
           <input onChange={this.handleImageUpload} type="file" name="image" />
 
@@ -77,7 +70,7 @@ class AddPostForm extends Component {
           />
 
           <button type="submit" disabled={imageIsUploading}>
-            Post!
+            Change Post!
           </button>
         </form>
       </div>
@@ -85,4 +78,4 @@ class AddPostForm extends Component {
   }
 }
 
-export default AddPostForm;
+export default EditPostForm;

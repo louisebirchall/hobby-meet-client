@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import charityService from "../../services/charity-service";
-import Post from "../AddPostForm";
+import AddPostForm from "../AddPostForm";
 
 class CharityDetails extends Component {
   state = {
@@ -47,7 +47,7 @@ class CharityDetails extends Component {
             )}
             <p>Description: {singleCharity.description} </p>
             {/* here we need to add  */}
-            <Post id={id} service={charityService} />
+            <AddPostForm id={id} service={charityService} />
 
             {/* <p>Add your post here: {singleCharity.postService} </p> */}
 
