@@ -22,7 +22,8 @@ class AddPostForm extends Component {
         //this.props.history.push("/posts");
       })
       .catch((err) => {
-        this.props.history.push("/500");
+        //console.log(err)
+        //this.props.history.push("/500");
       });
   };
 

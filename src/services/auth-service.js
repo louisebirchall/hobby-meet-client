@@ -13,6 +13,7 @@ class AuthService {
   };
 
   login = (username, password) => {
+    console.log("logging");
     return this.service.post("/login", { username, password });
   };
 
