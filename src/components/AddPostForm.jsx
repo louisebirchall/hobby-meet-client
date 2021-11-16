@@ -65,7 +65,7 @@ class AddPostForm extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          {image && <img src={image} alt="postImg" />}
+          {image && <img src={image} alt="postImg" width="150px" />}
           <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
           <input onChange={this.handleImageUpload} type="file" name="image" />
 

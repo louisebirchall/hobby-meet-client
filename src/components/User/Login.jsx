@@ -5,6 +5,7 @@ class Login extends Component {
   state = {
     username: "",
     password: "",
+    error: "",
   };
 
   handleChange = (event) => {
@@ -25,12 +26,12 @@ class Login extends Component {
         this.props.setUser(result.data, true);
       })
       .catch((err) => {
-        console.log(err);
+        this.setState({ error: err.response.data.errorMessage });
       });
   };
 
   render() {
-    const { username, password } = this.state;
+    const { username, password, error } = this.state;
 
     return (
       <div>
@@ -51,6 +52,7 @@ class Login extends Component {
           <br />
           <button type="submit">Login</button>
         </form>
+        {error && <p>{error}</p>}
       </div>
     );
   }
