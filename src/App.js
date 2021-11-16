@@ -19,6 +19,7 @@ import EventDetails from "./components/Event/EventDetails";
 import EventForm from "./components/Event/EventForm";
 import CharitiesPage from "./components/Charity/CharitiesPage";
 import CharityDetails from "./components/Charity/CharityDetails";
+import CharityForm from "./components/Charity/CharityForm";
 import ServerError from "./components/ErrorHandling/ServerError";
 import PageNotFound from "./components/ErrorHandling/PageNotFound";
 
@@ -120,6 +121,14 @@ class App extends Component {
             path="/charities/:id"
             render={(props) => <CharityDetails {...props} />}
           />
+          {/* <Route
+            path="/charities/create"
+            render={(props) => <CharityForm {...props} isEdit={false} />}
+          />
+          <Route
+            path="/charities/:id/edit"
+            render={(props) => <CharityForm {...props} isEdit={true} />}
+          /> */}
 
           <Route exact path="/" render={(props) => <Homepage {...props} />} />
 
