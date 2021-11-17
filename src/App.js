@@ -19,7 +19,7 @@ import EventDetails from "./components/Event/EventDetails";
 import EventForm from "./components/Event/EventForm";
 import CharitiesPage from "./components/Charity/CharitiesPage";
 import CharityDetails from "./components/Charity/CharityDetails";
-import CharityForm from "./components/Charity/CharityForm";
+// import CharityForm from "./components/Charity/CharityForm";
 import ServerError from "./components/ErrorHandling/ServerError";
 import PageNotFound from "./components/ErrorHandling/PageNotFound";
 
