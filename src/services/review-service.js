@@ -22,7 +22,7 @@ class ReviewService {
     );
   };
 
-  // only editing or delting a like neccessary? to discuss!
+  // only editing or deleting a like neccessary? to discuss!
 
   edit = (id, likes, dislikes) => {
     return (
