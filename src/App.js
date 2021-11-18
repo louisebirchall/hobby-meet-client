@@ -20,6 +20,7 @@ import CharityDetails from "./components/Charity/CharityDetails";
 // import CharityForm from "./components/Charity/CharityForm";
 import ServerError from "./components/ErrorHandling/ServerError";
 import PageNotFound from "./components/ErrorHandling/PageNotFound";
+import Frontpage from "./components/Frontpage";
 
 class App extends Component {
   state = {
@@ -62,7 +63,6 @@ class App extends Component {
         <Navbar isLoggedIn={isLoggedIn} user={user} setUser={this.setUser} />
         <Switch>
           <Route exact path="/" render={(props) => <Homepage {...props} />} />
-
           {/* User */}
           <Route
             path="/signup"
@@ -73,12 +73,12 @@ class App extends Component {
             path="/login"
             render={(props) => <Login {...props} setUser={this.setUser} />} // <Login {...props} -- to get the params
           />
-          <Route 
+          <Route
             path="/profile"
             render={(props) => <Profile {...props} setUser={this.setUser} />}
           />
-       
-
+          {/* Frontpage */}
+          <Route exact path="/" render={(props) => <Frontpage {...props} />} />
           {/* Hobbies */}
           <Route
             exact
@@ -97,12 +97,11 @@ class App extends Component {
             path="/hobbies/:id/edit"
             render={(props) => <HobbyForm {...props} isEdit={true} />}
           />
-
           {/* Events */}
-          <Route 
+          <Route
             exact
-            path="/events" 
-            render={(props) => <EventsPage {...props} />} 
+            path="/events"
+            render={(props) => <EventsPage {...props} />}
           />
           <Route
             path="/events/:id"
@@ -116,7 +115,6 @@ class App extends Component {
             path="/events/:id/edit"
             render={(props) => <EventForm {...props} isEdit={true} />}
           />
-
           {/* Charities */}
           <Route
             exact
@@ -135,11 +133,8 @@ class App extends Component {
             path="/charities/:id/edit"
             render={(props) => <CharityForm {...props} isEdit={true} />}
           /> */}
-
-
           {/* ErrorHandling */}
           <Route path="/500" component={ServerError} />
-
           <Route component={PageNotFound} />
         </Switch>
         <Footer />

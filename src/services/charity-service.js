@@ -8,23 +8,19 @@ class CharityService {
     });
   }
 
-  create = (name, description, image, post_id, review_id) => {
+  create = (name, description, image) => {
     return this.service.post("/create", {
       name,
       description,
       image,
-      post_id,
-      review_id,
     });
   };
 
-  edit = (id, name, description, image, post_id, review_id) => {
+  edit = (id, name, description, image) => {
     return this.service.patch(`/${id}/edit`, {
       name,
       description,
       image,
-      post_id,
-      review_id,
     });
   };
 
@@ -46,6 +42,13 @@ class CharityService {
       image,
     });
   };
+
+  createReview = (id, likes) => {
+    return this.service.post(`/${id}/reviews/create`, {
+      likes,
+    });
+  };
+  
 }
 
 const charityService = new CharityService();
