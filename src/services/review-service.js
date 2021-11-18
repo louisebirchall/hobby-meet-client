@@ -1,6 +1,7 @@
 import axios from "axios";
 
 // needs sth like a counter that show the amount of likes
+// but this will be needed in the actual "form" => AddReviewForm
 
 class ReviewService {
   constructor() {

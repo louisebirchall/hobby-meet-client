@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import charityService from "../../services/charity-service";
+import reviewService from "../../services/review-service";
 import AddPostForm from "../AddPostForm";
 import EditPostForm from "../Posts/EditPostForm";
+import ReviewForm from "../ReviewForm";
 
 class CharityDetails extends Component {
   state = {
@@ -47,13 +49,16 @@ class CharityDetails extends Component {
               <img src={singleCharity.image} alt={singleCharity.name} />
             )}
             <p>Description: {singleCharity.description} </p>
+            <ReviewForm id={id} service={reviewService}/>
             {/* here we need to add  */}
             <AddPostForm id={id} service={charityService} />
 
             {/* this should only be displayed for the creator of the post.
             is related to the specific id of the original post? */}
             <hr />
-            <EditPostForm id={id} service={charityService} />
+            {/* <EditPostForm id={id} service={charityService} /> */}
+            
+            <br/>
 
             {/* <p>Add your post here: {singleCharity.postService} </p> */}
 
