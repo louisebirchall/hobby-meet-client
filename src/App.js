@@ -22,6 +22,7 @@ import CharityDetails from "./components/Charity/CharityDetails";
 import ServerError from "./components/ErrorHandling/ServerError";
 import PageNotFound from "./components/ErrorHandling/PageNotFound";
 
+
 class App extends Component {
   state = {
     isLoggedIn: null,
