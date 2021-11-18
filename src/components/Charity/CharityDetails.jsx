@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import charityService from "../../services/charity-service";
 import AddPostForm from "../AddPostForm";
+import EditPostForm from "../Posts/EditPostForm";
 
 class CharityDetails extends Component {
   state = {
@@ -48,6 +49,11 @@ class CharityDetails extends Component {
             <p>Description: {singleCharity.description} </p>
             {/* here we need to add  */}
             <AddPostForm id={id} service={charityService} />
+
+            {/* this should only be displayed for the creator of the post.
+            is related to the specific id of the original post? */}
+            <hr />
+            <EditPostForm id={id} service={charityService} />
 
             {/* <p>Add your post here: {singleCharity.postService} </p> */}
 
