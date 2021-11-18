@@ -36,7 +36,7 @@ class App extends Component {
   };
 
   getUser = () => {
-    if (this.setState.user === null) {
+    if (!this.setState.user) {
       authService
         .loggedin()
         .then((response) => {
@@ -74,7 +74,7 @@ class App extends Component {
             render={(props) => <Login {...props} setUser={this.setUser} />} // <Login {...props} -- to get the params
           />
           <Route
-            path="/profile"
+            path="/profile/:id"
             render={(props) => <Profile {...props} setUser={this.setUser} />}
           />
           {/* Frontpage */}

@@ -4,7 +4,7 @@ import userService from '../../services/user-service'
 class Profile extends Component {
 
     state = {
-        profileData: null,
+        user: null,
         isLoading: true,
     }
 
@@ -14,7 +14,7 @@ class Profile extends Component {
         userService
             .getUser(id)
             .then((result) => {
-                this.setState({profileData:result.data, isLoading: false })
+                this.setState({user: result.data, isLoading: false })
             })
             .catch((err) => {
                 //console.log(err.response.status)
@@ -25,12 +25,12 @@ class Profile extends Component {
     }
 
     render() {
-        const {profileData, isLoading} = this.state
+        const {user, isLoading} = this.state
         
         return (
             <div>
                 {isLoading && <h1>...isLoading</h1>}
-                {!isLoading && <h3>{profileData}</h3>}
+                {!isLoading && <h3>{user.username}</h3>}
             </div>
         )
     }

@@ -23,7 +23,8 @@ class Login extends Component {
       .then((result) => {
         // console.log(result);
         this.setState({ username: '', password: '' });
-        this.props.setUser(result.data, true);
+        this.props.setUser(result.data.user, true);
+        this.props.history.push(`/profile/${result.data.user._id}`)
       })
       .catch((err) => {
         this.setState({ error: err.response.data.errorMessage });
