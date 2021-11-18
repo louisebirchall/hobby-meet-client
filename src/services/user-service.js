@@ -9,6 +9,26 @@ class UserService {
     });
   }
 
+  create = (
+    id,
+    fullName,
+    profileImage,
+    sex,
+    age,
+    hobbies,
+    typeOfUser
+  ) => {
+    return this.service.post(`/${id}`, {
+      fullName,
+      profileImage,
+      sex,
+      age,
+      hobbies,
+      typeOfUser
+    });
+  };
+
+
   edit = (
     id,
     username,
@@ -21,7 +41,7 @@ class UserService {
     typeOfUser
   ) => {
     return (
-      this.service.patch(`/${id}`),
+      this.service.patch(`/${id}/edit`),
       {
         username,
         email,

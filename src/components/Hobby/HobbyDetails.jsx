@@ -23,7 +23,7 @@ class HobbyDetails extends Component {
   }
 
   handleDelete = () => {
-    hobbyService.delete
+    hobbyService.delete()
       .then((data) => {
         this.props.history.push("/hobbies");
       })

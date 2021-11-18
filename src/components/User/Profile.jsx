@@ -9,8 +9,10 @@ class Profile extends Component {
     }
 
     componentDidMount(){
+        const { id } = this.props.match.params;
+       // console.log(this.props.profileData)
         userService
-            .getUsers()
+            .getUser(id)
             .then((result) => {
                 this.setState({profileData:result.data, isLoading: false })
             })
@@ -23,9 +25,8 @@ class Profile extends Component {
     }
 
     render() {
-
         const {profileData, isLoading} = this.state
-
+        
         return (
             <div>
                 {isLoading && <h1>...isLoading</h1>}
