@@ -147,7 +147,7 @@ class PostService {
     return this.service.get(`${id}`);
   };
 
-  // for the list of posts inside the profile
+  // for the list of posts (for example inside the profile)
   getPosts = () => {
     return this.service.get();
   };

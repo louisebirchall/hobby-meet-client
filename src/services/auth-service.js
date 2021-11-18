@@ -8,8 +8,8 @@ class AuthService {
     });
   }
 
-  signup = (username, password) => {
-    return this.service.post("/signup", { username, password });
+  signup = (username, email, password) => {
+    return this.service.post("/signup", { username, email, password }, {withCredentials: true});
   };
 
   login = (username, password) => {
@@ -17,7 +17,7 @@ class AuthService {
     return this.service.post("/login", { username, password });
   };
 
-  logout = (username, password) => {
+  logout = () => {
     return this.service.post("/logout");
   };
 
