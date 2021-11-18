@@ -1,24 +1,13 @@
 import axios from "axios";
 
-// ! review all of this I'm not sure where I was going with it
 
 class UserService {
   constructor() {
     this.service = axios.create({
-      baseURL: `${process.env.REACT_APP_API_HOST}/user`, // what route as user is created in auth
+      baseURL: `${process.env.REACT_APP_API_HOST}/profile`, // what route as user is created in auth
       withCredentials: true,
     });
   }
-
-  //   create = (name, typeOfActivity, description, hobbyImage, placeOfActivity) => {
-  //     return this.service.post("/create", {
-  //       name,
-  //       typeOfActivity,
-  //       description,
-  //       hobbyImage,
-  //       placeOfActivity,
-  //     });
-  //   };
 
   edit = (
     id,

@@ -26,18 +26,20 @@ const Navbar = ({ isLoggedIn, user, setUser }) => {
     <div>
     <NavLink to="/">Home</NavLink>
       <ul style={containerStyles}>
-        {isLoggedIn && (
+        {isLoggedIn && user && (
           <>
             <li>{user.username}</li>
             <li>
               <NavLink
-                style={linkStyles}
-                activeStyle={activeStyles}
-                exact
+   /*             style={linkStyles}
+                activeStyle={activeStyles}*/
                 to="/"
               >
                 <button onClick={() => logoutUser()}>Logout</button>
               </NavLink>
+            </li>
+            <li>
+              <NavLink to="/profile">Profile</NavLink>
             </li>
           </>
         )}
