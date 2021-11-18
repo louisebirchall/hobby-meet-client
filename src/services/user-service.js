@@ -4,7 +4,7 @@ import axios from "axios";
 class UserService {
   constructor() {
     this.service = axios.create({
-      baseURL: `${process.env.REACT_APP_API_HOST}/profile`, // what route as user is created in auth
+      baseURL: `${process.env.REACT_APP_API_HOST}/profile`,
       withCredentials: true,
     });
   }

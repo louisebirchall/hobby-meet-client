@@ -24,7 +24,7 @@ class Signup extends Component {
         this.setState({ username: "", email: "", password: "" });
         this.props.setUser(result.data, true);
       })
-      .catch(() => this.props.history.push("Error while trying to signup"));
+     // .catch(() => this.props.history.push("Error while trying to signup"));
   };
 
   render() {

@@ -14,7 +14,12 @@ class Profile extends Component {
             .then((result) => {
                 this.setState({profileData:result.data, isLoading: false })
             })
-            .catch((err) => {});
+            .catch((err) => {
+                //console.log(err.response.status)
+                if(err.response.status === 403){
+                    this.props.history.push("/login")
+                }
+            });
     }
 
     render() {
