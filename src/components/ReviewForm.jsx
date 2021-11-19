@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { Component } from 'react'
 
 /*
@@ -10,19 +9,20 @@ instagram as example?
 class ReviewForm extends Component {
 
     state = {
+        comment: "",
         likes: 0, 
         // dislikes: 0,
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
-        const { likes } = this.state;
+        const { comment, likes } = this.state;
         const { id } = this.props;
     
     this.props.service
-    .createReview( id, likes )
+    .createReview( id, comment, likes )
     .then(() => {
-        //this.props.history.push("/reviews");
+        this.props.history.push("/reviews");
     })
     .catch((err) => {
         //this.props.history.push("/500");
@@ -40,15 +40,20 @@ class ReviewForm extends Component {
 
     render() {
         
-        const { likes, 
-            // dislikes 
-        } = this.state
+        const { comment, likes, dislikes } = this.state
         // const { id } = this.params
 
         return (
             <div>
                 {/* is a form needed? => only "looking" for a button that will be counted */}
                 {/* <form onSubmit = { this.handleSubmit }> */}
+                <form onSubmit={this.handleSubmit}>
+                <button onClick={this.handleLikes} id={this.props.id}>Likes: {likes} </button>
+                    <label htmlFor="comment">Your Review: </label>
+                    <input type="text" name="comment" value={comment}/>
+                </form>
+                <button type="submit">Add your Review</button>
+
                 
                 {/* later the to be replaced by icons?! 
                 should be limited for users to only be able to click (dis)like once!
@@ -57,7 +62,6 @@ class ReviewForm extends Component {
                 {/* <p>{likes}</p> */}
                 {/* <button onClick={ ({id}) => this.handleLikes("increaseLikes")}>Like {likes}</button> */}
                 
-                <button onClick={this.handleLikes} id={this.props.id}>Likes: {likes} </button>
                 
                 {/* <p>{dislikes}</p> */}
                 {/* <button onClick={ () => this.handleLikes("increaseDislikes")}>Dislike</button> */}

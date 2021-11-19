@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import eventService from "../../services/event-service";
 import AddPostForm from "../AddPostForm";
+import reviewService from "../../services/review-service";
+import EditPostForm from "../Posts/EditPostForm";
+import ReviewForm from "../ReviewForm";
+
 
 class EventDetails extends Component {
   state = {
@@ -62,6 +66,11 @@ class EventDetails extends Component {
               In aid of {singleEvent.charity_id}, price: {singleEvent.price}
             </p>
             <AddPostForm id={id} service={eventService} />
+
+            {/* <EditPostForm id={id} service={charityService} /> */}
+
+            <br/>
+            <ReviewForm id={id} service={reviewService} />
 
             {/* 
             form for posts if wanted

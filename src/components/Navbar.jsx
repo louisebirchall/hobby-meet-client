@@ -41,6 +41,13 @@ class Navbar extends Component {
       <div>
         <NavLink to="/">Home</NavLink>
         <ul style={containerStyles}>
+        <li>
+            <button onClick={this.handleToggle}>
+              {this.state.showSearchBar ? "Hide Search" : "Search"}
+            </button>
+
+            {this.state.showSearchBar && <SearchBar />}
+          </li>
           {isLoggedIn && user && (
             <>
               <li>{user.username}</li>
@@ -57,14 +64,7 @@ class Navbar extends Component {
                 <NavLink to="/profile">Profile</NavLink>
               </li>
             </>
-          )}
-          <li>
-            <button onClick={this.handleToggle}>
-              {this.state.showSearchBar ? "Hide Search" : "Search"}
-            </button>
-
-            {this.state.showSearchBar && <SearchBar />}
-          </li>
+          )}          
           {!isLoggedIn && (
             <>
               <li>
@@ -86,6 +86,7 @@ class Navbar extends Component {
                   Login
                 </NavLink>
               </li>
+              
             </>
           )}
         </ul>
