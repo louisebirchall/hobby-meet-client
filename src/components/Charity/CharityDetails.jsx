@@ -49,16 +49,17 @@ class CharityDetails extends Component {
               <img src={singleCharity.image} alt={singleCharity.name} />
             )}
             <p>Description: {singleCharity.description} </p>
-            <ReviewForm id={id} service={reviewService}/>
+            <hr />
             {/* here we need to add  */}
             <AddPostForm id={id} service={charityService} />
-
+            <hr />
+            <ReviewForm id={id} service={reviewService} />
             {/* this should only be displayed for the creator of the post.
             is related to the specific id of the original post? */}
             <hr />
             {/* <EditPostForm id={id} service={charityService} /> */}
-            
-            <br/>
+
+            <br />
 
             {/* <p>Add your post here: {singleCharity.postService} </p> */}
 
