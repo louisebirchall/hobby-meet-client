@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import charityService from "../../services/charity-service";
-import SearchBar from "../Search/SearchBar";
+//import SearchBar from "../Search/SearchBar";
 
 class CharitiesPage extends Component {
   state = {
