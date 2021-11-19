@@ -60,7 +60,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Navbar isLoggedIn={isLoggedIn} user={user} setUser={this.setUser} />
+       <Navbar isLoggedIn={isLoggedIn} user={user} setUser={this.setUser} />
         <Switch>
           <Route exact path="/" render={(props) => <Homepage {...props} />} />
           {/* User */}

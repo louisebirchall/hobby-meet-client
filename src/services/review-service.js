@@ -1,7 +1,5 @@
 import axios from "axios";
 
-// needs sth like a counter that show the amount of likes
-// but this will be needed in the actual "form" => AddReviewForm
 
 class ReviewService {
   constructor() {
@@ -23,6 +21,7 @@ class ReviewService {
     );
   };
 
+  /*
   // only editing or deleting a like neccessary? to discuss!
 
   edit = (id, likes, dislikes) => {
@@ -39,6 +38,7 @@ class ReviewService {
   delete = (id) => {
     return this.service.delete(`${id}`);
   };
+  */
 
   // to see the given (dis)likes below reviewed details:
 

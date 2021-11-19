@@ -2,8 +2,7 @@ import axios from 'axios';
 import React, { Component } from 'react'
 
 /*
-the review form is for counting the likes or dislikes 
-that users can add to a product, event, charity
+the review form is for counting the likes (or dislikes) that users can add to a product, event, charity
 
 instagram as example? 
 */
@@ -41,7 +40,9 @@ class ReviewForm extends Component {
 
     render() {
         
-        const { likes, dislikes } = this.state
+        const { likes, 
+            // dislikes 
+        } = this.state
         // const { id } = this.params
 
         return (
