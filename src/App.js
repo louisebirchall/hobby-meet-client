@@ -22,7 +22,6 @@ import CharityDetails from "./components/Charity/CharityDetails";
 // import CharityForm from "./components/Charity/CharityForm";
 import ServerError from "./components/ErrorHandling/ServerError";
 import PageNotFound from "./components/ErrorHandling/PageNotFound";
-import Frontpage from "./components/Frontpage";
 // import Typography from "@material-ui/core/Typography";
 import { ThemeProvider, createTheme } from "@material-ui/core/styles";
 
