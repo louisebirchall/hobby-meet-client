@@ -1,6 +1,8 @@
 import axios from "axios";
 
-class ImageService {
+
+// generalService
+class GeneralService {
   constructor() {
     this.service = axios.create({
       baseURL: process.env.REACT_APP_API_HOST,
@@ -11,10 +13,15 @@ class ImageService {
   upload = (data) => {
     return this.service.post("/upload", data);
   };
+
+  search = (search, type) => {
+    return this.service.get("/search", {params: {search, type}});
+  };
+
 }
 
-const imageService = new ImageService();
-export default imageService;
+const generalService = new GeneralService();
+export default generalService;
 
 // handleImageUpload = (event) => {
 //   this.setState({ imageIsUploading: true });

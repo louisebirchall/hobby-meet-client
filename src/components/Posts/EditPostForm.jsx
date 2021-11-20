@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { PuffLoader } from "react-spinners";
-import imageService from "../../services/image-service";
+import generalService from "../../services/general-service";
 
 // editing a post should only be possible for creator of it!
 
@@ -40,7 +40,7 @@ class EditPostForm extends Component {
     const formdata = new FormData();
     formdata.append("image", event.target.files[0]);
 
-    imageService
+    generalService
       .upload(formdata)
       .then((result) => {
         this.setState({

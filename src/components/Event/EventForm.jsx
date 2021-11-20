@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { PuffLoader } from "react-spinners";
 import eventService from "../../services/event-service";
-import imageService from "../../services/image-service";
+import generalService from "../../services/general-service";
 
 class EventForm extends Component {
   state = {
@@ -105,7 +105,7 @@ class EventForm extends Component {
     const uploadData = new FormData();
     uploadData.append("eventImage", event.target.files[0]);
 
-    imageService.upload(uploadData)
+    generalService.upload(uploadData)
       .then((result) => {
         this.setState({
           eventImage: result.data.imagePath,

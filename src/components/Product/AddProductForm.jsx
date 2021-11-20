@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { PuffLoader } from "react-spinners";
 import productService from "../../services/product-service";
-import imageService from "../../services/image-service";
+import generalService from "../../services/general-service";
 
 class AddProductForm extends Component {
   state = {
@@ -81,7 +81,7 @@ class AddProductForm extends Component {
     const uploadData = new FormData();
     uploadData.append("image", event.target.files[0]);
 
-    imageService
+    generalService
       .upload(uploadData)
       .then((result) => {
         this.setState({

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { PuffLoader } from "react-spinners";
 import hobbyService from "../../services/hobby-service";
-import imageService from "../../services/image-service";
+import generalService from "../../services/general-service";
 
 class HobbyForm extends Component {
   state = {
@@ -59,7 +59,7 @@ class HobbyForm extends Component {
     const uploadData = new FormData();
     uploadData.append("hobbyImage", event.target.files[0]);
 
- imageService.upload(uploadData)
+ generalService.upload(uploadData)
       .then((result) => {
         this.setState({
           hobbyImage: result.data.imagePath,

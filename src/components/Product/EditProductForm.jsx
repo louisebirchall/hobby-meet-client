@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { PuffLoader } from "react-spinners";
 import productService from "../../services/product-service";
-import imageService from "../../services/image-service";
+import generalService from "../../services/general-service";
 
 // so it's almost the same like adding a product
 // content needs to be prefilled and changed with the form below?
@@ -86,7 +86,7 @@ class EditProductForm extends Component {
     const uploadData = new FormData();
     uploadData.append("image", event.target.files[0]);
 
-    imageService
+    generalService
       .upload(uploadData)
       .then((result) => {
         this.setState({

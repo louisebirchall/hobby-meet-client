@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { PuffLoader } from "react-spinners";
 import charityService from "../../services/charity-service";
-import imageService from "../../services/image-service";
+import generalService from "../../services/general-service";
 
 class CharityForm extends Component {
   state = {
@@ -50,7 +50,7 @@ class CharityForm extends Component {
     const uploadData = new FormData();
     uploadData.append("image", event.target.files[0]);
 
-    imageService.upload(uploadData)
+    generalService.upload(uploadData)
       .then((result) => {
         this.setState({
           image: result.data.imagePath,

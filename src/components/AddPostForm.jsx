@@ -1,7 +1,7 @@
 // import postService from "../services/post-service";
 import { Component } from "react";
 import { PuffLoader } from "react-spinners";
-import imageService from "../services/image-service";
+import generalService from "../services/general-service";
 // import charityService from "../services/charity-service";
 
 class AddPostForm extends Component {
@@ -48,7 +48,7 @@ class AddPostForm extends Component {
     const formdata = new FormData();
     formdata.append("image", event.target.files[0]);
 
-    imageService
+    generalService
       .upload(formdata)
       .then((result) => {
         this.setState({
