@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import authService from "../services/auth-service";
+import SearchBar from "./Search/SearchBar";
 
 
 const Navbar = ({ isLoggedIn, user, setUser }) => {
@@ -49,6 +50,8 @@ const Navbar = ({ isLoggedIn, user, setUser }) => {
           </>
         )}
       </ul>
+
+      <SearchBar/>
     </div>
   );
 };
