@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 
 /*
-the review form is for counting the likes or dislikes 
-that users can add to a product, event, charity
+the review form is for counting the likes (or dislikes) that users can add to a product, event, charity
 
 instagram as example? 
 */

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import hobbyService from "../../services/hobby-service";
 import AddPostForm from "../AddPostForm";
+// import EditPostForm from "../Posts/EditPostForm";
+
 
 class HobbyDetails extends Component {
   state = {
@@ -12,9 +14,8 @@ class HobbyDetails extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     hobbyService
-    .getHobby(id)
+      .getHobby(id)
       .then((response) => {
-        // pretty sure this isn't right
         this.setState({ singleHobby: response.data, isLoading: false });
       })
       .catch((err) => {
@@ -43,17 +44,20 @@ class HobbyDetails extends Component {
 
         {!isLoading && (
           <div>
-          <h2>{singleHobby.name}</h2>
-            {singleHobby.hobbyImage && (
-              <img src={singleHobby.hobbyImage} alt={singleHobby.name} />
-            )}
+            <h2>{singleHobby.name}</h2>
+            {singleHobby.image && ( <img src={singleHobby.image} alt={singleHobby.name} /> )}
             <p>Description: {singleHobby.description} </p>
             <p>Where: {singleHobby.placeOfActivity} </p>
             <p>Category: {singleHobby.typeOfActivity} </p>
+
             <AddPostForm id={id} service={hobbyService} />
+
+            {/* <EditPostForm id={id} service={charityService} /> */}
+
             <Link to={`/hobbies/${singleHobby._id}/edit`}>
               <button>Edit</button>
             </Link>
+
             <button onClick={this.handleDelete}>Delete</button>
           </div>
         )}

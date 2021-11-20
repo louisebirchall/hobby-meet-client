@@ -1,25 +1,18 @@
 import React, { Component } from "react";
 import { PuffLoader } from "react-spinners";
-import eventService from "../../services/event-service";
+import productService from "../../services/product-service";
 import generalService from "../../services/general-service";
 
-class EventForm extends Component {
+class AddProductForm extends Component {
   state = {
     image: "",
     title: "",
     description: "",
-    equipment: "",
-    date: "",
-    owner_id: "",
-    attendees: "",
-    attendees_max: "",
-    attendees_min: "",
     pricePolicy: "",
     price: "",
-    location: "",
-    organizedBy: "",
+    event_id: "",
+    user_id: "",
     charity_id: "",
-    imageIsUploading: false,
   };
 
   handleChange = (event) => {
@@ -33,65 +26,48 @@ class EventForm extends Component {
       image,
       title,
       description,
-      equipment,
-      date,
-      owner_id,
-      attendees,
-      attendees_max,
-      attendees_min,
       pricePolicy,
       price,
-      location,
-      organizedBy,
+      event_id,
+      user_id,
       charity_id,
     } = this.state;
     const { id } = this.props.match.params;
 
     if (this.props.isEdit) {
-      eventService
+      productService
         .edit(
           id,
           image,
           title,
           description,
-          equipment,
-          date,
-          owner_id,
-          attendees,
-          attendees_max,
-          attendees_min,
           pricePolicy,
           price,
-          location,
-          organizedBy,
+          event_id,
+          user_id,
           charity_id
         )
         .then(() => {
-          this.props.history.push("/events/_id"); // ! to events/:id/details
+          this.props.history.push("/products/_id"); // ! to events/:id/details
         })
         .catch((err) => {
           this.props.history.push("/500");
         });
     } else {
-      eventService
+      productService
         .create(
+          id,
           image,
           title,
           description,
-          equipment,
-          date,
-          owner_id,
-          attendees,
-          attendees_max,
-          attendees_min,
           pricePolicy,
           price,
-          location,
-          organizedBy,
+          event_id,
+          user_id,
           charity_id
         )
         .then(() => {
-          this.props.history.push("/events"); // ! or /events?
+          this.props.history.push("/products"); // ! or /events?
         })
         .catch((err) => {
           this.props.history.push("/500");
@@ -103,9 +79,10 @@ class EventForm extends Component {
     this.setState({ imageIsUploading: true });
 
     const uploadData = new FormData();
-    uploadData.append("eventImage", event.target.files[0]);
+    uploadData.append("image", event.target.files[0]);
 
-    generalService.upload(uploadData)
+    generalService
+      .upload(uploadData)
       .then((result) => {
         this.setState({
           image: result.data.imagePath,
@@ -120,23 +97,17 @@ class EventForm extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     if (id) {
-      eventService
-        .getEvent(id)
+      productService
+        .getProduct(id)
         .then((result) => {
           this.setState({
             image: result.data.image,
             title: result.data.title,
             description: result.data.description,
-            equipment: result.data.equipment,
-            date: result.data.date,
-            owner_id: result.data.owner_id,
-            attendees: result.data.attendees,
-            attendees_max: result.data.attendees_max,
-            attendees_min: result.data.attendees_min,
+            user_id: result.data.user_id,
             pricePolicy: result.data.pricePolicy,
             price: result.data.price,
-            location: result.data.location,
-            organizedBy: result.data.organizedBy,
+            event_id: result.data.event_id,
             charity_id: result.data.charity_id,
           });
         })
@@ -151,15 +122,10 @@ class EventForm extends Component {
       image,
       title,
       description,
-      equipment,
-      date,
-      owner_id,
-      attendees_max,
-      attendees_min,
       pricePolicy,
       price,
-      location,
-      organizedBy,
+      event_id,
+      user_id,
       charity_id,
       imageIsUploading,
     } = this.state;
@@ -167,14 +133,14 @@ class EventForm extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="title">Event title </label>
+          <label htmlFor="title">Product title </label>
           <input
             onChange={this.handleChange}
             type="text"
             name="title"
-            value={title} 
+            value={title} // ! sat 6 got this far
           />
-      
+          <br />
           <label htmlFor="description">Description </label>
           <input
             onChange={this.handleChange}
@@ -182,9 +148,9 @@ class EventForm extends Component {
             name="description"
             value={description}
           />
-  
+          <br />
           <div>
-            {image && <img src={image} alt=" " />}
+            {image && <img src="{image}" alt=" " />}
             <PuffLoader
               loading={imageIsUploading}
               size="100px"
@@ -195,71 +161,18 @@ class EventForm extends Component {
             <input
               onChange={this.handleImageUpload}
               type="file"
-              name="event image"
+              name="product image"
             />
           </div>
-
-          <label htmlFor="equipment">Required equipment </label>
-          <input
-            onChange={this.handleChange}
-            type="text"
-            name="equipment"
-            value={equipment}
-          />
-       
-          <label htmlFor="placeOfActivity">
-            Where shall we hold this event?
-          </label>
+          <br />
+          <label htmlFor="pricePolicy">Price Policy</label>
           <input
             onChange={this.handleChange}
             type="text" // ! what type is it?
-            name="location"
-            value={location}
-          />
-     
-     
-          <label htmlFor="date">Date </label>
-          <input
-            onChange={this.handleChange}
-            type="date"
-            name="date"
-            value={date}
-          />
-
-          <label htmlFor="owner_id">Who's in charge? </label>
-          <input
-            onChange={this.handleChange}
-            type="text"
-            name="owner_id"
-            value={owner_id}
-          />
-  
-          <label htmlFor="attendees_max">Maximum number of attendees </label>
-          <input
-            onChange={this.handleChange}
-            type="number"
-            name="attendees_max"
-            value={attendees_max}
-          />
- 
-          <label htmlFor="attendees_min">
-            Set minimum number of attendees (if required)
-          </label>
-          <input
-            onChange={this.handleChange}
-            type="number"
-            name="attendees_min"
-            value={attendees_min}
-          />
-   
-          <label htmlFor="pricePolicy">Price Policy </label>
-          <input
-            onChange={this.handleChange}
-            type="text"
             name="pricePolicy"
             value={pricePolicy}
           />
-  
+          <br />
           <label htmlFor="price">Price </label>
           <input
             onChange={this.handleChange}
@@ -267,31 +180,54 @@ class EventForm extends Component {
             name="price"
             value={price}
           />
-  
-          <label htmlFor="organizedBy">Who is the organiser? </label>
+          <br />
+          <label htmlFor="event_id">Where was it created? </label>
           <input
             onChange={this.handleChange}
             type="text"
-            name="organizedBy"
-            value={organizedBy}
+            name="event_id"
+            value={event_id}
           />
-
-          <label htmlFor="charity_id">Which Charity is it for? </label>
+          <br />
+          <label htmlFor="user_id">Who was the creator? </label>
+          <input
+            onChange={this.handleChange}
+            type="text"
+            name="user_id"
+            value={user_id}
+          />
+          <br />
+          <label htmlFor="charity_id">Which charity is it for? </label>
           <input
             onChange={this.handleChange}
             type="text"
             name="charity_id"
             value={charity_id}
           />
-
+          <br />
+          <label htmlFor="pricePolicy">Price Policy </label>
+          <input
+            onChange={this.handleChange}
+            type="text"
+            name="pricePolicy"
+            value={pricePolicy}
+          />
+          <br />
+          <label htmlFor="price">Price </label>
+          <input
+            onChange={this.handleChange}
+            type="number"
+            name="price"
+            value={price}
+          />
+          <br />
           <button type="submit" disabled={imageIsUploading}>
-            Add this event
+            Add this product!
           </button>
-
         </form>
       </div>
     );
   }
 }
 
-export default EventForm;
+export default AddProductForm;

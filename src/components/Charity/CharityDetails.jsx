@@ -51,12 +51,12 @@ class CharityDetails extends Component {
             <p>Description: {singleCharity.description} </p>
             <hr />
             {/* here we need to add  */}
+
             <AddPostForm id={id} service={charityService} />
             <hr />
             <ReviewForm id={id} service={reviewService} />
             {/* this should only be displayed for the creator of the post.
             is related to the specific id of the original post? */}
-            <hr />
             {/* <EditPostForm id={id} service={charityService} /> */}
 
             <br />

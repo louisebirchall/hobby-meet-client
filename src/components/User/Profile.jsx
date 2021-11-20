@@ -30,7 +30,21 @@ class Profile extends Component {
         return (
             <div>
                 {isLoading && <h1>...isLoading</h1>}
-                {!isLoading && <h3>{user.username}</h3>}
+                {!isLoading && 
+                    <div>
+                        <img src={user.image} alt="user"/>
+                        <h3>{user.username}</h3>
+                        <p>{user.email}</p>
+                        <p>{user.fullName}</p>
+                        <p>{user.type}</p>
+                        <p>{user.sex}</p>
+                        <p>{user.age}</p>
+                        <p>{user.hobbies}</p>
+
+                        <button>Edit</button>
+                    </div>
+                }
+
             </div>
         )
     }

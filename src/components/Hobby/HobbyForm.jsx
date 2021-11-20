@@ -1,27 +1,25 @@
 import React, { Component } from "react";
 import { PuffLoader } from "react-spinners";
 import hobbyService from "../../services/hobby-service";
-import imageService from "../../services/image-service";
+import generalService from "../../services/general-service";
 
 class HobbyForm extends Component {
   state = {
     name: "",
     typeOfActivity: "",
     description: "",
-    hobbyImage: "",
+    image: "",
     imageIsUploading: false,
     placeOfActivity: "",
-    // post_id: ""
   };
 
   handleChange = (event) => {
-    // console.log(event.target);
     this.setState({ [event.target.name]: event.target.value });
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { name, typeOfActivity, description, hobbyImage, placeOfActivity } =
+    const { name, typeOfActivity, description, image, placeOfActivity } =
       this.state;
     const { id } = this.props.match.params;
 
@@ -32,7 +30,7 @@ class HobbyForm extends Component {
           name,
           typeOfActivity,
           description,
-          hobbyImage,
+          image,
           placeOfActivity
         )
         .then(() => {
@@ -43,7 +41,7 @@ class HobbyForm extends Component {
         });
     } else {
       hobbyService
-        .create(name, typeOfActivity, description, hobbyImage, placeOfActivity)
+        .create(name, typeOfActivity, description, image, placeOfActivity)
         .then(() => {
           this.props.history.push("/hobbies"); 
         })
@@ -59,7 +57,7 @@ class HobbyForm extends Component {
     const uploadData = new FormData();
     uploadData.append("hobbyImage", event.target.files[0]);
 
- imageService.upload(uploadData)
+ generalService.upload(uploadData)
       .then((result) => {
         this.setState({
           hobbyImage: result.data.imagePath,
@@ -81,7 +79,7 @@ class HobbyForm extends Component {
             name: result.data.name,
             typeOfActivity: result.data.typeOfActivity,
             description: result.data.description,
-            hobbyImage: result.data.hobbyImage,
+            image: result.data.image,
             placeOfActivity: result.data.placeOfActivity,
           });
         })
@@ -96,7 +94,7 @@ class HobbyForm extends Component {
       name,
       typeOfActivity,
       description,
-      hobbyImage,
+      image,
       placeOfActivity,
       imageIsUploading,
     } = this.state;
@@ -111,7 +109,7 @@ class HobbyForm extends Component {
             name="name"
             value={name}
           />
-          <br />
+
           <label htmlFor="typeOfActivity">Type of Activity </label>
           <input
             onChange={this.handleChange}
@@ -119,7 +117,7 @@ class HobbyForm extends Component {
             name="typeOfActivity"
             value={typeOfActivity}
           />
-          <br />
+
           <label htmlFor="description">Description </label>
           <input
             onChange={this.handleChange}
@@ -127,24 +125,24 @@ class HobbyForm extends Component {
             name="description"
             value={description}
           />
-          <br />
+
           <div>
-            {hobbyImage && <img src="{hobbyImage}" alt="" />}
+            {image && <img src={image} alt="" />}
             <PuffLoader
               loading={imageIsUploading}
               size="100px"
               color="orchid"
             />
             {/* // ! input still in div, right? */}
-            <label htmlFor="hobbyImage">Representative image </label>
+            <label htmlFor="image">Representative image </label>
             <input
               onChange={this.handleImageUpload}
               type="file"
-              name="hobby image"
+              name="image"
             />
           </div>
 
-          <br />
+
           <label htmlFor="placeOfActivity">Where do we do this hobby? </label>
           <input
             onChange={this.handleChange}
@@ -152,10 +150,11 @@ class HobbyForm extends Component {
             name="placeOfActivity"
             value={placeOfActivity}
           />
-          <br />
+
           <button type="submit" disabled={imageIsUploading}>
             Add this hobby
           </button>
+          
         </form>
       </div>
     );

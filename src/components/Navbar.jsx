@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import authService from "../services/auth-service";
 
+
 const Navbar = ({ isLoggedIn, user, setUser }) => {
   const logoutUser = () => {
     authService.logout().then(() => {
@@ -9,30 +10,15 @@ const Navbar = ({ isLoggedIn, user, setUser }) => {
     });
   };
 
-  const containerStyles = {
-    display: "flex",
-    justifyContent: "space-evenly",
-  };
-
-  const linkStyles = {
-    textDecoration: "none",
-  };
-
-  const activeStyles = {
-    textDecoration: "underline",
-  };
-
   return (
     <div>
     <NavLink to="/">Home</NavLink>
-      <ul style={containerStyles}>
+      <ul>
         {isLoggedIn && user && (
           <>
             <li>{user.username}</li>
             <li>
               <NavLink
-   /*             style={linkStyles}
-                activeStyle={activeStyles}*/
                 to="/"
               >
                 <button onClick={() => logoutUser()}>Logout</button>
@@ -47,8 +33,6 @@ const Navbar = ({ isLoggedIn, user, setUser }) => {
           <>
             <li>
               <NavLink
-                style={linkStyles}
-                activeStyle={activeStyles}
                 exact
                 to="/signup"
               >
@@ -57,8 +41,6 @@ const Navbar = ({ isLoggedIn, user, setUser }) => {
             </li>
             <li>
               <NavLink
-                style={linkStyles}
-                activeStyle={activeStyles}
                 to="/login"
               >
                 Login
@@ -70,5 +52,4 @@ const Navbar = ({ isLoggedIn, user, setUser }) => {
     </div>
   );
 };
-
 export default Navbar;
