@@ -8,7 +8,7 @@ import imageService from "../../services/image-service";
 // should only be possible for creator + admin
 
 
-class AddProductForm extends Component {
+class EditProductForm extends Component {
   state = {
     image: "",
     title: "",
@@ -235,4 +235,4 @@ class AddProductForm extends Component {
   }
 }
 
-export default AddProductForm;
+export default EditProductForm;
