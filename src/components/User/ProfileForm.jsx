@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import userService from '../../services/user-service'
-import generalService from '../../services/general-service';
-import { PuffLoader } from 'react-spinners';
+import React, { Component } from "react";
+import userService from "../../services/user-service";
+import generalService from "../../services/general-service";
+import { PuffLoader } from "react-spinners";
 
 class ProfileFom extends Component {
 
@@ -134,7 +134,15 @@ class ProfileFom extends Component {
                     </div>
             </div>
         )
+        .then(() => {
+          this.props.history.push("/profile/_id");
+        })
+        .catch((err) => {
+          this.props.history.push("/500");
+        });
     }
-}
+  };
+
+
 
 export default ProfileFom

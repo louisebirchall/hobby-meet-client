@@ -25,11 +25,11 @@ import PageNotFound from "./components/ErrorHandling/PageNotFound";
 // import Typography from "@material-ui/core/Typography";
 import { ThemeProvider, createTheme } from "@material-ui/core/styles";
 
-  const montserrat = createTheme({
-    typography: {
-      fontFamily: ["Montserrat"].join(","),
-    },
-  });
+const montserrat = createTheme({
+  typography: {
+    fontFamily: ["Montserrat"].join(","),
+  },
+});
 
 class App extends Component {
   state = {
@@ -63,8 +63,6 @@ class App extends Component {
   componentDidMount() {
     this.getUser();
   }
-
-
 
   render() {
     const { user, isLoggedIn } = this.state;
