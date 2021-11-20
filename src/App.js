@@ -10,7 +10,7 @@ import Footer from "./components/Footer";
 import Signup from "./components/User/Signup";
 import Login from "./components/User/Login";
 import Profile from "./components/User/Profile";
-import ProfileEdit from "./components/User/ProfileEdit";
+import ProfileFom from "./components/User/ProfileForm";
 import HobbiesPage from "./components/Hobby/HobbiesPage";
 import HobbyDetails from "./components/Hobby/HobbyDetails";
 import HobbyForm from "./components/Hobby/HobbyForm";
@@ -84,15 +84,28 @@ class App extends Component {
               render={(props) => <Login {...props} setUser={this.setUser} />} // <Login {...props} -- to get the params
             />
             <Route
+              exact
               path="/profile/:id"
               render={(props) => <Profile {...props} setUser={this.setUser} />}
             />
+              <Route
+              path="/profile/:id/create"
+              render={(props) => <ProfileFom {...props} isEdit={false} />}
+            />
+            <Route
+              path="/profile/:id/edit"
+              render={(props) => <ProfileFom {...props} isEdit={true} />}
+            />
+
+
             {/* Frontpage */}
             <Route
               exact
               path="/"
               render={(props) => <Frontpage {...props} />}
             />
+
+
             {/* Hobbies */}
             <Route
               exact
