@@ -15,25 +15,22 @@ class UserService {
     username,
     email,
     fullName,
-    profileImage,
+    image,
     sex,
     age,
+    type,
     hobbies,
-    typeOfUser
   ) => {
-    return (
-      this.service.patch(`/${id}/edit`),
-      {
+    return this.service.patch(`/${id}`, {
         username,
         email,
         fullName,
-        profileImage,
+        image,
         sex,
         age,
         hobbies,
-        typeOfUser,
-      }
-    );
+        type,
+      })
   };
 
   delete = (id) => {

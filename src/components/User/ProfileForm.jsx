@@ -3,7 +3,7 @@ import userService from '../../services/user-service'
 import generalService from '../../services/general-service';
 import { PuffLoader } from 'react-spinners';
 
-class ProfileEdit extends Component {
+class ProfileFom extends Component {
 
     state = {
         username: "",
@@ -18,30 +18,7 @@ class ProfileEdit extends Component {
         imageIsUploading: false,
     }
 
-    componentDidMount(){
-        const { id } = this.props.match.params;
-        if(id){
-            userService
-                .getUser(id)
-                .then((result) => {
-                    this.setState({
-                        username: result.data.username, 
-                        email: result.data.email, 
-                        fullName: result.data.fullName,
-                        image: result.data.image,
-                        sex: result.data.sex,
-                        age: result.data.age,
-                        isAdmin: result.data.isAdmin,
-                        type: result.data.type,
-                        hobbies: result.data.hobbies,
-                    });
-                })
-                .catch((err) => {
-                    this.props.history.push("/500");
-                });
-        }
-    }
-
+    
     handleImageUpload = (event) => {
         this.setState({ imageIsUploading: true });
     
@@ -51,7 +28,7 @@ class ProfileEdit extends Component {
         generalService
           .upload(uploadData)
           .then((result) => {
-            this.setState({
+              this.setState({
               image: result.data.imagePath,
               imageIsUploading: false,
             });
@@ -66,32 +43,55 @@ class ProfileEdit extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        const {username, email, fullName, image, sex, age, isAdmin, type, hobbies, imageIsUploading, isLoading} = this.state;
+        const {username, email, fullName, image, sex, age, isAdmin, type} = this.state;
         const {id} = this.props.match.params;
         if (this.props.isEdit) {
             userService
-                .edit(id, username, email, fullName, image, sex, age, isAdmin, type, hobbies, imageIsUploading, isLoading)
-                .then(() => {
-                    this.props.history.push("/profile/_id"); 
+            .edit(id, username, email, fullName, image, sex, age, type)
+            .then((newuser) => {
+                console.log(newuser)
+                    this.props.history.push(`/profile/${id}`); 
                 })
                 .catch((err) => {
                     this.props.history.push("/500");
                 });
         } else {
             userService
-                .create(id, username, email, fullName, image, sex, age, isAdmin, type, hobbies, imageIsUploading, isLoading)
-                .then(() => {
-                    this.props.history.push("/profile/_id"); 
+            .create(id, username, email, fullName, image, sex, age, isAdmin, type)
+            .then(() => {
+                    this.props.history.push(`/profile/${id}`); 
                 })
                 .catch((err) => {
                     this.props.history.push("/500");
                 });
+            }
         }
-    }
-
-
-    render() {
-        const {username, email, fullName, image, sex, age, isAdmin, type, hobbies, imageIsUploading} = this.state
+        
+        componentDidMount(){
+            const { id } = this.props.match.params;
+            if(id){
+                userService
+                    .getUser(id)
+                    .then((result) => {
+                        this.setState({
+                            username: result.data.username, 
+                            email: result.data.email, 
+                            fullName: result.data.fullName,
+                            image: result.data.image,
+                            sex: result.data.sex,
+                            age: result.data.age,
+                            isAdmin: result.data.isAdmin,
+                            type: result.data.type,
+                        });
+                    })
+                    .catch((err) => {
+                        this.props.history.push("/500");
+                    });
+            }
+        }
+        
+        render() {
+        const {username, email, fullName, image, sex, age, isAdmin, type, imageIsUploading} = this.state
         
         return (
             <div>
@@ -116,9 +116,6 @@ class ProfileEdit extends Component {
                             <label htmlFor="age">Age</label>
                             <input onChange={this.handleChange} type="text" name="age" value={age}/>
 
-                            <label htmlFor="hobbies">Hobbies</label>
-                            <input onChange={this.handleChange} type="text" name="hobbies" value={hobbies}/>
-
                             <label htmlFor="type">Type of user</label>
                             <input onChange={this.handleChange} type="text" name="type" value={type}/>
 
@@ -140,4 +137,4 @@ class ProfileEdit extends Component {
     }
 }
 
-export default ProfileEdit
+export default ProfileFom

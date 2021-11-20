@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import userService from '../../services/user-service'
+import { NavLink } from "react-router-dom";
 
 class Profile extends Component {
 
@@ -41,7 +42,7 @@ class Profile extends Component {
                         <p>{user.age}</p>
                         <p>{user.hobbies}</p>
 
-                        <button>Edit</button>
+                        <NavLink to={`/profile/${user._id}/edit`}>Edit</NavLink>
                     </div>
                 }
 
