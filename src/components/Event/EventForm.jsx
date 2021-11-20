@@ -5,7 +5,7 @@ import generalService from "../../services/general-service";
 
 class EventForm extends Component {
   state = {
-    eventImage: "",
+    image: "",
     title: "",
     description: "",
     equipment: "",
@@ -30,7 +30,7 @@ class EventForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const {
-      eventImage,
+      image,
       title,
       description,
       equipment,
@@ -51,7 +51,7 @@ class EventForm extends Component {
       eventService
         .edit(
           id,
-          eventImage,
+          image,
           title,
           description,
           equipment,
@@ -75,7 +75,7 @@ class EventForm extends Component {
     } else {
       eventService
         .create(
-          eventImage,
+          image,
           title,
           description,
           equipment,
@@ -108,7 +108,7 @@ class EventForm extends Component {
     generalService.upload(uploadData)
       .then((result) => {
         this.setState({
-          eventImage: result.data.imagePath,
+          image: result.data.imagePath,
           imageIsUploading: false,
         }); // ! what's imagePath? don't remember
       })
@@ -124,7 +124,7 @@ class EventForm extends Component {
         .getEvent(id)
         .then((result) => {
           this.setState({
-            eventImage: result.data.eventImage,
+            image: result.data.image,
             title: result.data.title,
             description: result.data.description,
             equipment: result.data.equipment,
@@ -148,7 +148,7 @@ class EventForm extends Component {
 
   render() {
     const {
-      eventImage,
+      image,
       title,
       description,
       equipment,
@@ -172,9 +172,9 @@ class EventForm extends Component {
             onChange={this.handleChange}
             type="text"
             name="title"
-            value={title} // ! sat 6 got this far
+            value={title} 
           />
-          <br />
+      
           <label htmlFor="description">Description </label>
           <input
             onChange={this.handleChange}
@@ -182,22 +182,23 @@ class EventForm extends Component {
             name="description"
             value={description}
           />
-          <br />
+  
           <div>
-            {eventImage && <img src="{eventImage}" alt=" " />}
+            {image && <img src={image} alt=" " />}
             <PuffLoader
               loading={imageIsUploading}
               size="100px"
               color="orchid"
             />
             {/* // ! input still in div, right? */}
-            <label htmlFor="eventImage">Representative image </label>
+            <label htmlFor="image">Representative image </label>
             <input
               onChange={this.handleImageUpload}
               type="file"
               name="event image"
             />
           </div>
+
           <label htmlFor="equipment">Required equipment </label>
           <input
             onChange={this.handleChange}
@@ -205,9 +206,9 @@ class EventForm extends Component {
             name="equipment"
             value={equipment}
           />
-          <br />
+       
           <label htmlFor="placeOfActivity">
-            Where shall we hold this event?{" "}
+            Where shall we hold this event?
           </label>
           <input
             onChange={this.handleChange}
@@ -215,7 +216,8 @@ class EventForm extends Component {
             name="location"
             value={location}
           />
-          <br />
+     
+     
           <label htmlFor="date">Date </label>
           <input
             onChange={this.handleChange}
@@ -223,7 +225,7 @@ class EventForm extends Component {
             name="date"
             value={date}
           />
-          <br />
+
           <label htmlFor="owner_id">Who's in charge? </label>
           <input
             onChange={this.handleChange}
@@ -231,7 +233,7 @@ class EventForm extends Component {
             name="owner_id"
             value={owner_id}
           />
-          <br />
+  
           <label htmlFor="attendees_max">Maximum number of attendees </label>
           <input
             onChange={this.handleChange}
@@ -239,9 +241,9 @@ class EventForm extends Component {
             name="attendees_max"
             value={attendees_max}
           />
-          <br />
+ 
           <label htmlFor="attendees_min">
-            Set minimum number of attendees (if required){" "}
+            Set minimum number of attendees (if required)
           </label>
           <input
             onChange={this.handleChange}
@@ -249,7 +251,7 @@ class EventForm extends Component {
             name="attendees_min"
             value={attendees_min}
           />
-          <br />
+   
           <label htmlFor="pricePolicy">Price Policy </label>
           <input
             onChange={this.handleChange}
@@ -257,7 +259,7 @@ class EventForm extends Component {
             name="pricePolicy"
             value={pricePolicy}
           />
-          <br />
+  
           <label htmlFor="price">Price </label>
           <input
             onChange={this.handleChange}
@@ -265,7 +267,7 @@ class EventForm extends Component {
             name="price"
             value={price}
           />
-          <br />
+  
           <label htmlFor="organizedBy">Who is the organiser? </label>
           <input
             onChange={this.handleChange}
@@ -273,7 +275,7 @@ class EventForm extends Component {
             name="organizedBy"
             value={organizedBy}
           />
-          <br />
+
           <label htmlFor="charity_id">Which Charity is it for? </label>
           <input
             onChange={this.handleChange}
@@ -281,10 +283,11 @@ class EventForm extends Component {
             name="charity_id"
             value={charity_id}
           />
-          <br />
+
           <button type="submit" disabled={imageIsUploading}>
             Add this event
           </button>
+
         </form>
       </div>
     );

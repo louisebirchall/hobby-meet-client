@@ -9,25 +9,6 @@ class UserService {
     });
   }
 
-  create = (
-    id,
-    fullName,
-    profileImage,
-    sex,
-    age,
-    hobbies,
-    typeOfUser
-  ) => {
-    return this.service.post(`/${id}`, {
-      fullName,
-      profileImage,
-      sex,
-      age,
-      hobbies,
-      typeOfUser
-    });
-  };
-
 
   edit = (
     id,

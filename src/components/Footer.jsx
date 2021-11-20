@@ -2,31 +2,17 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const Footer = () => {
-  const containerStyles = {
-    display: "flex",
-    justifyContent: "space-evenly",
-  };
-
-  const linkStyles = {
-    textDecoration: "none",
-  };
-
-  const activeStyles = {
-    textDecoration: "underline",
-  };
 
   return (
     <div className="footer">
-      <ul style={containerStyles}>
+      <ul >
         <li>
-          <NavLink style={linkStyles} activeStyle={activeStyles} exact to="/">
+          <NavLink exact to="/">
             Home
           </NavLink>
         </li>
         <li>
           <NavLink
-            style={linkStyles}
-            activeStyle={activeStyles}
             exact
             to="/hobbies"
           >
@@ -34,14 +20,12 @@ const Footer = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink style={linkStyles} activeStyle={activeStyles} to="/events">
+          <NavLink to="/events">
             Events
           </NavLink>
         </li>
         <li>
           <NavLink
-            style={linkStyles}
-            activeStyle={activeStyles}
             exact
             to="/charities"
           >

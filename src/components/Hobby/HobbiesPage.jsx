@@ -9,7 +9,6 @@ class HobbiesPage extends Component {
   };
 
   componentDidMount() {
-    // console.log(process.env.REACT_APP_SERVER_API);
     hobbyService
       .getHobbies()
       .then((response) => {

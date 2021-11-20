@@ -4,11 +4,13 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import authService from "./services/auth-service";
 import "./App.css";
 import Navbar from "./components/Navbar";
+import Frontpage from "./components/Frontpage";
 import Homepage from "./components/Homepage";
 import Footer from "./components/Footer";
 import Signup from "./components/User/Signup";
 import Login from "./components/User/Login";
 import Profile from "./components/User/Profile";
+import ProfileEdit from "./components/User/ProfileEdit";
 import HobbiesPage from "./components/Hobby/HobbiesPage";
 import HobbyDetails from "./components/Hobby/HobbyDetails";
 import HobbyForm from "./components/Hobby/HobbyForm";
@@ -20,7 +22,6 @@ import CharityDetails from "./components/Charity/CharityDetails";
 // import CharityForm from "./components/Charity/CharityForm";
 import ServerError from "./components/ErrorHandling/ServerError";
 import PageNotFound from "./components/ErrorHandling/PageNotFound";
-import Frontpage from "./components/Frontpage";
 
 class App extends Component {
   state = {
@@ -63,6 +64,10 @@ class App extends Component {
        <Navbar isLoggedIn={isLoggedIn} user={user} setUser={this.setUser} />
         <Switch>
           <Route exact path="/" render={(props) => <Homepage {...props} />} />
+
+          {/* Frontpage */}
+          <Route exact path="/" render={(props) => <Frontpage {...props} />} />
+
           {/* User */}
           <Route
             path="/signup"
@@ -77,8 +82,16 @@ class App extends Component {
             path="/profile/:id"
             render={(props) => <Profile {...props} setUser={this.setUser} />}
           />
-          {/* Frontpage */}
-          <Route exact path="/" render={(props) => <Frontpage {...props} />} />
+           <Route
+            path="/profile/:id/create"
+            render={(props) => <ProfileEdit {...props} isEdit={false} />}
+          />
+          <Route
+            path="/profile/:id/edit"
+            render={(props) => <ProfileEdit {...props} isEdit={true} />}
+          />
+
+
           {/* Hobbies */}
           <Route
             exact
