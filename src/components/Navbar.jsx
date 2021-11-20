@@ -26,7 +26,7 @@ const Navbar = ({ isLoggedIn, user, setUser }) => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/profile">Profile</NavLink>
+              <NavLink to={`/profile/${user._id}`}>Profile</NavLink>
             </li>
           </>
         )}
