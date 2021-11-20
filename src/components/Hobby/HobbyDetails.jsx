@@ -47,7 +47,7 @@ class HobbyDetails extends Component {
             <h2>{singleHobby.name}</h2>
             {singleHobby.image && ( <img src={singleHobby.image} alt={singleHobby.name} /> )}
             <p>Description: {singleHobby.description} </p>
-            <p>Where: {singleHobby.placeOFActivity} </p>
+            <p>Where: {singleHobby.placeOfActivity} </p>
             <p>Category: {singleHobby.typeOfActivity} </p>
 
             <AddPostForm id={id} service={hobbyService} />
