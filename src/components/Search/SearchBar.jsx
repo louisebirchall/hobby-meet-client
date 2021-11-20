@@ -1,15 +1,6 @@
 import React, { Component } from "react";
 import generalService from "../../services/general-service";
 
-// need to import a textfield for the final searchbar
-
-// creating a searchbar that will be placed into the navbar
-// when clicking on the magnifying glass the searchbar will appear with search submit button
-
-// to hide the searchbar (initial)state needs to be false
-// to show the hidden form: needed: onClick to handleToggle
-// testing the appearence of the searchBar first with a btn later to be replaced with an icon
-
 class SearchBar extends Component {
   state = {
     search: "",
