@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import eventService from "../../services/event-service";
 import AddPostForm from "../AddPostForm";
+import reviewService from "../../services/review-service";
+import EditPostForm from "../Posts/EditPostForm";
+import ReviewForm from "../ReviewForm";
+
 
 class EventDetails extends Component {
   state = {
@@ -58,10 +62,15 @@ class EventDetails extends Component {
 
             <AddPostForm id={id} service={eventService} />
 
-              {/* 
-              form for posts if wanted
-              <div>
-              <h2>Add a new post</h2>
+            {/* <EditPostForm id={id} service={charityService} /> */}
+
+            <br/>
+            <ReviewForm id={id} service={reviewService} />
+
+            {/* 
+            form for posts if wanted
+            <div>
+            <h2>Add a new post</h2>
 
                   <form action="/posts/add" method="POST">
                     <label for="title">Comment</label>

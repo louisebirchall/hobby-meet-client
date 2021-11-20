@@ -1,13 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
+// import { render } from "react-dom";
 import { NavLink } from "react-router-dom";
 import authService from "../services/auth-service";
+import SearchBar from "./Search/SearchBar";
 
-const Navbar = ({ isLoggedIn, user, setUser }) => {
-  const logoutUser = () => {
-    authService.logout().then(() => {
-      setUser(null, false);
-    });
-  };
+// needs to be converted into a class component to implement SearchBar here
 
 
   return (

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import hobbyService from "../../services/hobby-service";
 import AddPostForm from "../AddPostForm";
+// import EditPostForm from "../Posts/EditPostForm";
+
 
 class HobbyDetails extends Component {
   state = {
@@ -49,6 +51,8 @@ class HobbyDetails extends Component {
             <p>Category: {singleHobby.typeOfActivity} </p>
 
             <AddPostForm id={id} service={hobbyService} />
+
+            {/* <EditPostForm id={id} service={charityService} /> */}
 
             <Link to={`/hobbies/${singleHobby._id}/edit`}>
               <button>Edit</button>
