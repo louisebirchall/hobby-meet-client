@@ -21,6 +21,14 @@ import CharityDetails from "./components/Charity/CharityDetails";
 import ServerError from "./components/ErrorHandling/ServerError";
 import PageNotFound from "./components/ErrorHandling/PageNotFound";
 import Frontpage from "./components/Frontpage";
+// import Typography from "@material-ui/core/Typography";
+import { ThemeProvider, createTheme } from "@material-ui/core/styles";
+
+  const montserrat = createTheme({
+    typography: {
+      fontFamily: ["Montserrat"].join(","),
+    },
+  });
 
 class App extends Component {
   state = {
@@ -55,77 +63,84 @@ class App extends Component {
     this.getUser();
   }
 
+
+
   render() {
     const { user, isLoggedIn } = this.state;
 
     return (
-      <div className="App">
-        <Navbar isLoggedIn={isLoggedIn} user={user} setUser={this.setUser} />
-        <Switch>
-          <Route exact path="/" render={(props) => <Homepage {...props} />} />
-          {/* User */}
-          <Route
-            path="/signup"
-            render={(props) => <Signup {...props} setUser={this.setUser} />} // <Signup {...props} -- to get the params
-          />
-          {/* <Redirect from="/signup" to="/login" /> */}
-          <Route
-            path="/login"
-            render={(props) => <Login {...props} setUser={this.setUser} />} // <Login {...props} -- to get the params
-          />
-          <Route
-            path="/profile/:id"
-            render={(props) => <Profile {...props} setUser={this.setUser} />}
-          />
-          {/* Frontpage */}
-          <Route exact path="/" render={(props) => <Frontpage {...props} />} />
-          {/* Hobbies */}
-          <Route
-            exact
-            path="/hobbies"
-            render={(props) => <HobbiesPage {...props} />}
-          />
-          <Route
-            path="/hobbies/:id"
-            render={(props) => <HobbyDetails {...props} />}
-          />
-          <Route
-            path="/hobbies/create"
-            render={(props) => <HobbyForm {...props} isEdit={false} />}
-          />
-          <Route
-            path="/hobbies/:id/edit"
-            render={(props) => <HobbyForm {...props} isEdit={true} />}
-          />
-          {/* Events */}
-          <Route
-            exact
-            path="/events"
-            render={(props) => <EventsPage {...props} />}
-          />
-          <Route
-            path="/events/:id"
-            render={(props) => <EventDetails {...props} />}
-          />
-          <Route
-            path="/events/create"
-            render={(props) => <EventForm {...props} isEdit={false} />}
-          />
-          <Route
-            path="/events/:id/edit"
-            render={(props) => <EventForm {...props} isEdit={true} />}
-          />
-          {/* Charities */}
-          <Route
-            exact
-            path="/charities"
-            render={(props) => <CharitiesPage {...props} />}
-          />
-          <Route
-            path="/charities/:id"
-            render={(props) => <CharityDetails {...props} />}
-          />
-          {/* <Route
+      <ThemeProvider theme={montserrat}>
+        <div className="App">
+          <Navbar isLoggedIn={isLoggedIn} user={user} setUser={this.setUser} />
+          <Switch>
+            <Route exact path="/" render={(props) => <Homepage {...props} />} />
+            {/* User */}
+            <Route
+              path="/signup"
+              render={(props) => <Signup {...props} setUser={this.setUser} />} // <Signup {...props} -- to get the params
+            />
+            {/* <Redirect from="/signup" to="/login" /> */}
+            <Route
+              path="/login"
+              render={(props) => <Login {...props} setUser={this.setUser} />} // <Login {...props} -- to get the params
+            />
+            <Route
+              path="/profile/:id"
+              render={(props) => <Profile {...props} setUser={this.setUser} />}
+            />
+            {/* Frontpage */}
+            <Route
+              exact
+              path="/"
+              render={(props) => <Frontpage {...props} />}
+            />
+            {/* Hobbies */}
+            <Route
+              exact
+              path="/hobbies"
+              render={(props) => <HobbiesPage {...props} />}
+            />
+            <Route
+              path="/hobbies/:id"
+              render={(props) => <HobbyDetails {...props} />}
+            />
+            <Route
+              path="/hobbies/create"
+              render={(props) => <HobbyForm {...props} isEdit={false} />}
+            />
+            <Route
+              path="/hobbies/:id/edit"
+              render={(props) => <HobbyForm {...props} isEdit={true} />}
+            />
+            {/* Events */}
+            <Route
+              exact
+              path="/events"
+              render={(props) => <EventsPage {...props} />}
+            />
+            <Route
+              path="/events/:id"
+              render={(props) => <EventDetails {...props} />}
+            />
+            <Route
+              path="/events/create"
+              render={(props) => <EventForm {...props} isEdit={false} />}
+            />
+            <Route
+              path="/events/:id/edit"
+              render={(props) => <EventForm {...props} isEdit={true} />}
+            />
+            {/* Charities */}
+            <Route
+              exact
+              path="/charities"
+              render={(props) => <CharitiesPage {...props} />}
+            />
+            <Route
+              path="/charities/:id"
+              render={(props) => <CharityDetails {...props} />}
+            />
+            {/* <Route
             path="/charities/create"
             render={(props) => <CharityForm {...props} isEdit={false} />}
           />
@@ -133,12 +148,13 @@ class App extends Component {
             path="/charities/:id/edit"
             render={(props) => <CharityForm {...props} isEdit={true} />}
           /> */}
-          {/* ErrorHandling */}
-          <Route path="/500" component={ServerError} />
-          <Route component={PageNotFound} />
-        </Switch>
-        <Footer />
-      </div>
+            {/* ErrorHandling */}
+            <Route path="/500" component={ServerError} />
+            <Route component={PageNotFound} />
+          </Switch>
+          <Footer />
+        </div>
+      </ThemeProvider>
     );
   }
 }

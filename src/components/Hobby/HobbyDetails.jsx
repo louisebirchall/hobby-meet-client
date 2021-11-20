@@ -48,7 +48,7 @@ class HobbyDetails extends Component {
               <img src={singleHobby.hobbyImage} alt={singleHobby.name} />
             )}
             <p>Description: {singleHobby.description} </p>
-            <p>Where: {singleHobby.placeOFActivity} </p>
+            <p>Where: {singleHobby.placeOfActivity} </p>
             <p>Category: {singleHobby.typeOfActivity} </p>
             <AddPostForm id={id} service={hobbyService} />
             <Link to={`/hobbies/${singleHobby._id}/edit`}>
