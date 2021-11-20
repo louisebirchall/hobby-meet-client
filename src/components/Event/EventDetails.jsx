@@ -42,51 +42,47 @@ class EventDetails extends Component {
 
         {!isLoading && (
           <div>
-          <h2>{singleEvent.title}</h2>
-            {singleEvent.eventImage && (
-              <img src={singleEvent.eventImage} alt="" />
-            )}
+            <h2>{singleEvent.title}</h2>
+            
+            {singleEvent.image && ( <img src={singleEvent.image} alt="" />  )}
             <p>Description: {singleEvent.description} </p>
             <p>Where: {singleEvent.location} </p>
-            <p>
-              Date:{singleEvent.date}, Equipment required:
-              {singleEvent.equipment}, Category: {singleEvent.hobby_id}
-            </p>
-            <p> </p>
+            <p> Date:{singleEvent.date} </p>
+            <p>Equipment required: {singleEvent.equipment} </p>
+            <p> Category: {singleEvent.hobby_id}</p>
             <p>Organizer : {singleEvent.owner_id}</p>
-            <p>
-              Attending: {singleEvent.attendees} - Maximum attendees:{" "}
-              {singleEvent.attendees_max}
-            </p>
-            <p>
-              In aid of {singleEvent.charity_id}, price: {singleEvent.price}
-            </p>
+            <p> Attending: {singleEvent.attendees}</p>
+            <p>Maximum attendees: {singleEvent.attendees_max} </p>
+            <p> In aid of {singleEvent.charity_id} </p>
+            <p> price: {singleEvent.price} </p>
+
             <AddPostForm id={id} service={eventService} />
 
-            {/* 
-            form for posts if wanted
-            <div>
-            <h2>Add a new post</h2>
+              {/* 
+              form for posts if wanted
+              <div>
+              <h2>Add a new post</h2>
 
-                <form action="/posts/add" method="POST">
-                  <label for="title">Comment</label>
-                  <input type="text" name="title" />
-                  <br />
-                  <label for="description">Description</label>
-                  <br />
-                  <textarea name="description" id="" cols="30" rows="10"></textarea>
-                  <br />
+                  <form action="/posts/add" method="POST">
+                    <label for="title">Comment</label>
+                    <input type="text" name="title" />
+                    <br />
+                    <label for="description">Description</label>
+                    <br />
+                    <textarea name="description" id="" cols="30" rows="10"></textarea>
+                    <br />
 
-                  <label for="creator">Who are you?</label>
-                  <select name="creator" id="">
-                  </select>
+                    <label for="creator">Who are you?</label>
+                    <select name="creator" id="">
+                    </select>
 
-                  <button type="submit">Add your knee-jerk opinions!</button>
-                </form>
-              </div> */}
+                    <button type="submit">Add your knee-jerk opinions!</button>
+                  </form>
+                </div> */}
             <Link to={`/events/${singleEvent._id}/edit`}>
               <button>Edit</button>
             </Link>
+            
             <button onClick={this.handleDelete}>Delete</button>
           </div>
         )}

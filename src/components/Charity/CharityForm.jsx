@@ -106,7 +106,7 @@ class CharityForm extends Component {
           />
           <br />
           <div>
-            {image && <img src="{image}" alt="" />}
+            {image && <img src={image} alt="" />}
             <PuffLoader
               loading={imageIsUploading}
               size="100px"

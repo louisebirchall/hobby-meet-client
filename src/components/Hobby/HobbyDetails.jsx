@@ -12,9 +12,8 @@ class HobbyDetails extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     hobbyService
-    .getHobby(id)
+      .getHobby(id)
       .then((response) => {
-        // pretty sure this isn't right
         this.setState({ singleHobby: response.data, isLoading: false });
       })
       .catch((err) => {
@@ -43,17 +42,18 @@ class HobbyDetails extends Component {
 
         {!isLoading && (
           <div>
-          <h2>{singleHobby.name}</h2>
-            {singleHobby.hobbyImage && (
-              <img src={singleHobby.hobbyImage} alt={singleHobby.name} />
-            )}
+            <h2>{singleHobby.name}</h2>
+            {singleHobby.image && ( <img src={singleHobby.image} alt={singleHobby.name} /> )}
             <p>Description: {singleHobby.description} </p>
             <p>Where: {singleHobby.placeOFActivity} </p>
             <p>Category: {singleHobby.typeOfActivity} </p>
+
             <AddPostForm id={id} service={hobbyService} />
+
             <Link to={`/hobbies/${singleHobby._id}/edit`}>
               <button>Edit</button>
             </Link>
+
             <button onClick={this.handleDelete}>Delete</button>
           </div>
         )}
