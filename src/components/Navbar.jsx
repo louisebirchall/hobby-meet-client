@@ -1,11 +1,14 @@
-import React, { Component } from "react";
-// import { render } from "react-dom";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import authService from "../services/auth-service";
-import SearchBar from "./Search/SearchBar";
 
-// needs to be converted into a class component to implement SearchBar here
 
+const Navbar = ({ isLoggedIn, user, setUser }) => {
+  const logoutUser = () => {
+    authService.logout().then(() => {
+      setUser(null, false);
+    });
+  };
 
   return (
     <div>
@@ -15,14 +18,14 @@ import SearchBar from "./Search/SearchBar";
           <>
             <li>{user.username}</li>
             <li>
-              <NavLink   
+              <NavLink
                 to="/"
               >
                 <button onClick={() => logoutUser()}>Logout</button>
               </NavLink>
             </li>
             <li>
-              <NavLink to={`/profile/${user._id}`}>Profile</NavLink>
+              <NavLink to="/profile">Profile</NavLink>
             </li>
           </>
         )}
@@ -37,7 +40,9 @@ import SearchBar from "./Search/SearchBar";
               </NavLink>
             </li>
             <li>
-              <NavLink to="/login">
+              <NavLink
+                to="/login"
+              >
                 Login
               </NavLink>
             </li>
@@ -47,5 +52,4 @@ import SearchBar from "./Search/SearchBar";
     </div>
   );
 };
-
 export default Navbar;
