@@ -5,6 +5,8 @@ import reviewService from "../../services/review-service";
 import AddPostForm from "../AddPostForm";
 import EditPostForm from "../Posts/EditPostForm";
 import ReviewForm from "../ReviewForm";
+import {Container, Button, Card, CardActions, CardContent, CardMedia, Typography} from '@material-ui/core'
+
 
 class CharityDetails extends Component {
   state = {
@@ -39,39 +41,37 @@ class CharityDetails extends Component {
     const { id } = this.props.match.params;
 
     return (
-      <div>
+      <Container>
         {isLoading && <h1>...Loading</h1>}
 
         {!isLoading && (
-          <div>
-            <h2>{singleCharity.name}</h2>
-            {singleCharity.image && (
-              <img src={singleCharity.image} alt={singleCharity.name} />
-            )}
-            <p>Description: {singleCharity.description} </p>
-            <hr />
-            {/* here we need to add  */}
+          <Card sx={{ maxWidth: 345 }}>
+              <h2>{singleCharity.name}</h2>
 
+              <CardMedia>
+                {singleCharity.image && (
+                  <img src={singleCharity.image} alt={singleCharity.name} />
+                )}
+              </CardMedia>
+
+              <Typography>Description: {singleCharity.description} </Typography>
+        
+              <CardActions>
+                <Button component={Link} to={`/charities/${singleCharity._id}/edit`}>
+                  Edit
+                </Button>
+                
+                <Button onClick={this.handleDelete}>Delete</Button>
+              </CardActions>
+          </Card>    
+              )}
+       
             <AddPostForm id={id} service={charityService} />
-            <hr />
-            <ReviewForm id={id} service={reviewService} />
-            {/* this should only be displayed for the creator of the post.
-            is related to the specific id of the original post? */}
             {/* <EditPostForm id={id} service={charityService} /> */}
 
-            <br />
+            <ReviewForm id={id} service={reviewService} />
 
-            {/* <p>Add your post here: {singleCharity.postService} </p> */}
-
-            {/* form for posts then
-             form for reviews */}
-            <Link to={`/charities/${singleCharity._id}/edit`}>
-              <button>Edit</button>
-            </Link>
-            <button onClick={this.handleDelete}>Delete</button>
-          </div>
-        )}
-      </div>
+      </Container>
     );
   }
 }
