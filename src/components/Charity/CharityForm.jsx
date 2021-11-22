@@ -1,15 +1,33 @@
 import React, { Component } from "react";
-import { PuffLoader } from "react-spinners";
 import charityService from "../../services/charity-service";
 import generalService from "../../services/general-service";
+import { PuffLoader } from "react-spinners";
 
 class CharityForm extends Component {
   state = {
     name: "",
     description: "",
     image: "",
+    imageIsUploading: false,
     // post_id: ""
     // review_id: ""
+  };
+
+  handleImageUpload = (event) => {
+    this.setState({ imageIsUploading: true });
+
+    const uploadData = new FormData();
+    uploadData.append("image", event.target.files[0]);
+
+    generalService
+      .upload(uploadData)
+      .then((result) => {
+        this.setState({
+          image: result.data.imagePath,
+          imageIsUploading: false,
+        });
+      })
+      .catch(() => this.props.history.push("/500"));
   };
 
   handleChange = (event) => {
@@ -19,15 +37,15 @@ class CharityForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { name, description, image } =
-      this.state;
+
+    const { name, description, image } = this.state;
     const { id } = this.props.match.params;
 
     if (this.props.isEdit) {
       charityService
         .edit(id, name, description, image)
         .then(() => {
-          this.props.history.push("/charities/:id"); // ! to where?
+          this.props.history.push(`/charities/${id}`);
         })
         .catch((err) => {
           this.props.history.push("/500");
@@ -36,30 +54,13 @@ class CharityForm extends Component {
       charityService
         .create(name, description, image)
         .then(() => {
-          this.props.history.push("/charities"); // ! or /charities?
+          // see SignupComponent to compare: this.props.setUser
+          this.props.history.push(`/charities/${id}`); // create or id of created oder list?
         })
         .catch((err) => {
           this.props.history.push("/500");
         });
     }
-  };
-
-  handleImageUpload = (event) => {
-    this.setState({ imageIsUploading: true });
-
-    const uploadData = new FormData();
-    uploadData.append("image", event.target.files[0]);
-
-    generalService.upload(uploadData)
-      .then((result) => {
-        this.setState({
-          image: result.data.imagePath,
-          imageIsUploading: false,
-        }); // ! what's imagePath? don't remember
-      })
-      .catch(() => {
-        this.props.history.push("/500");
-      });
   };
 
   componentDidMount() {
@@ -74,57 +75,44 @@ class CharityForm extends Component {
             image: result.data.image,
           });
         })
-        .catch((err) => {
-          this.props.history.push("/500");
-        });
+        // .catch((err) => {
+        //   this.props.history.push("/500");
+        // });
     }
   }
 
   render() {
-    const {
-      name, description, image,
-      imageIsUploading,
-    } = this.state;
+    const { name, description, image, imageIsUploading } = this.state;
 
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="name">Name </label>
-          <input
-            onChange={this.handleChange}
-            type="text"
-            name="name"
-            value={name}
-          />
-          <br />
-          <label htmlFor="description">Description </label>
-          <input
-            onChange={this.handleChange}
-            type="text"
-            name="description"
-            value={description}
-          />
-          <br />
-          <div>
-            {image && <img src={image} alt="" />}
-            <PuffLoader
-              loading={imageIsUploading}
-              size="100px"
-              color="orchid"
-            />
-            {/* // ! input still in div, right? */}
+            {image && <img src={image} alt="{name}" width="150px"/>}
+            <PuffLoader loading={imageIsUploading} size="100px"color="orchid"/>
             <label htmlFor="Image">Representative image </label>
-            <input
-              onChange={this.handleImageUpload}
-              type="file"
-              name="image"
-            />
-          </div>
-          <br />
+            <input onChange={this.handleImageUpload} type="file" name="image" />
+
+          <label htmlFor="name">Name </label>
+          <input onChange={this.handleChange} type="text" name="name" value={name}/>
+          
+          <label htmlFor="description">Description </label>
+          <input onChange={this.handleChange} type="text" name="description" value={description} />
+          
           <button type="submit" disabled={imageIsUploading}>
-            Add this Charity
-          </button>
+            Add this Charity!
+          </button>          
+
+          <button type="submit" disabled={imageIsUploading}>
+           Save changes!
+        </button>
+
         </form>
+
+       
+
+        <p>Do you want to delete this charity?</p>
+        <button type="submit" disabled={imageIsUploading}> Delete </button>
+
       </div>
     );
   }

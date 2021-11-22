@@ -4,13 +4,14 @@ import productService from "../../services/product-service";
 
 class ProductsPage extends Component {
   state = {
-    listOfEvents: null,
+    listOfProducts: null,
     isLoading: true,
   };
 
   componentDidMount() {
     // console.log(process.env.REACT_APP_SERVER_API);
-    productService.getEvents()
+    productService
+    .getProducts()
       .then((response) => {
         this.setState({ listOfProducts: response.data, isLoading: false });
       })
@@ -33,7 +34,7 @@ class ProductsPage extends Component {
             return (
               <div key={eachProduct._id}>
               <img src={eachProduct.image} alt={eachProduct.title}/>
-                <Link to={`/events/${eachProduct._id}`}>{eachProduct.title}</Link>
+                <Link to={`/products/${eachProduct._id}`}>{eachProduct.title}</Link>
               </div>
             );
           })}

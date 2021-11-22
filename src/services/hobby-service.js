@@ -8,32 +8,28 @@ class HobbyService {
     });
   }
 
-  create = (name, typeOfActivity, description, hobbyImage, placeOfActivity) => {
+  create = (name, typeOfActivity, description, image, placeOfActivity) => {
     return this.service.post("/create", {
       name,
       typeOfActivity,
       description,
-      hobbyImage,
+      image,
       placeOfActivity,
     });
   };
 
-  edit = (
-    id,
-    name,
-    typeOfActivity,
-    description,
-    hobbyImage,
-    placeOfActivity
-  ) => {
-    return (
-      this.service.patch(`/${id}`),
-      { name, typeOfActivity, description, hobbyImage, placeOfActivity }
-    );
+  edit = (id, name, typeOfActivity, description, image, placeOfActivity) => {
+    return this.service.patch(`/${id}`, {
+       name, 
+       typeOfActivity, 
+       description, 
+       image, 
+       placeOfActivity 
+      })
   };
 
   delete = (id) => {
-    return this.service.delete(`${id}`)
+    return this.service.delete(`/${id}`);
   };
 
   getHobby = (id) => {
@@ -50,7 +46,6 @@ class HobbyService {
       image,
     });
   };
-
 }
 
 const hobbyService = new HobbyService();

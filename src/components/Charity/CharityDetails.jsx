@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import charityService from "../../services/charity-service";
-import reviewService from "../../services/review-service";
 import AddPostForm from "../AddPostForm";
 import EditPostForm from "../Posts/EditPostForm";
+import reviewService from "../../services/review-service";
 import ReviewForm from "../ReviewForm";
+
 
 class CharityDetails extends Component {
   state = {
@@ -25,7 +26,9 @@ class CharityDetails extends Component {
   }
 
   handleDelete = () => {
-    charityService.delete
+    const { id } = this.props.match.params;
+    charityService
+    .delete(id)
       .then((data) => {
         this.props.history.push("/charities");
       })
@@ -68,6 +71,11 @@ class CharityDetails extends Component {
             <Link to={`/charities/${singleCharity._id}/edit`}>
               <button>Edit</button>
             </Link>
+
+            <Link to={"/charities/create"}>
+              <button>Create</button>
+            </Link>
+
             <button onClick={this.handleDelete}>Delete</button>
           </div>
         )}

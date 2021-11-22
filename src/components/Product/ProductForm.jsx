@@ -3,7 +3,7 @@ import { PuffLoader } from "react-spinners";
 import productService from "../../services/product-service";
 import generalService from "../../services/general-service";
 
-class AddProductForm extends Component {
+class ProductForm extends Component {
   state = {
     image: "",
     title: "",
@@ -13,6 +13,26 @@ class AddProductForm extends Component {
     event_id: "",
     user_id: "",
     charity_id: "",
+    imageIsUploading: false,
+  };
+
+  handleImageUpload = (event) => {
+    this.setState({ imageIsUploading: true });
+
+    const uploadData = new FormData();
+    uploadData.append("image", event.target.files[0]);
+
+    generalService
+      .upload(uploadData)
+      .then((result) => {
+        this.setState({
+          image: result.data.imagePath,
+          imageIsUploading: false,
+        });
+      })
+      .catch(() => {
+        this.props.history.push("/500");
+      });
   };
 
   handleChange = (event) => {
@@ -48,7 +68,7 @@ class AddProductForm extends Component {
           charity_id
         )
         .then(() => {
-          this.props.history.push("/products/_id"); // ! to events/:id/details
+          this.props.history.push(`/products/${id}`); 
         })
         .catch((err) => {
           this.props.history.push("/500");
@@ -67,31 +87,12 @@ class AddProductForm extends Component {
           charity_id
         )
         .then(() => {
-          this.props.history.push("/products"); // ! or /events?
+          this.props.history.push(`/products/${id}`);
         })
         .catch((err) => {
           this.props.history.push("/500");
         });
     }
-  };
-
-  handleImageUpload = (event) => {
-    this.setState({ imageIsUploading: true });
-
-    const uploadData = new FormData();
-    uploadData.append("image", event.target.files[0]);
-
-    generalService
-      .upload(uploadData)
-      .then((result) => {
-        this.setState({
-          image: result.data.imagePath,
-          imageIsUploading: false,
-        }); // ! what's imagePath? don't remember
-      })
-      .catch(() => {
-        this.props.history.push("/500");
-      });
   };
 
   componentDidMount() {
@@ -133,14 +134,20 @@ class AddProductForm extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
+        {image && <img src="{image}" alt={title} />}
+            <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
+            <label htmlFor="image">Representative image </label>
+            <input onChange={this.handleImageUpload} type="file" name="product image" />
+
           <label htmlFor="title">Product title </label>
           <input
             onChange={this.handleChange}
             type="text"
             name="title"
-            value={title} // ! sat 6 got this far
+            value={title} 
           />
-          <br />
+
+          
           <label htmlFor="description">Description </label>
           <input
             onChange={this.handleChange}
@@ -148,27 +155,11 @@ class AddProductForm extends Component {
             name="description"
             value={description}
           />
-          <br />
-          <div>
-            {image && <img src="{image}" alt=" " />}
-            <PuffLoader
-              loading={imageIsUploading}
-              size="100px"
-              color="orchid"
-            />
-            {/* // ! input still in div, right? */}
-            <label htmlFor="image">Representative image </label>
-            <input
-              onChange={this.handleImageUpload}
-              type="file"
-              name="product image"
-            />
-          </div>
-          <br />
+          
           <label htmlFor="pricePolicy">Price Policy</label>
           <input
             onChange={this.handleChange}
-            type="text" // ! what type is it?
+            type="text" 
             name="pricePolicy"
             value={pricePolicy}
           />
@@ -204,7 +195,7 @@ class AddProductForm extends Component {
             name="charity_id"
             value={charity_id}
           />
-          <br />
+          
           <label htmlFor="pricePolicy">Price Policy </label>
           <input
             onChange={this.handleChange}
@@ -212,7 +203,7 @@ class AddProductForm extends Component {
             name="pricePolicy"
             value={pricePolicy}
           />
-          <br />
+          
           <label htmlFor="price">Price </label>
           <input
             onChange={this.handleChange}
@@ -220,14 +211,23 @@ class AddProductForm extends Component {
             name="price"
             value={price}
           />
-          <br />
+          
           <button type="submit" disabled={imageIsUploading}>
             Add this product!
           </button>
+
+          <button type="submit" disabled={imageIsUploading}>
+           Save changes!
+        </button>
+
         </form>
+
+        <p>Do you want to delete this charity?</p>
+        <button type="submit" disabled={imageIsUploading}> Delete </button>
+
       </div>
     );
   }
 }
 
-export default AddProductForm;
+export default ProductForm;

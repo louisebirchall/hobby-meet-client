@@ -32,6 +32,14 @@ const Footer = () => {
             Charities
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            exact
+            to="/products"
+          >
+            Products
+          </NavLink>
+        </li>
         {/* <li>
         <NavLink style={linkStyles} activeStyle={activeStyles} to="/contact">
           Contact us

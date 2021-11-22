@@ -17,15 +17,15 @@ class CharityService {
   };
 
   edit = (id, name, description, image) => {
-    return this.service.patch(`/${id}/edit`, {
+    return this.service.patch(`/${id}`, {
       name,
       description,
       image,
-    });
+    })
   };
 
   delete = (id) => {
-    return this.service.delete(`${id}`);
+    return this.service.delete(`/${id}`);
   };
 
   getCharity = (id) => {
