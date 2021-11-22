@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { PuffLoader } from "react-spinners";
 import eventService from "../../services/event-service";
 import generalService from "../../services/general-service";
+import { PuffLoader } from "react-spinners";
 
 class EventForm extends Component {
   state = {
@@ -20,6 +20,23 @@ class EventForm extends Component {
     organizedBy: "",
     charity_id: "",
     imageIsUploading: false,
+  };
+
+  handleImageUpload = (event) => {
+    this.setState({ imageIsUploading: true });
+
+    const uploadData = new FormData();
+    uploadData.append("image", event.target.files[0]);
+
+    generalService
+      .upload(uploadData)
+      .then((result) => {
+        this.setState({
+          image: result.data.imagePath,
+          imageIsUploading: false,
+        });
+      })
+      .catch(() => this.props.history.push("/500"));
   };
 
   handleChange = (event) => {
@@ -45,6 +62,7 @@ class EventForm extends Component {
       organizedBy,
       charity_id,
     } = this.state;
+
     const { id } = this.props.match.params;
 
     if (this.props.isEdit) {
@@ -67,7 +85,7 @@ class EventForm extends Component {
           charity_id
         )
         .then(() => {
-          this.props.history.push("/events/_id"); // ! to events/:id/details
+          this.props.history.push(`/events/${id}`);
         })
         .catch((err) => {
           this.props.history.push("/500");
@@ -91,30 +109,12 @@ class EventForm extends Component {
           charity_id
         )
         .then(() => {
-          this.props.history.push("/events"); // ! or /events?
+          this.props.history.push(`/events/${id}`);
         })
         .catch((err) => {
           this.props.history.push("/500");
         });
     }
-  };
-
-  handleImageUpload = (event) => {
-    this.setState({ imageIsUploading: true });
-
-    const uploadData = new FormData();
-    uploadData.append("eventImage", event.target.files[0]);
-
-    generalService.upload(uploadData)
-      .then((result) => {
-        this.setState({
-          image: result.data.imagePath,
-          imageIsUploading: false,
-        }); // ! what's imagePath? don't remember
-      })
-      .catch(() => {
-        this.props.history.push("/500");
-      });
   };
 
   componentDidMount() {
@@ -167,14 +167,19 @@ class EventForm extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
+        {image && <img src={image} alt="eventpic" width="150px"/>}
+            <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
+            <label htmlFor="image">Representative image </label>
+            <input onChange={this.handleImageUpload} type="file" name="event image" />
+            
           <label htmlFor="title">Event title </label>
           <input
             onChange={this.handleChange}
             type="text"
             name="title"
-            value={title} 
+            value={title}
           />
-      
+
           <label htmlFor="description">Description </label>
           <input
             onChange={this.handleChange}
@@ -182,22 +187,6 @@ class EventForm extends Component {
             name="description"
             value={description}
           />
-  
-          <div>
-            {image && <img src={image} alt=" " />}
-            <PuffLoader
-              loading={imageIsUploading}
-              size="100px"
-              color="orchid"
-            />
-            {/* // ! input still in div, right? */}
-            <label htmlFor="image">Representative image </label>
-            <input
-              onChange={this.handleImageUpload}
-              type="file"
-              name="event image"
-            />
-          </div>
 
           <label htmlFor="equipment">Required equipment </label>
           <input
@@ -206,18 +195,15 @@ class EventForm extends Component {
             name="equipment"
             value={equipment}
           />
-       
-          <label htmlFor="placeOfActivity">
-            Where shall we hold this event?
-          </label>
+
+          <label htmlFor="placeOfActivity"> Where shall we hold this event? </label>
           <input
             onChange={this.handleChange}
-            type="text" // ! what type is it?
+            type="text" 
             name="location"
             value={location}
           />
-     
-     
+
           <label htmlFor="date">Date </label>
           <input
             onChange={this.handleChange}
@@ -233,7 +219,7 @@ class EventForm extends Component {
             name="owner_id"
             value={owner_id}
           />
-  
+
           <label htmlFor="attendees_max">Maximum number of attendees </label>
           <input
             onChange={this.handleChange}
@@ -241,7 +227,7 @@ class EventForm extends Component {
             name="attendees_max"
             value={attendees_max}
           />
- 
+
           <label htmlFor="attendees_min">
             Set minimum number of attendees (if required)
           </label>
@@ -251,7 +237,7 @@ class EventForm extends Component {
             name="attendees_min"
             value={attendees_min}
           />
-   
+
           <label htmlFor="pricePolicy">Price Policy </label>
           <input
             onChange={this.handleChange}
@@ -259,7 +245,7 @@ class EventForm extends Component {
             name="pricePolicy"
             value={pricePolicy}
           />
-  
+
           <label htmlFor="price">Price </label>
           <input
             onChange={this.handleChange}
@@ -267,8 +253,8 @@ class EventForm extends Component {
             name="price"
             value={price}
           />
-  
-          <label htmlFor="organizedBy">Who is the organiser? </label>
+
+          <label htmlFor="organizedBy">Who is the organizer? </label>
           <input
             onChange={this.handleChange}
             type="text"
@@ -285,10 +271,18 @@ class EventForm extends Component {
           />
 
           <button type="submit" disabled={imageIsUploading}>
-            Add this event
+            Add this event!
           </button>
 
+          <button type="submit" disabled={imageIsUploading}>
+           Save changes!
+        </button>
+
         </form>
+
+        <p>Do you want to delete this event?</p>
+        <button type="submit" disabled={imageIsUploading}> Delete </button>
+
       </div>
     );
   }

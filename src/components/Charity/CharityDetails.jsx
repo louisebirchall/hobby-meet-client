@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import charityService from "../../services/charity-service";
-import reviewService from "../../services/review-service";
 import AddPostForm from "../AddPostForm";
 import EditPostForm from "../Posts/EditPostForm";
+import reviewService from "../../services/review-service";
 import ReviewForm from "../ReviewForm";
 import {Container, Button, Card, CardActions, CardContent, CardMedia, Typography} from '@material-ui/core'
+
 
 
 class CharityDetails extends Component {
@@ -27,7 +28,9 @@ class CharityDetails extends Component {
   }
 
   handleDelete = () => {
-    charityService.delete
+    const { id } = this.props.match.params;
+    charityService
+    .delete(id)
       .then((data) => {
         this.props.history.push("/charities");
       })

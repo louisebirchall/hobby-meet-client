@@ -16,7 +16,7 @@ class ProfileFom extends Component {
         type: "",
         hobbies:"",
         imageIsUploading: false,
-    }
+    };
 
     
     handleImageUpload = (event) => {

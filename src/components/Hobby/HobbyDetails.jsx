@@ -24,7 +24,9 @@ class HobbyDetails extends Component {
   }
 
   handleDelete = () => {
-    hobbyService.delete()
+    const { id } = this.props.match.params;
+    hobbyService
+    .delete(id)
       .then((data) => {
         this.props.history.push("/hobbies");
       })
@@ -45,7 +47,9 @@ class HobbyDetails extends Component {
         {!isLoading && (
           <div>
             <h2>{singleHobby.name}</h2>
-            {singleHobby.image && ( <img src={singleHobby.image} alt={singleHobby.name} /> )}
+            {singleHobby.image && ( 
+              <img src={singleHobby.image} alt={singleHobby.name} /> 
+              )}
             <p>Description: {singleHobby.description} </p>
             <p>Where: {singleHobby.placeOfActivity} </p>
             <p>Category: {singleHobby.typeOfActivity} </p>

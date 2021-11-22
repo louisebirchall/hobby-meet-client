@@ -32,7 +32,6 @@ class CharitiesPage extends Component {
         <h1>All The Charities</h1>
 
         {isLoading && <h1>...isLoading</h1>}
-
        
         {!isLoading &&
           listOfCharities.map((eachCharity) => {

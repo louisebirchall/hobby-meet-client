@@ -19,11 +19,16 @@ import EventDetails from "./components/Event/EventDetails";
 import EventForm from "./components/Event/EventForm";
 import CharitiesPage from "./components/Charity/CharitiesPage";
 import CharityDetails from "./components/Charity/CharityDetails";
+import CharityForm from "./components/Charity/CharityForm";
+import ProductsPage from "./components/Product/ProductsPage";
+import ProductDetails from "./components/Product/ProductDetails";
+import ProductForm from "./components/Product/ProductForm";
 // import CharityForm from "./components/Charity/CharityForm";
 import ServerError from "./components/ErrorHandling/ServerError";
 import PageNotFound from "./components/ErrorHandling/PageNotFound";
 // import Typography from "@material-ui/core/Typography";
 import { ThemeProvider, createTheme } from "@material-ui/core/styles";
+
 
 const montserrat = createTheme({
   typography: {
@@ -79,6 +84,7 @@ class App extends Component {
               render={(props) => <Signup {...props} setUser={this.setUser} />} // <Signup {...props} -- to get the params
             />
             {/* <Redirect from="/signup" to="/login" /> */}
+
             <Route
               path="/login"
               render={(props) => <Login {...props} setUser={this.setUser} />} // <Login {...props} -- to get the params
@@ -90,7 +96,7 @@ class App extends Component {
             />
               <Route
               path="/profile/:id/create"
-              render={(props) => <ProfileFom {...props} isEdit={false} />}
+              render={(props) => <Profile {...props} isEdit={false} />}
             />
             <Route
               path="/profile/:id/edit"
@@ -113,6 +119,7 @@ class App extends Component {
               render={(props) => <HobbiesPage {...props} />}
             />
             <Route
+              exact
               path="/hobbies/:id"
               render={(props) => <HobbyDetails {...props} />}
             />
@@ -124,6 +131,7 @@ class App extends Component {
               path="/hobbies/:id/edit"
               render={(props) => <HobbyForm {...props} isEdit={true} />}
             />
+
             {/* Events */}
             <Route
               exact
@@ -131,6 +139,7 @@ class App extends Component {
               render={(props) => <EventsPage {...props} />}
             />
             <Route
+              exact
               path="/events/:id"
               render={(props) => <EventDetails {...props} />}
             />
@@ -149,9 +158,41 @@ class App extends Component {
               render={(props) => <CharitiesPage {...props} />}
             />
             <Route
+              exact
               path="/charities/:id"
               render={(props) => <CharityDetails {...props} />}
             />
+            <Route
+              path="/charities/create"
+              render={(props) => <CharityForm {...props} isEdit={false}  />}
+             
+            />
+            <Route
+              path="/charities/:id/edit"
+              render={(props) => <CharityForm {...props} isEdit={true}  />}
+            />
+
+            {/* Products */}
+            <Route
+              exact
+              path="/products"
+              render={(props) => <ProductsPage {...props} />}
+            />
+            <Route
+              exact
+              path="/products/:id"
+              render={(props) => <ProductDetails {...props} />}
+            />
+            <Route
+              path="/products/create"
+              render={(props) => <ProductForm {...props} isEdit={false} />}
+            />
+            <Route
+              path="/products/:id/edit"
+              render={(props) => <ProductForm {...props} isEdit={true} />}
+            />
+
+
             {/* <Route
             path="/charities/create"
             render={(props) => <CharityForm {...props} isEdit={false} />}
@@ -160,6 +201,7 @@ class App extends Component {
             path="/charities/:id/edit"
             render={(props) => <CharityForm {...props} isEdit={true} />}
           /> */}
+
             {/* ErrorHandling */}
             <Route path="/500" component={ServerError} />
             <Route component={PageNotFound} />

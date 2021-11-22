@@ -9,7 +9,7 @@ class EventService {
   }
 
   create = (
-    eventImage,
+    image,
     title,
     description,
     equipment,
@@ -25,7 +25,7 @@ class EventService {
     charity_id
   ) => {
     return this.service.post("/create", {
-      eventImage,
+      image,
       title,
       description,
       equipment,
@@ -44,7 +44,7 @@ class EventService {
 
   edit = (
     id,
-    eventImage,
+    image,
     title,
     description,
     equipment,
@@ -59,10 +59,8 @@ class EventService {
     organizedBy,
     charity_id
   ) => {
-    return (
-      this.service.patch(`/${id}/edit`),
-      {
-        eventImage,
+    return this.service.patch(`/${id}`,{
+        image,
         title,
         description,
         equipment,
@@ -76,12 +74,11 @@ class EventService {
         location,
         organizedBy,
         charity_id,
-      }
-    );
+      })
   };
 
   delete = (id) => {
-    return this.service.delete(`${id}`);
+    return this.service.delete(`/${id}`);
   };
 
   getEvent = (id) => {
@@ -96,6 +93,12 @@ class EventService {
     return this.service.post(`/${id}/posts/create`, {
       description,
       image,
+    });
+  };
+
+  createReview = (id, likes) => {
+    return this.service.post(`/${id}/reviews/create`, {
+      likes,
     });
   };
 

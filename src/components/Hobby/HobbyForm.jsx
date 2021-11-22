@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { PuffLoader } from "react-spinners";
 import hobbyService from "../../services/hobby-service";
 import generalService from "../../services/general-service";
+import { PuffLoader } from "react-spinners";
 
 class HobbyForm extends Component {
   state = {
@@ -9,8 +9,39 @@ class HobbyForm extends Component {
     typeOfActivity: "",
     description: "",
     image: "",
-    imageIsUploading: false,
     placeOfActivity: "",
+    imageIsUploading: false,
+  };
+
+  handleImageUpload = (event) => {
+    this.setState({ imageIsUploading: true });
+
+    const uploadData = new FormData();
+    uploadData.append("image", event.target.files[0]);
+
+    generalService
+      .upload(uploadData)
+      .then((result) => {
+        this.setState({
+          image: result.data.imagePath,
+          imageIsUploading: false,
+        });
+      })
+      .catch(() => {
+        this.props.history.push("/500");
+      });
+  };
+
+  handleDelete = () => {
+    const { id } = this.props.match.params;
+    hobbyService
+    .delete(id)
+      .then((data) => {
+        this.props.history.push("/hobbies");
+      })
+      .catch((err) => {
+        this.props.history.push("/500");
+      });
   };
 
   handleChange = (event) => {
@@ -19,22 +50,16 @@ class HobbyForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+
     const { name, typeOfActivity, description, image, placeOfActivity } =
       this.state;
     const { id } = this.props.match.params;
 
     if (this.props.isEdit) {
       hobbyService
-        .edit(
-          id,
-          name,
-          typeOfActivity,
-          description,
-          image,
-          placeOfActivity
-        )
+        .edit(id, name, typeOfActivity, description, image, placeOfActivity)
         .then(() => {
-          this.props.history.push("/hobbies/:id"); 
+          this.props.history.push(`/hobbies/${id}`);
         })
         .catch((err) => {
           this.props.history.push("/500");
@@ -43,30 +68,12 @@ class HobbyForm extends Component {
       hobbyService
         .create(name, typeOfActivity, description, image, placeOfActivity)
         .then(() => {
-          this.props.history.push("/hobbies"); 
+          this.props.history.push(`/hobbies/${id}`);
         })
         .catch((err) => {
           this.props.history.push("/500");
         });
     }
-  };
-
-  handleImageUpload = (event) => {
-    this.setState({ imageIsUploading: true });
-
-    const uploadData = new FormData();
-    uploadData.append("hobbyImage", event.target.files[0]);
-
- generalService.upload(uploadData)
-      .then((result) => {
-        this.setState({
-          hobbyImage: result.data.imagePath,
-          imageIsUploading: false,
-        }); // ! what's imagePath? don't remember
-      })
-      .catch(() => {
-        this.props.history.push("/500");
-      });
   };
 
   componentDidMount() {
@@ -102,6 +109,12 @@ class HobbyForm extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
+          {image && <img src={image} alt="hobbypic" />}
+          <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
+
+          <label htmlFor="image">Representative image </label>
+          <input onChange={this.handleImageUpload} type="file" name="image" />
+
           <label htmlFor="name">Name </label>
           <input
             onChange={this.handleChange}
@@ -113,7 +126,7 @@ class HobbyForm extends Component {
           <label htmlFor="typeOfActivity">Type of Activity </label>
           <input
             onChange={this.handleChange}
-            type="text" // ! what type as it's an option?
+            type="text"
             name="typeOfActivity"
             value={typeOfActivity}
           />
@@ -126,36 +139,31 @@ class HobbyForm extends Component {
             value={description}
           />
 
-          <div>
-            {image && <img src={image} alt="" />}
-            <PuffLoader
-              loading={imageIsUploading}
-              size="100px"
-              color="orchid"
-            />
-            {/* // ! input still in div, right? */}
-            <label htmlFor="image">Representative image </label>
-            <input
-              onChange={this.handleImageUpload}
-              type="file"
-              name="image"
-            />
-          </div>
-
-
           <label htmlFor="placeOfActivity">Where do we do this hobby? </label>
           <input
             onChange={this.handleChange}
-            type="text" // ! what type is it?
+            type="text" 
             name="placeOfActivity"
             value={placeOfActivity}
           />
 
           <button type="submit" disabled={imageIsUploading}>
-            Add this hobby
+            Add this hobby!
           </button>
-          
+
+          <button type="submit" disabled={imageIsUploading}>
+           Save changes!
+        </button>
+
+        <p>Do you want to delete this hobby?</p>
+        {/* <button type="submit" disabled={imageIsUploading}> Delete </button> */}
+
+        <button onClick={this.handleDelete}>Delete</button>
         </form>
+
+        
+
+        
       </div>
     );
   }

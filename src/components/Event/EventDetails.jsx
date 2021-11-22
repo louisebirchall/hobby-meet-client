@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import eventService from "../../services/event-service";
 import AddPostForm from "../AddPostForm";
-import reviewService from "../../services/review-service";
 import EditPostForm from "../Posts/EditPostForm";
 import ReviewForm from "../ReviewForm";
 import {Container, Button,  Typography} from '@material-ui/core'
+import reviewService from "../../services/review-service";
 
 
 
@@ -28,9 +28,11 @@ class EventDetails extends Component {
   }
 
   handleDelete = () => {
-    eventService.delete
+    const { id } = this.props.match.params;
+    eventService
+    .delete(id)
       .then((data) => {
-        this.props.history.push("/");
+        this.props.history.push("/events"); // to check if /events here
       })
       .catch((err) => {
         this.props.history.push("/500");
