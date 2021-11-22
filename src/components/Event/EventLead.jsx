@@ -1,14 +1,35 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import bookBitch from "../../images/bookBitch.png";
+import { CardContent } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
+import { Card } from "@material-ui/core";
+import { CardMedia } from "@material-ui/core";
 
 class EventLead extends Component {
-  // use styling to make two columns or cards from bootstrap - hobbies bunf and link on one side, random/featured hobby on the other
 
   render() {
     return (
       <div>
         <div>
+          <Card sx={{ maxWidth: 345 }}>
+            <CardMedia
+              component="img"
+              height="250"
+              image={cheeseRolling}
+              alt="cheese rolling"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                Cheese Rolling
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                People chase a wheel of Double Gloucester down a very steep hill
+                in Gloucestershire. The cheese has a one-second head start, and
+                the first one down wins the cheese
+              </Typography>
+            </CardContent>
+          </Card>
           <h2>Placeholder Event Review</h2>
           <h3>BOOK BITCH</h3>
           <img src={bookBitch} alt="bookBitch" />
@@ -21,15 +42,21 @@ class EventLead extends Component {
           </p>
         </div>
         <div>
-          <h2>Events</h2>
-          <p>
-            If you want to find other like-minded people to enjoy your hobbies
-            with you can find then via events, or even set up your own! What are
-            you waiting for?
-          </p>
-        </div>
-        <div>
-          <Link to="/events">See all the Events</Link>
+          <CardContent>
+            <Typography
+              sx={{ fontSize: 14 }}
+              color="text.secondary"
+              gutterBottom
+            >
+              Events
+            </Typography>
+            <Typography variant="body2">
+              If you want to find other like-minded people to enjoy your hobbies
+              with you can find then via events, or even set up your own! What
+              are you waiting for?
+            </Typography>
+            <Link to="/events">See all the Events</Link>
+          </CardContent>
         </div>
       </div>
     );

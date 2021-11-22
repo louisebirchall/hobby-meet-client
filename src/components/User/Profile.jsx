@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import userService from '../../services/user-service'
 import { NavLink } from "react-router-dom";
+import {Container, Button} from '@material-ui/core'
 
 class Profile extends Component {
 
@@ -29,7 +30,7 @@ class Profile extends Component {
         const {user, isLoading} = this.state
         
         return (
-            <div>
+            <Container>
                 {isLoading && <h1>...isLoading</h1>}
                 {!isLoading && 
                     <div>
@@ -42,11 +43,11 @@ class Profile extends Component {
                         <p>{user.age}</p>
                         <p>{user.hobbies}</p>
 
-                        <NavLink to={`/profile/${user._id}/edit`}>Edit</NavLink>
+                        <Button component={NavLink} to={`/profile/${user._id}/edit`}>Edit</Button>
                     </div>
                 }
 
-            </div>
+            </Container>
         )
     }
 }

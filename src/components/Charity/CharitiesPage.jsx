@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import charityService from "../../services/charity-service";
+import {Container} from '@material-ui/core'
+
 
 class CharitiesPage extends Component {
   state = {
@@ -8,8 +10,10 @@ class CharitiesPage extends Component {
     isLoading: true,
   };
 
+ 
+
   componentDidMount() {
-    // console.log(process.env.REACT_APP_SERVER_API);
+
     charityService
       .getCharities()
       .then((response) => {
@@ -24,7 +28,7 @@ class CharitiesPage extends Component {
     const { listOfCharities, isLoading } = this.state;
 
     return (
-      <div>
+      <Container>
         <h1>All The Charities</h1>
 
         {isLoading && <h1>...isLoading</h1>}
@@ -40,7 +44,7 @@ class CharitiesPage extends Component {
               </div>
             );
           })}
-      </div>
+      </Container>
     );
   }
 }

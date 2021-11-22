@@ -4,7 +4,9 @@ import eventService from "../../services/event-service";
 import AddPostForm from "../AddPostForm";
 import EditPostForm from "../Posts/EditPostForm";
 import ReviewForm from "../ReviewForm";
+import {Container, Button,  Typography} from '@material-ui/core'
 import reviewService from "../../services/review-service";
+
 
 
 class EventDetails extends Component {
@@ -37,48 +39,60 @@ class EventDetails extends Component {
       });
   };
 
+  
+
   render() {
     const { isLoading, singleEvent } = this.state;
     const { id } = this.props.match.params;
 
     return (
-      <div>
+   
+      <Container>
         
         {isLoading && <h1>...Loading</h1>}
 
         {!isLoading && (
-          <div>
-            <h2>{singleEvent.title}</h2>
-            {singleEvent.image && ( <img src={singleEvent.image} alt={singleEvent.name} />  
-            )}
+          <>
+              <Typography variant="h2">{singleEvent.title}</Typography>           
+              
+              {singleEvent.image && ( <img src={singleEvent.image} alt={singleEvent.name}/> )}
+              
+              <Typography>Description: {singleEvent.description} </Typography>
 
-            <p>Description: {singleEvent.description} </p>
-            <p>Where: {singleEvent.location} </p>
-            <p>Date:{singleEvent.date} </p>
-            <p>Equipment required: {singleEvent.equipment} </p>
-            <p>Category: {singleEvent.hobby_id}</p>
-            <p>Organizer : {singleEvent.owner_id}</p>
-            <p>Attending: {singleEvent.attendees}</p>
-            <p>Maximum attendees: {singleEvent.attendees_max} </p>
-            <p>In aid of {singleEvent.charity_id} </p>
-            <p>price: {singleEvent.price} </p>
+              <Typography>Where: {singleEvent.location} </Typography>
 
-            <AddPostForm id={id} service={eventService} />
+              <Typography> Date:{singleEvent.date} </Typography>
 
-            {/* <EditPostForm id={id} service={charityService} /> */}
+              <Typography>Equipment required: {singleEvent.equipment} </Typography>
 
-            <br/>
-            <ReviewForm id={id} service={reviewService} />
+              <Typography> Category: {singleEvent.hobby_id}</Typography>
 
-      
-            <Link to={`/events/${singleEvent._id}/edit`}>
-              <button>Edit</button>
-            </Link>
-            
-            <button onClick={this.handleDelete}>Delete</button>
-          </div>
+              <Typography>Organizer : {singleEvent.owner_id}</Typography>
+
+              <Typography> Attending: {singleEvent.attendees}</Typography>
+
+              <Typography>Maximum attendees: {singleEvent.attendees_max} </Typography>
+
+              <Typography> In aid of {singleEvent.charity_id} </Typography>
+
+              <Typography> price: {singleEvent.price} </Typography>
+  
+              <Button component={Link} to={`/events/${singleEvent._id}/edit`}>
+                Edit
+              </Button>
+              
+              <Button onClick={this.handleDelete}>Delete</Button>
+
+
+              <AddPostForm id={id} service={eventService} />
+              {/* <EditPostForm id={id} service={charityService} /> */}
+
+              <ReviewForm id={id} service={reviewService} />
+          </>
         )}
-      </div>
+
+      </Container>
+
     );
   }
 }

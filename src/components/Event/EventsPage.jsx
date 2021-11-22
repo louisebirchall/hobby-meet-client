@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import eventService from "../../services/event-service";
+import {Container, Button, Card, CardActions, CardContent, CardMedia, Typography, Grid} from '@material-ui/core'
 
 class EventsPage extends Component {
   state = {
@@ -23,20 +24,30 @@ class EventsPage extends Component {
     const { listOfEvents, isLoading } = this.state;
 
     return (
-      <div>
+      <Container>
         <h1>All The Events</h1>
+        
+        <Grid container>
+          {isLoading && <h1>...isLoading</h1>}
 
-        {isLoading && <h1>...isLoading</h1>}
-
-        {!isLoading &&
-          listOfEvents.map((eachEvent) => {
-            return (
-              <div key={eachEvent._id}>
-                <Link to={`/events/${eachEvent._id}`}>{eachEvent.title}</Link>
-              </div>
-            );
-          })}
-      </div>
+          {!isLoading &&
+            listOfEvents.map((eachEvent) => {
+              return (
+                  <Card sx={{ mx: "auto", width: 200 }}>
+                    <Grid item key={eachEvent._id}>
+                      <Typography variant="h4">{eachEvent.title}</Typography>
+                
+                      <CardMedia>
+                      {eachEvent.image && ( <img src={eachEvent.image} alt={eachEvent.name}/>  )}
+                      </CardMedia>
+                      <Link to={`/events/${eachEvent._id}`}>{eachEvent.title}</Link>
+                    </Grid>
+                  </Card>
+              );
+            })
+          }
+        </Grid>
+      </Container>
     );
   }
 }
