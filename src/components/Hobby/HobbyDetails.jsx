@@ -48,7 +48,7 @@ class HobbyDetails extends Component {
           <div>
             <h2>{singleHobby.name}</h2>
             {singleHobby.image && ( 
-              <img src={singleHobby.image} alt={singleHobby.name} /> 
+              <img src={singleHobby.image} alt={singleHobby.name} width="150px"/> 
               )}
             <p>Description: {singleHobby.description} </p>
             <p>Where: {singleHobby.placeOfActivity} </p>

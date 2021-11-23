@@ -39,7 +39,7 @@ class ProductsPage extends Component {
                     <Typography variant="h4">{eachProduct.title}</Typography>
 
                     <CardMedia>
-                    {eachProduct.image && (<img src={eachProduct.image} alt={eachProduct.title}/> )}
+                    {eachProduct.image && (<img src={eachProduct.image} alt={eachProduct.title} width="150px"/> )}
                     </CardMedia>
 
                     <Button href="#text-buttons">
