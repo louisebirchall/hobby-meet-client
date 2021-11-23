@@ -33,7 +33,7 @@ class ProductsPage extends Component {
           listOfProducts.map((eachProduct) => {
             return (
               <div key={eachProduct._id}>
-              <img src={eachProduct.image} alt={eachProduct.title}/>
+              <img src={eachProduct.image} alt={eachProduct.title} width="150px"/>
                 <Link to={`/products/${eachProduct._id}`}>{eachProduct.title}</Link>
               </div>
             );

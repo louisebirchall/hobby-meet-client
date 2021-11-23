@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 import hobbyService from "../../services/hobby-service";
 import generalService from "../../services/general-service";
+
 import { PuffLoader } from "react-spinners";
+// textfield / form
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+// import MenuItem from '@mui/material/MenuItem';
+
 
 class HobbyForm extends Component {
   state = {
@@ -35,7 +41,7 @@ class HobbyForm extends Component {
   handleDelete = () => {
     const { id } = this.props.match.params;
     hobbyService
-    .delete(id)
+      .delete(id)
       .then((data) => {
         this.props.history.push("/hobbies");
       })
@@ -107,64 +113,123 @@ class HobbyForm extends Component {
     } = this.state;
 
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          {image && <img src={image} alt="hobbypic" />}
-          <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
+      <Box
+        sx={{
+          "& > :not(style)": { m: 1, width: "50ch" },
+          "& .MuiTextField-root": { m: 1, width: "50ch" },
+        }}
+        noValidate
+        autoComplete="off"
+      >
+          <form onSubmit={this.handleSubmit}>
+            {image && <img src={image} alt="hobbypic" width="150" />}
+            <PuffLoader
+              loading={imageIsUploading}
+              size="100px"
+              color="orchid"
+            />
 
-          <label htmlFor="image">Representative image </label>
-          <input onChange={this.handleImageUpload} type="file" name="image" />
+            <label htmlFor="image">Representative image </label>
+            <input onChange={this.handleImageUpload} type="file" name="image" />
 
-          <label htmlFor="name">Name </label>
+            <TextField
+              onChange={this.handleChange}
+              id="outlined-basic"
+              label="Name"
+              variant="outlined"
+              name="name"
+              value={name}
+            />
+
+            {/* <label htmlFor="name">Name </label>
           <input
             onChange={this.handleChange}
             type="text"
             name="name"
             value={name}
-          />
+          /> */}
 
-          <label htmlFor="typeOfActivity">Type of Activity </label>
+            <TextField
+              id="outlined-select"
+              select
+              label="Type Of Activity"
+              value={typeOfActivity}
+              onChange={this.handleChange}
+              // helperText="Please select your currency"
+            >
+              {/* {typeOfActivity.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem> 
+          ))} */}
+            </TextField>
+
+            {/* <label htmlFor="typeOfActivity">Type of Activity </label>
           <input
             onChange={this.handleChange}
-            type="text"
+            type="select"
             name="typeOfActivity"
             value={typeOfActivity}
-          />
+          />  */}
 
-          <label htmlFor="description">Description </label>
+            {/* max 4 and then scrollbar, maybe limit the characters? */}
+            <TextField
+              onChange={this.handleChange}
+              id="outlined-multiline-flexible"
+              label="Description"
+              multiline
+              maxRows={4}
+              variant="outlined"
+              name="description"
+              value={description}
+            />
+
+            {/* <label htmlFor="description">Description </label>
           <input
             onChange={this.handleChange}
             type="text"
             name="description"
             value={description}
-          />
+          /> */}
 
-          <label htmlFor="placeOfActivity">Where do we do this hobby? </label>
+            <TextField
+              id="outlined-select"
+              select
+              label="Place Of Activity"
+              value={placeOfActivity}
+              onChange={this.handleChange}
+              // helperText="Please select your currency"
+            >
+              {/* {typeOfActivity.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))} */}
+            </TextField>
+
+            {/* <label htmlFor="placeOfActivity">Where do we do this hobby? </label>
           <input
             onChange={this.handleChange}
             type="text" 
             name="placeOfActivity"
             value={placeOfActivity}
-          />
+          /> */}
 
-          <button type="submit" disabled={imageIsUploading}>
-            Add this hobby!
-          </button>
+            <button type="submit" disabled={imageIsUploading}>
+              Add this hobby!
+            </button>
 
-          <button type="submit" disabled={imageIsUploading}>
-           Save changes!
-        </button>
+            <button type="submit" disabled={imageIsUploading}>
+              Save changes!
+            </button>
 
-        <p>Do you want to delete this hobby?</p>
-        {/* <button type="submit" disabled={imageIsUploading}> Delete </button> */}
-
-        <button onClick={this.handleDelete}>Delete</button>
-        </form>
-
-        
-
-        
-      </div>
+            <p>Do you want to delete this hobby?</p>
+            <button type="submit" disabled={imageIsUploading}>
+              {" "}
+              Delete{" "}
+            </button>
+          </form>
+      </Box>
     );
   }
 }

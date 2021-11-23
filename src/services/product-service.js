@@ -18,10 +18,10 @@ class ProductService {
     });
   };
 
-  edit = (id, title, image, description, pricePolicy, price) => {
+  edit = (id, image, title, description, pricePolicy, price) => {
     return this.service.patch(`/${id}`, {
-      title,
       image,
+      title,
       description,
       pricePolicy,
       price,

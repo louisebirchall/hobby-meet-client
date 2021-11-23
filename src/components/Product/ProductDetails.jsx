@@ -50,7 +50,7 @@ class ProductDetails extends Component {
           <div>
           <h2>{singleProduct.title}</h2>
             {singleProduct.image && (
-              <img src={singleProduct.image} alt={singleProduct.title} />
+              <img src={singleProduct.image} alt={singleProduct.title} width="150px"/>
             )}
             <p>Description: {singleProduct.description} </p>
             <p>Where: {singleProduct.location} </p>
