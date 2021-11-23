@@ -1,3 +1,5 @@
+import { Button, TextField } from "@mui/material";
+import { Box } from "@mui/system";
 import React, { Component } from "react";
 import authService from "../../services/auth-service";
 
@@ -37,21 +39,37 @@ class Login extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            name="username"
-            value={username}
-            onChange={this.handleChange}
-          />
-          <br />
-          <input
-            type="text"
-            name="password"
-            value={password}
-            onChange={this.handleChange}
-          />
-          <br />
-          <button type="submit">Login</button>
+          <Box
+            sx={{
+              "& > :not(style)": { m: 1, width: "35ch" },
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              paddingTop: 10,
+            }}
+          >
+            <TextField
+              id="outlined-basic"
+              label="Username"
+              variant="outlined"
+              type="text"
+              name="username"
+              value={username}
+              onChange={this.handleChange}
+            />
+            <TextField
+              id="outlined-basic"
+              label="Password"
+              variant="outlined"
+              type="text"
+              name="password"
+              value={password}
+              onChange={this.handleChange}
+            />
+            <Button onSubmit={this.handleSubmit} type="submit">
+              Login
+            </Button>
+          </Box>
         </form>
         {error && <p>{error}</p>}
       </div>

@@ -127,8 +127,8 @@ function Navbar({ isLoggedIn, user, setUser }) {
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-            <MenuIcon> 
-            <Link to="/profile">Profile</Link>
+            <MenuIcon>
+              <Link to="/profile">Profile</Link>
             </MenuIcon>
           </IconButton>
           <Typography
@@ -170,11 +170,13 @@ function Navbar({ isLoggedIn, user, setUser }) {
                   <>
                     <li>
                       <NavLink exact to="/signup">
-                        Signup
+                        <Button>Signup</Button>
                       </NavLink>
                     </li>
                     <li>
-                      <NavLink to="/login">Login</NavLink>
+                      <NavLink to="/login">
+                        <Button>Login</Button>
+                      </NavLink>
                     </li>
                   </>
                 )}
