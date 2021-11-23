@@ -10,10 +10,7 @@ class CharitiesPage extends Component {
     isLoading: true,
   };
 
- 
-
   componentDidMount() {
-
     charityService
       .getCharities()
       .then((response) => {
@@ -28,7 +25,7 @@ class CharitiesPage extends Component {
     const { listOfCharities, isLoading } = this.state;
 
     return (
-      <Container>
+      <Container fixed>
         <Typography variant="h2">All The Charities</Typography>
         <Grid container spacing={3}>
           {isLoading && <h1>...isLoading</h1>}
@@ -36,12 +33,11 @@ class CharitiesPage extends Component {
           {!isLoading &&
           listOfCharities.map((eachCharity) => {
             return (
-              <Grid item key={eachCharity._id}>
-                <Card xs={12} md={6} lg={4}>
+              <Grid item xs={12} md={6} lg={4} key={eachCharity._id}>
+                <Card>
                   <Typography variant="h4">{eachCharity.title}</Typography>
-
                   <CardMedia>
-                  {eachCharity.image && ( <img src={eachCharity.image} alt={eachCharity.name}/>  )}
+                  {eachCharity.image && ( <img src={eachCharity.image} alt={eachCharity.name} width="150px"/>  )}
                   </CardMedia>
 
                   <Button href="#text-buttons">
