@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import charityService from "../../services/charity-service";
+import userService from '../../services/user-service'
 import {Container, Button, Card, CardMedia, Typography, Grid} from '@material-ui/core'
 
 
-class CharitiesPage extends Component {
+class ProfilesPage extends Component {
   state = {
-    listOfCharities: null,
+    listOfProfiles: null,
     isLoading: true,
   };
 
@@ -14,10 +14,10 @@ class CharitiesPage extends Component {
 
   componentDidMount() {
 
-    charityService
-      .getCharities()
+    userService
+      .getUsers()
       .then((response) => {
-        this.setState({ listOfCharities: response.data, isLoading: false });
+        this.setState({ listOfProfiles: response.data, isLoading: false });
       })
       .catch((err) => {
         // this.props.history.push("/500");
@@ -25,28 +25,28 @@ class CharitiesPage extends Component {
   }
 
   render() {
-    const { listOfCharities, isLoading } = this.state;
+    const { listOfProfiles, isLoading } = this.state;
 
     return (
       <Container>
-        <Typography variant="h2">All The Charities</Typography>
+        <Typography variant="h2">All The Profiles</Typography>
         <Grid container spacing={3}>
           {isLoading && <h1>...isLoading</h1>}
 
           {!isLoading &&
-          listOfCharities.map((eachCharity) => {
+            listOfProfiles.map((eachProfile) => {
             return (
-              <Grid item key={eachCharity._id}>
+              <Grid item key={eachProfile._id}>
                 <Card xs={12} md={6} lg={4}>
-                  <Typography variant="h4">{eachCharity.title}</Typography>
+                  <Typography variant="h4">{eachProfile.title}</Typography>
 
                   <CardMedia>
-                  {eachCharity.image && ( <img src={eachCharity.image} alt={eachCharity.name}/>  )}
+                  {eachProfile.image && ( <img src={eachProfile.image} alt={eachProfile.name}/>  )}
                   </CardMedia>
 
                   <Button href="#text-buttons">
-                    <Link to={`/charities/${eachCharity._id}`}>
-                      {eachCharity.name}</Link>
+                    <Link to={`/profiles/${eachProfile._id}`}>
+                      {eachProfile.name}</Link>
                   </Button>
                 </Card>
               </Grid>
@@ -59,4 +59,4 @@ class CharitiesPage extends Component {
   }
 }
 
-export default CharitiesPage;
+export default ProfilesPage;
