@@ -11,6 +11,7 @@ import Signup from "./components/User/Signup";
 import Login from "./components/User/Login";
 import Profile from "./components/User/Profile";
 import ProfileFom from "./components/User/ProfileForm";
+import ProfilesPage from "./components/User/ProfilesPage";
 import HobbiesPage from "./components/Hobby/HobbiesPage";
 import HobbyDetails from "./components/Hobby/HobbyDetails";
 import HobbyForm from "./components/Hobby/HobbyForm";
@@ -89,6 +90,11 @@ class App extends Component {
             <Route
               path="/login"
               render={(props) => <Login {...props} setUser={this.setUser} />} // <Login {...props} -- to get the params
+            />
+            <Route
+              exact
+              path="/profiles"
+              render={(props) => <ProfilesPage {...props} />}
             />
             <Route
               exact

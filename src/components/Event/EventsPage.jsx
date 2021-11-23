@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import eventService from "../../services/event-service";
-import {Container, Button, Card, CardActions, CardContent, CardMedia, Typography, Grid} from '@material-ui/core'
+import {Container, Button, Card, CardMedia, Typography, Grid} from '@material-ui/core'
 
 class EventsPage extends Component {
   state = {
@@ -25,24 +25,27 @@ class EventsPage extends Component {
 
     return (
       <Container>
-        <h1>All The Events</h1>
+        <Typography variant="h2">All The Events</Typography>
+        <Grid container spacing={3}>
         
-        <Grid container>
           {isLoading && <h1>...isLoading</h1>}
 
           {!isLoading &&
             listOfEvents.map((eachEvent) => {
               return (
-                  <Card sx={{ mx: "auto", width: 200 }}>
-                    <Grid item key={eachEvent._id}>
-                      <Typography variant="h4">{eachEvent.title}</Typography>
-                
-                      <CardMedia>
-                      {eachEvent.image && ( <img src={eachEvent.image} alt={eachEvent.name}/>  )}
-                      </CardMedia>
+                <Grid item key={eachEvent._id}>
+                  <Card xs={12} md={6} lg={4}>
+                    <Typography variant="h4">{eachEvent.title}</Typography>
+              
+                    <CardMedia>
+                    {eachEvent.image && ( <img src={eachEvent.image} alt={eachEvent.name}/>  )}
+                    </CardMedia>
+                    
+                    <Button href="#text-buttons">
                       <Link to={`/events/${eachEvent._id}`}>{eachEvent.title}</Link>
-                    </Grid>
+                    </Button>
                   </Card>
+                </Grid>
               );
             })
           }
@@ -50,6 +53,6 @@ class EventsPage extends Component {
       </Container>
     );
   }
-}
+} 
 
 export default EventsPage;

@@ -4,7 +4,7 @@ import eventService from "../../services/event-service";
 import AddPostForm from "../AddPostForm";
 import EditPostForm from "../Posts/EditPostForm";
 import ReviewForm from "../ReviewForm";
-import {Container, Button,  Typography} from '@material-ui/core'
+import {Container, Button,  Typography, Card, CardContent, Box, CardMedia} from '@material-ui/core'
 import reviewService from "../../services/review-service";
 
 
@@ -47,16 +47,20 @@ class EventDetails extends Component {
 
     return (
    
-      <Container>
+      <Container align="justify">
         
+        <Card sx={{ display: 'flex' }}>
         {isLoading && <h1>...Loading</h1>}
 
         {!isLoading && (
-          <>
+          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+            <CardContent sx={{ flex: '1 0 auto' }}>
               <Typography variant="h2">{singleEvent.title}</Typography>           
               
+              <CardMedia>
               {singleEvent.image && ( <img src={singleEvent.image} alt={singleEvent.name}/> )}
-              
+              </CardMedia>
+
               <Typography>Description: {singleEvent.description} </Typography>
 
               <Typography>Where: {singleEvent.location} </Typography>
@@ -83,13 +87,15 @@ class EventDetails extends Component {
               
               <Button onClick={this.handleDelete}>Delete</Button>
 
-
-              <AddPostForm id={id} service={eventService} />
-              {/* <EditPostForm id={id} service={charityService} /> */}
-
-              <ReviewForm id={id} service={reviewService} />
-          </>
+            </CardContent>
+          </Box>
         )}
+        </Card>
+        
+        <AddPostForm id={id} service={eventService} />
+        {/* <EditPostForm id={id} service={charityService} /> */}
+
+        <ReviewForm id={id} service={reviewService} />
 
       </Container>
 

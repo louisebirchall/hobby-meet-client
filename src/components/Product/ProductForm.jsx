@@ -134,10 +134,10 @@ class ProductForm extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-        {image && <img src="{image}" alt={title} />}
+        {image && <img src={image} alt="productpic" width="150px"/>}
             <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
             <label htmlFor="image">Representative image </label>
-            <input onChange={this.handleImageUpload} type="file" name="product image" />
+            <input onChange={this.handleImageUpload} type="file" name="image" />
 
           <label htmlFor="title">Product title </label>
           <input

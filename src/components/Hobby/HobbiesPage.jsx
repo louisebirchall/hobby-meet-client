@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import hobbyService from "../../services/hobby-service";
+import {Container, Button, Card, CardMedia, Typography, Grid} from '@material-ui/core'
 
 class HobbiesPage extends Component {
   state = {
@@ -23,20 +24,31 @@ class HobbiesPage extends Component {
     const { listOfHobbies, isLoading } = this.state;
 
     return (
-      <div>
-        <h1>All The Hobbies</h1>
+      <Container>
+        <Typography variant="h2">All The Hobbies</Typography>
+        <Grid container spacing={3}>
+          {isLoading && <h1>...isLoading</h1>}
 
-        {isLoading && <h1>...isLoading</h1>}
+          {!isLoading &&
+            listOfHobbies.map((eachHobby) => {
+              return (
+                <Grid item  key={eachHobby._id}>
+                  <Card xs={12} md={6} lg={4}>
+                    <Typography variant="h4">{eachHobby.title}</Typography>
+                    
+                    <CardMedia>
+                    {eachHobby.image && ( <img src={eachHobby.image} alt={eachHobby.name}/>  )}
+                    </CardMedia>
 
-        {!isLoading &&
-          listOfHobbies.map((eachHobby) => {
-            return (
-              <div key={eachHobby._id}>
-                <Link to={`/hobbies/${eachHobby._id}`}>{eachHobby.name}</Link>
-              </div>
-            );
-          })}
-      </div>
+                    <Button href="#text-buttons">
+                      <Link to={`/hobbies/${eachHobby._id}`}>{eachHobby.name}</Link>
+                    </Button>
+                  </Card>
+                </Grid>
+              );
+            })}
+        </Grid>
+      </Container>
     );
   }
 }

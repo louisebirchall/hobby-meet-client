@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import productService from "../../services/product-service";
+import {Container, Button, Card, CardMedia, Typography, Grid} from '@material-ui/core'
+
 
 class ProductsPage extends Component {
   state = {
@@ -24,21 +26,31 @@ class ProductsPage extends Component {
     const { listOfProducts, isLoading } = this.state;
 
     return (
-      <div>
-        <h1>All The Products</h1>
+      <Container>
+        <Typography variant="h2">All The Products</Typography>
+        <Grid container spacing={3}>
+          {isLoading && <h1>...isLoading</h1>}
 
-        {isLoading && <h1>...isLoading</h1>}
+          {!isLoading &&
+            listOfProducts.map((eachProduct) => {
+              return (
+                <Grid item  key={eachProduct._id}>
+                  <Card xs={12} md={6} lg={4}>
+                    <Typography variant="h4">{eachProduct.title}</Typography>
 
-        {!isLoading &&
-          listOfProducts.map((eachProduct) => {
-            return (
-              <div key={eachProduct._id}>
-              <img src={eachProduct.image} alt={eachProduct.title}/>
-                <Link to={`/products/${eachProduct._id}`}>{eachProduct.title}</Link>
-              </div>
-            );
-          })}
-      </div>
+                    <CardMedia>
+                    {eachProduct.image && (<img src={eachProduct.image} alt={eachProduct.title} width="150px"/> )}
+                    </CardMedia>
+
+                    <Button href="#text-buttons">
+                      <Link to={`/products/${eachProduct._id}`}>{eachProduct.title}</Link>
+                    </Button>
+                  </Card>
+                </Grid>
+              );
+            })}
+        </Grid>
+      </Container>
     );
   }
 }
