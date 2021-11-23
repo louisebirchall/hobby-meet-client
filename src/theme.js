@@ -1,6 +1,6 @@
-import { ThemeOptions } from "@material-ui/core";
+import { createTheme } from "@mui/material/styles";
 
-const theme: ThemeOptions = {
+const theme = createTheme({
   palette: {
     type: "light",
     primary: {
@@ -13,6 +13,6 @@ const theme: ThemeOptions = {
   typography: {
     fontFamily: "Montserrat",
   },
-};
+});
 
 export default theme;

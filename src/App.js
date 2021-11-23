@@ -28,6 +28,7 @@ import ServerError from "./components/ErrorHandling/ServerError";
 import PageNotFound from "./components/ErrorHandling/PageNotFound";
 // import Typography from "@material-ui/core/Typography";
 import { ThemeProvider, createTheme } from "@material-ui/core/styles";
+import theme from "./theme";
 
 
 const montserrat = createTheme({
@@ -73,8 +74,8 @@ class App extends Component {
     const { user, isLoggedIn } = this.state;
 
     return (
-      <ThemeProvider theme={montserrat}>
-        <div className="App">
+      <div className="App">
+      <ThemeProvider theme={theme}>
           <Navbar isLoggedIn={isLoggedIn} user={user} setUser={this.setUser} />
           <Switch>
             <Route exact path="/" render={(props) => <Homepage {...props} />} />
@@ -207,8 +208,8 @@ class App extends Component {
             <Route component={PageNotFound} />
           </Switch>
           <Footer />
-        </div>
       </ThemeProvider>
+        </div>
     );
   }
 }

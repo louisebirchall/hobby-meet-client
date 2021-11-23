@@ -16,6 +16,7 @@ import { Button } from "@material-ui/core";
 import { Stack } from "@mui/material";
 
 
+
 function Navbar ({ isLoggedIn, user, setUser }) {
   const logoutUser = () => {
     authService.logout().then(() => {

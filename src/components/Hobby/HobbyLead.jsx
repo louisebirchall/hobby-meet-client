@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import cheeseRolling from "../../images/cheeseRolling.jpeg";
 import { Typography } from "@material-ui/core";
-import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import { CardMedia } from "@material-ui/core";
 
@@ -26,7 +25,11 @@ const cardL = (
 const styles = {
   divStyle: {
     display: "flex",
-    flexDirection: "Row"
+    flexDirection: "Row",
+    gap: 20,
+    justifyContent: "space-evenly",
+    paddingTop: 20,
+    paddingBottom: 20
   }
 }
 
@@ -36,8 +39,17 @@ class HobbyLead extends Component {
   render() {
     return (
       <div style={styles.divStyle}>
-        <Card variant="outlined">{cardL}</Card>
-        <Card sx={{ maxWidth: 345 }}>
+     
+        <Card
+          sx={{ maxWidth: 400, boxShadow: "-12px 12px 64px 0 #F0FFF0" }}
+          variant="outlined"
+        >
+          {cardL}
+        </Card>
+        <Card
+          sx={{ maxWidth: 400, boxShadow: "-12px 12px 64px 0 #F0FFF0" }}
+          variant="outlined"
+        >
           <CardMedia
             component="img"
             height="250"
@@ -55,6 +67,7 @@ class HobbyLead extends Component {
             </Typography>
           </CardContent>
         </Card>
+      
       </div>
     );
   }

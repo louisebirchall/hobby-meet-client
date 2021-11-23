@@ -10,6 +10,10 @@ const styles = {
   divStyle: {
     display: "flex",
     flexDirection: "Row",
+    gap: 20,
+    justifyContent: "space-evenly",
+    paddingTop: 20,
+    paddingBottom: 20,
   },
 };
 
@@ -19,13 +23,8 @@ class EventLead extends Component {
     return (
       <div style={styles.divStyle}>
         <div>
-          <Card sx={{ maxWidth: 345 }}>
-            <CardMedia
-              component="img"
-              height="250"
-              image={bookBitch}
-              alt="book bitch"
-            />
+          <Card sx={{ maxWidth: 400 }}>
+            <CardMedia component="img" image={bookBitch} alt="book bitch" />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 Book Bitch
@@ -41,7 +40,7 @@ class EventLead extends Component {
           </Card>
         </div>
         <div>
-          <Card>
+          <Card sx={{ maxWidth: 400 }}>
             <CardContent>
               <Typography
                 sx={{ fontSize: 14 }}
