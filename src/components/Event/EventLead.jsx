@@ -13,23 +13,34 @@ const styles = {
     gap: 20,
     justifyContent: "space-evenly",
     paddingTop: 20,
-    paddingBottom: 20,
+    paddingBottom: 60,
+  },
+  buttonStyle: {
+    display: "flex",
+    justifyContent: "center",
   },
 };
 
 class EventLead extends Component {
-
   render() {
     return (
       <div style={styles.divStyle}>
         <div>
-          <Card sx={{ maxWidth: 400 }}>
-            <CardMedia component="img" image={bookBitch} alt="book bitch" />
+          <Card
+            sx={{ maxWidth: 550, boxShadow: "-12px 12px 64px 0 #F0FFF0"}}
+            variant="outlined"
+          >
+            <CardMedia
+              component="img"
+              height="250"
+              image={bookBitch}
+              alt="book bitch"
+            />
             <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
+              <Typography gutterBottom variant="h4" component="div">
                 Book Bitch
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="h5" color="text.secondary">
                 This time we were reading the Davinci Code. We hated it, it was
                 almost as bad as Twilight. We all got together and had a great
                 time talking about how terrible the plot holes were. Sharon
@@ -39,25 +50,23 @@ class EventLead extends Component {
             </CardContent>
           </Card>
         </div>
-        <div>
-          <Card sx={{ maxWidth: 400 }}>
-            <CardContent>
-              <Typography
-                sx={{ fontSize: 14 }}
-                color="text.secondary"
-                gutterBottom
-              >
-                Events
-              </Typography>
-              <Typography variant="body2">
-                If you want to find other like-minded people to enjoy your
-                hobbies with you can find then via events, or even set up your
-                own! What are you waiting for?
-              </Typography>
-              <Link to="/events">See all the Events</Link>
-            </CardContent>
-          </Card>
-        </div>
+
+        <Card
+          sx={{ maxWidth: 550, boxShadow: "-12px 12px 64px 0 #F0FFF0" }}
+          variant="outlined"
+        >
+          <CardContent>
+            <Typography variant="h3" gutterBottom>
+              Events
+            </Typography>
+            <Typography variant="h5">
+              If you want to find other like-minded people to enjoy your hobbies
+              with you can find then via events, or even set up your own! What
+              are you waiting for?
+            </Typography>
+            <Link style={styles.buttonStyle} exact to="/events">See all the Events</Link>
+          </CardContent>
+        </Card>
       </div>
     );
   }
@@ -65,7 +74,8 @@ class EventLead extends Component {
 
 export default EventLead;
 
-{/* <h2>Placeholder Event Review</h2>
+{
+  /* <h2>Placeholder Event Review</h2>
           <h3>BOOK BITCH</h3>
           <img src={bookBitch} alt="bookBitch" />
           <p>
@@ -91,4 +101,5 @@ export default EventLead;
               are you waiting for?
             </Typography>
             <Link to="/events">See all the Events</Link>
-          </CardContent> */}
+          </CardContent> */
+}

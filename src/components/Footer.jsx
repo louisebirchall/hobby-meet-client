@@ -4,13 +4,12 @@ import { Box } from "@mui/system";
 import { AppBar, Stack } from "@mui/material";
 
 const Footer = () => {
-
   return (
     <div>
       <Box>
         <AppBar color="primary" sx={{ top: "auto", bottom: 0 }}>
           <ul>
-            <Stack direction="row" spacing={2}>
+            <Stack direction="row" spacing={1} justifyContent="space-evenly">
               <li>
                 <NavLink exact to="/">
                   Home
