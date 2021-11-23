@@ -164,16 +164,18 @@ class App extends Component {
               path="/charities"
               render={(props) => <CharitiesPage {...props} />}
             />
+
+            <Route
+              path="/charities/create"
+              render={(props) => <CharityForm {...props} isEdit={false}  />}
+            />
+
             <Route
               exact
               path="/charities/:id"
               render={(props) => <CharityDetails {...props} />}
             />
-            <Route
-              path="/charities/create"
-              render={(props) => <CharityForm {...props} isEdit={false}  />}
-             
-            />
+            
             <Route
               path="/charities/:id/edit"
               render={(props) => <CharityForm {...props} isEdit={true}  />}

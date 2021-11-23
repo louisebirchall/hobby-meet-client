@@ -6,7 +6,7 @@ import { PuffLoader } from "react-spinners";
 // textfield / form
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-// import MenuItem from '@mui/material/MenuItem';
+import MenuItem from '@mui/material/MenuItem';
 
 
 class HobbyForm extends Component {
@@ -157,11 +157,11 @@ class HobbyForm extends Component {
               onChange={this.handleChange}
               // helperText="Please select your currency"
             >
-              {/* {typeOfActivity.map((option) => (
+              {typeOfActivity.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem> 
-          ))} */}
+          ))} 
             </TextField>
 
             {/* <label htmlFor="typeOfActivity">Type of Activity </label>

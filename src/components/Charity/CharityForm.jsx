@@ -53,11 +53,13 @@ class CharityForm extends Component {
     } else {
       charityService
         .create(name, description, image)
-        .then(() => {
+        .then((response) => {
           // see SignupComponent to compare: this.props.setUser
-          this.props.history.push(`/charities/${id}`); // create or id of created oder list?
+          console.log("newly created charity", response.data)
+          this.props.history.push(`/charities/${response.data._id}`); // create or id of created oder list?
         })
         .catch((err) => {
+          console.log("charity creation", err)
           this.props.history.push("/500");
         });
     }
@@ -87,7 +89,7 @@ class CharityForm extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-            {image && <img src={image} alt="{name}" width="150px"/>}
+            {image && <img src={image} alt={name} width="150px"/>}
             <PuffLoader loading={imageIsUploading} size="100px"color="orchid"/>
             <label htmlFor="Image">Representative image </label>
             <input onChange={this.handleImageUpload} type="file" name="image" />

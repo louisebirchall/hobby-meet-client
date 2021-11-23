@@ -1,5 +1,5 @@
 // import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import authService from "../services/auth-service";
 import SearchBar from "./Search/SearchBar";
 import * as React from "react";
@@ -127,7 +127,9 @@ function Navbar({ isLoggedIn, user, setUser }) {
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-            <MenuIcon />
+            <MenuIcon> 
+            <Link to="/profile">Profile</Link>
+            </MenuIcon>
           </IconButton>
           <Typography
             variant="h6"
