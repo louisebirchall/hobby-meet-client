@@ -5,6 +5,8 @@ import { CardContent } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import { Card } from "@material-ui/core";
 import { CardMedia } from "@material-ui/core";
+import { Box } from "@mui/system";
+import { Button } from "@mui/material";
 
 const styles = {
   divStyle: {
@@ -14,6 +16,7 @@ const styles = {
     justifyContent: "space-evenly",
     paddingTop: 20,
     paddingBottom: 60,
+    textAlign: "center"
   },
   buttonStyle: {
     display: "flex",
@@ -27,7 +30,7 @@ class EventLead extends Component {
       <div style={styles.divStyle}>
         <div>
           <Card
-            sx={{ maxWidth: 550, boxShadow: "-12px 12px 64px 0 #F0FFF0"}}
+            sx={{ maxWidth: 550, boxShadow: "-12px 12px 64px 0 #F0FFF0" }}
             variant="outlined"
           >
             <CardMedia
@@ -64,7 +67,12 @@ class EventLead extends Component {
               with you can find then via events, or even set up your own! What
               are you waiting for?
             </Typography>
-            <Link style={styles.buttonStyle} exact to="/events">See all the Events</Link>
+            <Box sx={{ height: 10 }} />
+            <Link style={styles.buttonStyle} exact to="/events">
+            <Button color="primary" variant="contained">
+              See all the Events
+              </Button>
+            </Link>
           </CardContent>
         </Card>
       </div>
@@ -73,33 +81,3 @@ class EventLead extends Component {
 }
 
 export default EventLead;
-
-{
-  /* <h2>Placeholder Event Review</h2>
-          <h3>BOOK BITCH</h3>
-          <img src={bookBitch} alt="bookBitch" />
-          <p>
-            This time we were reading the Davinci Code. We hated it, it was
-            almost as bad as Twilight. We all got together and had a great time
-            talking about how terrible the plot holes were. Sharon brought some
-            lovely scones, too. I recommend this event to anyone with actual
-            taste.
-          </p>
-        </div>
-        <div>
-          <CardContent>
-            <Typography
-              sx={{ fontSize: 14 }}
-              color="text.secondary"
-              gutterBottom
-            >
-              Events
-            </Typography>
-            <Typography variant="body2">
-              If you want to find other like-minded people to enjoy your hobbies
-              with you can find then via events, or even set up your own! What
-              are you waiting for?
-            </Typography>
-            <Link to="/events">See all the Events</Link>
-          </CardContent> */
-}

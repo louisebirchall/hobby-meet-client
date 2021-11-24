@@ -30,7 +30,7 @@ class Profile extends Component {
         const {user, isLoading} = this.state
         
         return (
-            <Container>
+            <Container style={{paddingBottom: 60}}>
                 {isLoading && <h1>...isLoading</h1>}
                 {!isLoading && 
                     <div>

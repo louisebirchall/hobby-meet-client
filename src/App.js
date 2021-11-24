@@ -27,18 +27,10 @@ import ProductForm from "./components/Product/ProductForm";
 // import CharityForm from "./components/Charity/CharityForm";
 import ServerError from "./components/ErrorHandling/ServerError";
 import PageNotFound from "./components/ErrorHandling/PageNotFound";
-// import Typography from "@material-ui/core/Typography";
-import { ThemeProvider, createTheme } from "@material-ui/core/styles";
-import theme from "./theme";
-
-
-const montserrat = createTheme({
-  typography: {
-    fontFamily: ["Montserrat"].join(","),
-  },
-});
+import { withTheme } from "@material-ui/core";
 
 class App extends Component {
+
   state = {
     isLoggedIn: null,
     user: null,
@@ -76,7 +68,6 @@ class App extends Component {
 
     return (
       <div className="App">
-      <ThemeProvider theme={theme}>
           <Navbar isLoggedIn={isLoggedIn} user={user} setUser={this.setUser} />
           <Switch>
             <Route exact path="/" render={(props) => <Homepage {...props} />} />
@@ -101,7 +92,7 @@ class App extends Component {
               path="/profile/:id"
               render={(props) => <Profile {...props} setUser={this.setUser} />}
             />
-              <Route
+            <Route
               path="/profile/:id/create"
               render={(props) => <Profile {...props} isEdit={false} />}
             />
@@ -110,14 +101,12 @@ class App extends Component {
               render={(props) => <ProfileFom {...props} isEdit={true} />}
             />
 
-
             {/* Frontpage */}
             <Route
               exact
               path="/"
               render={(props) => <Frontpage {...props} />}
             />
-
 
             {/* Hobbies */}
             <Route
@@ -167,7 +156,7 @@ class App extends Component {
 
             <Route
               path="/charities/create"
-              render={(props) => <CharityForm {...props} isEdit={false}  />}
+              render={(props) => <CharityForm {...props} isEdit={false} />}
             />
 
             <Route
@@ -175,10 +164,10 @@ class App extends Component {
               path="/charities/:id"
               render={(props) => <CharityDetails {...props} />}
             />
-            
+
             <Route
               path="/charities/:id/edit"
-              render={(props) => <CharityForm {...props} isEdit={true}  />}
+              render={(props) => <CharityForm {...props} isEdit={true} />}
             />
 
             {/* Products */}
@@ -201,7 +190,6 @@ class App extends Component {
               render={(props) => <ProductForm {...props} isEdit={true} />}
             />
 
-
             {/* <Route
             path="/charities/create"
             render={(props) => <CharityForm {...props} isEdit={false} />}
@@ -216,8 +204,7 @@ class App extends Component {
             <Route component={PageNotFound} />
           </Switch>
           <Footer />
-      </ThemeProvider>
-        </div>
+      </div>
     );
   }
 }

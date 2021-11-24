@@ -1,4 +1,4 @@
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { Component } from "react";
 import authService from "../../services/auth-service";
@@ -48,6 +48,9 @@ class Login extends Component {
               paddingTop: 10,
             }}
           >
+            <Typography style={{ textAlign: "center" }}>
+              Please log in below
+            </Typography>
             <TextField
               id="outlined-basic"
               label="Username"
