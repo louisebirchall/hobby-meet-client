@@ -1,23 +1,90 @@
 import React, { Component } from "react";
 import hobbyService from "../../services/hobby-service";
 import generalService from "../../services/general-service";
-
 import { PuffLoader } from "react-spinners";
+
 // textfield / form
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import MenuItem from '@mui/material/MenuItem';
+import MenuItem from "@mui/material/MenuItem";
 
+// input for selecting typeOfActivity 
+// const typeOfActivity = [
+//   {
+//     value: 'Sport',
+//     label: 'Sport',
+//   },
+//   {
+//     value: 'Craft',
+//    label: 'Craft',
+//   },
+//   {
+//     value: 'Workshop',
+//     label: 'Workshop',
+//   },
+//   {
+//     value: 'Music',
+//     label: 'Music',
+//   },
+//   {
+//     value: 'Art',
+//     label: 'Art',
+//   },
+//   {
+//     value: 'Manual',
+//     label: 'Manual',
+//   },
+//   {
+//     value: 'Food',
+//     label: 'Food',
+//   },
+//   {
+//     value: 'Gardening',
+//     label: 'Gardening',
+//   },
+//   {
+//     value: 'MeetUp',
+//     label: 'MeetUp',
+//   },
+//   {
+//     value: 'Language',
+//     label: 'Language',
+//   },
+//   {
+//     value: 'Spiritual',
+//     label: 'Spiritual',
+//   },
+//   {
+//     value: 'Photography',
+//     label: 'Photography',
+//   },
+// ];
+
+// input for selecting placeOfActivity 
+// const placeOfActivity = [
+//   {
+//     value: 'Indoors',
+//     label: 'Indoors',
+//   },
+//   {
+//     value: 'Outdoors',
+//     label: 'Outdoors',
+//   },
+//   {
+//     value: 'Indoors & Outdoors',
+//     label: 'Indoors & Outdoors',
+//   },
+// ]
 
 class HobbyForm extends Component {
   state = {
     name: "",
-    typeOfActivity: "",
+   // typeOfActivity: "",
     description: "",
     image: "",
-    placeOfActivity: "",
+   // placeOfActivity: "",
     imageIsUploading: false,
-  };
+  };  
 
   handleImageUpload = (event) => {
     this.setState({ imageIsUploading: true });
@@ -38,32 +105,31 @@ class HobbyForm extends Component {
       });
   };
 
-  handleDelete = () => {
-    const { id } = this.props.match.params;
-    hobbyService
-      .delete(id)
-      .then((data) => {
-        this.props.history.push("/hobbies");
-      })
-      .catch((err) => {
-        this.props.history.push("/500");
-      });
-  };
-
   handleChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({
+      [event.target.name]: event.target.value,
+      //[event.target.value]: event.target.value
+    });
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const { name, typeOfActivity, description, image, placeOfActivity } =
+    const { name, 
+      // typeOfActivity, 
+      description, image, 
+      // placeOfActivity 
+    } =
       this.state;
     const { id } = this.props.match.params;
 
     if (this.props.isEdit) {
       hobbyService
-        .edit(id, name, typeOfActivity, description, image, placeOfActivity)
+        .edit(id, name, 
+          // typeOfActivity, 
+          description, image, 
+         // placeOfActivity
+          )
         .then(() => {
           this.props.history.push(`/hobbies/${id}`);
         })
@@ -72,43 +138,61 @@ class HobbyForm extends Component {
         });
     } else {
       hobbyService
-        .create(name, typeOfActivity, description, image, placeOfActivity)
-        .then(() => {
-          this.props.history.push(`/hobbies/${id}`);
+        .create(name, 
+          //typeOfActivity, 
+          description, image, 
+          // placeOfActivity
+          )
+        .then((response) => {
+          console.log("newly created charity", response.data)
+          this.props.history.push(`/hobbies/${response.data._id}`);
         })
         .catch((err) => {
-          this.props.history.push("/500");
+         // console.log("charity creation", err)
+         // this.props.history.push("/500");
         });
     }
   };
+
+  // handleDelete = () => {
+  //   const { id } = this.props.match.params;
+  //   hobbyService
+  //     .delete(id)
+  //     .then((data) => {
+  //       this.props.history.push("/hobbies");
+  //     })
+  //     .catch((err) => {
+  //       this.props.history.push("/500");
+  //     });
+  // };
 
   componentDidMount() {
     const { id } = this.props.match.params;
     if (id) {
       hobbyService
-        .getHobby(id)
-        .then((result) => {
-          this.setState({
-            name: result.data.name,
-            typeOfActivity: result.data.typeOfActivity,
-            description: result.data.description,
-            image: result.data.image,
-            placeOfActivity: result.data.placeOfActivity,
-          });
-        })
-        .catch((err) => {
-          this.props.history.push("/500");
+      .getHobby(id)
+      .then((result) => {
+        this.setState({
+          name: result.data.name,
+          // typeOfActivity: result.data.typeOfActivity,
+          description: result.data.description,
+          image: result.data.image,
+          // placeOfActivity: result.data.placeOfActivity,
         });
+      });
+      // .catch((err) => {
+      //   this.props.history.push("/500");
+      // });
     }
   }
 
   render() {
     const {
       name,
-      typeOfActivity,
+     // typeOfActivity,
       description,
       image,
-      placeOfActivity,
+     // placeOfActivity,
       imageIsUploading,
     } = this.state;
 
@@ -121,114 +205,75 @@ class HobbyForm extends Component {
         noValidate
         autoComplete="off"
       >
-          <form onSubmit={this.handleSubmit}>
-            {image && <img src={image} alt="hobbypic" width="150" />}
-            <PuffLoader
-              loading={imageIsUploading}
-              size="100px"
-              color="orchid"
-            />
+        <form onSubmit={this.handleSubmit}>
+          {image && <img src={image} alt="hobbypic" width="150" />}
+          <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
+          <label htmlFor="image">Representative image </label>
+          <input onChange={this.handleImageUpload} type="file" name="image" />
 
-            <label htmlFor="image">Representative image </label>
-            <input onChange={this.handleImageUpload} type="file" name="image" />
-
-            <TextField
-              onChange={this.handleChange}
-              id="outlined-basic"
-              label="Name"
-              variant="outlined"
-              name="name"
-              value={name}
-            />
-
-            {/* <label htmlFor="name">Name </label>
-          <input
+          <TextField
             onChange={this.handleChange}
-            type="text"
+            id="outlined-basic"
+            label="Name"
+            variant="outlined"
             name="name"
             value={name}
-          /> */}
+          />
 
-            <TextField
-              id="outlined-select"
-              select
-              label="Type Of Activity"
-              value={typeOfActivity}
-              onChange={this.handleChange}
-              // helperText="Please select your currency"
-            >
-              {typeOfActivity.map((option) => (
+         {/*  <TextField
+            id="outlined-select"
+            select
+            label="Please select the type of the activity."
+            value={typeOfActivity}
+            onChange={this.handleChange}
+          >
+            {typeOfActivity.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem> 
-          ))} 
-            </TextField>
+          ))}  
+          </TextField> */}
 
-            {/* <label htmlFor="typeOfActivity">Type of Activity </label>
-          <input
+          {/* max 4 and then scrollbar, maybe limit the characters? */}
+          <TextField
             onChange={this.handleChange}
-            type="select"
-            name="typeOfActivity"
-            value={typeOfActivity}
-          />  */}
-
-            {/* max 4 and then scrollbar, maybe limit the characters? */}
-            <TextField
-              onChange={this.handleChange}
-              id="outlined-multiline-flexible"
-              label="Description"
-              multiline
-              maxRows={4}
-              variant="outlined"
-              name="description"
-              value={description}
-            />
-
-            {/* <label htmlFor="description">Description </label>
-          <input
-            onChange={this.handleChange}
-            type="text"
+            id="outlined-multiline-flexible"
+            label="Description"
+            multiline
+            maxRows={4}
+            variant="outlined"
             name="description"
             value={description}
-          /> */}
+          />
 
-            <TextField
-              id="outlined-select"
-              select
-              label="Place Of Activity"
-              value={placeOfActivity}
-              onChange={this.handleChange}
-              // helperText="Please select your currency"
-            >
-              {/* {typeOfActivity.map((option) => (
+        {/*  <TextField
+            id="outlined-select"
+            select
+            label="Please select the place of activity"
+            value={placeOfActivity}
+            onChange={this.handleChange}
+          >
+             {typeOfActivity.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
-          ))} */}
-            </TextField>
+          ))} 
+          </TextField>*/}
 
-            {/* <label htmlFor="placeOfActivity">Where do we do this hobby? </label>
-          <input
-            onChange={this.handleChange}
-            type="text" 
-            name="placeOfActivity"
-            value={placeOfActivity}
-          /> */}
+          <button type="submit" disabled={imageIsUploading}>
+            Add this hobby!
+          </button>
 
-            <button type="submit" disabled={imageIsUploading}>
-              Add this hobby!
-            </button>
+          <button type="submit" disabled={imageIsUploading}>
+            Save changes!
+          </button>
 
-            <button type="submit" disabled={imageIsUploading}>
-              Save changes!
-            </button>
-
-            <p>Do you want to delete this hobby?</p>
-            <button type="submit" disabled={imageIsUploading}>
-              {" "}
-              Delete{" "}
-            </button>
-          </form>
+          <p>Do you want to delete this hobby?</p>
+          <button type="submit" disabled={imageIsUploading}>
+            {" "}
+            Delete{" "}
+          </button>
+        </form>
       </Box>
     );
   }

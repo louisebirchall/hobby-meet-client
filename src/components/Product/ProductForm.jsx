@@ -3,6 +3,27 @@ import { PuffLoader } from "react-spinners";
 import productService from "../../services/product-service";
 import generalService from "../../services/general-service";
 
+// textfield / form
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import MenuItem from "@mui/material/MenuItem";
+
+// input for selecting pricePolicy 
+const pricePolicy = [
+  //   {
+  //     value: 'FixedPrice',
+  //     label: 'Fixed Price',
+  //   },
+  //   {
+  //    value: 'Free',
+  //    label: 'Free',
+  //   },
+  //   {
+  //     value: 'Voluntary',
+  //     label: 'Voluntary',
+  //   }
+]
+
 class ProductForm extends Component {
   state = {
     image: "",
@@ -68,7 +89,7 @@ class ProductForm extends Component {
           charity_id
         )
         .then(() => {
-          this.props.history.push(`/products/${id}`); 
+          this.props.history.push(`/products/${id}`);
         })
         .catch((err) => {
           this.props.history.push("/500");
@@ -86,8 +107,8 @@ class ProductForm extends Component {
           user_id,
           charity_id
         )
-        .then(() => {
-          this.props.history.push(`/products/${id}`);
+        .then((response) => {
+          this.props.history.push(`/products/${response.data._id}`);
         })
         .catch((err) => {
           this.props.history.push("/500");
@@ -132,100 +153,141 @@ class ProductForm extends Component {
     } = this.state;
 
     return (
-      <div>
+      <Box
+        sx={{
+          "& > :not(style)": { m: 1, width: "50ch" },
+          "& .MuiTextField-root": { m: 1, width: "50ch" },
+        }}
+        noValidate
+        autoComplete="off"
+      >
         <form onSubmit={this.handleSubmit}>
-        {image && <img src={image} alt="productpic" width="150px"/>}
-            <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
-            <label htmlFor="image">Representative image </label>
-            <input onChange={this.handleImageUpload} type="file" name="image" />
+          {image && <img src={image} alt="productpic" width="150px" />}
+          <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
+          <label htmlFor="image">Representative image </label>
+          <input onChange={this.handleImageUpload} type="file" name="image" />
 
-          <label htmlFor="title">Product title </label>
-          <input
+          <TextField
             onChange={this.handleChange}
-            type="text"
+            id="outlined-basic"
+            label="Name"
+            variant="outlined"
             name="title"
-            value={title} 
+            value={title}
           />
 
-          
-          <label htmlFor="description">Description </label>
-          <input
+          <TextField
             onChange={this.handleChange}
-            type="text"
+            id="outlined-multiline-flexible"
+            label="Description"
+            multiline
+            maxRows={4}
+            variant="outlined"
             name="description"
             value={description}
           />
-          
-          <label htmlFor="pricePolicy">Price Policy</label>
-          <input
-            onChange={this.handleChange}
-            type="text" 
-            name="pricePolicy"
+
+          <TextField
+            id="outlined-select"
+            select
+            label="Please select the type of price Policy."
             value={pricePolicy}
-          />
-          <br />
-          <label htmlFor="price">Price </label>
-          <input
             onChange={this.handleChange}
-            type="number"
+          >
+            {/* {pricePolicy.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem> 
+          ))}  */}
+          </TextField>
+
+          <TextField
+            //  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+            onChange={this.handleChange}
+            id="outlined-basic"
+            label="€"
+            variant="outlined"
             name="price"
+            type="number"
             value={price}
+            placeholder="€"
           />
-          <br />
-          <label htmlFor="event_id">Where was it created? </label>
-          <input
+
+          <TextField
             onChange={this.handleChange}
-            type="text"
+            id="outlined-basic"
+            label="Where was it created?"
+            variant="outlined"
             name="event_id"
             value={event_id}
           />
-          <br />
-          <label htmlFor="user_id">Who was the creator? </label>
-          <input
+
+          {/* not needed as textfield: its the creator = username */}
+          {/* <TextField
             onChange={this.handleChange}
-            type="text"
+            id="outlined-basic"
+            label="Who was the creator?"
+            variant="outlined"
             name="user_id"
             value={user_id}
-          />
-          <br />
-          <label htmlFor="charity_id">Which charity is it for? </label>
-          <input
-            onChange={this.handleChange}
-            type="text"
-            name="charity_id"
+          /> */}
+
+          <TextField
+            id="outlined-select"
+            select
+            label="Which Charity is it for?"
             value={charity_id}
-          />
-          
-          <label htmlFor="pricePolicy">Price Policy </label>
-          <input
             onChange={this.handleChange}
-            type="text"
-            name="pricePolicy"
+          >
+            {/* {charities.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem> 
+          ))}  */}
+          </TextField>
+
+          <TextField
+            id="outlined-select"
+            select
+            label="Please select the type of price Policy."
             value={pricePolicy}
-          />
-          
-          <label htmlFor="price">Price </label>
-          <input
             onChange={this.handleChange}
-            type="number"
+            // helperText="Please select the type of price Policy."
+          >
+            {/* {pricePolicy.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem> 
+          ))}  */}
+          </TextField>
+
+          <TextField
+            //  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+            onChange={this.handleChange}
+            id="outlined-basic"
+            label="€"
+            variant="outlined"
             name="price"
+            type="number"
             value={price}
+            placeholder="€"
           />
-          
+
           <button type="submit" disabled={imageIsUploading}>
             Add this product!
           </button>
 
           <button type="submit" disabled={imageIsUploading}>
-           Save changes!
-        </button>
-
+            Save changes!
+          </button>
         </form>
 
         <p>Do you want to delete this charity?</p>
-        <button type="submit" disabled={imageIsUploading}> Delete </button>
-
-      </div>
+        <button type="submit" disabled={imageIsUploading}>
+          {" "}
+          Delete{" "}
+        </button>
+      </Box>
     );
   }
 }

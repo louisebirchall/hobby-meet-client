@@ -8,23 +8,31 @@ class HobbyService {
     });
   }
 
-  create = (name, typeOfActivity, description, image, placeOfActivity) => {
+  create = (name, 
+    // typeOfActivity, 
+    description, image, 
+    //placeOfActivity
+    ) => {
     return this.service.post("/create", {
       name,
-      typeOfActivity,
+      // typeOfActivity,
       description,
       image,
-      placeOfActivity,
+      // placeOfActivity,
     });
   };
 
-  edit = (id, name, typeOfActivity, description, image, placeOfActivity) => {
+  edit = (id, name, 
+    // typeOfActivity, 
+    description, image, 
+    // placeOfActivity
+    ) => {
     return this.service.patch(`/${id}`, {
        name, 
-       typeOfActivity, 
+    //   typeOfActivity, 
        description, 
        image, 
-       placeOfActivity 
+     //  placeOfActivity 
       })
   };
 

@@ -71,7 +71,7 @@ class EventDetails extends Component {
 
               <Typography> Category: {singleEvent.hobby_id}</Typography>
 
-              <Typography>Organizer : {singleEvent.owner_id}</Typography>
+              <Typography>Organizer : {singleEvent.user_id}</Typography>
 
               <Typography> Attending: {singleEvent.attendees}</Typography>
 
@@ -81,6 +81,10 @@ class EventDetails extends Component {
 
               <Typography> price: {singleEvent.price} </Typography>
   
+              <Button component={Link} to="/events/create">
+              Create!
+            </Button>
+
               <Button component={Link} to={`/events/${singleEvent._id}/edit`}>
                 Edit
               </Button>

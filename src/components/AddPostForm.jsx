@@ -1,8 +1,11 @@
-// import postService from "../services/post-service";
-import { Component } from "react";
+import React, { Component } from 'react'
 import { PuffLoader } from "react-spinners";
 import generalService from "../services/general-service";
+import postService from "../services/post-service";
 // import charityService from "../services/charity-service";
+
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
 
 class AddPostForm extends Component {
   state = {
@@ -16,7 +19,7 @@ class AddPostForm extends Component {
     const { image, description } = this.state;
     const { id } = this.props;
 
-    this.props.service
+    postService
       .createPost(id, description, image)
       .then(() => {
         //this.props.history.push("/posts");
@@ -31,16 +34,6 @@ class AddPostForm extends Component {
     // console.log(event.target)
     this.setState({ [event.target.name]: event.target.value });
   };
-
-  // handleLikes = (btn) => {
-  //   console.log("Liking/Disliking!");
-
-  //   //this.setState({likes: this.state.number + 1 ? btn === "increase" : btn === "decrease"})
-
-  //   if (btn === "increaseLikes") {
-  //     this.setState({ likes: this.state.number + 1 });
-  //   } else this.setState({ dislikes: this.state.number + 1 });
-  // };
 
   handleImageUpload = (event) => {
     this.setState({ imageIsUploading: true });
@@ -63,7 +56,14 @@ class AddPostForm extends Component {
     const { image, description, imageIsUploading } = this.state;
 
     return (
-      <div>
+      <Box
+        sx={{
+          "& > :not(style)": { m: 1, width: "50ch" },
+          "& .MuiTextField-root": { m: 1, width: "50ch" },
+        }}
+        noValidate
+        autoComplete="off"
+      >
         <form onSubmit={this.handleSubmit}>
           {image && <img src={image} alt="postImg" width="150px" />}
           <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
@@ -76,12 +76,22 @@ class AddPostForm extends Component {
             name="description"
             value={description}
           />
+          <TextField
+            onChange={this.handleChange}
+            id="outlined-multiline-flexible"
+            label="Description"
+            multiline
+            maxRows={4}
+            variant="outlined"
+            name="description"
+            value={description}
+          />
 
           <button type="submit" disabled={imageIsUploading}>
             Post!
           </button>
         </form>
-      </div>
+        </Box>
     );
   }
 }

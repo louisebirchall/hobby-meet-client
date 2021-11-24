@@ -40,7 +40,7 @@ class CharitiesPage extends Component {
                   {eachCharity.image && ( <img src={eachCharity.image} alt={eachCharity.name} width="150px"/>  )}
                   </CardMedia>
 
-                  <Button href="#text-buttons">
+                  <Button>
                     <Link to={`/charities/${eachCharity._id}`}>
                       {eachCharity.name}</Link>
                   </Button>
