@@ -53,7 +53,7 @@ class EditProductForm extends Component {
           charity_id
         )
         .then(() => {
-          this.props.history.push("/products/_id"); // ! to events/:id/details
+          this.props.history.push("/products/_id"); 
         })
         .catch((err) => {
           this.props.history.push("/500");
@@ -72,7 +72,7 @@ class EditProductForm extends Component {
           charity_id
         )
         .then(() => {
-          this.props.history.push("/products"); // ! or /events?
+          this.props.history.push("/products");
         })
         .catch((err) => {
           this.props.history.push("/500");
@@ -92,7 +92,7 @@ class EditProductForm extends Component {
         this.setState({
           image: result.data.imagePath,
           imageIsUploading: false,
-        }); // ! what's imagePath? don't remember
+        });
       })
       .catch(() => {
         this.props.history.push("/500");
@@ -143,7 +143,7 @@ class EditProductForm extends Component {
             onChange={this.handleChange}
             type="text"
             name="title"
-            value={title} // ! sat 6 got this far
+            value={title}
           />
           <br />
           <label htmlFor="description">Description </label>
@@ -161,7 +161,7 @@ class EditProductForm extends Component {
               size="100px"
               color="orchid"
             />
-            {/* // ! input still in div, right? */}
+        
             <label htmlFor="image">Representative image </label>
             <input
               onChange={this.handleImageUpload}
@@ -173,7 +173,7 @@ class EditProductForm extends Component {
           <label htmlFor="pricePolicy">Price Policy</label>
           <input
             onChange={this.handleChange}
-            type="text" // ! what type is it?
+            type="text" 
             name="pricePolicy"
             value={pricePolicy}
           />

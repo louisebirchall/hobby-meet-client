@@ -8,9 +8,6 @@ class SearchBar extends Component {
     showSearchBar: false,
   };
 
-  // handleToggle = () => {
-  //     this.setState({ showSearchBar: !this.state.showSearchBar })
-  // }
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -23,7 +20,6 @@ class SearchBar extends Component {
   };
 
   handleChange = ({ target: { name, value } }) => {
-    //this.props.handleFilter(value)
     this.setState({ [name]: value });
   };
 
@@ -32,7 +28,6 @@ class SearchBar extends Component {
 
     return (
       <div>
-        {/* <button onClick={ this.handleToggle }> {this.state.showSearchBar ? "Search" : "Hide Search"} </button> */}
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"

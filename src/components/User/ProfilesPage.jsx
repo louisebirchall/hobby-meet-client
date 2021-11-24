@@ -10,7 +10,6 @@ class ProfilesPage extends Component {
     isLoading: true,
   };
 
- 
 
   componentDidMount() {
 

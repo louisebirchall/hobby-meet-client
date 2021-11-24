@@ -9,8 +9,6 @@ class CharityForm extends Component {
     description: "",
     image: "",
     imageIsUploading: false,
-    // post_id: ""
-    // review_id: ""
   };
 
   handleImageUpload = (event) => {
@@ -31,7 +29,6 @@ class CharityForm extends Component {
   };
 
   handleChange = (event) => {
-    // console.log(event.target);
     this.setState({ [event.target.name]: event.target.value });
   };
 
@@ -54,9 +51,8 @@ class CharityForm extends Component {
       charityService
         .create(name, description, image)
         .then((response) => {
-          // see SignupComponent to compare: this.props.setUser
           console.log("newly created charity", response.data)
-          this.props.history.push(`/charities/${response.data._id}`); // create or id of created oder list?
+          this.props.history.push(`/charities/${response.data._id}`);
         })
         .catch((err) => {
           console.log("charity creation", err)
@@ -77,9 +73,6 @@ class CharityForm extends Component {
             image: result.data.image,
           });
         })
-        // .catch((err) => {
-        //   this.props.history.push("/500");
-        // });
     }
   }
 
@@ -109,8 +102,6 @@ class CharityForm extends Component {
         </button>
 
         </form>
-
-       
 
         <p>Do you want to delete this charity?</p>
         <button type="submit" disabled={imageIsUploading}> Delete </button>

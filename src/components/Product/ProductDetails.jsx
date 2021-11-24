@@ -5,12 +5,14 @@ import AddPostForm from "../AddPostForm";
 // import EditPostForm from "../Posts/EditPostForm";
 import reviewService from "../../services/review-service";
 import ReviewForm from "../ReviewForm";
+//import Payment from "../Payment/Payment"
 
 
 class ProductDetails extends Component {
   state = {
     singleProduct: null,
     isLoading: true,
+//    itemToBuy: null,
   };
 
   componentDidMount() {
@@ -24,6 +26,10 @@ class ProductDetails extends Component {
         this.props.history.push("/500");
       });
   }
+
+  /*   handleClick = (item) => {
+    this.setState({itemToBuy: item})
+  } */
 
   handleDelete = () => {
     const { id } = this.props.match.params;
@@ -59,6 +65,8 @@ class ProductDetails extends Component {
             <p>Donations for: {singleProduct.charity_id}</p>
             <p>Made in the event: {singleProduct.event_id}</p>
             <p>Created by: {singleProduct.user_id}</p>
+
+      
 
             <AddPostForm id={id} service={productService} />
 

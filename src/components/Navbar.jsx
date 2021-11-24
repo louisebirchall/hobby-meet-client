@@ -70,52 +70,6 @@ function Navbar({ isLoggedIn, user, setUser }) {
     },
   }));
 
-  //   return (
-  // <div>
-  // <NavLink to="/">Home</NavLink>
-  //   <ul>
-  //     {isLoggedIn && user && (
-  //       <>
-  //         <li>{user.username}</li>
-  //         <li>
-  //           <NavLink
-  //             to="/"
-  //           >
-  //             <button onClick={() => logoutUser()}>Logout</button>
-  //           </NavLink>
-  //         </li>
-  //         <li>
-  //           <NavLink to={`/profile/${user._id}`}>Profile</NavLink>
-  //         </li>
-  //       </>
-  //     )}
-  //     {!isLoggedIn && (
-  //       <>
-  //         <li>
-  //           <NavLink
-  //             exact
-  //             to="/signup"
-  //           >
-  //             Signup
-  //           </NavLink>
-  //         </li>
-  //         <li>
-  //           <NavLink
-  //             to="/login"
-  //           >
-  //             Login
-  //           </NavLink>
-  //         </li>
-  //       </>
-  //     )}
-  //   </ul>
-
-  // </div>
-  //   );
-  // };
-  // export default Navbar;
-
-  //export default function SearchAppBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
