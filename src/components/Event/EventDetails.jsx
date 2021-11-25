@@ -43,6 +43,7 @@ class EventDetails extends Component {
 
   render() {
     const { isLoading, singleEvent } = this.state;
+    const formattedDate = singleEvent && new Date(singleEvent.date)
     const { id } = this.props.match.params;
 
     return (
@@ -65,15 +66,13 @@ class EventDetails extends Component {
 
                 <Typography>Where: {singleEvent.location} </Typography>
 
-                <Typography> Date:{singleEvent.date} </Typography>
+                <Typography> Date:{formattedDate.toLocaleDateString()} {formattedDate.toLocaleTimeString()} </Typography>
 
                 <Typography>
                   Equipment required: {singleEvent.equipment}{" "}
                 </Typography>
 
-              <Typography>Organizer : {singleEvent.user_id}</Typography>
-
-                <Typography>Organizer : {singleEvent.owner_id}</Typography>
+              <Typography>Organizer: {singleEvent.organizedBy}</Typography>
 
                 <Typography> Attending: {singleEvent.attendees}</Typography>
 
