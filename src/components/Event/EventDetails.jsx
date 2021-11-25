@@ -46,41 +46,47 @@ class EventDetails extends Component {
     const { id } = this.props.match.params;
 
     return (
-   
-      <Container align="justify">
-        
-        <Card sx={{ display: 'flex' }}>
-        {isLoading && <h1>...Loading</h1>}
+      <Container align="justify" style={{ paddingBottom: 60 }}>
+        <Card sx={{ display: "flex" }}>
+          {isLoading && <h1>...Loading</h1>}
 
-        {!isLoading && (
-          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <CardContent sx={{ flex: '1 0 auto' }}>
-              <Typography variant="h2">{singleEvent.title}</Typography>           
-              
-              <CardMedia>
-              {singleEvent.image && ( <img src={singleEvent.image} alt={singleEvent.name}/> )}
-              </CardMedia>
+          {!isLoading && (
+            <Box sx={{ display: "flex", flexDirection: "column" }}>
+              <CardContent sx={{ flex: "1 0 auto" }}>
+                <Typography variant="h2">{singleEvent.title}</Typography>
 
-              <Typography>Description: {singleEvent.description} </Typography>
+                <CardMedia>
+                  {singleEvent.image && (
+                    <img src={singleEvent.image} alt={singleEvent.name} />
+                  )}
+                </CardMedia>
 
-              <Typography>Where: {singleEvent.location} </Typography>
+                <Typography>Description: {singleEvent.description} </Typography>
 
-              <Typography> Date:{singleEvent.date} </Typography>
+                <Typography>Where: {singleEvent.location} </Typography>
 
-              <Typography>Equipment required: {singleEvent.equipment} </Typography>
+                <Typography> Date:{singleEvent.date} </Typography>
 
-              <Typography> Category: {singleEvent.hobby_id}</Typography>
+                <Typography>
+                  Equipment required: {singleEvent.equipment}{" "}
+                </Typography>
 
-              <Typography>Organizer : {singleEvent.owner_id}</Typography>
+              <Typography>Organizer : {singleEvent.user_id}</Typography>
 
-              <Typography> Attending: {singleEvent.attendees}</Typography>
+                <Typography>Organizer : {singleEvent.owner_id}</Typography>
 
-              <Typography>Maximum attendees: {singleEvent.attendees_max} </Typography>
+                <Typography> Attending: {singleEvent.attendees}</Typography>
 
-              <Typography> In aid of {singleEvent.charity_id} </Typography>
+                <Typography>
+                  Maximum attendees: {singleEvent.attendees_max}{" "}
+                </Typography>
 
               <Typography> price: {singleEvent.price} </Typography>
   
+              <Button component={Link} to="/events/create">
+              Create!
+            </Button>
+
               <Button component={Link} to={`/events/${singleEvent._id}/edit`}>
                 Edit
               </Button>
@@ -91,14 +97,12 @@ class EventDetails extends Component {
           </Box>
         )}
         </Card>
-        
+
         <AddPostForm id={id} service={eventService} />
         {/* <EditPostForm id={id} service={charityService} /> */}
 
         <ReviewForm id={id} service={reviewService} />
-
       </Container>
-
     );
   }
 }

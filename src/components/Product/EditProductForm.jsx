@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { PuffLoader } from "react-spinners";
 import productService from "../../services/product-service";
 import generalService from "../../services/general-service";
+import Container from "@mui/material/Container";
 
 // so it's almost the same like adding a product
 // content needs to be prefilled and changed with the form below?
@@ -136,7 +137,7 @@ class EditProductForm extends Component {
     } = this.state;
 
     return (
-      <div>
+      <div style={{ paddingBottom: 60 }}>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="title">Product title </label>
           <input

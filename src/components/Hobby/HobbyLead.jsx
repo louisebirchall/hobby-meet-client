@@ -5,25 +5,28 @@ import cheeseRolling from "../../images/cheeseRolling.jpeg";
 import { Typography } from "@material-ui/core";
 import Card from "@mui/material/Card";
 import { CardMedia } from "@material-ui/core";
+import { Box } from "@mui/system";
+import { Button } from "@mui/material";
 
 const styles = {
   divStyle: {
     display: "flex",
-    flexDirection: "Row",
+    flexDirection: "row",
     gap: 20,
     justifyContent: "space-evenly",
     paddingTop: 20,
     paddingBottom: 20,
+    textAlign: "center"
   },
   buttonStyle: {
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "center"
   },
 };
 
 const cardH = (
   <React.Fragment>
-    <CardContent>
+    <CardContent style={{ display: "flex", flexDirection: "column" }}>
       <Typography variant="h3" color="text.secondary" gutterBottom>
         Hobbies
       </Typography>
@@ -32,8 +35,11 @@ const cardH = (
         either find others who are into it, or see what hobbies people are doing
         in your area.
       </Typography>
+      <Box sx={{ height: 10 }} />
       <Link style={styles.buttonStyle} exact to="/hobbies">
-        See all the Hobbies
+        <Button color="primary" variant="contained">
+          See all the Hobbies
+        </Button>
       </Link>
     </CardContent>
   </React.Fragment>

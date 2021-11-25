@@ -3,6 +3,12 @@ import charityService from "../../services/charity-service";
 import generalService from "../../services/general-service";
 import { PuffLoader } from "react-spinners";
 
+// textfield / form
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Container from "@mui/material/Container";
+// import MenuItem from '@mui/material/MenuItem';
+
 class CharityForm extends Component {
   state = {
     name: "",
@@ -51,11 +57,11 @@ class CharityForm extends Component {
       charityService
         .create(name, description, image)
         .then((response) => {
-          console.log("newly created charity", response.data)
-          this.props.history.push(`/charities/${response.data._id}`);
+          //console.log("newly created charity", response.data)
+          this.props.history.push(`/charities/${response.data._id}`); // create or id of created oder list?
         })
         .catch((err) => {
-          console.log("charity creation", err)
+          //console.log("charity creation", err)
           this.props.history.push("/500");
         });
     }
@@ -80,33 +86,78 @@ class CharityForm extends Component {
     const { name, description, image, imageIsUploading } = this.state;
 
     return (
-      <div>
+      <div style={{ paddingBottom: 60 }}>
+        {/* <form onSubmit={this.handleSubmit}>
+          {image && <img src={image} alt={name} width="150px" />}
+          <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
+          <label htmlFor="Image">Representative image </label>
+          <input onChange={this.handleImageUpload} type="file" name="image" />
+
+          <label htmlFor="name">Name </label>
+          <input
+            onChange={this.handleChange}
+            type="text"
+            name="name"
+            value={name}
+          />
+
+          <label htmlFor="description">Description </label>
+          <input
+            onChange={this.handleChange}
+            type="text"
+            name="description"
+            value={description}
+          /> */}
+      <Container>
+      <Box
+      sx={{
+        "& > :not(style)": { m: 1, width: "50ch" },
+        "& .MuiTextField-root": { m: 1, width: "50ch" },
+      }}
+      noValidate
+      autoComplete="off"
+    >
         <form onSubmit={this.handleSubmit}>
             {image && <img src={image} alt={name} width="150px"/>}
             <PuffLoader loading={imageIsUploading} size="100px"color="orchid"/>
             <label htmlFor="Image">Representative image </label>
             <input onChange={this.handleImageUpload} type="file" name="image" />
+          
+          <TextField
+              onChange={this.handleChange}
+              id="outlined-basic"
+              label="Name"
+              variant="outlined"
+              name="name"
+              value={name}
+            />
+          
+          <TextField
+              onChange={this.handleChange}
+              id="outlined-multiline-flexible"
+              label="Description"
+              multiline
+              maxRows={4}
+              variant="outlined"
+              name="description"
+              value={description}
+            />
 
-          <label htmlFor="name">Name </label>
-          <input onChange={this.handleChange} type="text" name="name" value={name}/>
-          
-          <label htmlFor="description">Description </label>
-          <input onChange={this.handleChange} type="text" name="description" value={description} />
-          
           <button type="submit" disabled={imageIsUploading}>
             Add this Charity!
-          </button>          
+          </button>
 
           <button type="submit" disabled={imageIsUploading}>
-           Save changes!
-        </button>
-
+            Save changes!
+          </button>
         </form>
 
         <p>Do you want to delete this charity?</p>
         <button type="submit" disabled={imageIsUploading}> Delete </button>
 
-      </div>
+      </Box>
+      </Container>
+    </div>  
     );
   }
 }

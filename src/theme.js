@@ -1,8 +1,8 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme } from "@material-ui/core";
 
 const theme = createTheme({
   palette: {
-    type: "light",
+    // type: "light",
     primary: {
       main: "#3aefd5",
     },
@@ -11,7 +11,14 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "Montserrat",
+    fontFamily: "'Montserrat', sans-serif",
+    textTransform: "none",
+    textDecoration: "none",
+    color: "black",
+  },
+
+  button: {
+    textTransform: "none",
   },
 });
 

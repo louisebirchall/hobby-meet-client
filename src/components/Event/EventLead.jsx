@@ -5,6 +5,8 @@ import { CardContent } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import { Card } from "@material-ui/core";
 import { CardMedia } from "@material-ui/core";
+import { Box } from "@mui/system";
+import { Button } from "@mui/material";
 
 const styles = {
   divStyle: {
@@ -14,6 +16,7 @@ const styles = {
     justifyContent: "space-evenly",
     paddingTop: 20,
     paddingBottom: 60,
+    textAlign: "center"
   },
   buttonStyle: {
     display: "flex",
@@ -27,7 +30,7 @@ class EventLead extends Component {
       <div style={styles.divStyle}>
         <div>
           <Card
-            sx={{ maxWidth: 550, boxShadow: "-12px 12px 64px 0 #F0FFF0"}}
+            sx={{ maxWidth: 550, boxShadow: "-12px 12px 64px 0 #F0FFF0" }}
             variant="outlined"
           >
             <CardMedia
@@ -64,7 +67,12 @@ class EventLead extends Component {
               with you can find then via events, or even set up your own! What
               are you waiting for?
             </Typography>
-            <Link style={styles.buttonStyle} exact to="/events">See all the Events</Link>
+            <Box sx={{ height: 10 }} />
+            <Link style={styles.buttonStyle} exact to="/events">
+            <Button color="primary" variant="contained">
+              See all the Events
+              </Button>
+            </Link>
           </CardContent>
         </Card>
       </div>

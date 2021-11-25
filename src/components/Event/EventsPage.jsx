@@ -24,11 +24,10 @@ class EventsPage extends Component {
     const { listOfEvents, isLoading } = this.state;
 
     return (
-      <Container>
+      <Container style={{ paddingBottom: 60 }}>
         <Typography variant="h2">All The Events</Typography>
-           <Grid container spacing={3}>
-        
-            {isLoading && <h1>...isLoading</h1>}
+        <Grid container spacing={3}>
+          {isLoading && <h1>...isLoading</h1>}
 
             {!isLoading &&
               listOfEvents.map((eachEvent) => {
@@ -52,8 +51,7 @@ class EventsPage extends Component {
                     </Card>
                   </Grid>
               );
-            })
-          }
+            })}
         </Grid>
       </Container>
     );

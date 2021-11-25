@@ -25,7 +25,7 @@ class CharitiesPage extends Component {
     const { listOfCharities, isLoading } = this.state;
 
     return (
-      <Container fixed>
+      <Container fixed style={{ paddingBottom: 60 }}>
         <Typography variant="h2">All The Charities</Typography>
         <Grid container spacing={3}>
           {isLoading && <h1>...isLoading</h1>}
@@ -47,8 +47,7 @@ class CharitiesPage extends Component {
                 </Card>
               </Grid>
               );
-            })
-          }
+            })}
         </Grid>
       </Container>
     );

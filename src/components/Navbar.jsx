@@ -1,7 +1,7 @@
 // import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import authService from "../services/auth-service";
-import SearchBar from "./Search/SearchBar";
+import Search from "./Search/SearchBar"; // ! link search
 import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
@@ -15,21 +15,19 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Button } from "@material-ui/core";
 import { Stack } from "@mui/material";
 import NavbarDropDown from '../components/NavbarDropDown'
+import { ThemeProvider } from "@material-ui/styles";
+import theme from "../theme";
+import NavDrawer from "./NavDrawer"
+import SearchBar from "@material-ui/core";
 
 function Navbar({ isLoggedIn, user, setUser }) {
-  const styles = {
-    centre: {
-      display: "flex",
-      alignItems: "center",
-    },
-  };
   const logoutUser = () => {
     authService.logout().then(() => {
       setUser(null, false);
     });
   };
 
-  const SearchBar = styled("div")(({ theme }) => ({
+  const Search = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),

@@ -3,6 +3,18 @@ import eventService from "../../services/event-service";
 import generalService from "../../services/general-service";
 import { PuffLoader } from "react-spinners";
 
+// textfield / form
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import MenuItem from "@mui/material/MenuItem";
+import { FormControl, InputLabel, Select } from "@mui/material";
+import DateAdapter from "@mui/lab/AdapterDateFns";
+import Stack from "@mui/material/Stack";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import DateTimePicker from "@mui/lab/DateTimePicker";
+
 class EventForm extends Component {
   state = {
     image: "",
@@ -10,7 +22,7 @@ class EventForm extends Component {
     description: "",
     equipment: "",
     date: "",
-    owner_id: "",
+    user_id: "",
     attendees: "",
     attendees_max: "",
     attendees_min: "",
@@ -51,7 +63,7 @@ class EventForm extends Component {
       description,
       equipment,
       date,
-      owner_id,
+      user_id,
       attendees,
       attendees_max,
       attendees_min,
@@ -73,7 +85,7 @@ class EventForm extends Component {
           description,
           equipment,
           date,
-          owner_id,
+          user_id,
           attendees,
           attendees_max,
           attendees_min,
@@ -97,7 +109,7 @@ class EventForm extends Component {
           description,
           equipment,
           date,
-          owner_id,
+          user_id,
           attendees,
           attendees_max,
           attendees_min,
@@ -107,8 +119,8 @@ class EventForm extends Component {
           organizedBy,
           charity_id
         )
-        .then(() => {
-          this.props.history.push(`/events/${id}`);
+        .then((response) => {
+          this.props.history.push(`/events/${response.data._id}`);
         })
         .catch((err) => {
           this.props.history.push("/500");
@@ -128,7 +140,7 @@ class EventForm extends Component {
             description: result.data.description,
             equipment: result.data.equipment,
             date: result.data.date,
-            owner_id: result.data.owner_id,
+            user_id: result.data.user_id,
             attendees: result.data.attendees,
             attendees_max: result.data.attendees_max,
             attendees_min: result.data.attendees_min,
@@ -152,7 +164,7 @@ class EventForm extends Component {
       description,
       equipment,
       date,
-      owner_id,
+      user_id,
       attendees_max,
       attendees_min,
       pricePolicy,
@@ -164,125 +176,220 @@ class EventForm extends Component {
     } = this.state;
 
     return (
-      <div>
+      <Container>
+      <Box
+        sx={{
+          "& > :not(style)": { m: 1, width: "50ch" },
+          "& .MuiTextField-root": { m: 1, width: "50ch" },
+        }}
+        noValidate
+        autoComplete="off"
+        style={{ paddingBottom: 60 }}
+      >
+        <LocalizationProvider dateAdapter={DateAdapter}></LocalizationProvider>
         <form onSubmit={this.handleSubmit}>
-        {image && <img src={image} alt="eventpic" width="150px"/>}
-            <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
-            <label htmlFor="image">Representative image </label>
-            <input onChange={this.handleImageUpload} type="file" name="event image" />
-            
-          <label htmlFor="title">Event title </label>
+          {image && <img src={image} alt="eventpic" width="150px" />}
+          <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
+          <label htmlFor="image">Representative image </label>
           <input
+            onChange={this.handleImageUpload}
+            type="file"
+            name="event image"
+          />
+
+          <TextField
             onChange={this.handleChange}
-            type="text"
+            id="outlined-basic"
+            label="Event title"
+            variant="outlined"
             name="title"
             value={title}
           />
 
-          <label htmlFor="description">Description </label>
-          <input
+          <TextField
             onChange={this.handleChange}
-            type="text"
+            id="outlined-multiline-flexible"
+            label="Description"
+            multiline
+            maxRows={4}
+            variant="outlined"
             name="description"
             value={description}
           />
 
-          <label htmlFor="equipment">Required equipment </label>
-          <input
+          <TextField
             onChange={this.handleChange}
-            type="text"
+            id="outlined-basic"
+            label="Required equipment"
+            variant="outlined"
             name="equipment"
             value={equipment}
           />
 
-          <label htmlFor="placeOfActivity"> Where shall we hold this event? </label>
-          <input
+          <TextField
             onChange={this.handleChange}
-            type="text" 
+            id="outlined-basic"
+            label="Where shall we hold this event?"
+            variant="outlined"
             name="location"
             value={location}
           />
 
-          <label htmlFor="date">Date </label>
-          <input
+          {/* <TextField
             onChange={this.handleChange}
-            type="date"
+            id="outlined-basic"
+            label="Date"
+            variant="outlined"
             name="date"
             value={date}
+          /> */}
+
+          {/* error */}
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <Stack spacing={3}>
+              <DateTimePicker
+                label="Date&Time picker"
+                value={date}
+                name="date"
+                onChange={this.handleChange}
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </Stack>
+          </LocalizationProvider>
+
+          {/* not needed as textfield? */}
+          <TextField
+            onChange={this.handleChange}
+            id="outlined-basic"
+            label="Who's in charge?"
+            variant="outlined"
+            name="user_id"
+            value={user_id}
           />
 
-          <label htmlFor="owner_id">Who's in charge? </label>
-          <input
+          <TextField
+            //  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
             onChange={this.handleChange}
-            type="text"
-            name="owner_id"
-            value={owner_id}
-          />
-
-          <label htmlFor="attendees_max">Maximum number of attendees </label>
-          <input
-            onChange={this.handleChange}
-            type="number"
+            id="outlined-basic"
+            label="Maximum number of attendees"
+            variant="outlined"
             name="attendees_max"
+            type="number"
             value={attendees_max}
           />
 
-          <label htmlFor="attendees_min">
-            Set minimum number of attendees (if required)
-          </label>
-          <input
+          <TextField
+            //  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
             onChange={this.handleChange}
-            type="number"
+            id="outlined-basic"
+            label="Set minimum number of attendees (if required)"
+            variant="outlined"
             name="attendees_min"
+            type="number"
             value={attendees_min}
           />
 
-          <label htmlFor="pricePolicy">Price Policy </label>
-          <input
-            onChange={this.handleChange}
-            type="text"
-            name="pricePolicy"
+          {/*  <TextField
+            id="outlined-select"
+            select
+            label="Please select the type of price Policy."
             value={pricePolicy}
-          />
-
-          <label htmlFor="price">Price </label>
-          <input
             onChange={this.handleChange}
-            type="number"
+            // helperText="Please select the type of price Policy."
+          >
+            {pricePolicy.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem> 
+          ))}  
+          </TextField>*/}
+
+          <FormControl sx={{ m: 1, width: 400 }}>
+            <InputLabel id="demo-multiple-name-label">
+              Please select the price policy.
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={pricePolicy}
+              label="Please select the price policy."
+              name="pricePolicy"
+              onChange={this.handleChange}
+            >
+              <MenuItem value="Fixed Price">Fixed Price</MenuItem>
+              <MenuItem value="Free">Free</MenuItem>
+              <MenuItem value="Voluntary">Voluntary</MenuItem>
+            </Select>
+          </FormControl>
+
+          <TextField
+            //  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+            onChange={this.handleChange}
+            id="outlined-basic"
+            label="€"
+            variant="outlined"
             name="price"
+            type="number"
             value={price}
+            placeholder="€"
           />
 
-          <label htmlFor="organizedBy">Who is the organizer? </label>
-          <input
-            onChange={this.handleChange}
-            type="text"
-            name="organizedBy"
-            value={organizedBy}
-          />
+          <FormControl sx={{ m: 1, width: 400 }}>
+            <InputLabel id="demo-multiple-name-label">
+              Who is the organizer?
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={organizedBy}
+              label="Who is the organizer?"
+              name="organizedBy"
+              onChange={this.handleChange}
+            >
+              <MenuItem value="Charity">Charity</MenuItem>
+              <MenuItem value="Company">Company</MenuItem>
+              <MenuItem value="User">User</MenuItem>
+            </Select>
+          </FormControl>
 
-          <label htmlFor="charity_id">Which Charity is it for? </label>
-          <input
-            onChange={this.handleChange}
-            type="text"
-            name="charity_id"
-            value={charity_id}
-          />
+          {/* causes error 500 */}
+          <FormControl sx={{ m: 1, width: 400 }}>
+            <InputLabel id="demo-multiple-name-label">
+              Which Charity is it for?
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={charity_id}
+              label="Which Charity is it for?"
+              name="charity_id"
+              onChange={this.handleChange}
+            >
+              <MenuItem value="won't have options to select from db">
+                won't have options to select from db
+              </MenuItem>
+              <MenuItem value="charities need to be hardcoded in here">
+                charities need to be hardcoded in here
+              </MenuItem>
+            </Select>
+          </FormControl>
 
           <button type="submit" disabled={imageIsUploading}>
             Add this event!
           </button>
 
           <button type="submit" disabled={imageIsUploading}>
-           Save changes!
-        </button>
-
+            Save changes!
+          </button>
         </form>
 
         <p>Do you want to delete this event?</p>
-        <button type="submit" disabled={imageIsUploading}> Delete </button>
-
-      </div>
+        <button type="submit" disabled={imageIsUploading}>
+          {" "}
+          Delete{" "}
+        </button>
+      </Box>
+      </Container>
     );
   }
 }

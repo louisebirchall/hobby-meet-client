@@ -6,6 +6,7 @@ import AddPostForm from "../AddPostForm";
 import reviewService from "../../services/review-service";
 import ReviewForm from "../ReviewForm";
 //import Payment from "../Payment/Payment"
+import { Button } from "@mui/material";
 
 
 class ProductDetails extends Component {
@@ -48,15 +49,18 @@ class ProductDetails extends Component {
     const { id } = this.props.match.params;
 
     return (
-      <div>
-        
+      <div style={{ paddingBottom: 60 }}>
         {isLoading && <h1>...Loading</h1>}
 
         {!isLoading && (
           <div>
-          <h2>{singleProduct.title}</h2>
+            <h2>{singleProduct.title}</h2>
             {singleProduct.image && (
-              <img src={singleProduct.image} alt={singleProduct.title} width="150px"/>
+              <img
+                src={singleProduct.image}
+                alt={singleProduct.title}
+                width="150px"
+              />
             )}
             <p>Description: {singleProduct.description} </p>
             <p>Where: {singleProduct.location} </p>
@@ -72,9 +76,12 @@ class ProductDetails extends Component {
 
             {/* <EditPostForm id={id} service={charityService} /> */}
 
-            <br/>
+            <br />
             <ReviewForm id={id} service={reviewService} />
 
+            <Button component={Link} to="/products/create">
+              Create!
+            </Button>
             
             <Link to={`/products/${singleProduct._id}/edit`}>
               <button>Edit</button>

@@ -24,7 +24,7 @@ class HobbiesPage extends Component {
     const { listOfHobbies, isLoading } = this.state;
 
     return (
-      <Container>
+      <Container style={{ paddingBottom: 60 }}>
         <Typography variant="h2">All The Hobbies</Typography>
         <Grid container spacing={3}>
           {isLoading && <h1>...isLoading</h1>}
@@ -32,11 +32,19 @@ class HobbiesPage extends Component {
           {!isLoading &&
             listOfHobbies.map((eachHobby) => {
               return (
-                <Grid item  key={eachHobby._id}>
+                <Grid item key={eachHobby._id}>
                   <Card xs={12} md={6} lg={4}>
+<<<<<<< HEAD
+=======
+                    <Typography variant="h4">{eachHobby.title}</Typography>
+
+>>>>>>> f212236af6f86351dfe4825c70aebe4e1078dd85
                     <CardMedia>
-                    {eachHobby.image && ( <img src={eachHobby.image} alt={eachHobby.name}/>  )}
+                      {eachHobby.image && (
+                        <img src={eachHobby.image} alt={eachHobby.name} />
+                      )}
                     </CardMedia>
+<<<<<<< HEAD
                     
                     <CardContent>
                       <Typography variant="h4">{eachHobby.title}</Typography>
@@ -46,6 +54,14 @@ class HobbiesPage extends Component {
                         {eachHobby.name}
                       </Button>
                     </CardActions>
+=======
+
+                    <Button href="#text-buttons">
+                      <Link to={`/hobbies/${eachHobby._id}`}>
+                        {eachHobby.name}
+                      </Link>
+                    </Button>
+>>>>>>> f212236af6f86351dfe4825c70aebe4e1078dd85
                   </Card>
                 </Grid>
               );

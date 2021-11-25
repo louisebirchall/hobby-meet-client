@@ -1,7 +1,7 @@
 import { Box } from "@mui/system";
 import React, { Component } from "react";
 import authService from "../../services/auth-service";
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 
 class Signup extends Component {
   state = {
@@ -41,7 +41,11 @@ class Signup extends Component {
             alignItems: "center",
             paddingTop: 10,
           }}
+          style={{ paddingBottom: 60 }}
         >
+          <Typography style={{ textAlign: "center" }}>
+            Sign up below to join the fun
+          </Typography>
           <TextField
             id="outlined-basic"
             label="Username"
@@ -79,116 +83,3 @@ class Signup extends Component {
 }
 
 export default Signup;
-
-{
-  /* <Box
-  component="form"
-  sx={{
-    "& > :not(style)": { m: 1, width: "25ch" },
-  }}
-  noValidate
-  autoComplete="off"
->
-  <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-  <TextField id="filled-basic" label="Filled" variant="filled" />
-  <TextField id="standard-basic" label="Standard" variant="standard" />
-</Box>; */
-}
-// import * as React from 'react';
-// import Box from '@mui/material/Box';
-// import TextField from '@mui/material/TextField';
-
-// export default function MultilineTextFields() {
-//   const [value, setValue] = React.useState('Controlled');
-
-//   const handleChange = (event) => {
-//     setValue(event.target.value);
-//   };
-
-//   return (
-//     <Box
-//       component="form"
-//       sx={{
-//         '& .MuiTextField-root': { m: 1, width: '25ch' },
-//       }}
-//       noValidate
-//       autoComplete="off"
-//     >
-//       <div>
-//         <TextField
-//           id="outlined-multiline-flexible"
-//           label="Multiline"
-//           multiline
-//           maxRows={4}
-//           value={value}
-//           onChange={handleChange}
-//         />
-//         <TextField
-//           id="outlined-textarea"
-//           label="Multiline Placeholder"
-//           placeholder="Placeholder"
-//           multiline
-//         />
-//         <TextField
-//           id="outlined-multiline-static"
-//           label="Multiline"
-//           multiline
-//           rows={4}
-//           defaultValue="Default Value"
-//         />
-//       </div>
-//       <div>
-//         <TextField
-//           id="filled-multiline-flexible"
-//           label="Multiline"
-//           multiline
-//           maxRows={4}
-//           value={value}
-//           onChange={handleChange}
-//           variant="filled"
-//         />
-//         <TextField
-//           id="filled-textarea"
-//           label="Multiline Placeholder"
-//           placeholder="Placeholder"
-//           multiline
-//           variant="filled"
-//         />
-//         <TextField
-//           id="filled-multiline-static"
-//           label="Multiline"
-//           multiline
-//           rows={4}
-//           defaultValue="Default Value"
-//           variant="filled"
-//         />
-//       </div>
-//       <div>
-//         <TextField
-//           id="standard-multiline-flexible"
-//           label="Multiline"
-//           multiline
-//           maxRows={4}
-//           value={value}
-//           onChange={handleChange}
-//           variant="standard"
-//         />
-//         <TextField
-//           id="standard-textarea"
-//           label="Multiline Placeholder"
-//           placeholder="Placeholder"
-//           multiline
-//           variant="standard"
-//         />
-//         <TextField
-//           id="standard-multiline-static"
-//           label="Multiline"
-//           multiline
-//           rows={4}
-//           defaultValue="Default Value"
-//           variant="standard"
-//         />
-//       </div>
-//     </Box>
-//   );
-// }

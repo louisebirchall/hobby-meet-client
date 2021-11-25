@@ -53,7 +53,7 @@ class EditPostForm extends Component {
     const { image, description, imageIsUploading } = this.state;
 
     return (
-      <div>
+      <div style={{ paddingBottom: 60 }}>
         <form onSubmit={this.handleSubmit}>
           {image && <img src={image} alt="postImage" />}
           <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />

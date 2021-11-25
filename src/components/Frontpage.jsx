@@ -7,30 +7,46 @@ import { Box } from "@mui/system";
 
 const styles = {
   paperContainer: {
-      backgroundImage: `url(${hobbiespic})`,
-      height: "500px"
+    backgroundImage: `url(${hobbiespic})`,
+    height: "500px",
   },
   // why isn't this working?
-  contentStyles: {
+  h1Styles: {
     display: "flex",
-    flexDirection: "column",
-    justifyContent: 'space-evenly'
-  }
+    justifyContent: "center",
+    textAlign: "center",
+    marginLeft: 50,
+    marginRight: 50,
+    textShadowColor: "#3aefd5",
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 4,
+  },
 };
 
 class Frontpage extends Component {
-
   render() {
     return (
-      <div height="500px" >
+      <div height="500px">
         <Paper maxWidth="sm" style={styles.paperContainer}>
-        <Box sx={{height:400, paddingTop:5, display: 'flex', flexDirection:"column", gap:10, justifyContent:"center", alignItems:"center", textAlign:"center"}}>
-          <h1>
-            Find people to share your hobbies with, or even find a new one, while you are contributing to a good charity cause!
-          </h1>
-        
-            <Button href="/signup" variant="contained">Join Today</Button>
-  
+          <Box
+            sx={{
+              height: 400,
+              paddingTop: 5,
+              display: "flex",
+              flexDirection: "column",
+              gap: 10,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <h1 style={styles.h1Styles}>
+              Find people to share your hobbies with, or even find a new one.
+            </h1>
+            <Link to="/signup">
+              <Button color="primary" variant="contained">
+                Join Today
+              </Button>
+            </Link>
           </Box>
         </Paper>
       </div>
