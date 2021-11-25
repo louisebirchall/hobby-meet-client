@@ -51,7 +51,7 @@ class Profile extends Component {
             <p>Full name - {user.fullName}</p>
             <p>Hobbies - {user.hobbies}</p>
             <p>Age - {user.age}</p>
-            <p>For - {user.type}</p> // * what's best here?
+            <p>User type - {user.type}</p>
             <p>Gender - {user.sex}</p>
             <Button
               color="primary"
