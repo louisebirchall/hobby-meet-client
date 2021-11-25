@@ -59,7 +59,7 @@ class ProductsPage extends Component {
                     </CardContent>
 
                     <CardActions>
-                      <Button onClick={() => this.handleClick(eachProduct)} href={'products/payments/create-payment-intent'}>Buy it!</Button>
+                      <Button onClick={() => this.handleClick(eachProduct)} href={'/products/payments/create-payment-intent'}>Buy it!</Button>
                       {itemToBuy && itemToBuy._id === eachProduct._id && <Payment itemToBuy={itemToBuy}/>}
 
                       <Button href={`/products/${eachProduct._id}`}>See details!</Button>
