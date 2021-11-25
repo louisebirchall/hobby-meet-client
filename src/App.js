@@ -31,6 +31,7 @@ import PageNotFound from "./components/ErrorHandling/PageNotFound";
 import { ThemeProvider, createTheme } from "@material-ui/core/styles";
 import theme from "./theme";
 import Payment from './components/Payment/Payment'
+import SearchResults from "./components/Search/SearchResults";
 
 const montserrat = createTheme({
   typography: {
@@ -78,21 +79,24 @@ class App extends Component {
     return (
       <div className="App">
         <ThemeProvider theme={theme}>
-
           <Navbar isLoggedIn={isLoggedIn} user={user} setUser={this.setUser} />
 
           <Switch>
-
             <Route exact path="/" render={(props) => <Homepage {...props} />} />
 
             {/* User */}
 
             <Route
+              exact
+              path="/search"
+              render={(props) => <SearchResults {...props} />}
+            />
+            <Route
               path="/signup"
               render={(props) => <Signup {...props} setUser={this.setUser} />} // <Signup {...props} -- to get the params
             />
 
-                {/* <Redirect from="/signup" to="/login" /> */}
+            {/* <Redirect from="/signup" to="/login" /> */}
 
             <Route
               path="/login"
@@ -149,7 +153,6 @@ class App extends Component {
               render={(props) => <HobbyForm {...props} isEdit={true} />}
             />
 
-
             {/* Events */}
 
             <Route
@@ -173,7 +176,6 @@ class App extends Component {
               path="/events/:id/edit"
               render={(props) => <EventForm {...props} isEdit={true} />}
             />
-
 
             {/* Charities */}
 
@@ -206,8 +208,8 @@ class App extends Component {
               path="/products"
               render={(props) => <ProductsPage {...props} />}
             />
-        <Route
-             exact
+            <Route
+              exact
               path="/products/payments/create-payment-intent"
               render={(props) => <Payment {...props} />}
             />
@@ -228,20 +230,15 @@ class App extends Component {
               render={(props) => <ProductForm {...props} isEdit={true} />}
             />
 
-
             {/* ErrorHandling */}
 
             <Route path="/500" component={ServerError} />
 
             <Route component={PageNotFound} />
-
-
           </Switch>
 
-          <Footer/>
-
+          <Footer />
         </ThemeProvider>
-        
       </div>
     );
   }
