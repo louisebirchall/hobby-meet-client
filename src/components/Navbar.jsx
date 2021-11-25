@@ -1,7 +1,7 @@
 // import React from "react";
 import { NavLink } from "react-router-dom";
 import authService from "../services/auth-service";
-import Search from "./Search/SearchBar";
+import SearchBar from "./Search/SearchBar";
 import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
@@ -18,7 +18,6 @@ import NavbarDropDown from '../components/NavbarDropDown'
 import { ThemeProvider } from "@material-ui/styles";
 import theme from "../theme";
 import NavDrawer from "./NavDrawer"
-import SearchBar from "@material-ui/core";
 
 function Navbar({ isLoggedIn, user, setUser }) {
   const logoutUser = () => {
@@ -91,6 +90,7 @@ function Navbar({ isLoggedIn, user, setUser }) {
 
           <Box sx={{ flexGrow: 1 }} />
           <Search>
+          {/* <SearchBar />  ! how to include searchbar? */}
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
