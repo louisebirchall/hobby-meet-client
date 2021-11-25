@@ -38,6 +38,7 @@ const montserrat = createTheme({
 });
 
 class App extends Component {
+
   state = {
     isLoggedIn: null,
     user: null,
@@ -115,7 +116,6 @@ class App extends Component {
               render={(props) => <ProfileFom {...props} isEdit={true} />}
             />
 
-
             {/* Frontpage */}
 
             <Route
@@ -123,7 +123,6 @@ class App extends Component {
               path="/"
               render={(props) => <Frontpage {...props} />}
             />
-
 
             {/* Hobbies */}
 
@@ -233,7 +232,7 @@ class App extends Component {
 
           </Switch>
 
-          <Footer />
+          <Footer/>
 
         </ThemeProvider>
         
