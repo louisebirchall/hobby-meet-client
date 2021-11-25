@@ -5,7 +5,7 @@ import AddPostForm from "../AddPostForm";
 import EditPostForm from "../Posts/EditPostForm";
 import reviewService from "../../services/review-service";
 import ReviewForm from "../ReviewForm";
-import { Container, Button, Card, CardActions, CardContent, CardMedia, Typography } from '@material-ui/core'
+import { Container, Button, Card, CardActions, CardContent, CardMedia, Typography } from "@material-ui/core";
 
 class CharityDetails extends Component {
   state = {

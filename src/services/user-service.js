@@ -28,8 +28,8 @@ class UserService {
         image,
         sex,
         age,
-        hobbies,
         type,
+        hobbies,
       })
   };
 

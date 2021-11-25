@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 class ReviewService {
   constructor() {
     this.service = axios.create({
@@ -12,14 +11,11 @@ class ReviewService {
   // for "creating" a like
 
   create = (comment, likes, dislikes) => {
-    return (
-      this.service.post("/create"), // maybe better /like?
-      {
+    return this.service.post("/create",  {
         comment,
         likes,
         dislikes,
-      }
-    );
+      });
   };
 
   // only editing or deleting a like necessary? to discuss!

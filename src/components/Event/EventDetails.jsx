@@ -71,7 +71,7 @@ class EventDetails extends Component {
                   Equipment required: {singleEvent.equipment}{" "}
                 </Typography>
 
-                <Typography> Category: {singleEvent.hobby_id}</Typography>
+              <Typography>Organizer : {singleEvent.user_id}</Typography>
 
                 <Typography>Organizer : {singleEvent.owner_id}</Typography>
 
@@ -81,18 +81,21 @@ class EventDetails extends Component {
                   Maximum attendees: {singleEvent.attendees_max}{" "}
                 </Typography>
 
-                <Typography> In aid of {singleEvent.charity_id} </Typography>
+              <Typography> price: {singleEvent.price} </Typography>
+  
+              <Button component={Link} to="/events/create">
+              Create!
+            </Button>
 
-                <Typography> price: {singleEvent.price} </Typography>
+              <Button component={Link} to={`/events/${singleEvent._id}/edit`}>
+                Edit
+              </Button>
+              
+              <Button onClick={this.handleDelete}>Delete</Button>
 
-                <Button component={Link} to={`/events/${singleEvent._id}/edit`}>
-                  Edit
-                </Button>
-
-                <Button onClick={this.handleDelete}>Delete</Button>
-              </CardContent>
-            </Box>
-          )}
+            </CardContent>
+          </Box>
+        )}
         </Card>
 
         <AddPostForm id={id} service={eventService} />

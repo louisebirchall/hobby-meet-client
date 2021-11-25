@@ -1,14 +1,26 @@
+import { Button } from "@material-ui/core";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import hobbyService from "../../services/hobby-service";
 import AddPostForm from "../AddPostForm";
 // import EditPostForm from "../Posts/EditPostForm";
 
-
 class HobbyDetails extends Component {
   state = {
     singleHobby: null,
     isLoading: true,
+  };
+
+  handleDelete = () => {
+    const { id } = this.props.match.params;
+    hobbyService
+      .delete(id)
+      .then((data) => {
+        this.props.history.push("/hobbies");
+      })
+      .catch((err) => {
+        this.props.history.push("/500");
+      });
   };
 
   componentDidMount() {
@@ -22,18 +34,6 @@ class HobbyDetails extends Component {
         this.props.history.push("/500");
       });
   }
-
-  handleDelete = () => {
-    const { id } = this.props.match.params;
-    hobbyService
-    .delete(id)
-      .then((data) => {
-        this.props.history.push("/hobbies");
-      })
-      .catch((err) => {
-        this.props.history.push("/500");
-      });
-  };
 
   render() {
     const { isLoading, singleHobby } = this.state;
@@ -61,11 +61,17 @@ class HobbyDetails extends Component {
 
             {/* <EditPostForm id={id} service={charityService} /> */}
 
-            <Link to={`/hobbies/${singleHobby._id}/edit`}>
-              <button>Edit</button>
-            </Link>
+            <Button component={Link} to="/hobbies/create">
+              Create!
+            </Button>
 
-            <button onClick={this.handleDelete}>Delete</button>
+            <Button component={Link} to={`/hobbies/${singleHobby._id}/edit`}>
+              Edit
+            </Button>
+
+            <Button onClick={this.handleDelete}>Delete</Button>
+
+            {/* <button onClick={this.handleDelete}>Delete</button> */}
           </div>
         )}
       </div>

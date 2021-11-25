@@ -27,7 +27,15 @@ import ProductForm from "./components/Product/ProductForm";
 // import CharityForm from "./components/Charity/CharityForm";
 import ServerError from "./components/ErrorHandling/ServerError";
 import PageNotFound from "./components/ErrorHandling/PageNotFound";
-import { withTheme } from "@material-ui/core";
+// import Typography from "@material-ui/core/Typography";
+import { ThemeProvider, createTheme } from "@material-ui/core/styles";
+import theme from "./theme";
+
+const montserrat = createTheme({
+  typography: {
+    fontFamily: ["Montserrat"].join(","),
+  },
+});
 
 class App extends Component {
 
@@ -68,15 +76,22 @@ class App extends Component {
 
     return (
       <div className="App">
+        <ThemeProvider theme={theme}>
+
           <Navbar isLoggedIn={isLoggedIn} user={user} setUser={this.setUser} />
+
           <Switch>
+
             <Route exact path="/" render={(props) => <Homepage {...props} />} />
+
             {/* User */}
+
             <Route
               path="/signup"
               render={(props) => <Signup {...props} setUser={this.setUser} />} // <Signup {...props} -- to get the params
             />
-            {/* <Redirect from="/signup" to="/login" /> */}
+
+                {/* <Redirect from="/signup" to="/login" /> */}
 
             <Route
               path="/login"
@@ -102,6 +117,7 @@ class App extends Component {
             />
 
             {/* Frontpage */}
+
             <Route
               exact
               path="/"
@@ -109,45 +125,57 @@ class App extends Component {
             />
 
             {/* Hobbies */}
+
             <Route
               exact
               path="/hobbies"
               render={(props) => <HobbiesPage {...props} />}
             />
+
+            <Route
+              path="/hobbies/create"
+              render={(props) => <HobbyForm {...props} isEdit={false} />}
+            />
+
             <Route
               exact
               path="/hobbies/:id"
               render={(props) => <HobbyDetails {...props} />}
             />
-            <Route
-              path="/hobbies/create"
-              render={(props) => <HobbyForm {...props} isEdit={false} />}
-            />
+
             <Route
               path="/hobbies/:id/edit"
               render={(props) => <HobbyForm {...props} isEdit={true} />}
             />
 
+
             {/* Events */}
+
             <Route
               exact
               path="/events"
               render={(props) => <EventsPage {...props} />}
             />
+
+            <Route
+              path="/events/create"
+              render={(props) => <EventForm {...props} isEdit={false} />}
+            />
+
             <Route
               exact
               path="/events/:id"
               render={(props) => <EventDetails {...props} />}
             />
-            <Route
-              path="/events/create"
-              render={(props) => <EventForm {...props} isEdit={false} />}
-            />
+
             <Route
               path="/events/:id/edit"
               render={(props) => <EventForm {...props} isEdit={true} />}
             />
+
+
             {/* Charities */}
+
             <Route
               exact
               path="/charities"
@@ -171,39 +199,43 @@ class App extends Component {
             />
 
             {/* Products */}
+
             <Route
               exact
               path="/products"
               render={(props) => <ProductsPage {...props} />}
             />
+
+            <Route
+              path="/products/create"
+              render={(props) => <ProductForm {...props} isEdit={false} />}
+            />
+
             <Route
               exact
               path="/products/:id"
               render={(props) => <ProductDetails {...props} />}
             />
-            <Route
-              path="/products/create"
-              render={(props) => <ProductForm {...props} isEdit={false} />}
-            />
+
             <Route
               path="/products/:id/edit"
               render={(props) => <ProductForm {...props} isEdit={true} />}
             />
 
-            {/* <Route
-            path="/charities/create"
-            render={(props) => <CharityForm {...props} isEdit={false} />}
-          />
-          <Route
-            path="/charities/:id/edit"
-            render={(props) => <CharityForm {...props} isEdit={true} />}
-          /> */}
 
             {/* ErrorHandling */}
+
             <Route path="/500" component={ServerError} />
+
             <Route component={PageNotFound} />
+
+
           </Switch>
-          <Footer />
+
+          <Footer/>
+
+        </ThemeProvider>
+        
       </div>
     );
   }

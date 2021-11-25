@@ -31,28 +31,21 @@ class CharitiesPage extends Component {
           {isLoading && <h1>...isLoading</h1>}
 
           {!isLoading &&
-            listOfCharities.map((eachCharity) => {
-              return (
-                <Grid item xs={12} md={6} lg={4} key={eachCharity._id}>
-                  <Card>
-                    <Typography variant="h4">{eachCharity.title}</Typography>
-                    <CardMedia>
-                      {eachCharity.image && (
-                        <img
-                          src={eachCharity.image}
-                          alt={eachCharity.name}
-                          width="150px"
-                        />
-                      )}
-                    </CardMedia>
+          listOfCharities.map((eachCharity) => {
+            return (
+              <Grid item xs={12} md={6} lg={4} key={eachCharity._id}>
+                <Card>
+                  <Typography variant="h4">{eachCharity.title}</Typography>
+                  <CardMedia>
+                  {eachCharity.image && ( <img src={eachCharity.image} alt={eachCharity.name} width="150px"/>  )}
+                  </CardMedia>
 
-                    <Button href="#text-buttons">
-                      <Link to={`/charities/${eachCharity._id}`}>
-                        {eachCharity.name}
-                      </Link>
-                    </Button>
-                  </Card>
-                </Grid>
+                  <Button>
+                    <Link to={`/charities/${eachCharity._id}`}>
+                      {eachCharity.name}</Link>
+                  </Button>
+                </Card>
+              </Grid>
               );
             })}
         </Grid>
