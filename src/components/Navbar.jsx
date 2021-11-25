@@ -17,7 +17,6 @@ import { Stack } from "@mui/material";
 import NavbarDropDown from '../components/NavbarDropDown'
 import { ThemeProvider } from "@material-ui/styles";
 import theme from "../theme";
-import NavDrawer from "./NavDrawer"
 
 function Navbar({ isLoggedIn, user, setUser }) {
   const logoutUser = () => {
