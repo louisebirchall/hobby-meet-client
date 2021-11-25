@@ -206,20 +206,17 @@ class App extends Component {
               path="/products"
               render={(props) => <ProductsPage {...props} />}
             />
-<<<<<<< HEAD
         {/*      <Route
              exact
               path="/products/payments/create-payment-intent"
               render={(props) => < What do we need here? {...props} />}
             /> */}
-=======
 
             <Route
               path="/products/create"
               render={(props) => <ProductForm {...props} isEdit={false} />}
             />
 
->>>>>>> f212236af6f86351dfe4825c70aebe4e1078dd85
             <Route
               exact
               path="/products/:id"
@@ -231,17 +228,6 @@ class App extends Component {
               render={(props) => <ProductForm {...props} isEdit={true} />}
             />
 
-<<<<<<< HEAD
-            {/* <Route
-            path="/charities/create"
-            render={(props) => <CharityForm {...props} isEdit={false} />}
-          />
-          <Route
-            path="/charities/:id/edit"
-            render={(props) => <CharityForm {...props} isEdit={true} />}
-          /> */}
-=======
->>>>>>> f212236af6f86351dfe4825c70aebe4e1078dd85
 
             {/* ErrorHandling */}
 

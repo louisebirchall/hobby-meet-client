@@ -1,7 +1,7 @@
 // import React from "react";
 import { NavLink } from "react-router-dom";
 import authService from "../services/auth-service";
-import Search from "./Search/SearchBar"; // ! link search
+import Search from "./Search/SearchBar";
 import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
@@ -71,7 +71,10 @@ function Navbar({ isLoggedIn, user, setUser }) {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+    <ThemeProvider theme={theme}>
+      <AppBar position="static"
+          style={{ backgroundColor: "#3aefd5", Typography: "Montserrat" }}
+        >
         <Toolbar>
           <IconButton>
             {/* <Typography variant="h6">Menu</Typography> */}
@@ -87,7 +90,7 @@ function Navbar({ isLoggedIn, user, setUser }) {
           </Typography>
 
           <Box sx={{ flexGrow: 1 }} />
-          <SearchBar>
+          <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -95,7 +98,7 @@ function Navbar({ isLoggedIn, user, setUser }) {
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
             />
-          </SearchBar>
+          </Search>
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <ul>
               <Stack direction="row" spacing={2}>
@@ -103,12 +106,16 @@ function Navbar({ isLoggedIn, user, setUser }) {
                   <>
                     <li>
                       <NavLink to={`/profile/${user._id}`}>
-                        <Button>Profile</Button>
+                      <Button variant="contained" color="secondary">Profile</Button>
                       </NavLink>
                     </li>
                     <li>
                       <NavLink to="/">
-                        <Button onClick={() => logoutUser()}>Logout</Button>
+                      <Button
+                            variant="contained"
+                            color="secondary"
+                            onClick={() => logoutUser()}
+                          >Logout</Button>
                       </NavLink>
                     </li>
                   </>
@@ -117,12 +124,12 @@ function Navbar({ isLoggedIn, user, setUser }) {
                   <>
                     <li>
                       <NavLink exact to="/signup">
-                        <Button>Signup</Button>
+                      <Button variant="contained" color="primary">Signup</Button>
                       </NavLink>
                     </li>
                     <li>
                       <NavLink to="/login">
-                        <Button>Login</Button>
+                      <Button variant="contained" color="primary">Login</Button>
                       </NavLink>
                     </li>
                   </>
@@ -132,6 +139,7 @@ function Navbar({ isLoggedIn, user, setUser }) {
           </Box>
         </Toolbar>
       </AppBar>
+      </ThemeProvider>
     </Box>
   );
 }
