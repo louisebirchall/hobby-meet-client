@@ -46,13 +46,13 @@ class Profile extends Component {
         {!isLoading && (
           <div style={styles.divStyle}>
             <img src={user.image} alt="user" width="250" />
-            <h3>Username {user.username}</h3>
-            <p>Email {user.email}</p>
-            <p>Full name {user.fullName}</p>
-            <p>Hobbies {user.hobbies}</p>
-            <p>Age {user.age}</p>
-            <p>For {user.type}</p> // * what's best here?
-            <p>Gender {user.sex}</p>
+            <h3>Username - {user.username}</h3>
+            <p>Email - {user.email}</p>
+            <p>Full name - {user.fullName}</p>
+            <p>Hobbies - {user.hobbies}</p>
+            <p>Age - {user.age}</p>
+            <p>For - {user.type}</p> // * what's best here?
+            <p>Gender - {user.sex}</p>
             <Button
               color="primary"
               variant="contained"

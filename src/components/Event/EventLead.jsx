@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import bookBitch from "../../images/bookBitch.png";
 import { CardContent } from "@material-ui/core";
-import { Typography } from "@material-ui/core";
+import { Typography, Button } from "@material-ui/core";
 import { Card } from "@material-ui/core";
 import { CardMedia } from "@material-ui/core";
 import { Box } from "@mui/system";
-import { Button } from "@mui/material";
 
 const styles = {
   divStyle: {
