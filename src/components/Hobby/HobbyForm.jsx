@@ -7,8 +7,9 @@ import { PuffLoader } from "react-spinners";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
+import { FormControl, InputLabel, Select } from "@mui/material";
 
-// input for selecting typeOfActivity 
+// input for selecting typeOfActivity
 // const typeOfActivity = [
 //   {
 //     value: 'Sport',
@@ -60,7 +61,7 @@ import MenuItem from "@mui/material/MenuItem";
 //   },
 // ];
 
-// input for selecting placeOfActivity 
+// input for selecting placeOfActivity
 // const placeOfActivity = [
 //   {
 //     value: 'Indoors',
@@ -79,12 +80,12 @@ import MenuItem from "@mui/material/MenuItem";
 class HobbyForm extends Component {
   state = {
     name: "",
-   // typeOfActivity: "",
+    typeOfActivity: "",
     description: "",
     image: "",
-   // placeOfActivity: "",
+    placeOfActivity: "",
     imageIsUploading: false,
-  };  
+  };
 
   handleImageUpload = (event) => {
     this.setState({ imageIsUploading: true });
@@ -115,21 +116,13 @@ class HobbyForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const { name, 
-      // typeOfActivity, 
-      description, image, 
-      // placeOfActivity 
-    } =
+    const { name, typeOfActivity, description, placeOfActivity, image } =
       this.state;
     const { id } = this.props.match.params;
 
     if (this.props.isEdit) {
       hobbyService
-        .edit(id, name, 
-          // typeOfActivity, 
-          description, image, 
-         // placeOfActivity
-          )
+        .edit(id, name, typeOfActivity, description, placeOfActivity, image)
         .then(() => {
           this.props.history.push(`/hobbies/${id}`);
         })
@@ -138,18 +131,14 @@ class HobbyForm extends Component {
         });
     } else {
       hobbyService
-        .create(name, 
-          //typeOfActivity, 
-          description, image, 
-          // placeOfActivity
-          )
+        .create(name, typeOfActivity, description, placeOfActivity, image)
         .then((response) => {
-          console.log("newly created charity", response.data)
+          // console.log("newly created hobby", response.data);
           this.props.history.push(`/hobbies/${response.data._id}`);
         })
         .catch((err) => {
-         // console.log("charity creation", err)
-         // this.props.history.push("/500");
+          // console.log("charity creation", err)
+          // this.props.history.push("/500");
         });
     }
   };
@@ -169,15 +158,13 @@ class HobbyForm extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     if (id) {
-      hobbyService
-      .getHobby(id)
-      .then((result) => {
+      hobbyService.getHobby(id).then((result) => {
         this.setState({
           name: result.data.name,
-          // typeOfActivity: result.data.typeOfActivity,
+          typeOfActivity: result.data.typeOfActivity,
           description: result.data.description,
           image: result.data.image,
-          // placeOfActivity: result.data.placeOfActivity,
+          placeOfActivity: result.data.placeOfActivity,
         });
       });
       // .catch((err) => {
@@ -189,10 +176,10 @@ class HobbyForm extends Component {
   render() {
     const {
       name,
-     // typeOfActivity,
+      typeOfActivity,
       description,
+      placeOfActivity,
       image,
-     // placeOfActivity,
       imageIsUploading,
     } = this.state;
 
@@ -220,7 +207,7 @@ class HobbyForm extends Component {
             value={name}
           />
 
-         {/*  <TextField
+          {/*  <TextField
             id="outlined-select"
             select
             label="Please select the type of the activity."
@@ -234,6 +221,33 @@ class HobbyForm extends Component {
           ))}  
           </TextField> */}
 
+          <FormControl sx={{ m: 1, width: 400 }}>
+            <InputLabel id="demo-multiple-name-label">
+              Please select the type of the activity.
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={typeOfActivity}
+              label="Please select the type of the activity."
+              name="typeOfActivity"
+              onChange={this.handleChange}
+            >
+              <MenuItem value="Sport">Sport</MenuItem>
+              <MenuItem value="Craft">Craft</MenuItem>
+              <MenuItem value="Workshop">Workshop</MenuItem>
+              <MenuItem value="Music">Music</MenuItem>
+              <MenuItem value="Art">Art</MenuItem>
+              <MenuItem value="Manual">Manual</MenuItem>
+              <MenuItem value="Food">Food</MenuItem>
+              <MenuItem value="Gardening">Gardening</MenuItem>
+              <MenuItem value="MeetUp">MeetUp</MenuItem>
+              <MenuItem value="Language">Language</MenuItem>
+              <MenuItem value="Spiritual">Spiritual</MenuItem>
+              <MenuItem value="Photography">Photography</MenuItem>
+            </Select>
+          </FormControl>
+
           {/* max 4 and then scrollbar, maybe limit the characters? */}
           <TextField
             onChange={this.handleChange}
@@ -246,7 +260,25 @@ class HobbyForm extends Component {
             value={description}
           />
 
-        {/*  <TextField
+          <FormControl sx={{ m: 1, width: 400 }}>
+            <InputLabel id="demo-multiple-name-label">
+              Please select the place of the activity.
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={placeOfActivity}
+              label="Please select the place of the activity."
+              name="placeOfActivity"
+              onChange={this.handleChange}
+            >
+              <MenuItem value="Indoors">Indoors</MenuItem>
+              <MenuItem value="Outdoors">Outdoors</MenuItem>
+              <MenuItem value="Indoors/Outdoors">Indoors/Outdoors</MenuItem>
+            </Select>
+          </FormControl>
+
+          {/*  <TextField
             id="outlined-select"
             select
             label="Please select the place of activity"

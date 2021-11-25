@@ -7,38 +7,44 @@ import { PuffLoader } from "react-spinners";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
+import { FormControl, InputLabel, Select } from "@mui/material";
+import DateAdapter from "@mui/lab/AdapterDateFns";
+import Stack from "@mui/material/Stack";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import DateTimePicker from "@mui/lab/DateTimePicker";
 
-// input for selecting pricePolicy 
-const pricePolicy = [
-    //   {
-    //     value: 'FixedPrice',
-    //     label: 'Fixed Price',
-    //   },
-    //   {
-    //    value: 'Free',
-    //    label: 'Free',
-    //   },
-    //   {
-    //     value: 'Voluntary',
-    //     label: 'Voluntary',
-    //   }
-]
+// input for selecting pricePolicy
+// const pricePolicy = [
+//   {
+//     value: 'FixedPrice',
+//     label: 'Fixed Price',
+//   },
+//   {
+//    value: 'Free',
+//    label: 'Free',
+//   },
+//   {
+//     value: 'Voluntary',
+//     label: 'Voluntary',
+//   }
+// ]
 
-// input for selecting organizedBy 
-const organizedBy = [
-    //   {
-    //     value: 'Charity',
-    //     label: 'Charity',
-    //   },
-    //   {
-    //    value: 'Company',
-    //    label: 'Company',
-    //   },
-    //   {
-    //     value: 'User',
-    //     label: 'User',
-    //   }
-]
+// input for selecting organizedBy
+// const organizedBy = [
+//   {
+//     value: 'Charity',
+//     label: 'Charity',
+//   },
+//   {
+//    value: 'Company',
+//    label: 'Company',
+//   },
+//   {
+//     value: 'User',
+//     label: 'User',
+//   }
+// ]
 
 class EventForm extends Component {
   state = {
@@ -210,6 +216,7 @@ class EventForm extends Component {
         noValidate
         autoComplete="off"
       >
+        <LocalizationProvider dateAdapter={DateAdapter}></LocalizationProvider>
         <form onSubmit={this.handleSubmit}>
           {image && <img src={image} alt="eventpic" width="150px" />}
           <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
@@ -257,16 +264,29 @@ class EventForm extends Component {
             name="location"
             value={location}
           />
-          
-          <TextField
+
+          {/* <TextField
             onChange={this.handleChange}
             id="outlined-basic"
             label="Date"
             variant="outlined"
             name="date"
             value={date}
-          />
-          
+          /> */}
+
+          {/* error */}
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <Stack spacing={3}>
+              <DateTimePicker
+                label="Date&Time picker"
+                value={date}
+                name="date"
+                onChange={this.handleChange}
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </Stack>
+          </LocalizationProvider>
+
           {/* not needed as textfield? */}
           <TextField
             onChange={this.handleChange}
@@ -299,7 +319,7 @@ class EventForm extends Component {
             value={attendees_min}
           />
 
-          <TextField
+          {/*  <TextField
             id="outlined-select"
             select
             label="Please select the type of price Policy."
@@ -307,12 +327,30 @@ class EventForm extends Component {
             onChange={this.handleChange}
             // helperText="Please select the type of price Policy."
           >
-            {/* {pricePolicy.map((option) => (
+            {pricePolicy.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem> 
-          ))}  */}
-          </TextField>
+          ))}  
+          </TextField>*/}
+
+          <FormControl sx={{ m: 1, width: 400 }}>
+            <InputLabel id="demo-multiple-name-label">
+              Please select the price policy.
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={pricePolicy}
+              label="Please select the price policy."
+              name="pricePolicy"
+              onChange={this.handleChange}
+            >
+              <MenuItem value="Fixed Price">Fixed Price</MenuItem>
+              <MenuItem value="Free">Free</MenuItem>
+              <MenuItem value="Voluntary">Voluntary</MenuItem>
+            </Select>
+          </FormControl>
 
           <TextField
             //  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
@@ -323,37 +361,48 @@ class EventForm extends Component {
             name="price"
             type="number"
             value={price}
-            //helperText="€"
             placeholder="€"
           />
 
-          <TextField
-            id="outlined-select"
-            select
-            label="Who is the organizer?"
-            value={organizedBy}
-            onChange={this.handleChange}
-          >
-            {/* {organizer.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem> 
-          ))}  */}
-          </TextField>
+          <FormControl sx={{ m: 1, width: 400 }}>
+            <InputLabel id="demo-multiple-name-label">
+              Who is the organizer?
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={organizedBy}
+              label="Who is the organizer?"
+              name="organizedBy"
+              onChange={this.handleChange}
+            >
+              <MenuItem value="Charity">Charity</MenuItem>
+              <MenuItem value="Company">Company</MenuItem>
+              <MenuItem value="User">User</MenuItem>
+            </Select>
+          </FormControl>
 
-          <TextField
-            id="outlined-select"
-            select
-            label="Which Charity is it for?"
-            value={charity_id}
-            onChange={this.handleChange}
-          >
-            {/* {charities.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem> 
-          ))}  */}
-          </TextField>
+          {/* causes error 500 */}
+          <FormControl sx={{ m: 1, width: 400 }}>
+            <InputLabel id="demo-multiple-name-label">
+              Which Charity is it for?
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={charity_id}
+              label="Which Charity is it for?"
+              name="charity_id"
+              onChange={this.handleChange}
+            >
+              <MenuItem value="won't have options to select from db">
+                won't have options to select from db
+              </MenuItem>
+              <MenuItem value="charities need to be hardcoded in here">
+                charities need to be hardcoded in here
+              </MenuItem>
+            </Select>
+          </FormControl>
 
           <button type="submit" disabled={imageIsUploading}>
             Add this event!

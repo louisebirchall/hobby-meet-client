@@ -5,6 +5,7 @@ import AddPostForm from "../AddPostForm";
 // import EditPostForm from "../Posts/EditPostForm";
 import reviewService from "../../services/review-service";
 import ReviewForm from "../ReviewForm";
+import { Button } from "@mui/material";
 
 
 class ProductDetails extends Component {
@@ -67,6 +68,9 @@ class ProductDetails extends Component {
             <br/>
             <ReviewForm id={id} service={reviewService} />
 
+            <Button component={Link} to="/products/create">
+              Create!
+            </Button>
             
             <Link to={`/products/${singleProduct._id}/edit`}>
               <button>Edit</button>

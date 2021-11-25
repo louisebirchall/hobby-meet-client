@@ -7,32 +7,17 @@ import generalService from "../../services/general-service";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
-
-// input for selecting pricePolicy 
-const pricePolicy = [
-  //   {
-  //     value: 'FixedPrice',
-  //     label: 'Fixed Price',
-  //   },
-  //   {
-  //    value: 'Free',
-  //    label: 'Free',
-  //   },
-  //   {
-  //     value: 'Voluntary',
-  //     label: 'Voluntary',
-  //   }
-]
+import { FormControl, InputLabel, Select } from "@mui/material";
 
 class ProductForm extends Component {
   state = {
     image: "",
     title: "",
     description: "",
+    user_id: "",
     pricePolicy: "",
     price: "",
-    event_id: "",
-    user_id: "",
+    event_id: "",    
     charity_id: "",
     imageIsUploading: false,
   };
@@ -67,10 +52,10 @@ class ProductForm extends Component {
       image,
       title,
       description,
+      user_id,
       pricePolicy,
       price,
       event_id,
-      user_id,
       charity_id,
     } = this.state;
     const { id } = this.props.match.params;
@@ -82,10 +67,10 @@ class ProductForm extends Component {
           image,
           title,
           description,
+          user_id,
           pricePolicy,
           price,
           event_id,
-          user_id,
           charity_id
         )
         .then(() => {
@@ -101,10 +86,10 @@ class ProductForm extends Component {
           image,
           title,
           description,
+          user_id,
           pricePolicy,
           price,
           event_id,
-          user_id,
           charity_id
         )
         .then((response) => {
@@ -144,10 +129,10 @@ class ProductForm extends Component {
       image,
       title,
       description,
+      user_id,
       pricePolicy,
       price,
       event_id,
-      user_id,
       charity_id,
       imageIsUploading,
     } = this.state;
@@ -187,19 +172,23 @@ class ProductForm extends Component {
             value={description}
           />
 
-          <TextField
-            id="outlined-select"
-            select
-            label="Please select the type of price Policy."
-            value={pricePolicy}
-            onChange={this.handleChange}
-          >
-            {/* {pricePolicy.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem> 
-          ))}  */}
-          </TextField>
+          {/* causes error 500 */}
+          <FormControl sx={{ m: 1, width: 400 }}>
+            <InputLabel id="demo-multiple-name-label">
+              Please select the price policy.
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={pricePolicy}
+              label="Please select the price policy."
+              name="pricePolicy"
+              onChange={this.handleChange}
+            >
+              <MenuItem value="Fixed Price">Fixed Price</MenuItem>
+              <MenuItem value="Voluntary">Voluntary</MenuItem>
+            </Select>
+          </FormControl>
 
           <TextField
             //  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
@@ -232,46 +221,27 @@ class ProductForm extends Component {
             value={user_id}
           /> */}
 
-          <TextField
-            id="outlined-select"
-            select
-            label="Which Charity is it for?"
-            value={charity_id}
-            onChange={this.handleChange}
-          >
-            {/* {charities.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem> 
-          ))}  */}
-          </TextField>
-
-          <TextField
-            id="outlined-select"
-            select
-            label="Please select the type of price Policy."
-            value={pricePolicy}
-            onChange={this.handleChange}
-            // helperText="Please select the type of price Policy."
-          >
-            {/* {pricePolicy.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem> 
-          ))}  */}
-          </TextField>
-
-          <TextField
-            //  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
-            onChange={this.handleChange}
-            id="outlined-basic"
-            label="€"
-            variant="outlined"
-            name="price"
-            type="number"
-            value={price}
-            placeholder="€"
-          />
+          {/* causes error 500 */}
+          <FormControl sx={{ m: 1, width: 400 }}>
+            <InputLabel id="demo-multiple-name-label">
+              Which Charity is it for?
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={charity_id}
+              label="Which Charity is it for?"
+              name="charity_id"
+              onChange={this.handleChange}
+            >
+              <MenuItem value="won't have options to select from db">
+                won't have options to select from db
+              </MenuItem>
+              <MenuItem value="charities need to be hardcoded in here">
+                charities need to be hardcoded in here
+              </MenuItem>
+            </Select>
+          </FormControl>
 
           <button type="submit" disabled={imageIsUploading}>
             Add this product!

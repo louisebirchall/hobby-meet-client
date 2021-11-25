@@ -69,13 +69,6 @@ class AddPostForm extends Component {
           <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
           <input onChange={this.handleImageUpload} type="file" name="image" />
 
-          <label htmlFor="description">Description</label>
-          <input
-            onChange={this.handleChange}
-            type="text"
-            name="description"
-            value={description}
-          />
           <TextField
             onChange={this.handleChange}
             id="outlined-multiline-flexible"
