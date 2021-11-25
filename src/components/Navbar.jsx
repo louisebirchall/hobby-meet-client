@@ -14,6 +14,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import { Button } from "@material-ui/core";
 import { Stack } from "@mui/material";
+import NavbarDropDown from '../components/NavbarDropDown'
 
 function Navbar({ isLoggedIn, user, setUser }) {
   const styles = {
@@ -74,25 +75,19 @@ function Navbar({ isLoggedIn, user, setUser }) {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon>
-              <Link to="/profile">Profile</Link>
-            </MenuIcon>
+          <IconButton>
+            {/* <Typography variant="h6">Menu</Typography> */}
+            <NavbarDropDown />
           </IconButton>
+  
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-          >
-            <NavLink to="/">HobbyMeet</NavLink>
+            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}>
+            <Button href="/">HobbyMeet</Button>
           </Typography>
+
           <Box sx={{ flexGrow: 1 }} />
           <SearchBar>
             <SearchIconWrapper>

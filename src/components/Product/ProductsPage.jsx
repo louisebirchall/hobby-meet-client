@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import productService from "../../services/product-service";
-import {Container, Button, Card, CardMedia, CardContent, Typography, Grid} from '@material-ui/core'
+import {Container, Button, Card, CardMedia, CardContent, Typography, Grid, CardActions} from '@material-ui/core'
 import Payment from "../Payment/Payment"
 
 
@@ -50,12 +50,15 @@ class ProductsPage extends Component {
                       <Typography variant="h4">{eachProduct.title}</Typography>
 
                       <Typography variant="p">{eachProduct.price} €</Typography>
+                    </CardContent>
 
+                    <CardActions>
                       <Button onClick={() => this.handleClick(eachProduct)} href={'products/payments/create-payment-intent'}>Buy it!</Button>
-                       {itemToBuy && itemToBuy._id === eachProduct._id && <Payment itemToBuy={itemToBuy}/>}
+                      {itemToBuy && itemToBuy._id === eachProduct._id && <Payment itemToBuy={itemToBuy}/>}
 
                       <Button href={`/products/${eachProduct._id}`}>See details!</Button>
-                    </CardContent>
+                    </CardActions>
+
                   </Card>
                 </Grid>
               );

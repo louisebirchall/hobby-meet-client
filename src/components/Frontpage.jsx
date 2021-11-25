@@ -24,13 +24,13 @@ class Frontpage extends Component {
     return (
       <div height="500px" >
         <Paper maxWidth="sm" style={styles.paperContainer}>
-        <Box sx={{height:400, paddingTop:5, display: 'flex', flexDirection:"column", gap:10, justifyContent:"center", alignItems:"center"}}>
+        <Box sx={{height:400, paddingTop:5, display: 'flex', flexDirection:"column", gap:10, justifyContent:"center", alignItems:"center", textAlign:"center"}}>
           <h1>
-            Find people to share your hobbies with, or even find a new one.
+            Find people to share your hobbies with, or even find a new one, while you are contributing to a good charity cause!
           </h1>
-          <Link to="/signup">
-            <Button variant="contained">Join Today</Button>
-          </Link>
+        
+            <Button href="/signup" variant="contained">Join Today</Button>
+  
           </Box>
         </Paper>
       </div>

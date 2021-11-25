@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import charityService from "../../services/charity-service";
-import {Container, Button, Card, CardMedia, Typography, Grid} from '@material-ui/core'
+import {Container, Button, Card, CardMedia, Typography, Grid, CardContent, CardActions} from '@material-ui/core'
 
 
 class CharitiesPage extends Component {
@@ -33,17 +33,17 @@ class CharitiesPage extends Component {
           {!isLoading &&
           listOfCharities.map((eachCharity) => {
             return (
-              <Grid item xs={12} md={6} lg={4} key={eachCharity._id}>
-                <Card>
-                  <Typography variant="h4">{eachCharity.title}</Typography>
+              <Grid item  key={eachCharity._id}>
+                <Card xs={12} md={6} lg={4}>
                   <CardMedia>
                   {eachCharity.image && ( <img src={eachCharity.image} alt={eachCharity.name} width="150px"/>  )}
                   </CardMedia>
-
-                  <Button href="#text-buttons">
-                    <Link to={`/charities/${eachCharity._id}`}>
-                      {eachCharity.name}</Link>
-                  </Button>
+                  <CardContent>
+                    <Typography variant="h4">{eachCharity.title}</Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button href={`/charities/${eachCharity._id}`}>{eachCharity.name}</Button>
+                  </CardActions>
                 </Card>
               </Grid>
               );
