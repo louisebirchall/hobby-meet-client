@@ -4,6 +4,7 @@ import generalService from "../../services/general-service";
 import { PuffLoader } from "react-spinners";
 
 // textfield / form
+import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
@@ -111,6 +112,7 @@ class ProfileFom extends Component {
     } = this.state;
 
     return (
+      <Container>
       <Box
         sx={{
           "& > :not(style)": { m: 1, width: "50ch" },
@@ -245,6 +247,7 @@ class ProfileFom extends Component {
           Delete
         </button>
       </Box>
+      </Container>
     );
   }
 }

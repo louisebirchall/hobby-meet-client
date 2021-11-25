@@ -1,17 +1,23 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import productService from "../../services/product-service";
-import {Container, Button, Card, CardMedia, Typography, Grid} from '@material-ui/core'
+import {Container, Button, Card, CardMedia, CardContent, Typography, Grid, CardActions} from '@material-ui/core'
+import Payment from "../Payment/Payment"
+
 
 
 class ProductsPage extends Component {
   state = {
     listOfProducts: null,
     isLoading: true,
+    itemToBuy: null,
   };
 
+   handleClick = (item) => {
+    this.setState({itemToBuy: item})
+  }
+
   componentDidMount() {
-    // console.log(process.env.REACT_APP_SERVER_API);
     productService
     .getProducts()
       .then((response) => {
@@ -22,8 +28,9 @@ class ProductsPage extends Component {
       });
   }
 
+
   render() {
-    const { listOfProducts, isLoading } = this.state;
+    const { listOfProducts, isLoading, itemToBuy } = this.state;
 
     return (
       <Container style={{ paddingBottom: 60 }}>
@@ -36,8 +43,6 @@ class ProductsPage extends Component {
               return (
                 <Grid item key={eachProduct._id}>
                   <Card xs={12} md={6} lg={4}>
-                    <Typography variant="h4">{eachProduct.title}</Typography>
-
                     <CardMedia>
                       {eachProduct.image && (
                         <img
@@ -47,12 +52,19 @@ class ProductsPage extends Component {
                         />
                       )}
                     </CardMedia>
+                    <CardContent>
+                      <Typography variant="h4">{eachProduct.title}</Typography>
 
-                    <Button href="#text-buttons">
-                      <Link to={`/products/${eachProduct._id}`}>
-                        {eachProduct.title}
-                      </Link>
-                    </Button>
+                      <Typography variant="p">{eachProduct.price} €</Typography>
+                    </CardContent>
+
+                    <CardActions>
+                      <Button onClick={() => this.handleClick(eachProduct)} href={'products/payments/create-payment-intent'}>Buy it!</Button>
+                      {itemToBuy && itemToBuy._id === eachProduct._id && <Payment itemToBuy={itemToBuy}/>}
+
+                      <Button href={`/products/${eachProduct._id}`}>See details!</Button>
+                    </CardActions>
+
                   </Card>
                 </Grid>
               );

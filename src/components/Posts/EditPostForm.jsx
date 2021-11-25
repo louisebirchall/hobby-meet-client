@@ -6,8 +6,6 @@ import generalService from "../../services/general-service";
 
 class EditPostForm extends Component {
   state = {
-    // should it be empty or recalling the information of the existing post?
-    // if !empty => how possible with hobby/event/charity?
     image: "",
     description: "",
     imageIsUploading: false,

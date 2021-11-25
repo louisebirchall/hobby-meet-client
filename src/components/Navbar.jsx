@@ -1,7 +1,7 @@
 // import React from "react";
 import { NavLink } from "react-router-dom";
 import authService from "../services/auth-service";
-import Search from "./Search/SearchBar"; // ! link search
+import Search from "./Search/SearchBar";
 import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
@@ -14,9 +14,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import { Button } from "@material-ui/core";
 import { Stack } from "@mui/material";
+import NavbarDropDown from '../components/NavbarDropDown'
 import { ThemeProvider } from "@material-ui/styles";
 import theme from "../theme";
 import NavDrawer from "./NavDrawer"
+import SearchBar from "@material-ui/core";
 
 function Navbar({ isLoggedIn, user, setUser }) {
   const logoutUser = () => {
@@ -69,90 +71,74 @@ function Navbar({ isLoggedIn, user, setUser }) {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <ThemeProvider theme={theme}>
-        <AppBar
-          position="static"
+    <ThemeProvider theme={theme}>
+      <AppBar position="static"
           style={{ backgroundColor: "#3aefd5", Typography: "Montserrat" }}
         >
-          <Toolbar>
-            {/* <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon>
-              <NavDrawer/>
-                <Link to="/profile">Profile</Link>
-              </MenuIcon>
-            </IconButton> */}
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ flexGrow: 1, display: { xs: "none", sm: "block" }, color: "black" }}
-            >
-              <NavLink to="/">HobbyMeet</NavLink>
-            </Typography>
-            <Box sx={{ flexGrow: 1 }} />
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ "aria-label": "search" }}
-              />
-            </Search>
-            <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <ul>
-                <Stack direction="row" spacing={2}>
-                  {isLoggedIn && user && (
-                    <>
-                      <li>
-                        <NavLink to={`/profile/${user._id}`}>
-                          <Button variant="contained" color="secondary">
-                            Profile
-                          </Button>
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink to="/">
-                          <Button
+        <Toolbar>
+          <IconButton>
+            {/* <Typography variant="h6">Menu</Typography> */}
+            <NavbarDropDown />
+          </IconButton>
+  
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}>
+            <Button href="/">HobbyMeet</Button>
+          </Typography>
+
+          <Box sx={{ flexGrow: 1 }} />
+          <Search>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ "aria-label": "search" }}
+            />
+          </Search>
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <ul>
+              <Stack direction="row" spacing={2}>
+                {isLoggedIn && user && (
+                  <>
+                    <li>
+                      <NavLink to={`/profile/${user._id}`}>
+                      <Button variant="contained" color="secondary">Profile</Button>
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink to="/">
+                      <Button
                             variant="contained"
                             color="secondary"
                             onClick={() => logoutUser()}
-                          >
-                            Logout
-                          </Button>
-                        </NavLink>
-                      </li>
-                    </>
-                  )}
-                  {!isLoggedIn && (
-                    <>
-                      <li>
-                        <NavLink exact to="/signup">
-                          <Button variant="contained" color="primary">
-                            Signup
-                          </Button>
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink to="/login">
-                          <Button variant="contained" color="primary">
-                            Login
-                          </Button>
-                        </NavLink>
-                      </li>
-                    </>
-                  )}
-                </Stack>
-              </ul>
-            </Box>
-          </Toolbar>
-        </AppBar>
+                          >Logout</Button>
+                      </NavLink>
+                    </li>
+                  </>
+                )}
+                {!isLoggedIn && (
+                  <>
+                    <li>
+                      <NavLink exact to="/signup">
+                      <Button variant="contained" color="primary">Signup</Button>
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink to="/login">
+                      <Button variant="contained" color="primary">Login</Button>
+                      </NavLink>
+                    </li>
+                  </>
+                )}
+              </Stack>
+            </ul>
+          </Box>
+        </Toolbar>
+      </AppBar>
       </ThemeProvider>
     </Box>
   );

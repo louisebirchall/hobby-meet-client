@@ -15,8 +15,6 @@ class CharityForm extends Component {
     description: "",
     image: "",
     imageIsUploading: false,
-    // post_id: "",
-    // review_id: ""
   };
 
   handleImageUpload = (event) => {
@@ -37,7 +35,6 @@ class CharityForm extends Component {
   };
 
   handleChange = (event) => {
-    // console.log(event.target);
     this.setState({ [event.target.name]: event.target.value });
   };
 
@@ -82,9 +79,6 @@ class CharityForm extends Component {
             image: result.data.image,
           });
         })
-        // .catch((err) => {
-        //   this.props.history.push("/500");
-        // });
     }
   }
 

@@ -30,6 +30,7 @@ import PageNotFound from "./components/ErrorHandling/PageNotFound";
 // import Typography from "@material-ui/core/Typography";
 import { ThemeProvider, createTheme } from "@material-ui/core/styles";
 import theme from "./theme";
+import Payment from './components/Payment/Payment'
 
 const montserrat = createTheme({
   typography: {
@@ -205,6 +206,11 @@ class App extends Component {
               path="/products"
               render={(props) => <ProductsPage {...props} />}
             />
+        {/*      <Route
+             exact
+              path="/products/payments/create-payment-intent"
+              render={(props) => < What do we need here? {...props} />}
+            /> */}
 
             <Route
               path="/products/create"

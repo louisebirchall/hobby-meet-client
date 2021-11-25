@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import hobbyService from "../../services/hobby-service";
-import {Container, Button, Card, CardMedia, Typography, Grid} from '@material-ui/core'
+import {Container, Button, Card, CardMedia, Typography, Grid, CardContent, CardActions} from '@material-ui/core'
 
 class HobbiesPage extends Component {
   state = {
@@ -34,19 +34,20 @@ class HobbiesPage extends Component {
               return (
                 <Grid item key={eachHobby._id}>
                   <Card xs={12} md={6} lg={4}>
-                    <Typography variant="h4">{eachHobby.title}</Typography>
-
                     <CardMedia>
                       {eachHobby.image && (
                         <img src={eachHobby.image} alt={eachHobby.name} />
                       )}
                     </CardMedia>
-
-                    <Button href="#text-buttons">
-                      <Link to={`/hobbies/${eachHobby._id}`}>
+                    
+                    <CardContent>
+                      <Typography variant="h4">{eachHobby.title}</Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button href={`/hobbies/${eachHobby._id}`}>
                         {eachHobby.name}
-                      </Link>
-                    </Button>
+                      </Button>
+                    </CardActions>
                   </Card>
                 </Grid>
               );

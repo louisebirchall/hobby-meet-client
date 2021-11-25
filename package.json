@@ -12,6 +12,8 @@
     "@mui/icons-material": "^5.1.1",
     "@mui/lab": "^5.0.0-alpha.56",
     "@mui/material": "^5.1.1",
+    "@stripe/react-stripe-js": "^1.6.0",
+    "@stripe/stripe-js": "^1.21.1",
     "axios": "^0.24.0",
     "date-fns": "^2.26.0",
     "mui-treasury": "^0.1.5-alpha.3",
