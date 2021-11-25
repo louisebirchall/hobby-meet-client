@@ -8,6 +8,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import { FormControl, InputLabel, Select } from "@mui/material";
+import Container from "@mui/material/Container";
 
 class ProductForm extends Component {
   state = {
@@ -138,6 +139,7 @@ class ProductForm extends Component {
     } = this.state;
 
     return (
+      <Container>
       <Box
         sx={{
           "& > :not(style)": { m: 1, width: "50ch" },
@@ -258,6 +260,7 @@ class ProductForm extends Component {
           Delete{" "}
         </button>
       </Box>
+      </Container>
     );
   }
 }

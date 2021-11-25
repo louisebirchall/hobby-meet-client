@@ -7,6 +7,7 @@ import { PuffLoader } from "react-spinners";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
+import Container from "@mui/material/Container";
 import { FormControl, InputLabel, Select } from "@mui/material";
 
 // input for selecting typeOfActivity
@@ -184,7 +185,8 @@ class HobbyForm extends Component {
     } = this.state;
 
     return (
-      <Box
+     <Container>
+     <Box
         sx={{
           "& > :not(style)": { m: 1, width: "50ch" },
           "& .MuiTextField-root": { m: 1, width: "50ch" },
@@ -307,6 +309,7 @@ class HobbyForm extends Component {
           </button>
         </form>
       </Box>
+      </Container>
     );
   }
 }

@@ -4,6 +4,7 @@ import generalService from "../../services/general-service";
 import { PuffLoader } from "react-spinners";
 
 // textfield / form
+import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
@@ -13,38 +14,6 @@ import Stack from "@mui/material/Stack";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DateTimePicker from "@mui/lab/DateTimePicker";
-
-// input for selecting pricePolicy
-// const pricePolicy = [
-//   {
-//     value: 'FixedPrice',
-//     label: 'Fixed Price',
-//   },
-//   {
-//    value: 'Free',
-//    label: 'Free',
-//   },
-//   {
-//     value: 'Voluntary',
-//     label: 'Voluntary',
-//   }
-// ]
-
-// input for selecting organizedBy
-// const organizedBy = [
-//   {
-//     value: 'Charity',
-//     label: 'Charity',
-//   },
-//   {
-//    value: 'Company',
-//    label: 'Company',
-//   },
-//   {
-//     value: 'User',
-//     label: 'User',
-//   }
-// ]
 
 class EventForm extends Component {
   state = {
@@ -208,6 +177,7 @@ class EventForm extends Component {
     } = this.state;
 
     return (
+      <Container>
       <Box
         sx={{
           "& > :not(style)": { m: 1, width: "50ch" },
@@ -419,6 +389,7 @@ class EventForm extends Component {
           Delete{" "}
         </button>
       </Box>
+      </Container>
     );
   }
 }

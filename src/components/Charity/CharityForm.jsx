@@ -6,6 +6,7 @@ import { PuffLoader } from "react-spinners";
 // textfield / form
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import Container from "@mui/material/Container";
 // import MenuItem from '@mui/material/MenuItem';
 
 class CharityForm extends Component {
@@ -91,6 +92,7 @@ class CharityForm extends Component {
     const { name, description, image, imageIsUploading } = this.state;
 
     return (
+      <Container>
       <Box
       sx={{
         "& > :not(style)": { m: 1, width: "50ch" },
@@ -141,6 +143,7 @@ class CharityForm extends Component {
         <button type="submit" disabled={imageIsUploading}> Delete </button>
 
       </Box>
+      </Container>
     );
   }
 }
