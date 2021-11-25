@@ -94,6 +94,7 @@ class SearchBar extends Component {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
+              name="search"
             />
           </Search>
         </form>

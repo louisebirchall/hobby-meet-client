@@ -1,22 +1,26 @@
 import React, { Component } from "react";
 import generalService from "../../services/general-service";
+import queryString from "query-string";
 
 export class SearchResults extends Component {
   state = {
+    listOfResults: null,
     search: "",
     type: "",
+    isLoading: true,
   };
 
   // q=${this.state.search}&type=${this.state.type}
 
   componentDidMount() {
-    const { search, type } = this.props.match.params;
+    const query = queryString.parse(this.props.location.search);
+
     generalService
-      .search(search, type)
+      .search(query.q, query.type)
       .then((result) => {
         this.setState({
-          search: result.data.search,
-          type: result.data.type,
+          listOfResults: result.data,
+          isLoading: false,
         });
       })
       .catch((err) => {
@@ -25,12 +29,28 @@ export class SearchResults extends Component {
   }
 
   render() {
+    const { listOfResults, search, type, isLoading } = this.state;
+
     return (
-      <div>
-        <h2>Search results</h2>
-        <p>{this.state.search}</p>
-        <p>{this.state.type}</p>
-      </div>
+      <>
+        <h1>Search Results</h1>
+        {isLoading && <div>loading</div>}
+        {!isLoading && (
+          <>
+            {Object.keys(listOfResults).map((category) => {
+              if (listOfResults[category].length === 0) {
+                return null;
+              }
+              return (
+                <div>
+                  <p>{category}</p>
+                  <p>{listOfResults[category].length}</p>
+                </div>
+              );
+            })}
+          </>
+        )}
+      </>
     );
   }
 }
