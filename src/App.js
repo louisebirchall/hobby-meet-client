@@ -206,11 +206,11 @@ class App extends Component {
               path="/products"
               render={(props) => <ProductsPage {...props} />}
             />
-        {/*      <Route
+        <Route
              exact
               path="/products/payments/create-payment-intent"
-              render={(props) => < What do we need here? {...props} />}
-            /> */}
+              render={(props) => <Payment {...props} />}
+            />
 
             <Route
               path="/products/create"

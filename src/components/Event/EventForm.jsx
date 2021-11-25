@@ -21,7 +21,7 @@ class EventForm extends Component {
     title: "",
     description: "",
     equipment: "",
-    date: "",
+    date: new Date(),
     user_id: "",
     attendees: "",
     attendees_max: "",
@@ -186,7 +186,7 @@ class EventForm extends Component {
         autoComplete="off"
         style={{ paddingBottom: 60 }}
       >
-        <LocalizationProvider dateAdapter={DateAdapter}></LocalizationProvider>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
         <form onSubmit={this.handleSubmit}>
           {image && <img src={image} alt="eventpic" width="150px" />}
           <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
@@ -245,17 +245,18 @@ class EventForm extends Component {
           /> */}
 
           {/* error */}
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
+        
             <Stack spacing={3}>
               <DateTimePicker
                 label="Date&Time picker"
                 value={date}
                 name="date"
-                onChange={this.handleChange}
+                onChange={(value)=>{
+                  this.setState({date: new Date(value)})
+                  }}
                 renderInput={(params) => <TextField {...params} />}
               />
             </Stack>
-          </LocalizationProvider>
 
           {/* not needed as textfield? */}
           <TextField
@@ -388,6 +389,7 @@ class EventForm extends Component {
           {" "}
           Delete{" "}
         </button>
+        </LocalizationProvider>
       </Box>
       </Container>
     );

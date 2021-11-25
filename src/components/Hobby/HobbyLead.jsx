@@ -2,11 +2,10 @@ import { CardContent } from "@material-ui/core";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import cheeseRolling from "../../images/cheeseRolling.jpeg";
-import { Typography } from "@material-ui/core";
+import { Typography, Button } from "@material-ui/core";
 import Card from "@mui/material/Card";
 import { CardMedia } from "@material-ui/core";
 import { Box } from "@mui/system";
-import { Button } from "@mui/material";
 
 const styles = {
   divStyle: {
