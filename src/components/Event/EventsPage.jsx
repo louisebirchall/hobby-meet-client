@@ -44,8 +44,8 @@ class EventsPage extends Component {
                         <Typography component="div" variant="p">{eachEvent.attendees}</Typography>
                       </CardContent>
                       <CardActions>
-                        <Button href="#text-buttons">
-                          <Link to={`/events/${eachEvent._id}`}>{eachEvent.title}</Link>
+                        <Button href={`/events/${eachEvent._id}`}>
+                          {eachEvent.title}
                         </Button>
                       </CardActions>
                     </Card>

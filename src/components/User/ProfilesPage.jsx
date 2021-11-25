@@ -45,7 +45,7 @@ class ProfilesPage extends Component {
                       )}
                     </CardMedia>
 
-                    <Button href="#text-buttons">
+                    <Button>
                       <Link to={`/profiles/${eachProfile._id}`}>
                         {eachProfile.name}
                       </Link>
