@@ -41,8 +41,11 @@ class Signup extends Component {
             alignItems: "center",
             paddingTop: 10,
           }}
+          style={{ paddingBottom: 60 }}
         >
-        <Typography style={{textAlign: "center"}}>Sign up below to join the fun</Typography>
+          <Typography style={{ textAlign: "center" }}>
+            Sign up below to join the fun
+          </Typography>
           <TextField
             id="outlined-basic"
             label="Username"

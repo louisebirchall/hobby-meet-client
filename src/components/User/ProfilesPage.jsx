@@ -28,31 +28,33 @@ class ProfilesPage extends Component {
     const { listOfProfiles, isLoading } = this.state;
 
     return (
-      <Container>
+      <Container style={{ paddingBottom: 60 }}>
         <Typography variant="h2">All The Profiles</Typography>
         <Grid container spacing={3}>
           {isLoading && <h1>...isLoading</h1>}
 
           {!isLoading &&
             listOfProfiles.map((eachProfile) => {
-            return (
-              <Grid item key={eachProfile._id}>
-                <Card xs={12} md={6} lg={4}>
-                  <Typography variant="h4">{eachProfile.title}</Typography>
+              return (
+                <Grid item key={eachProfile._id}>
+                  <Card xs={12} md={6} lg={4}>
+                    <Typography variant="h4">{eachProfile.title}</Typography>
 
-                  <CardMedia>
-                  {eachProfile.image && ( <img src={eachProfile.image} alt={eachProfile.name}/>  )}
-                  </CardMedia>
+                    <CardMedia>
+                      {eachProfile.image && (
+                        <img src={eachProfile.image} alt={eachProfile.name} />
+                      )}
+                    </CardMedia>
 
-                  <Button href="#text-buttons">
-                    <Link to={`/profiles/${eachProfile._id}`}>
-                      {eachProfile.name}</Link>
-                  </Button>
-                </Card>
-              </Grid>
+                    <Button href="#text-buttons">
+                      <Link to={`/profiles/${eachProfile._id}`}>
+                        {eachProfile.name}
+                      </Link>
+                    </Button>
+                  </Card>
+                </Grid>
               );
-            })
-          }
+            })}
         </Grid>
       </Container>
     );

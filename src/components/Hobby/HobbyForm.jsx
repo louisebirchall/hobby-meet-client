@@ -120,28 +120,25 @@ class HobbyForm extends Component {
         }}
         noValidate
         autoComplete="off"
+        style={{ paddingBottom: 60 }}
       >
-          <form onSubmit={this.handleSubmit}>
-            {image && <img src={image} alt="hobbypic" width="150" />}
-            <PuffLoader
-              loading={imageIsUploading}
-              size="100px"
-              color="orchid"
-            />
+        <form onSubmit={this.handleSubmit}>
+          {image && <img src={image} alt="hobbypic" width="150" />}
+          <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
 
-            <label htmlFor="image">Representative image </label>
-            <input onChange={this.handleImageUpload} type="file" name="image" />
+          <label htmlFor="image">Representative image </label>
+          <input onChange={this.handleImageUpload} type="file" name="image" />
 
-            <TextField
-              onChange={this.handleChange}
-              id="outlined-basic"
-              label="Name"
-              variant="outlined"
-              name="name"
-              value={name}
-            />
+          <TextField
+            onChange={this.handleChange}
+            id="outlined-basic"
+            label="Name"
+            variant="outlined"
+            name="name"
+            value={name}
+          />
 
-            {/* <label htmlFor="name">Name </label>
+          {/* <label htmlFor="name">Name </label>
           <input
             onChange={this.handleChange}
             type="text"
@@ -149,22 +146,22 @@ class HobbyForm extends Component {
             value={name}
           /> */}
 
-            <TextField
-              id="outlined-select"
-              select
-              label="Type Of Activity"
-              value={typeOfActivity}
-              onChange={this.handleChange}
-              // helperText="Please select your currency"
-            >
-              {typeOfActivity.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem> 
-          ))} 
-            </TextField>
+          <TextField
+            id="outlined-select"
+            select
+            label="Type Of Activity"
+            value={typeOfActivity}
+            onChange={this.handleChange}
+            // helperText="Please select your currency"
+          >
+            {typeOfActivity.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
 
-            {/* <label htmlFor="typeOfActivity">Type of Activity </label>
+          {/* <label htmlFor="typeOfActivity">Type of Activity </label>
           <input
             onChange={this.handleChange}
             type="select"
@@ -172,19 +169,19 @@ class HobbyForm extends Component {
             value={typeOfActivity}
           />  */}
 
-            {/* max 4 and then scrollbar, maybe limit the characters? */}
-            <TextField
-              onChange={this.handleChange}
-              id="outlined-multiline-flexible"
-              label="Description"
-              multiline
-              maxRows={4}
-              variant="outlined"
-              name="description"
-              value={description}
-            />
+          {/* max 4 and then scrollbar, maybe limit the characters? */}
+          <TextField
+            onChange={this.handleChange}
+            id="outlined-multiline-flexible"
+            label="Description"
+            multiline
+            maxRows={4}
+            variant="outlined"
+            name="description"
+            value={description}
+          />
 
-            {/* <label htmlFor="description">Description </label>
+          {/* <label htmlFor="description">Description </label>
           <input
             onChange={this.handleChange}
             type="text"
@@ -192,22 +189,22 @@ class HobbyForm extends Component {
             value={description}
           /> */}
 
-            <TextField
-              id="outlined-select"
-              select
-              label="Place Of Activity"
-              value={placeOfActivity}
-              onChange={this.handleChange}
-              // helperText="Please select your currency"
-            >
-              {/* {typeOfActivity.map((option) => (
+          <TextField
+            id="outlined-select"
+            select
+            label="Place Of Activity"
+            value={placeOfActivity}
+            onChange={this.handleChange}
+            // helperText="Please select your currency"
+          >
+            {/* {typeOfActivity.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
           ))} */}
-            </TextField>
+          </TextField>
 
-            {/* <label htmlFor="placeOfActivity">Where do we do this hobby? </label>
+          {/* <label htmlFor="placeOfActivity">Where do we do this hobby? </label>
           <input
             onChange={this.handleChange}
             type="text" 
@@ -215,20 +212,20 @@ class HobbyForm extends Component {
             value={placeOfActivity}
           /> */}
 
-            <button type="submit" disabled={imageIsUploading}>
-              Add this hobby!
-            </button>
+          <button type="submit" disabled={imageIsUploading}>
+            Add this hobby!
+          </button>
 
-            <button type="submit" disabled={imageIsUploading}>
-              Save changes!
-            </button>
+          <button type="submit" disabled={imageIsUploading}>
+            Save changes!
+          </button>
 
-            <p>Do you want to delete this hobby?</p>
-            <button type="submit" disabled={imageIsUploading}>
-              {" "}
-              Delete{" "}
-            </button>
-          </form>
+          <p>Do you want to delete this hobby?</p>
+          <button type="submit" disabled={imageIsUploading}>
+            {" "}
+            Delete{" "}
+          </button>
+        </form>
       </Box>
     );
   }

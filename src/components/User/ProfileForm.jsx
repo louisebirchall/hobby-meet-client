@@ -94,46 +94,80 @@ class ProfileFom extends Component {
     const {username, email, fullName, image, sex, age, type, imageIsUploading} = this.state
     
     return (
+      <div style={{ paddingBottom: 60 }}>
         <div>
-                <div>
-                    <form onSubmit={this.handleSubmit}>
-                        {image && <img src={image} alt="postImg" width="150px" />}
-                        <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
-                        <input onChange={this.handleImageUpload} type="file" name="image" />
+          <form onSubmit={this.handleSubmit}>
+            {image && <img src={image} alt="postImg" width="150px" />}
+            <PuffLoader
+              loading={imageIsUploading}
+              size="100px"
+              color="orchid"
+            />
+            <input onChange={this.handleImageUpload} type="file" name="image" />
 
-                        <label htmlFor="username">Username</label>
-                        <input onChange={this.handleChange} type="text" name="username" value={username}/>
+            <label htmlFor="username">Username</label>
+            <input
+              onChange={this.handleChange}
+              type="text"
+              name="username"
+              value={username}
+            />
 
-                        <label htmlFor="email">Email</label>
-                        <input onChange={this.handleChange} type="text" name="email" value={email}/>
+            <label htmlFor="email">Email</label>
+            <input
+              onChange={this.handleChange}
+              type="text"
+              name="email"
+              value={email}
+            />
 
-                        <label htmlFor="fullName">Full name</label>
-                        <input onChange={this.handleChange} type="text" name="fullName" value={fullName}/>
-            
-                        <label htmlFor="sex">Sex</label>
-                        <select onChange={this.handleChange} type="text" name="sex" value={sex}>
-                                    <option value="Female">Female</option>
-                                    <option value="Male">Male</option>
-                        </select>
+            <label htmlFor="fullName">Full name</label>
+            <input
+              onChange={this.handleChange}
+              type="text"
+              name="fullName"
+              value={fullName}
+            />
 
-                        <label htmlFor="age">Age</label>
-                        <input onChange={this.handleChange} type="text" name="age" value={age}/>
+            <label htmlFor="sex">Sex</label>
+            <select
+              onChange={this.handleChange}
+              type="text"
+              name="sex"
+              value={sex}
+            >
+              <option value="Female">Female</option>
+              <option value="Male">Male</option>
+            </select>
 
-                        <label htmlFor="type">Type of user</label>
-                        <input onChange={this.handleChange} type="text" name="type" value={type}/>
+            <label htmlFor="age">Age</label>
+            <input
+              onChange={this.handleChange}
+              type="text"
+              name="age"
+              value={age}
+            />
 
-                        <button type="submit" disabled={imageIsUploading}>
-                            Save changes!
-                        </button>
-                    </form>
+            <label htmlFor="type">Type of user</label>
+            <input
+              onChange={this.handleChange}
+              type="text"
+              name="type"
+              value={type}
+            />
 
-                    <p>Do you want to delete your profile?</p>
-                    <button type="submit" disabled={imageIsUploading}>
-                        Delete
-                    </button>
-                </div>
+            <button type="submit" disabled={imageIsUploading}>
+              Save changes!
+            </button>
+          </form>
+
+          <p>Do you want to delete your profile?</p>
+          <button type="submit" disabled={imageIsUploading}>
+            Delete
+          </button>
         </div>
-    )
+      </div>
+    );
     }
   };
 

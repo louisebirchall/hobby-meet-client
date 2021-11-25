@@ -24,10 +24,9 @@ class EventsPage extends Component {
     const { listOfEvents, isLoading } = this.state;
 
     return (
-      <Container>
+      <Container style={{ paddingBottom: 60 }}>
         <Typography variant="h2">All The Events</Typography>
         <Grid container spacing={3}>
-        
           {isLoading && <h1>...isLoading</h1>}
 
           {!isLoading &&
@@ -36,19 +35,22 @@ class EventsPage extends Component {
                 <Grid item key={eachEvent._id}>
                   <Card xs={12} md={6} lg={4}>
                     <Typography variant="h4">{eachEvent.title}</Typography>
-              
+
                     <CardMedia>
-                    {eachEvent.image && ( <img src={eachEvent.image} alt={eachEvent.name}/>  )}
+                      {eachEvent.image && (
+                        <img src={eachEvent.image} alt={eachEvent.name} />
+                      )}
                     </CardMedia>
-                    
+
                     <Button href="#text-buttons">
-                      <Link to={`/events/${eachEvent._id}`}>{eachEvent.title}</Link>
+                      <Link to={`/events/${eachEvent._id}`}>
+                        {eachEvent.title}
+                      </Link>
                     </Button>
                   </Card>
                 </Grid>
               );
-            })
-          }
+            })}
         </Grid>
       </Container>
     );

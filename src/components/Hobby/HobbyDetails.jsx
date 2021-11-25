@@ -40,16 +40,19 @@ class HobbyDetails extends Component {
     const { id } = this.props.match.params;
 
     return (
-      <div>
-        
+      <div style={{ paddingBottom: 60 }}>
         {isLoading && <h1>...Loading</h1>}
 
         {!isLoading && (
           <div>
             <h2>{singleHobby.name}</h2>
-            {singleHobby.image && ( 
-              <img src={singleHobby.image} alt={singleHobby.name} width="150px"/> 
-              )}
+            {singleHobby.image && (
+              <img
+                src={singleHobby.image}
+                alt={singleHobby.name}
+                width="150px"
+              />
+            )}
             <p>Description: {singleHobby.description} </p>
             <p>Where: {singleHobby.placeOfActivity} </p>
             <p>Category: {singleHobby.typeOfActivity} </p>

@@ -87,34 +87,43 @@ class CharityForm extends Component {
     const { name, description, image, imageIsUploading } = this.state;
 
     return (
-      <div>
+      <div style={{ paddingBottom: 60 }}>
         <form onSubmit={this.handleSubmit}>
-            {image && <img src={image} alt={name} width="150px"/>}
-            <PuffLoader loading={imageIsUploading} size="100px"color="orchid"/>
-            <label htmlFor="Image">Representative image </label>
-            <input onChange={this.handleImageUpload} type="file" name="image" />
+          {image && <img src={image} alt={name} width="150px" />}
+          <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
+          <label htmlFor="Image">Representative image </label>
+          <input onChange={this.handleImageUpload} type="file" name="image" />
 
           <label htmlFor="name">Name </label>
-          <input onChange={this.handleChange} type="text" name="name" value={name}/>
-          
+          <input
+            onChange={this.handleChange}
+            type="text"
+            name="name"
+            value={name}
+          />
+
           <label htmlFor="description">Description </label>
-          <input onChange={this.handleChange} type="text" name="description" value={description} />
-          
+          <input
+            onChange={this.handleChange}
+            type="text"
+            name="description"
+            value={description}
+          />
+
           <button type="submit" disabled={imageIsUploading}>
             Add this Charity!
-          </button>          
+          </button>
 
           <button type="submit" disabled={imageIsUploading}>
-           Save changes!
-        </button>
-
+            Save changes!
+          </button>
         </form>
 
-       
-
         <p>Do you want to delete this charity?</p>
-        <button type="submit" disabled={imageIsUploading}> Delete </button>
-
+        <button type="submit" disabled={imageIsUploading}>
+          {" "}
+          Delete{" "}
+        </button>
       </div>
     );
   }

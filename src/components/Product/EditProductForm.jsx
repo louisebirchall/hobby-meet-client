@@ -136,7 +136,7 @@ class EditProductForm extends Component {
     } = this.state;
 
     return (
-      <div>
+      <div style={{ paddingBottom: 60 }}>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="title">Product title </label>
           <input

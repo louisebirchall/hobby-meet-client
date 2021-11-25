@@ -165,13 +165,17 @@ class EventForm extends Component {
     } = this.state;
 
     return (
-      <div>
+      <div style={{ paddingBottom: 60 }}>
         <form onSubmit={this.handleSubmit}>
-        {image && <img src={image} alt="eventpic" width="150px"/>}
-            <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
-            <label htmlFor="image">Representative image </label>
-            <input onChange={this.handleImageUpload} type="file" name="event image" />
-            
+          {image && <img src={image} alt="eventpic" width="150px" />}
+          <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
+          <label htmlFor="image">Representative image </label>
+          <input
+            onChange={this.handleImageUpload}
+            type="file"
+            name="event image"
+          />
+
           <label htmlFor="title">Event title </label>
           <input
             onChange={this.handleChange}
@@ -196,10 +200,13 @@ class EventForm extends Component {
             value={equipment}
           />
 
-          <label htmlFor="placeOfActivity"> Where shall we hold this event? </label>
+          <label htmlFor="placeOfActivity">
+            {" "}
+            Where shall we hold this event?{" "}
+          </label>
           <input
             onChange={this.handleChange}
-            type="text" 
+            type="text"
             name="location"
             value={location}
           />
@@ -275,14 +282,15 @@ class EventForm extends Component {
           </button>
 
           <button type="submit" disabled={imageIsUploading}>
-           Save changes!
-        </button>
-
+            Save changes!
+          </button>
         </form>
 
         <p>Do you want to delete this event?</p>
-        <button type="submit" disabled={imageIsUploading}> Delete </button>
-
+        <button type="submit" disabled={imageIsUploading}>
+          {" "}
+          Delete{" "}
+        </button>
       </div>
     );
   }

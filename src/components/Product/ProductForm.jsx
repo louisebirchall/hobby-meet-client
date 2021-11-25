@@ -132,22 +132,21 @@ class ProductForm extends Component {
     } = this.state;
 
     return (
-      <div>
+      <div style={{ paddingBottom: 60 }}>
         <form onSubmit={this.handleSubmit}>
-        {image && <img src={image} alt="productpic" width="150px"/>}
-            <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
-            <label htmlFor="image">Representative image </label>
-            <input onChange={this.handleImageUpload} type="file" name="image" />
+          {image && <img src={image} alt="productpic" width="150px" />}
+          <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
+          <label htmlFor="image">Representative image </label>
+          <input onChange={this.handleImageUpload} type="file" name="image" />
 
           <label htmlFor="title">Product title </label>
           <input
             onChange={this.handleChange}
             type="text"
             name="title"
-            value={title} 
+            value={title}
           />
 
-          
           <label htmlFor="description">Description </label>
           <input
             onChange={this.handleChange}
@@ -155,11 +154,11 @@ class ProductForm extends Component {
             name="description"
             value={description}
           />
-          
+
           <label htmlFor="pricePolicy">Price Policy</label>
           <input
             onChange={this.handleChange}
-            type="text" 
+            type="text"
             name="pricePolicy"
             value={pricePolicy}
           />
@@ -195,7 +194,7 @@ class ProductForm extends Component {
             name="charity_id"
             value={charity_id}
           />
-          
+
           <label htmlFor="pricePolicy">Price Policy </label>
           <input
             onChange={this.handleChange}
@@ -203,7 +202,7 @@ class ProductForm extends Component {
             name="pricePolicy"
             value={pricePolicy}
           />
-          
+
           <label htmlFor="price">Price </label>
           <input
             onChange={this.handleChange}
@@ -211,20 +210,21 @@ class ProductForm extends Component {
             name="price"
             value={price}
           />
-          
+
           <button type="submit" disabled={imageIsUploading}>
             Add this product!
           </button>
 
           <button type="submit" disabled={imageIsUploading}>
-           Save changes!
-        </button>
-
+            Save changes!
+          </button>
         </form>
 
         <p>Do you want to delete this charity?</p>
-        <button type="submit" disabled={imageIsUploading}> Delete </button>
-
+        <button type="submit" disabled={imageIsUploading}>
+          {" "}
+          Delete{" "}
+        </button>
       </div>
     );
   }

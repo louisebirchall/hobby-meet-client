@@ -37,7 +37,7 @@ class Login extends Component {
     const { username, password, error } = this.state;
 
     return (
-      <div>
+      <div style={{ paddingBottom: 60 }}>
         <form onSubmit={this.handleSubmit}>
           <Box
             sx={{
