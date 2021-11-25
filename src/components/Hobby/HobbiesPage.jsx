@@ -42,7 +42,7 @@ class HobbiesPage extends Component {
                       )}
                     </CardMedia>
 
-                    <Button href="#text-buttons">
+                    <Button>
                       <Link to={`/hobbies/${eachHobby._id}`}>
                         {eachHobby.name}
                       </Link>

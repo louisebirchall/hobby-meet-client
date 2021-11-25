@@ -48,7 +48,7 @@ class ProductsPage extends Component {
                       )}
                     </CardMedia>
 
-                    <Button href="#text-buttons">
+                    <Button>
                       <Link to={`/products/${eachProduct._id}`}>
                         {eachProduct.title}
                       </Link>

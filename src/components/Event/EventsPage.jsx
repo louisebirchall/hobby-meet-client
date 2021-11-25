@@ -42,7 +42,7 @@ class EventsPage extends Component {
                       )}
                     </CardMedia>
 
-                    <Button href="#text-buttons">
+                    <Button>
                       <Link to={`/events/${eachEvent._id}`}>
                         {eachEvent.title}
                       </Link>
