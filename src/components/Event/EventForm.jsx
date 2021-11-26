@@ -177,11 +177,14 @@ class EventForm extends Component {
     } = this.state;
 
     return (
-      <Container>
+      <Container align="justify" style={{ paddingBottom: 60 }}>
       <Box
         sx={{
           "& > :not(style)": { m: 1, width: "50ch" },
           "& .MuiTextField-root": { m: 1, width: "50ch" },
+          display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
         }}
         noValidate
         autoComplete="off"

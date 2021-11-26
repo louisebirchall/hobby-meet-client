@@ -87,32 +87,14 @@ class CharityForm extends Component {
 
     return (
       <div style={{ paddingBottom: 60 }}>
-        {/* <form onSubmit={this.handleSubmit}>
-          {image && <img src={image} alt={name} width="150px" />}
-          <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
-          <label htmlFor="Image">Representative image </label>
-          <input onChange={this.handleImageUpload} type="file" name="image" />
-
-          <label htmlFor="name">Name </label>
-          <input
-            onChange={this.handleChange}
-            type="text"
-            name="name"
-            value={name}
-          />
-
-          <label htmlFor="description">Description </label>
-          <input
-            onChange={this.handleChange}
-            type="text"
-            name="description"
-            value={description}
-          /> */}
-      <Container>
+      <Container align="justify" style={{ paddingBottom: 60 }}>
       <Box
       sx={{
         "& > :not(style)": { m: 1, width: "50ch" },
         "& .MuiTextField-root": { m: 1, width: "50ch" },
+        display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
       }}
       noValidate
       autoComplete="off"
