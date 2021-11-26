@@ -6,6 +6,7 @@ import postService from "../services/post-service";
 
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import { Button } from '@material-ui/core';
 
 class AddPostForm extends Component {
   state = {
@@ -81,9 +82,9 @@ class AddPostForm extends Component {
             value={description}
           />
 
-          <button type="submit" disabled={imageIsUploading}>
+          <Button type="submit" disabled={imageIsUploading}>
             Post!
-          </button>
+          </Button>
         </form>
         </Box>
         </div>

@@ -34,7 +34,7 @@ class EventsPage extends Component {
                   <Grid item key={eachEvent._id}>
                     <Card xs={12} md={6} lg={4}>
                       <CardMedia>
-                      {eachEvent.image && ( <img src={eachEvent.image} alt={eachEvent.name}/>  )}
+                      {eachEvent.image && ( <img src={eachEvent.image} alt={eachEvent.name} width="200px"/>  )}
                       </CardMedia>
                       <CardContent sx={{ flex: '1 0 auto' }}>
                         <Typography component="div" variant="h5">{eachEvent.title}</Typography>

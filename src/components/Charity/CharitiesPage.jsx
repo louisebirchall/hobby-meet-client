@@ -33,22 +33,27 @@ class CharitiesPage extends Component {
           {!isLoading &&
           listOfCharities.map((eachCharity) => {
             return (
-              <Grid item  key={eachCharity._id}>
+              <Grid item key={eachCharity._id}>
                 <Card xs={12} md={6} lg={4}>
                   <CardMedia>
-                  {eachCharity.image && ( <img src={eachCharity.image} alt={eachCharity.name}/>  )}
+                  {eachCharity.image && ( 
+                    <div align="center"> <img src={eachCharity.image} alt={eachCharity.name} maxWidth="300px" height="150px"/> </div> )}
                   </CardMedia>
                   <CardContent sx={{ flex: '1 0 auto' }}>
-                    <Typography component="div" variant="h5">{eachCharity.title}</Typography>
+                    {/* <Typography component="div" variant="h5">{eachCharity.name}</Typography> */}
                   </CardContent>
                   <CardActions>
-                    <Button href={`/charities/${eachCharity._id}`}>{eachCharity.name}</Button>
+                    <Button href={`/charities/${eachCharity._id}`}><Typography component="div" variant="h5">{eachCharity.name}</Typography></Button> 
+                    
                   </CardActions>
                 </Card>
               </Grid>
               );
             })}
         </Grid>
+        <div><Button style={{marginTop: 20}} color="secondary" variant="contained" component={Link} to="/charities/create">
+                  Create!
+                </Button></div>
       </Container>
     );
   }
