@@ -43,7 +43,10 @@ class Frontpage extends Component {
             }}
           >
             <h1 style={styles.h1Styles}>
-              Find people to share your hobbies with, or even find a new one, while contribute to a good cause!
+              <span>
+                Find people to share your hobbies with, or even find a new one,
+                while contributing to a good cause!
+              </span>
             </h1>
             <Link to="/signup">
               <Button color="primary" variant="contained">
