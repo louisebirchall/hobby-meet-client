@@ -117,12 +117,15 @@ class ProfileFom extends Component {
         sx={{
           "& > :not(style)": { m: 1, width: "50ch" },
           "& .MuiTextField-root": { m: 1, width: "50ch" },
+          display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
         }}
         noValidate
         autoComplete="off"
       >
         <form onSubmit={this.handleSubmit}>
-          {image && <img src={image} alt="postImg" width="150px" />}
+          {image && <img src={image} alt="postImg" width="150px"/>}
           <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
           <input onChange={this.handleImageUpload} type="file" name="image" />
 
@@ -179,7 +182,7 @@ class ProfileFom extends Component {
           ))}   
           </TextField>*/}
 
-          <FormControl sx={{ m: 1, width: 400 }}>
+          <FormControl sx={{ m: 1, width: 530 }}>
           <InputLabel id="demo-multiple-name-label">Sex</InputLabel>
           <Select
           labelId="demo-simple-select-label"
@@ -222,7 +225,7 @@ class ProfileFom extends Component {
           ))}  
           </TextField> */}
 
-          <FormControl sx={{ m: 1, width: 400 }}>
+          <FormControl sx={{ m: 1, width: 530 }}>
           <InputLabel id="label">Type of user</InputLabel>
           <Select
           labelId="demo-simple-select-label"
