@@ -65,10 +65,10 @@ class ReviewForm extends Component {
         autoComplete="off"
         style={{ paddingBottom: 60 }}
       >
-        <form onSubmit={this.handleSubmit}>
-          <button onClick={this.handleLikes} id={this.props.id}>
+          <button onClick={this.handleLikes}>
             Likes: {likes}
           </button>
+        <form onSubmit={this.handleSubmit}>
 
           <TextField
             onChange={this.handleChange}

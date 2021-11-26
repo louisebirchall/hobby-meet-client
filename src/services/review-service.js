@@ -10,8 +10,9 @@ class ReviewService {
 
   // for "creating" a like
 
-  create = (comment, likes, dislikes) => {
+  create = (id, comment, likes, dislikes) => {
     return this.service.post("/create",  {
+        id,
         comment,
         likes,
         dislikes,

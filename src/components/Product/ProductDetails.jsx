@@ -6,7 +6,7 @@ import AddPostForm from "../AddPostForm";
 import reviewService from "../../services/review-service";
 import ReviewForm from "../ReviewForm";
 //import Payment from "../Payment/Payment"
-import { Button } from "@mui/material";
+import { Container, Button, Card, CardMedia, CardContent, Box, Typography } from "@material-ui/core";
 
 
 class ProductDetails extends Component {
@@ -49,46 +49,48 @@ class ProductDetails extends Component {
     const { id } = this.props.match.params;
 
     return (
-      <div style={{ paddingBottom: 60 }}>
+      <Container style={{ paddingBottom: 60 }}>
         {isLoading && <h1>...Loading</h1>}
 
-        {!isLoading && (
-          <div>
-            <h2>{singleProduct.title}</h2>
-            {singleProduct.image && (
-              <img
-                src={singleProduct.image}
-                alt={singleProduct.title}
-                width="150px"
-              />
-            )}
-            <p>Description: {singleProduct.description} </p>
-            <p>Price Policy: {singleProduct.pricePolicy}</p>
-            <p>Price: {singleProduct.price}</p>
-            <p>Donations for: {singleProduct.charity_id}</p>
-            <p>Made in the event: {singleProduct.event_id}</p>
-            <p>Created by: {singleProduct.user_id}</p>
+        {!isLoading && (            
+          <Card sx={{ display: "flex" }}>
+            <Box sx={{ display: "flex", flexDirection: "row" }}>
+              {singleProduct.image && (
+                <CardMedia
+                  image={singleProduct.image}
+                  alt={singleProduct.title}
+                  width="150px"
+                />
+              )}
+              <CardContent sx={{ flex: "1 0 auto" }}>
+                <Typography component="div" variant="h3">{singleProduct.title}</Typography>
+                <Typography variant="p" color="text.secondary" component="div">Description: {singleProduct.description} </Typography>
+                <Typography variant="p" color="text.secondary" component="div">Price Policy: {singleProduct.pricePolicy}</Typography>
+                <Typography variant="p" color="text.secondary" component="div">Price: {singleProduct.price}</Typography>
+                <Typography variant="p" color="text.secondary" component="div">Donations for: {singleProduct.charity_id}</Typography>
+                <Typography variant="p" color="text.secondary" component="div">Made in the event: {singleProduct.event_id}</Typography>
+                <Typography variant="p" color="text.secondary" component="div">Created by: {singleProduct.user_id}</Typography>
+              </CardContent>
+            </Box>
 
-      
+              <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
+                <Button component={Link} to={"/products/create"}>
+                  Create!
+                </Button>
+                
+                <Button component={Link} to={`/products/${singleProduct._id}/edit`}> Edit </Button>
+                <Button onClick={this.handleDelete}>Delete</Button>
+              </Box>
+              <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
+                <AddPostForm id={id} service={productService} />
 
-            <AddPostForm id={id} service={productService} />
+                {/* <EditPostForm id={id} service={charityService} /> */}
 
-            {/* <EditPostForm id={id} service={charityService} /> */}
-
-            <br />
-            <ReviewForm id={id} service={reviewService} />
-
-            <Button component={Link} to="/products/create">
-              Create!
-            </Button>
-            
-            <Link to={`/products/${singleProduct._id}/edit`}>
-              <button>Edit</button>
-            </Link>
-            <button onClick={this.handleDelete}>Delete</button>
-          </div>
+                <ReviewForm id={id} service={reviewService} />
+              </Box>
+          </Card>
         )}
-      </div>
+      </Container>
     );
   }
 }

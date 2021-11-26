@@ -49,15 +49,16 @@ class Profile extends Component {
                 <Typography variant="p" color="text.secondary" component="div">
                   Email - {user.email}
                 </Typography>
-                <p>Full name - {user.fullName}</p>
-                <p>Hobbies - {user.hobbies}</p>
-                <p>Attending - {user.events}</p>
-                <p>Age - {user.age}</p>
-                <p>User type - {user.type}</p>
-                <p>Gender - {user.sex}</p>
+                <Typography variant="p" color="text.secondary" component="div">Full name - {user.fullName}</Typography>
+                <Typography variant="p" color="text.secondary" component="div">Hobbies - {user.hobbies}</Typography>
+                <Typography variant="p" color="text.secondary" component="div">Attending - {user.events}</Typography>
+                <Typography variant="p" color="text.secondary" component="div">Age - {user.age}</Typography>
+                <Typography variant="p" color="text.secondary" component="div">User type - {user.type}</Typography>
+                <Typography variant="p" color="text.secondary" component="div">Gender - {user.sex}</Typography>
               </CardContent>
+
               <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
-                <Box sx={{ flexGrow: 1 }} />
+                <Box sx={{ flexGrow: 6 }} />
                 <Button
                   color="primary"
                   variant="contained"

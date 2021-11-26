@@ -2,22 +2,13 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import eventService from "../../services/event-service";
 import AddPostForm from "../AddPostForm";
+import EditPostForm from "../Posts/EditPostForm";
 import ReviewForm from "../ReviewForm";
+import {Container, Button,  Typography, Card, CardContent, Box, CardMedia} from '@material-ui/core'
 import reviewService from "../../services/review-service";
-import {
-  Container,
-  Button,
-  Typography,
-  Card,
-  CardContent,
-  Box,
-  CardMedia,
-} from "@material-ui/core";
-
 import userService from "../../services/user-service";
 
-const user = userService.getUser()
-// does this need a promise?
+
 
 class EventDetails extends Component {
   state = {
@@ -28,7 +19,7 @@ class EventDetails extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     eventService
-      .getEvent(id)
+    .getEvent(id)
       .then((response) => {
         this.setState({ singleEvent: response.data, isLoading: false });
       })
@@ -40,18 +31,21 @@ class EventDetails extends Component {
   handleDelete = () => {
     const { id } = this.props.match.params;
     eventService
-      .delete(id)
+    .delete(id)
       .then((data) => {
-        this.props.history.push("/events");
+        this.props.history.push("/events"); // to check if /events here
       })
       .catch((err) => {
         this.props.history.push("/500");
       });
   };
 
+  
+
   render() {
     const { isLoading, singleEvent } = this.state;
-    const formattedDate = singleEvent && new Date(singleEvent.date);
+    const formattedDate = singleEvent && new Date(singleEvent.date)
+    
     const { id } = this.props.match.params;
 
     return (
@@ -81,10 +75,12 @@ class EventDetails extends Component {
                 </Typography>
 
                 <Typography>
-                  Equipment required: {singleEvent.equipment}
+                  Equipment required: {singleEvent.equipment}{" "}
                 </Typography>
 
-                <Typography>Organizer: {singleEvent.organizedBy}</Typography>
+              <Typography>Organizer: {singleEvent.organizedBy}</Typography>
+
+                <Typography> Attending: {singleEvent.attendees}</Typography>
 
                 <Typography>
                   Maximum attendees: {singleEvent.attendees_max}{" "}
@@ -97,24 +93,24 @@ class EventDetails extends Component {
                 <Typography> Price policy: {singleEvent.pricePolicy} </Typography>
 
                 <Typography> price: {singleEvent.price} </Typography>
+            
+  
+              <Button component={Link} to="/events/create">
+              Create!
+            </Button>
 
+              <Button component={Link} to={`/events/${singleEvent._id}/edit`}>
+                Edit
+              </Button>
 
-                <Button component={Link} to="/events/create">
-                  Create!
-                </Button>
-
-                <Button component={Link} to={`/events/${singleEvent._id}/edit`}>
-                  Edit
-                </Button>
-
-                <Button >
+              <Button >
                   Attend Event
-                </Button>
+              </Button>
 
                 <Button onClick={this.handleDelete}>Delete</Button>
-              </CardContent>
-            </Box>
-          )}
+            </CardContent>
+          </Box>
+        )}
         </Card>
 
         <AddPostForm id={id} service={eventService} />
