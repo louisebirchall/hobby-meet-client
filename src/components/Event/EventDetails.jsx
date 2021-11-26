@@ -91,7 +91,7 @@ class EventDetails extends Component {
                 </Typography>
 
                 <Typography>
-                  Maximum attendees: {singleEvent.attendees_min}{" "}
+                  Minimum attendees: {singleEvent.attendees_min}{" "}
                 </Typography>
 
                 <Typography> Price policy: {singleEvent.pricePolicy} </Typography>

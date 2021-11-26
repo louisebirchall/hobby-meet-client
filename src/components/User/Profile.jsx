@@ -33,15 +33,22 @@ class Profile extends Component {
       <Container style={{ paddingBottom: 60 }}>
         {isLoading && <h1>...isLoading</h1>}
         {!isLoading && (
-          <Card sx={{ display: 'flex' }}>
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              <CardMedia component="img"
-              sx={{ width: 151 }}
-              image={user.image}/>
-              
-              <CardContent sx={{ flex: '1 0 auto' }}>
-                <Typography component="div" variant="h3">Username - {user.username}</Typography>
-                <Typography variant="p" color="text.secondary" component="div">Email - {user.email}</Typography>
+          <Card sx={{ display: "flex" }}>
+            <Box sx={{ display: "flex", flexDirection: "row" }}>
+              <CardMedia
+                component="img"
+                sx={{ width: 111 }}
+                image={user.image}
+                width="150"
+              />
+
+              <CardContent sx={{ flex: "1 0 auto" }}>
+                <Typography component="div" variant="h3">
+                  Username - {user.username}
+                </Typography>
+                <Typography variant="p" color="text.secondary" component="div">
+                  Email - {user.email}
+                </Typography>
                 <p>Full name - {user.fullName}</p>
                 <p>Hobbies - {user.hobbies}</p>
                 <p>Attending - {user.events}</p>
@@ -49,7 +56,8 @@ class Profile extends Component {
                 <p>User type - {user.type}</p>
                 <p>Gender - {user.sex}</p>
               </CardContent>
-              <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
+              <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
+                <Box sx={{ flexGrow: 1 }} />
                 <Button
                   color="primary"
                   variant="contained"

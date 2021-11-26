@@ -37,6 +37,16 @@ export class SearchResults extends Component {
         {isLoading && <div>loading</div>}
         {!isLoading && (
           <>
+          {/* {Object.keys(listOfResults).map((eachItem) => {
+            if (listOfResults[eachItem].length === 0) {
+                return null;
+              }
+              return (
+              <div>
+                <p>{listOfResults[eachItem.name && eachItem.title]}</p>
+              </div>
+              )
+          })} */}
             {Object.keys(listOfResults).map((category) => {
               if (listOfResults[category].length === 0) {
                 return null;

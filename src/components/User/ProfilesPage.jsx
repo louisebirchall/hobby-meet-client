@@ -38,7 +38,7 @@ class ProfilesPage extends Component {
                 <Grid item key={eachProfile._id}>
                   <Card xs={12} md={6} lg={4}>
                     <CardMedia>
-                      {eachProfile.image && ( <img src={eachProfile.image} alt={eachProfile.name} />  )}
+                      {eachProfile.image && ( <img src={eachProfile.image} alt={eachProfile.name}/>  )}
                     </CardMedia>
                     <CardContent sx={{ flex: '1 0 auto' }}>
                     <Typography component="div" variant="h4">{eachProfile.title}</Typography>
