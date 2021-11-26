@@ -29,9 +29,6 @@ class AuthService {
     return this.service.get("/loggedin", { withCredentials: true });
   };
 
-  getUser = (id) => {
-    return this.service.get(`${id}`);
-  };
 }
 
 const authService = new AuthService();

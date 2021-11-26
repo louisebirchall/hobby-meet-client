@@ -14,9 +14,9 @@ import {
   CardMedia,
 } from "@material-ui/core";
 
-import authService from "../../services/auth-service";
+import userService from "../../services/user-service";
 
-const user = authService.getUser()
+const user = userService.getUser()
 // does this need a promise?
 
 class EventDetails extends Component {
@@ -107,7 +107,7 @@ class EventDetails extends Component {
                   Edit
                 </Button>
 
-                <Button component={Link} to={`/profile/${user.id}`}>
+                <Button >
                   Attend Event
                 </Button>
 
