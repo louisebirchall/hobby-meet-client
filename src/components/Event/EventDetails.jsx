@@ -6,8 +6,10 @@ import EditPostForm from "../Posts/EditPostForm";
 import ReviewForm from "../ReviewForm";
 import {Container, Button,  Typography, Card, CardContent, Box, CardMedia} from '@material-ui/core'
 import reviewService from "../../services/review-service";
+import authService from "../../services/auth-service";
 
-
+const user = authService.getUser()
+// does this need a promise?
 
 class EventDetails extends Component {
   state = {
@@ -66,13 +68,17 @@ class EventDetails extends Component {
 
                 <Typography>Where: {singleEvent.location} </Typography>
 
-                <Typography> Date:{formattedDate.toLocaleDateString()} {formattedDate.toLocaleTimeString()} </Typography>
+                <Typography>
+                  {" "}
+                  Date:{formattedDate.toLocaleDateString()}{" "}
+                  {formattedDate.toLocaleTimeString()}{" "}
+                </Typography>
 
                 <Typography>
                   Equipment required: {singleEvent.equipment}{" "}
                 </Typography>
 
-              <Typography>Organizer: {singleEvent.organizedBy}</Typography>
+                <Typography>Organizer: {singleEvent.organizedBy}</Typography>
 
                 <Typography> Attending: {singleEvent.attendees}</Typography>
 
@@ -80,21 +86,24 @@ class EventDetails extends Component {
                   Maximum attendees: {singleEvent.attendees_max}{" "}
                 </Typography>
 
-              <Typography> price: {singleEvent.price} </Typography>
-  
-              <Button component={Link} to="/events/create">
-              Create!
-            </Button>
+                <Typography> price: {singleEvent.price} </Typography>
 
-              <Button component={Link} to={`/events/${singleEvent._id}/edit`}>
-                Edit
-              </Button>
-              
-              <Button onClick={this.handleDelete}>Delete</Button>
+                <Button component={Link} to="/events/create">
+                  Create!
+                </Button>
 
-            </CardContent>
-          </Box>
-        )}
+                <Button component={Link} to={`/events/${singleEvent._id}/edit`}>
+                  Edit
+                </Button>
+
+                <Button component={Link} to={`/profile/${user.id}`}>
+                  Attend Event
+                </Button>
+
+                <Button onClick={this.handleDelete}>Delete</Button>
+              </CardContent>
+            </Box>
+          )}
         </Card>
 
         <AddPostForm id={id} service={eventService} />
