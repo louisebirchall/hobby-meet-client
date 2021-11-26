@@ -70,7 +70,7 @@ class EventDetails extends Component {
 
                 <Typography>
                   {" "}
-                  Date:{formattedDate.toLocaleDateString()}{" "}
+                  Date: {formattedDate.toLocaleDateString()}{" "}
                   {formattedDate.toLocaleTimeString()}{" "}
                 </Typography>
 
