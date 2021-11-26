@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import hobbiespic from "../images/hobbies.png";
+import h3 from "../images/hobbies3.jpeg"
+import h4 from "../images/hobbies4.jpeg"
+import h5 from "../images/hobbies5.jpeg"
 import { Paper } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import { Box } from "@mui/system";
 
 const styles = {
   paperContainer: {
-    backgroundImage: `url(${hobbiespic})`,
+    backgroundImage: `url(${h4})`,
     height: "500px",
   },
   // why isn't this working?
@@ -40,7 +43,7 @@ class Frontpage extends Component {
             }}
           >
             <h1 style={styles.h1Styles}>
-              Find people to share your hobbies with, or even find a new one.
+              Find people to share your hobbies with, or even find a new one, while contribute to a good cause!
             </h1>
             <Link to="/signup">
               <Button color="primary" variant="contained">

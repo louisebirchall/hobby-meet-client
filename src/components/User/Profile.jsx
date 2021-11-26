@@ -1,19 +1,8 @@
 import React, { Component } from "react";
 import userService from "../../services/user-service";
 import { NavLink } from "react-router-dom";
-import { Container, Button } from "@material-ui/core";
+import { Container, Button, Card, CardMedia, CardContent, Box, Typography } from "@material-ui/core";
 
-const styles = {
-  divStyle: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    paddingTop: 20,
-    paddingBottom: 20,
-    textAlign: "center",
-  },
-};
 
 class Profile extends Component {
   state = {
@@ -44,24 +33,34 @@ class Profile extends Component {
       <Container style={{ paddingBottom: 60 }}>
         {isLoading && <h1>...isLoading</h1>}
         {!isLoading && (
-          <div style={styles.divStyle}>
-            <img src={user.image} alt="user" width="250" />
-            <h3>Username - {user.username}</h3>
-            <p>Email - {user.email}</p>
-            <p>Full name - {user.fullName}</p>
-            <p>Hobbies - {user.hobbies}</p>
-            <p>Age - {user.age}</p>
-            <p>For - {user.type}</p> // * what's best here?
-            <p>Gender - {user.sex}</p>
-            <Button
-              color="primary"
-              variant="contained"
-              component={NavLink}
-              to={`/profile/${user._id}/edit`}
-            >
-              Edit
-            </Button>
-          </div>
+          <Card sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+              <CardMedia component="img"
+              sx={{ width: 151 }}
+              image={user.image}/>
+              
+              <CardContent sx={{ flex: '1 0 auto' }}>
+                <Typography component="div" variant="h3">Username - {user.username}</Typography>
+                <Typography variant="p" color="text.secondary" component="div">Email - {user.email}</Typography>
+                <p>Full name - {user.fullName}</p>
+                <p>Hobbies - {user.hobbies}</p>
+                <p>Attending - {user.events}</p>
+                <p>Age - {user.age}</p>
+                <p>User type - {user.type}</p>
+                <p>Gender - {user.sex}</p>
+              </CardContent>
+              <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
+                <Button
+                  color="primary"
+                  variant="contained"
+                  component={NavLink}
+                  to={`/profile/${user._id}/edit`}
+                >
+                  Edit
+                </Button>
+              </Box>
+            </Box>
+          </Card>
         )}
       </Container>
     );

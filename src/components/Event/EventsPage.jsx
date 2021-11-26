@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import eventService from "../../services/event-service";
 import {Container, Button, Card, CardMedia, Typography, Grid, CardContent, CardActions} from '@material-ui/core'
 import { useTheme } from '@mui/material/styles';
@@ -32,13 +31,11 @@ class EventsPage extends Component {
             {!isLoading &&
               listOfEvents.map((eachEvent) => {
                 return (
-
-                  <Grid item  key={eachEvent._id}>
-                  <Card xs={12} md={6} lg={4}>
+                  <Grid item key={eachEvent._id}>
+                    <Card xs={12} md={6} lg={4}>
                       <CardMedia>
                       {eachEvent.image && ( <img src={eachEvent.image} alt={eachEvent.name}/>  )}
                       </CardMedia>
-
                       <CardContent sx={{ flex: '1 0 auto' }}>
                         <Typography component="div" variant="h5">{eachEvent.title}</Typography>
                         <Typography component="div" variant="p">{eachEvent.attendees}</Typography>

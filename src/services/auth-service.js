@@ -9,7 +9,11 @@ class AuthService {
   }
 
   signup = (username, email, password) => {
-    return this.service.post("/signup", { username, email, password }, {withCredentials: true});
+    return this.service.post(
+      "/signup",
+      { username, email, password },
+      { withCredentials: true }
+    );
   };
 
   login = (username, password) => {
@@ -23,6 +27,10 @@ class AuthService {
 
   loggedin = () => {
     return this.service.get("/loggedin", { withCredentials: true });
+  };
+
+  getUser = (id) => {
+    return this.service.get(`${id}`);
   };
 }
 

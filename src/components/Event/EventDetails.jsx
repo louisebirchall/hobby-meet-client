@@ -14,6 +14,10 @@ import {
   CardMedia,
 } from "@material-ui/core";
 
+import authService from "../../services/auth-service";
+
+const user = authService.getUser()
+// does this need a promise?
 
 class EventDetails extends Component {
   state = {
@@ -72,7 +76,7 @@ class EventDetails extends Component {
 
                 <Typography>
                   {" "}
-                  Date: {formattedDate.toLocaleDateString()}{" "}
+                  Date:{formattedDate.toLocaleDateString()}{" "}
                   {formattedDate.toLocaleTimeString()}{" "}
                 </Typography>
 
@@ -90,13 +94,10 @@ class EventDetails extends Component {
                   Maximum attendees: {singleEvent.attendees_min}{" "}
                 </Typography>
 
-                <Typography> Attending: {singleEvent.attendees}</Typography>
-
                 <Typography> Price policy: {singleEvent.pricePolicy} </Typography>
 
-                <Typography> Price: {singleEvent.price} </Typography>
+                <Typography> price: {singleEvent.price} </Typography>
 
-                {/* <Typography> For charity: {singleEvent.charity_id} </Typography> */}
 
                 <Button component={Link} to="/events/create">
                   Create!
@@ -104,6 +105,10 @@ class EventDetails extends Component {
 
                 <Button component={Link} to={`/events/${singleEvent._id}/edit`}>
                   Edit
+                </Button>
+
+                <Button component={Link} to={`/profile/${user.id}`}>
+                  Attend Event
                 </Button>
 
                 <Button onClick={this.handleDelete}>Delete</Button>

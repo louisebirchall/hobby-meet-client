@@ -25,7 +25,7 @@ class CharitiesPage extends Component {
     const { listOfCharities, isLoading } = this.state;
 
     return (
-      <Container fixed style={{ paddingBottom: 60 }}>
+      <Container style={{ paddingBottom: 60 }}>
         <Typography variant="h2">All The Charities</Typography>
         <Grid container spacing={3}>
           {isLoading && <h1>...isLoading</h1>}
@@ -36,10 +36,10 @@ class CharitiesPage extends Component {
               <Grid item  key={eachCharity._id}>
                 <Card xs={12} md={6} lg={4}>
                   <CardMedia>
-                  {eachCharity.image && ( <img src={eachCharity.image} alt={eachCharity.name} width="150px"/>  )}
+                  {eachCharity.image && ( <img src={eachCharity.image} alt={eachCharity.name}/>  )}
                   </CardMedia>
-                  <CardContent>
-                    <Typography variant="h4">{eachCharity.title}</Typography>
+                  <CardContent sx={{ flex: '1 0 auto' }}>
+                    <Typography component="div" variant="h5">{eachCharity.title}</Typography>
                   </CardContent>
                   <CardActions>
                     <Button href={`/charities/${eachCharity._id}`}>{eachCharity.name}</Button>

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import hobbyService from "../../services/hobby-service";
 import {Container, Button, Card, CardMedia, Typography, Grid, CardContent, CardActions} from '@material-ui/core'
 
@@ -39,9 +38,8 @@ class HobbiesPage extends Component {
                         <img src={eachHobby.image} alt={eachHobby.name} />
                       )}
                     </CardMedia>
-                    
-                    <CardContent>
-                      <Typography variant="h4">{eachHobby.title}</Typography>
+                    <CardContent sx={{ flex: '1 0 auto' }}>
+                      <Typography component="div" variant="h5">{eachHobby.title}</Typography>
                     </CardContent>
                     <CardActions>
                       <Button href={`/hobbies/${eachHobby._id}`}>
