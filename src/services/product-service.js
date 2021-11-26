@@ -8,17 +8,7 @@ class ProductService {
     });
   }
 
-  create = (title, image, description, pricePolicy, price) => {
-    return this.service.post("/create", {
-      title,
-      image,
-      description,
-      pricePolicy,
-      price,
-    });
-  };
-
-  edit = (id,
+  create = (
     image,
     title,
     description,
@@ -26,17 +16,40 @@ class ProductService {
     pricePolicy,
     price,
     event_id,
-    charity_id) => {
+    charity_id
+  ) => {
+    return this.service.post("/create", {
+      image,
+      title,
+      description,
+      user_id,
+      pricePolicy,
+      price,
+      event_id,
+      charity_id,
+    });
+  };
+
+  edit = (
+    id,
+    image,
+    title,
+    description,
+    user_id,
+    pricePolicy,
+    price,
+    event_id,
+    charity_id
+  ) => {
     return this.service.patch(`/${id}`, {
-      id,
-          image,
-          title,
-          description,
-          user_id,
-          pricePolicy,
-          price,
-          event_id,
-          charity_id
+      image,
+      title,
+      description,
+      user_id,
+      pricePolicy,
+      price,
+      event_id,
+      charity_id,
     });
   };
 
@@ -64,7 +77,6 @@ class ProductService {
       likes,
     });
   };
-  
 }
 const productService = new ProductService();
 export default productService;

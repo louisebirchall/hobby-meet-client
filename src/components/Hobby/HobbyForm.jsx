@@ -10,74 +10,6 @@ import MenuItem from "@mui/material/MenuItem";
 import Container from "@mui/material/Container";
 import { FormControl, InputLabel, Select } from "@mui/material";
 
-// input for selecting typeOfActivity
-// const typeOfActivity = [
-//   {
-//     value: 'Sport',
-//     label: 'Sport',
-//   },
-//   {
-//     value: 'Craft',
-//    label: 'Craft',
-//   },
-//   {
-//     value: 'Workshop',
-//     label: 'Workshop',
-//   },
-//   {
-//     value: 'Music',
-//     label: 'Music',
-//   },
-//   {
-//     value: 'Art',
-//     label: 'Art',
-//   },
-//   {
-//     value: 'Manual',
-//     label: 'Manual',
-//   },
-//   {
-//     value: 'Food',
-//     label: 'Food',
-//   },
-//   {
-//     value: 'Gardening',
-//     label: 'Gardening',
-//   },
-//   {
-//     value: 'MeetUp',
-//     label: 'MeetUp',
-//   },
-//   {
-//     value: 'Language',
-//     label: 'Language',
-//   },
-//   {
-//     value: 'Spiritual',
-//     label: 'Spiritual',
-//   },
-//   {
-//     value: 'Photography',
-//     label: 'Photography',
-//   },
-// ];
-
-// input for selecting placeOfActivity
-// const placeOfActivity = [
-//   {
-//     value: 'Indoors',
-//     label: 'Indoors',
-//   },
-//   {
-//     value: 'Outdoors',
-//     label: 'Outdoors',
-//   },
-//   {
-//     value: 'Indoors & Outdoors',
-//     label: 'Indoors & Outdoors',
-//   },
-// ]
-
 class HobbyForm extends Component {
   state = {
     name: "",
@@ -185,32 +117,36 @@ class HobbyForm extends Component {
     } = this.state;
 
     return (
-     <Container>
-     <Box
-        sx={{
-          "& > :not(style)": { m: 1, width: "50ch" },
-          "& .MuiTextField-root": { m: 1, width: "50ch" },
-        }}
-        noValidate
-        autoComplete="off"
-        style={{ paddingBottom: 60 }}
-      >
-        <form onSubmit={this.handleSubmit}>
-          {image && <img src={image} alt="hobbypic" width="150" />}
-          <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
-          <label htmlFor="image">Representative image </label>
-          <input onChange={this.handleImageUpload} type="file" name="image" />
+      <Container>
+        <Box
+          sx={{
+            "& > :not(style)": { m: 1, width: "50ch" },
+            "& .MuiTextField-root": { m: 1, width: "50ch" },
+          }}
+          noValidate
+          autoComplete="off"
+          style={{ paddingBottom: 60 }}
+        >
+          <form onSubmit={this.handleSubmit}>
+            {image && <img src={image} alt="hobbypic" width="150" />}
+            <PuffLoader
+              loading={imageIsUploading}
+              size="100px"
+              color="orchid"
+            />
+            <label htmlFor="image">Representative image </label>
+            <input onChange={this.handleImageUpload} type="file" name="image" />
 
-          <TextField
-            onChange={this.handleChange}
-            id="outlined-basic"
-            label="Name"
-            variant="outlined"
-            name="name"
-            value={name}
-          />
+            <TextField
+              onChange={this.handleChange}
+              id="outlined-basic"
+              label="Name"
+              variant="outlined"
+              name="name"
+              value={name}
+            />
 
-          {/* <label htmlFor="name">Name </label>
+            {/* <label htmlFor="name">Name </label>
           <input
             onChange={this.handleChange}
             id="outlined-basic"
@@ -234,64 +170,64 @@ class HobbyForm extends Component {
           ))}  
           </TextField> */}
 
-          <FormControl sx={{ m: 1, width: 400 }}>
-            <InputLabel id="demo-multiple-name-label">
-              Please select the type of the activity.
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={typeOfActivity}
-              label="Please select the type of the activity."
-              name="typeOfActivity"
+            <FormControl sx={{ m: 1, width: 400 }}>
+              <InputLabel id="demo-multiple-name-label">
+                Please select the type of the activity.
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={typeOfActivity}
+                label="Please select the type of the activity."
+                name="typeOfActivity"
+                onChange={this.handleChange}
+              >
+                <MenuItem value="Sport">Sport</MenuItem>
+                <MenuItem value="Craft">Craft</MenuItem>
+                <MenuItem value="Workshop">Workshop</MenuItem>
+                <MenuItem value="Music">Music</MenuItem>
+                <MenuItem value="Art">Art</MenuItem>
+                <MenuItem value="Manual">Manual</MenuItem>
+                <MenuItem value="Food">Food</MenuItem>
+                <MenuItem value="Gardening">Gardening</MenuItem>
+                <MenuItem value="MeetUp">MeetUp</MenuItem>
+                <MenuItem value="Language">Language</MenuItem>
+                <MenuItem value="Spiritual">Spiritual</MenuItem>
+                <MenuItem value="Photography">Photography</MenuItem>
+              </Select>
+            </FormControl>
+
+            {/* max 4 and then scrollbar, maybe limit the characters? */}
+            <TextField
               onChange={this.handleChange}
-            >
-              <MenuItem value="Sport">Sport</MenuItem>
-              <MenuItem value="Craft">Craft</MenuItem>
-              <MenuItem value="Workshop">Workshop</MenuItem>
-              <MenuItem value="Music">Music</MenuItem>
-              <MenuItem value="Art">Art</MenuItem>
-              <MenuItem value="Manual">Manual</MenuItem>
-              <MenuItem value="Food">Food</MenuItem>
-              <MenuItem value="Gardening">Gardening</MenuItem>
-              <MenuItem value="MeetUp">MeetUp</MenuItem>
-              <MenuItem value="Language">Language</MenuItem>
-              <MenuItem value="Spiritual">Spiritual</MenuItem>
-              <MenuItem value="Photography">Photography</MenuItem>
-            </Select>
-          </FormControl>
+              id="outlined-multiline-flexible"
+              label="Description"
+              multiline
+              maxRows={4}
+              variant="outlined"
+              name="description"
+              value={description}
+            />
 
-          {/* max 4 and then scrollbar, maybe limit the characters? */}
-          <TextField
-            onChange={this.handleChange}
-            id="outlined-multiline-flexible"
-            label="Description"
-            multiline
-            maxRows={4}
-            variant="outlined"
-            name="description"
-            value={description}
-          />
+            <FormControl sx={{ m: 1, width: 400 }}>
+              <InputLabel id="demo-multiple-name-label">
+                Please select the place of the activity.
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={placeOfActivity}
+                label="Please select the place of the activity."
+                name="placeOfActivity"
+                onChange={this.handleChange}
+              >
+                <MenuItem value="Indoors">Indoors</MenuItem>
+                <MenuItem value="Outdoors">Outdoors</MenuItem>
+                <MenuItem value="Indoors/Outdoors">Indoors/Outdoors</MenuItem>
+              </Select>
+            </FormControl>
 
-          <FormControl sx={{ m: 1, width: 400 }}>
-            <InputLabel id="demo-multiple-name-label">
-              Please select the place of the activity.
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={placeOfActivity}
-              label="Please select the place of the activity."
-              name="placeOfActivity"
-              onChange={this.handleChange}
-            >
-              <MenuItem value="Indoors">Indoors</MenuItem>
-              <MenuItem value="Outdoors">Outdoors</MenuItem>
-              <MenuItem value="Indoors/Outdoors">Indoors/Outdoors</MenuItem>
-            </Select>
-          </FormControl>
-
-          {/*  <TextField
+            {/*  <TextField
             id="outlined-select"
             select
             label="Please select the place of activity"
@@ -305,21 +241,21 @@ class HobbyForm extends Component {
           ))} 
           </TextField>*/}
 
-          <button type="submit" disabled={imageIsUploading}>
-            Add this hobby!
-          </button>
+            <button type="submit" disabled={imageIsUploading}>
+              Add this hobby!
+            </button>
 
-          <button type="submit" disabled={imageIsUploading}>
-            Save changes!
-          </button>
+            <button type="submit" disabled={imageIsUploading}>
+              Save changes!
+            </button>
 
-          <p>Do you want to delete this hobby?</p>
-          <button type="submit" disabled={imageIsUploading}>
-            {" "}
-            Delete{" "}
-          </button>
-        </form>
-      </Box>
+            <p>Do you want to delete this hobby?</p>
+            <button type="submit" disabled={imageIsUploading}>
+              {" "}
+              Delete{" "}
+            </button>
+          </form>
+        </Box>
       </Container>
     );
   }

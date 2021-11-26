@@ -22,7 +22,7 @@ class EventService {
     price,
     location,
     organizedBy,
-    charity_id
+    //charity_id
   ) => {
     return this.service.post("/create", {
       image,
@@ -38,7 +38,7 @@ class EventService {
       price,
       location,
       organizedBy,
-      charity_id,
+     // charity_id,
     });
   };
 
@@ -57,7 +57,7 @@ class EventService {
     price,
     location,
     organizedBy,
-    charity_id
+   // charity_id
   ) => {
     return this.service.patch(`/${id}`,{
         image,
@@ -73,7 +73,7 @@ class EventService {
         price,
         location,
         organizedBy,
-        charity_id,
+        //charity_id,
       })
   };
 

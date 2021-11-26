@@ -63,8 +63,7 @@ class ProductDetails extends Component {
               />
             )}
             <p>Description: {singleProduct.description} </p>
-            <p>Where: {singleProduct.location} </p>
-            <p>Price Policy:{singleProduct.pricePolicy}</p>
+            <p>Price Policy: {singleProduct.pricePolicy}</p>
             <p>Price: {singleProduct.price}</p>
             <p>Donations for: {singleProduct.charity_id}</p>
             <p>Made in the event: {singleProduct.event_id}</p>

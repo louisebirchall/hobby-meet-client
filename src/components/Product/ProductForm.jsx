@@ -83,7 +83,6 @@ class ProductForm extends Component {
     } else {
       productService
         .create(
-          id,
           image,
           title,
           description,

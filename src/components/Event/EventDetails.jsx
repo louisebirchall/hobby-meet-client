@@ -2,11 +2,17 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import eventService from "../../services/event-service";
 import AddPostForm from "../AddPostForm";
-import EditPostForm from "../Posts/EditPostForm";
 import ReviewForm from "../ReviewForm";
-import {Container, Button,  Typography, Card, CardContent, Box, CardMedia} from '@material-ui/core'
 import reviewService from "../../services/review-service";
-
+import {
+  Container,
+  Button,
+  Typography,
+  Card,
+  CardContent,
+  Box,
+  CardMedia,
+} from "@material-ui/core";
 
 
 class EventDetails extends Component {
@@ -18,7 +24,7 @@ class EventDetails extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     eventService
-    .getEvent(id)
+      .getEvent(id)
       .then((response) => {
         this.setState({ singleEvent: response.data, isLoading: false });
       })
@@ -30,20 +36,18 @@ class EventDetails extends Component {
   handleDelete = () => {
     const { id } = this.props.match.params;
     eventService
-    .delete(id)
+      .delete(id)
       .then((data) => {
-        this.props.history.push("/events"); // to check if /events here
+        this.props.history.push("/events");
       })
       .catch((err) => {
         this.props.history.push("/500");
       });
   };
 
-  
-
   render() {
     const { isLoading, singleEvent } = this.state;
-    const formattedDate = singleEvent && new Date(singleEvent.date)
+    const formattedDate = singleEvent && new Date(singleEvent.date);
     const { id } = this.props.match.params;
 
     return (
@@ -58,7 +62,7 @@ class EventDetails extends Component {
 
                 <CardMedia>
                   {singleEvent.image && (
-                    <img src={singleEvent.image} alt={singleEvent.name} />
+                    <img src={singleEvent.image} alt={singleEvent.title} />
                   )}
                 </CardMedia>
 
@@ -66,39 +70,49 @@ class EventDetails extends Component {
 
                 <Typography>Where: {singleEvent.location} </Typography>
 
-                <Typography> Date:{formattedDate.toLocaleDateString()} {formattedDate.toLocaleTimeString()} </Typography>
-
                 <Typography>
-                  Equipment required: {singleEvent.equipment}{" "}
+                  {" "}
+                  Date: {formattedDate.toLocaleDateString()}{" "}
+                  {formattedDate.toLocaleTimeString()}{" "}
                 </Typography>
 
-              <Typography>Organizer: {singleEvent.organizedBy}</Typography>
+                <Typography>
+                  Equipment required: {singleEvent.equipment}
+                </Typography>
 
-                <Typography> Attending: {singleEvent.attendees}</Typography>
+                <Typography>Organizer: {singleEvent.organizedBy}</Typography>
 
                 <Typography>
                   Maximum attendees: {singleEvent.attendees_max}{" "}
                 </Typography>
 
-              <Typography> price: {singleEvent.price} </Typography>
-  
-              <Button component={Link} to="/events/create">
-              Create!
-            </Button>
+                <Typography>
+                  Maximum attendees: {singleEvent.attendees_min}{" "}
+                </Typography>
 
-              <Button component={Link} to={`/events/${singleEvent._id}/edit`}>
-                Edit
-              </Button>
-              
-              <Button onClick={this.handleDelete}>Delete</Button>
+                <Typography> Attending: {singleEvent.attendees}</Typography>
 
-            </CardContent>
-          </Box>
-        )}
+                <Typography> Price policy: {singleEvent.pricePolicy} </Typography>
+
+                <Typography> Price: {singleEvent.price} </Typography>
+
+                {/* <Typography> For charity: {singleEvent.charity_id} </Typography> */}
+
+                <Button component={Link} to="/events/create">
+                  Create!
+                </Button>
+
+                <Button component={Link} to={`/events/${singleEvent._id}/edit`}>
+                  Edit
+                </Button>
+
+                <Button onClick={this.handleDelete}>Delete</Button>
+              </CardContent>
+            </Box>
+          )}
         </Card>
 
         <AddPostForm id={id} service={eventService} />
-        {/* <EditPostForm id={id} service={charityService} /> */}
 
         <ReviewForm id={id} service={reviewService} />
       </Container>

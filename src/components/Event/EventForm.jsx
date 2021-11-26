@@ -30,7 +30,7 @@ class EventForm extends Component {
     price: "",
     location: "",
     organizedBy: "",
-    charity_id: "",
+   // charity_id: "",
     imageIsUploading: false,
   };
 
@@ -71,7 +71,7 @@ class EventForm extends Component {
       price,
       location,
       organizedBy,
-      charity_id,
+     // charity_id,
     } = this.state;
 
     const { id } = this.props.match.params;
@@ -93,7 +93,7 @@ class EventForm extends Component {
           price,
           location,
           organizedBy,
-          charity_id
+         // charity_id
         )
         .then(() => {
           this.props.history.push(`/events/${id}`);
@@ -117,7 +117,7 @@ class EventForm extends Component {
           price,
           location,
           organizedBy,
-          charity_id
+         // charity_id
         )
         .then((response) => {
           this.props.history.push(`/events/${response.data._id}`);
@@ -148,7 +148,7 @@ class EventForm extends Component {
             price: result.data.price,
             location: result.data.location,
             organizedBy: result.data.organizedBy,
-            charity_id: result.data.charity_id,
+           // charity_id: result.data.charity_id,
           });
         })
         .catch((err) => {
@@ -165,13 +165,14 @@ class EventForm extends Component {
       equipment,
       date,
       user_id,
+      attendees,
       attendees_max,
       attendees_min,
       pricePolicy,
       price,
       location,
       organizedBy,
-      charity_id,
+     // charity_id,
       imageIsUploading,
     } = this.state;
 
@@ -234,17 +235,6 @@ class EventForm extends Component {
             name="location"
             value={location}
           />
-
-          {/* <TextField
-            onChange={this.handleChange}
-            id="outlined-basic"
-            label="Date"
-            variant="outlined"
-            name="date"
-            value={date}
-          /> */}
-
-          {/* error */}
         
             <Stack spacing={3}>
               <DateTimePicker
@@ -289,22 +279,7 @@ class EventForm extends Component {
             type="number"
             value={attendees_min}
           />
-
-          {/*  <TextField
-            id="outlined-select"
-            select
-            label="Please select the type of price Policy."
-            value={pricePolicy}
-            onChange={this.handleChange}
-            // helperText="Please select the type of price Policy."
-          >
-            {pricePolicy.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem> 
-          ))}  
-          </TextField>*/}
-
+          
           <FormControl sx={{ m: 1, width: 400 }}>
             <InputLabel id="demo-multiple-name-label">
               Please select the price policy.
@@ -337,7 +312,7 @@ class EventForm extends Component {
 
           <FormControl sx={{ m: 1, width: 400 }}>
             <InputLabel id="demo-multiple-name-label">
-              Who is the organizer?
+              Organizer
             </InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -354,7 +329,7 @@ class EventForm extends Component {
           </FormControl>
 
           {/* causes error 500 */}
-          <FormControl sx={{ m: 1, width: 400 }}>
+          {/* <FormControl sx={{ m: 1, width: 400 }}>
             <InputLabel id="demo-multiple-name-label">
               Which Charity is it for?
             </InputLabel>
@@ -366,14 +341,10 @@ class EventForm extends Component {
               name="charity_id"
               onChange={this.handleChange}
             >
-              <MenuItem value="won't have options to select from db">
-                won't have options to select from db
-              </MenuItem>
-              <MenuItem value="charities need to be hardcoded in here">
-                charities need to be hardcoded in here
-              </MenuItem>
+              <MenuItem value="won't have options to select from db">won't have options to select from db</MenuItem>
+              <MenuItem value="charities need to be hardcoded in here">charities need to be hardcoded in here</MenuItem>
             </Select>
-          </FormControl>
+          </FormControl> */}
 
           <button type="submit" disabled={imageIsUploading}>
             Add this event!
