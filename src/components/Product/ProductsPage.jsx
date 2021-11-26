@@ -58,9 +58,11 @@ class ProductsPage extends Component {
                     </CardActions>
                   </Card>
                 </Grid>
+
               );
             })}
         </Grid>
+                <Button component={Link} to={"/products/create"}>  Create </Button>
       </Container>
     );
   }

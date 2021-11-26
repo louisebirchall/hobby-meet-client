@@ -115,7 +115,7 @@ class ProductForm extends Component {
             pricePolicy: result.data.pricePolicy,
             price: result.data.price,
             event_id: result.data.event_id,
-            charity_id: result.data.charity_id,
+            charity_id: result.data.charity_id.name,
           });
         })
         .catch((err) => {
@@ -239,8 +239,8 @@ class ProductForm extends Component {
               name="charity_id"
               onChange={this.handleChange}
             >
-              <MenuItem value="won't have options to select from db">
-                won't have options to select from db
+              <MenuItem value={charity_id}>
+                  {charity_id}
               </MenuItem>
               <MenuItem value="charities need to be hardcoded in here">
                 charities need to be hardcoded in here

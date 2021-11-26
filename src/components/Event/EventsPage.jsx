@@ -44,6 +44,7 @@ class EventsPage extends Component {
                         <Button href={`/events/${eachEvent._id}`}>
                           {eachEvent.title}
                         </Button>
+                        
                       </CardActions>
                     </Card>
                   </Grid>

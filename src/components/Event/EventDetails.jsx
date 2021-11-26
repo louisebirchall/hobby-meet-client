@@ -49,12 +49,12 @@ class EventDetails extends Component {
     const { id } = this.props.match.params;
 
     return (
-      <Container align="justify" style={{ paddingBottom: 60 }}>
+      <Container style={{ paddingBottom: 60 }}>
         <Card sx={{ display: "flex" }}>
           {isLoading && <h1>...Loading</h1>}
 
           {!isLoading && (
-            <Box sx={{ display: "flex", flexDirection: "column" }}>
+            <Box sx={{ display: "flex", flexDirection: "row" }}>
               <CardContent sx={{ flex: "1 0 auto" }}>
                 <Typography variant="h2">{singleEvent.title}</Typography>
 
@@ -78,7 +78,7 @@ class EventDetails extends Component {
                   Equipment required: {singleEvent.equipment}{" "}
                 </Typography>
 
-              <Typography>Organizer: {singleEvent.organizedBy}</Typography>
+                <Typography>Organizer: {singleEvent.organizedBy}</Typography>
 
                 <Typography> Attending: {singleEvent.attendees}</Typography>
 
@@ -97,7 +97,7 @@ class EventDetails extends Component {
   
               <Button component={Link} to="/events/create">
               Create!
-            </Button>
+              </Button>
 
               <Button component={Link} to={`/events/${singleEvent._id}/edit`}>
                 Edit

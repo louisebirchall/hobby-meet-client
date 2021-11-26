@@ -118,14 +118,7 @@ class PostService {
   // here to add the isLoggedIn user part?
 
   create = (image, description) => {
-    return (
-      this.service.post("/create"),
-      {
-        image,
-        description,
-      }
-    );
-  };
+    return  this.service.post("/create", { image, description, })};
 
   edit = (id, image, description) => {
     return (
