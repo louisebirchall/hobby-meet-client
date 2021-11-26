@@ -35,7 +35,7 @@ export default function SwipeableTemporaryDrawer() {
       <List>
           <ListItem button >
             <ListItemIcon>
-              {/* <Button href="/profiles">Profiles</Button> */}
+              <Button href="/profiles">Profiles</Button>
               <Button href="/hobbies">Hobbies</Button>
               <Button href="/events">Events</Button>
               <Button href="/charities">Charities</Button>

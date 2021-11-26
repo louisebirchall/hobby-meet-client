@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { PuffLoader } from "react-spinners";
 import generalService from "../services/general-service";
 import postService from "../services/post-service";
-// import charityService from "../services/charity-service";
 
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import { Button } from '@material-ui/core';
 
 class AddPostForm extends Component {
   state = {
@@ -20,9 +20,9 @@ class AddPostForm extends Component {
     const { id } = this.props;
 
     postService
-      .createPost(id, description, image)
-      .then(() => {
-        //this.props.history.push("/posts");
+      .create(id, description, image)
+      .then((response) => {
+        this.props.history.push(`/products/${response.data._id}`);
       })
       .catch((err) => {
         //console.log(err)
@@ -56,12 +56,12 @@ class AddPostForm extends Component {
     const { image, description, imageIsUploading } = this.state;
 
     return (
-      <div style={{ paddingBottom: 60 }}>
       <Box
         sx={{
           "& > :not(style)": { m: 1, width: "50ch" },
           "& .MuiTextField-root": { m: 1, width: "50ch" },
         }}
+        style={{ paddingBottom: 60 }}
         noValidate
         autoComplete="off"
       >
@@ -81,12 +81,12 @@ class AddPostForm extends Component {
             value={description}
           />
 
-          <button type="submit" disabled={imageIsUploading}>
+          <Button type="submit" disabled={imageIsUploading}>
             Post!
-          </button>
+          </Button>
         </form>
         </Box>
-        </div>
+
     );
   }
 }

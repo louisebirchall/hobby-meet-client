@@ -10,7 +10,7 @@ import { Box } from "@mui/system";
 
 const styles = {
   paperContainer: {
-    backgroundImage: `url(${h4})`,
+    backgroundImage: `url(${h3})`,
     height: "500px",
   },
   // why isn't this working?

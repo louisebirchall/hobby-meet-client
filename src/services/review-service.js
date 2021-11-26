@@ -10,14 +10,8 @@ class ReviewService {
 
   // for "creating" a like
 
-  create = (id, comment, likes, dislikes) => {
-    return this.service.post("/create",  {
-        id,
-        comment,
-        likes,
-        dislikes,
-      });
-  };
+  create = ( comment, likes, dislikes) => {
+    return this.service.post("/create",  { comment,  likes,})};
 
   // only editing or deleting a like necessary? to discuss!
 

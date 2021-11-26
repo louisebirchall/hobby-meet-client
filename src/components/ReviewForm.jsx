@@ -22,10 +22,10 @@ class ReviewForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { comment, likes } = this.state;
-    const { id } = this.props.match.params;
+    const { id } = this.props;
 
     reviewService
-      .createReview(id, comment, likes)
+      .create(id, comment, likes)
       .then(() => {
         this.props.history.push("/events");
       })

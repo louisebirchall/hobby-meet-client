@@ -50,11 +50,12 @@ class ProductDetails extends Component {
 
     return (
       <Container style={{ paddingBottom: 60 }}>
+          <Card sx={{ display: "flex" }}>
         {isLoading && <h1>...Loading</h1>}
 
         {!isLoading && (            
-          <Card sx={{ display: "flex" }}>
             <Box sx={{ display: "flex", flexDirection: "row" }}>
+              <CardContent sx={{ flex: "1 0 auto" }}>
               {singleProduct.image && (
                 <CardMedia
                   image={singleProduct.image}
@@ -62,34 +63,30 @@ class ProductDetails extends Component {
                   width="150px"
                 />
               )}
-              <CardContent sx={{ flex: "1 0 auto" }}>
                 <Typography component="div" variant="h3">{singleProduct.title}</Typography>
                 <Typography variant="p" color="text.secondary" component="div">Description: {singleProduct.description} </Typography>
                 <Typography variant="p" color="text.secondary" component="div">Price Policy: {singleProduct.pricePolicy}</Typography>
                 <Typography variant="p" color="text.secondary" component="div">Price: {singleProduct.price}</Typography>
                 <Typography variant="p" color="text.secondary" component="div">Donations for: {singleProduct.charity_id}</Typography>
                 <Typography variant="p" color="text.secondary" component="div">Made in the event: {singleProduct.event_id}</Typography>
-                <Typography variant="p" color="text.secondary" component="div">Created by: {singleProduct.user_id}</Typography>
-              </CardContent>
-            </Box>
+                <Typography variant="p" color="text.secondary" component="div">Created by: {singleProduct.username}</Typography>
 
-              <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
-                <Button component={Link} to={"/products/create"}>
-                  Create!
-                </Button>
                 
                 <Button component={Link} to={`/products/${singleProduct._id}/edit`}> Edit </Button>
                 <Button onClick={this.handleDelete}>Delete</Button>
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
+              </CardContent>
+              </Box> 
+              )}   
+          </Card>
+
+              <Box sx={{ display: "flex", flexDirection: "column" }}>
                 <AddPostForm id={id} service={productService} />
 
                 {/* <EditPostForm id={id} service={charityService} /> */}
 
                 <ReviewForm id={id} service={reviewService} />
               </Box>
-          </Card>
-        )}
+        
       </Container>
     );
   }
