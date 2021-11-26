@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import generalService from "../../services/general-service";
 import queryString from "query-string";
+import { useScrollTrigger } from "@material-ui/core";
 
 export class SearchResults extends Component {
   state = {
@@ -54,7 +55,7 @@ export class SearchResults extends Component {
               return (
                 <div>
                   <p>{category}</p>
-                  <p>{listOfResults[category].length}</p>
+                  <p>{listOfResults[category].populate}</p>
                 </div>
               );
             })}
