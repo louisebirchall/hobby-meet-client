@@ -82,6 +82,7 @@ class App extends Component {
           <Navbar isLoggedIn={isLoggedIn} user={user} setUser={this.setUser} />
 
           <Switch>
+          
             <Route exact path="/" render={(props) => <Homepage {...props} />} />
 
             {/* User */}
@@ -235,6 +236,7 @@ class App extends Component {
             <Route path="/500" component={ServerError} />
 
             <Route component={PageNotFound} />
+        
           </Switch>
 
           <Footer />

@@ -42,9 +42,9 @@ class Profile extends Component {
                 width="150"
               />
 
-              <CardContent sx={{ flex: "1 0 auto" }}>
+              <CardContent sx={{ width: 150}}>
                 <Typography component="div" variant="h3">
-                  Username - {user.username}
+                  {user.username}
                 </Typography>
                 <Typography variant="p" color="text.secondary" component="div">
                   Email - {user.email}
@@ -55,10 +55,6 @@ class Profile extends Component {
                 <Typography variant="p" color="text.secondary" component="div">Age - {user.age}</Typography>
                 <Typography variant="p" color="text.secondary" component="div">User type - {user.type}</Typography>
                 <Typography variant="p" color="text.secondary" component="div">Gender - {user.sex}</Typography>
-              </CardContent>
-
-              <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
-                <Box sx={{ flexGrow: 6 }} />
                 <Button
                   color="primary"
                   variant="contained"
@@ -67,7 +63,8 @@ class Profile extends Component {
                 >
                   Edit
                 </Button>
-              </Box>
+              </CardContent>
+
             </Box>
           </Card>
         )}

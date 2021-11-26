@@ -5,7 +5,7 @@ import AddPostForm from "../AddPostForm";
 import EditPostForm from "../Posts/EditPostForm";
 import reviewService from "../../services/review-service";
 import ReviewForm from "../ReviewForm";
-import { Container, Button, Card, CardActions, CardContent, CardMedia, Typography } from "@material-ui/core";
+import { Container, Button, Card, CardContent, CardMedia, Typography, Box } from "@material-ui/core";
 
 class CharityDetails extends Component {
   state = {
@@ -43,45 +43,37 @@ class CharityDetails extends Component {
 
     return (
       <Container style={{ paddingBottom: 60 }}>
-        {isLoading && <h1>...Loading</h1>}
-        {!isLoading && (
-          <div
-            style={{
-              maxWidth: "50%",
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <CardMedia>
-              {singleCharity.image && (
-                <img
-                  src={singleCharity.image}
-                  alt={singleCharity.name}
-                  width="150px"
-                />
-              )}
-            </CardMedia>
-            <div>
-              <h2>{singleCharity.name}</h2>
-              <Typography>Description: {singleCharity.description} </Typography>
-              <CardActions>
-                <Button component={Link} to="/charities/create">
-                  Create!
-                </Button>
-                <Button
-                  component={Link}
-                  to={`/charities/${singleCharity._id}/edit`}
-                >
-                  Edit
-                </Button>
-                <Button onClick={this.handleDelete}>Delete</Button>
-              </CardActions>
-            </div>
-          </div>
-        )}
-        <AddPostForm id={id} service={charityService} />
-        {/* <EditPostForm id={id} service={charityService} /> */}
-        <ReviewForm id={id} service={reviewService} />
+        <Card sx={{ display: "flex" }}>
+          {isLoading && <h1>...Loading</h1>}
+          {!isLoading && (
+          <Box sx={{ display: "flex", flexDirection: "row" }}>
+              <CardContent sx={{ flex: "1 0 auto" }}>
+                  {singleCharity.image && (
+                    <CardMedia
+                      src={singleCharity.image}
+                      alt={singleCharity.name}
+                      width="150px"
+                    />
+                  )}
+
+                <Typography component="div" variant="h3">{singleCharity.name}</Typography>
+                <Typography variant="p" color="text.secondary" component="div">Description: {singleCharity.description} </Typography>
+                
+                  <Button component={Link} to="/charities/create">
+                    Create </Button>
+                  <Button
+                    component={Link}
+                    to={`/charities/${singleCharity._id}/edit`}
+                  > Edit </Button>
+                  <Button onClick={this.handleDelete}>Delete</Button>
+                
+              </CardContent>
+            </Box>
+            )}
+        </Card>
+            <AddPostForm id={id} service={charityService} />
+            {/* <EditPostForm id={id} service={charityService} /> */}
+            <ReviewForm id={id} service={reviewService} />
       </Container>
     );
   }

@@ -1,9 +1,8 @@
-import { Button } from "@material-ui/core";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import hobbyService from "../../services/hobby-service";
 import AddPostForm from "../AddPostForm";
-// import EditPostForm from "../Posts/EditPostForm";
+import { Container, Button, Card, CardContent, CardMedia, Typography, Box } from "@material-ui/core";
 
 class HobbyDetails extends Component {
   state = {
@@ -40,41 +39,39 @@ class HobbyDetails extends Component {
     const { id } = this.props.match.params;
 
     return (
-      <div style={{ paddingBottom: 60 }}>
-        {isLoading && <h1>...Loading</h1>}
+      <Container  style={{ paddingBottom: 60 }}>
+        <Card sx={{ display: "flex" }}>
+          {isLoading && <h1>...Loading</h1>}
+          {!isLoading && (
+            <Box sx={{ display: "flex", flexDirection: "row" }}>
+              <CardContent sx={{ flex: "1 0 auto" }}>
+                {singleHobby.image && (
+                  <CardMedia
+                    src={singleHobby.image}
+                    alt={singleHobby.name}
+                    width="150px"
+                  />
+                )}
+                <Typography component="div" variant="h3">{singleHobby.name}</Typography>
+                <Typography variant="p" color="text.secondary" component="div">Description: {singleHobby.description} </Typography>
+                <Typography variant="p" color="text.secondary" component="div">Where: {singleHobby.placeOfActivity} </Typography>
+                <Typography variant="p" color="text.secondary" component="div">Category: {singleHobby.typeOfActivity} </Typography>
 
-        {!isLoading && (
-          <div>
-            <h2>{singleHobby.name}</h2>
-            {singleHobby.image && (
-              <img
-                src={singleHobby.image}
-                alt={singleHobby.name}
-                width="150px"
-              />
-            )}
-            <p>Description: {singleHobby.description} </p>
-            <p>Where: {singleHobby.placeOfActivity} </p>
-            <p>Category: {singleHobby.typeOfActivity} </p>
+                <Button component={Link} to="/hobbies/create">
+                  Create
+                </Button>
 
-            <AddPostForm id={id} service={hobbyService} />
+                <Button component={Link} to={`/hobbies/${singleHobby._id}/edit`}>
+                  Edit
+                </Button>
 
-            {/* <EditPostForm id={id} service={charityService} /> */}
-
-            <Button component={Link} to="/hobbies/create">
-              Create!
-            </Button>
-
-            <Button component={Link} to={`/hobbies/${singleHobby._id}/edit`}>
-              Edit
-            </Button>
-
-            <Button onClick={this.handleDelete}>Delete</Button>
-
-            {/* <button onClick={this.handleDelete}>Delete</button> */}
-          </div>
+                <Button onClick={this.handleDelete}>Delete</Button>
+              </CardContent>
+            </Box>
         )}
-      </div>
+        </Card>
+            <AddPostForm id={id} service={hobbyService} />
+      </Container>
     );
   }
 }
