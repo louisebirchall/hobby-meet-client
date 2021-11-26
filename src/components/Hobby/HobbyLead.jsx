@@ -34,7 +34,7 @@ const cardH = (
         either find others who are into it, or see what hobbies people are doing
         in your area.
       </Typography>
-      <Box sx={{ height: 10 }} />
+      <Box sx={{ height: 10 }} /> 
       <Link style={styles.buttonStyle} exact to="/hobbies">
         <Button color="primary" variant="contained">
           See all the Hobbies

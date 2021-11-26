@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import userService from '../../services/user-service'
-import {Container, Button, Card, CardMedia, Typography, Grid} from '@material-ui/core'
+import {Container, Button, Card, CardMedia, Typography, Grid, CardContent, CardActions} from '@material-ui/core'
 
 
 class ProfilesPage extends Component {
@@ -37,19 +37,19 @@ class ProfilesPage extends Component {
               return (
                 <Grid item key={eachProfile._id}>
                   <Card xs={12} md={6} lg={4}>
-                    <Typography variant="h4">{eachProfile.title}</Typography>
-
                     <CardMedia>
-                      {eachProfile.image && (
-                        <img src={eachProfile.image} alt={eachProfile.name} />
-                      )}
+                      {eachProfile.image && ( <img src={eachProfile.image} alt={eachProfile.name} />  )}
                     </CardMedia>
-
-                    <Button>
-                      <Link to={`/profiles/${eachProfile._id}`}>
-                        {eachProfile.name}
-                      </Link>
-                    </Button>
+                    <CardContent sx={{ flex: '1 0 auto' }}>
+                    <Typography component="div" variant="h4">{eachProfile.title}</Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button>
+                        <Link to={`/profiles/${eachProfile._id}`}>
+                          {eachProfile.name}
+                        </Link>
+                      </Button>
+                    </CardActions>
                   </Card>
                 </Grid>
               );

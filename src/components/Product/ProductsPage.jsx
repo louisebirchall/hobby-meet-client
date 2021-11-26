@@ -44,27 +44,18 @@ class ProductsPage extends Component {
                 <Grid item key={eachProduct._id}>
                   <Card xs={12} md={6} lg={4}>
                     <CardMedia>
-                      {eachProduct.image && (
-                        <img
-                          src={eachProduct.image}
-                          alt={eachProduct.title}
-                          width="150px"
-                        />
-                      )}
+                      {eachProduct.image && (<img src={eachProduct.image}  alt={eachProduct.title} /> )}
                     </CardMedia>
-                    <CardContent>
-                      <Typography variant="h4">{eachProduct.title}</Typography>
-
-                      <Typography variant="p">{eachProduct.price} €</Typography>
+                    <CardContent sx={{ flex: '1 0 auto' }}>
+                      <Typography component="div" variant="h5">{eachProduct.title}</Typography>
+                      <Typography  component="div" variant="p">{eachProduct.price} €</Typography>
                     </CardContent>
-
                     <CardActions>
                       <Button onClick={() => this.handleClick(eachProduct)} href={'/products/payments/create-payment-intent'}>Buy it!</Button>
                       {itemToBuy && itemToBuy._id === eachProduct._id && <Payment itemToBuy={itemToBuy}/>}
 
                       <Button href={`/products/${eachProduct._id}`}>See details!</Button>
                     </CardActions>
-
                   </Card>
                 </Grid>
               );
