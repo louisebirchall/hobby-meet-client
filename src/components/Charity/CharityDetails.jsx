@@ -6,16 +6,15 @@ import EditPostForm from "../Posts/EditPostForm";
 import reviewService from "../../services/review-service";
 import ReviewForm from "../ReviewForm";
 import {
+  Box,
   Container,
   Button,
   Card,
-  CardActions,
   CardContent,
   CardMedia,
   Typography,
 } from "@material-ui/core";
-import DeleteIcon from '@mui/icons-material/Delete';
-
+import DeleteIcon from "@mui/icons-material/Delete";
 
 class CharityDetails extends Component {
   state = {
@@ -53,43 +52,49 @@ class CharityDetails extends Component {
 
     return (
       <Container style={{ paddingBottom: 60 }}>
-        {isLoading && <h1>...Loading</h1>}
-        {!isLoading && (
-          <div
-            style={{
-              maxWidth: "50%",
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <CardMedia>
-              {singleCharity.image && (
-                <img
-                  src={singleCharity.image}
-                  alt={singleCharity.name}
-                  width="150px"
-                />
-              )}
-            </CardMedia>
-            <div>
-              <h2>{singleCharity.name}</h2>
-              <Typography>Description: {singleCharity.description} </Typography>
-              <CardActions>
+        <Card sx={{ display: "flex" }}>
+          {isLoading && <h1>...Loading</h1>}
+          {!isLoading && (
+            <Box sx={{ display: "flex", flexDirection: "row" }}>
+              <CardContent sx={{ flex: "1 0 auto" }}>
+                {singleCharity.image && (
+                  <CardMedia
+                    src={singleCharity.image}
+                    alt={singleCharity.name}
+                    width="150px"
+                  />
+                )}
+
+                <Typography component="div" variant="h3">
+                  {singleCharity.name}
+                </Typography>
+                <Typography variant="p" color="text.secondary" component="div">
+                  Description: {singleCharity.description}{" "}
+                </Typography>
+
                 {/* <Button component={Link} to="/charities/create">
-                  Create!
-                </Button> */}                
-                <Button color="primary" variant="contained"
+                  Create{" "}
+                </Button> */}
+                <Button
+                color="primary" variant="contained"
                   component={Link}
                   to={`/charities/${singleCharity._id}/edit`}
                 >
-                  Edit
+                  {" "}
+                  Edit{" "}
                 </Button>
-                <Button color="secondary" variant="contained" startIcon={<DeleteIcon />} onClick={this.handleDelete}>Delete</Button>
-
-              </CardActions>
-            </div>
-          </div>
-        )}
+                <Button
+                  color="secondary"
+                  variant="contained"
+                  startIcon={<DeleteIcon />}
+                  onClick={this.handleDelete}
+                >
+                  Delete
+                </Button>
+              </CardContent>
+            </Box>
+          )}
+        </Card>
         <AddPostForm id={id} service={charityService} />
         {/* <EditPostForm id={id} service={charityService} /> */}
         <ReviewForm id={id} service={reviewService} />

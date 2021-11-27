@@ -64,7 +64,7 @@ class Login extends Component {
               id="outlined-basic"
               label="Password"
               variant="outlined"
-              type="text"
+              type="password"
               name="password"
               value={password}
               onChange={this.handleChange}

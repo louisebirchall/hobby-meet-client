@@ -12,7 +12,6 @@ class ProfilesPage extends Component {
 
 
   componentDidMount() {
-
     userService
       .getUsers()
       .then((response) => {

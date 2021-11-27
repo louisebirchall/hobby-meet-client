@@ -7,6 +7,7 @@ import ReviewForm from "../ReviewForm";
 import {Container, Button,  Typography, Card, CardContent, Box, CardMedia} from '@material-ui/core'
 import reviewService from "../../services/review-service";
 import userService from "../../services/user-service";
+import ShowPost from "../Posts/ShowPost";
 
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -110,7 +111,8 @@ class EventDetails extends Component {
           </Box>
         )}
         </Card>
-
+        
+      {/*   <ShowPost /> */}
         <AddPostForm id={id} service={eventService} />
 
         <ReviewForm id={id} service={reviewService} />
