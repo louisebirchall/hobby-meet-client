@@ -15,7 +15,8 @@ import {
 } from "@material-ui/core";
 import reviewService from "../../services/review-service";
 import userService from "../../services/user-service";
-import ShowPost from "../Posts/ShowPost";
+
+import Payment from "../Payment/Payment"
 
 import DeleteIcon from "@mui/icons-material/Delete";
 
@@ -24,6 +25,10 @@ class EventDetails extends Component {
     singleEvent: null,
     isLoading: true,
   };
+
+  handleClick = (item) => {
+    this.setState({itemToBuy: item})
+  }
 
   componentDidMount() {
     const { id } = this.props.match.params;
@@ -60,9 +65,13 @@ class EventDetails extends Component {
         console.log(err);
       });
   };
+  
+  handleNewData = (data) => {
+    this.setState({ singleEvent: data.event });
+  };
 
   render() {
-    const { isLoading, singleEvent } = this.state;
+    const { isLoading, singleEvent, itemToBuy } = this.state;
     const { user } = this.props;
     const formattedDate = singleEvent && new Date(singleEvent.date);
     const userIsAttending =
@@ -70,7 +79,7 @@ class EventDetails extends Component {
       singleEvent &&
       singleEvent.attendees &&
       singleEvent.attendees.includes(user._id);
-
+    
     const { id } = this.props.match.params;
 
     return (
@@ -139,10 +148,17 @@ class EventDetails extends Component {
                   </Button>
                 )}
                 <Box sx={{ flexGrow: 1 }} />
+              <Button color="primary"
+                  variant="contained" onClick={() => this.handleClick(singleEvent)} href={'/products/payments/create-payment-intent'}>
+                  <Typography component="div" variant="p">
+                  Pay to go!</Typography></Button>
+                      {itemToBuy && itemToBuy._id === singleEvent._id && <Payment itemToBuy={singleEvent}/>}
 
-                <Button
-                  color="secondary"
-                  variant="contained"
+
+              <Box sx={{ flexGrow: 1 }} />
+
+              <Button
+                color="secondary" variant="contained"
                   component={Link}
                   to={`/events/${singleEvent._id}/edit`}
                 >
@@ -162,11 +178,13 @@ class EventDetails extends Component {
             </Box>
           )}
         </Card>
+        
+ 
+        <AddPostForm id={id} service={eventService}   saveUpdatedData={this.handleNewData} />
+        {singleEvent &&
+          singleEvent.posts.map((post) => <p>{post.description}</p>)}
 
-        {/*   <ShowPost /> */}
-        <AddPostForm id={id} service={eventService} />
-
-        <ReviewForm id={id} service={reviewService} />
+        {/* <ReviewForm id={id} service={reviewService} /> */}
       </Container>
     );
   }

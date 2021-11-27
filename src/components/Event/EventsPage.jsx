@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import eventService from "../../services/event-service";
 import { Link } from "react-router-dom";
+
 import {
   Container,
   Button,
@@ -19,6 +20,8 @@ class EventsPage extends Component {
     listOfEvents: null,
     isLoading: true,
   };
+
+
 
   componentDidMount() {
     eventService
@@ -65,6 +68,7 @@ class EventsPage extends Component {
                         <Typography component="div" variant="p">{eachEvent.attendees}</Typography> */}
                     </CardContent>
                     <CardActions>
+                    
                       <Button
                         variant="outlined"
                         href={`/events/${eachEvent._id}`}

@@ -34,6 +34,10 @@ class CharityDetails extends Component {
       });
   };
 
+  handleNewData = (data) => {
+    this.setState({ singleCharity: data.charity });
+  };
+
   componentDidMount() {
     const { id } = this.props.match.params;
     charityService
@@ -96,9 +100,11 @@ class CharityDetails extends Component {
             </Box>
           )}
         </Card>
-        <AddPostForm id={id} service={charityService} />
-        {/* <EditPostForm id={id} service={charityService} /> */}
-        <ReviewForm id={id} service={reviewService} />
+        <AddPostForm id={id} service={charityService}  saveUpdatedData={this.handleNewData}
+        />
+        {singleCharity &&
+          singleCharity.posts.map((post) => <p>{post.description}</p>)}
+        {/* <ReviewForm id={id} service={reviewService} /> */}
       </Container>
     );
   }

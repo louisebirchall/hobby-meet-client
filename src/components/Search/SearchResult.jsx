@@ -7,7 +7,7 @@ const SearchResult = ({ result, category }) => {
       <h4>
         <Link to={`/${category}/${result._id}`}>
           {result.title || result.name || result.username}
-        </Link>
+        </Link>        
       </h4>
       <p>{result.description}</p>
     </>

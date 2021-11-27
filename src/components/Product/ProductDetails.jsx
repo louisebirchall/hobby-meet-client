@@ -52,6 +52,10 @@ class ProductDetails extends Component {
       });
   };
 
+  handleNewData = (data) => {
+    this.setState({ singleProduct: data.product });
+  };
+
   render() {
     const { isLoading, singleProduct } = this.state;
     const { id } = this.props.match.params;
@@ -84,15 +88,15 @@ class ProductDetails extends Component {
                 <Typography variant="p" color="text.secondary" component="div">
                   Price: {singleProduct.price}
                 </Typography>
-                <Typography variant="p" color="text.secondary" component="div">
+                {/* <Typography variant="p" color="text.secondary" component="div">
                   Donations for: {singleProduct.charity_id}
-                </Typography>
+                </Typography> */}
                 {/* <Typography variant="p" color="text.secondary" component="div">Made in the event: {singleProduct.event_id}</Typography> */}
-                <Typography variant="p" color="text.secondary" component="div">
+                {/* <Typography variant="p" color="text.secondary" component="div">
                   Created by: {singleProduct.username}
-                </Typography>
+                </Typography> */}
 
-                <Button
+                {/* <Button
                 color="primary"
                   variant="contained"
                   component={Link}
@@ -100,7 +104,7 @@ class ProductDetails extends Component {
                 >
                   {" "}
                   Edit{" "}
-                </Button>
+                </Button> */}
                 <Button
                   color="secondary"
                   variant="contained"
@@ -110,19 +114,21 @@ class ProductDetails extends Component {
                   Delete
                 </Button>
 
-                {/* <Button onClick={this.handleDelete}>Delete</Button> */}
               </CardContent>
             </Box>
           )}
-        </Card>
-
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <AddPostForm id={id} service={productService} />
-
-          {/* <EditPostForm id={id} service={charityService} /> */}
-
-          <ReviewForm id={id} service={reviewService} />
-        </Box>
+    </Card>
+       {/*   <AddPostForm id={id} service={productService}  saveUpdatedData={this.handleNewData}
+          <AddPostForm id={id} service={productService}  saveUpdatedData={this.handleNewData}
+        />
+        {singleProduct &&
+          singleProduct.posts.map((post) => 
+          <>
+            <p>{post.description}</p>
+            <image src={post.image}/>
+           </>      
+          )} */}
+          {/* <ReviewForm id={id} service={reviewService} /> */}
       </Container>
     );
   }

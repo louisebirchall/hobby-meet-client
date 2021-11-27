@@ -300,14 +300,14 @@ class ProductForm extends Component {
                     Add this Product!
                   </Button>
 
-                  <Button
+                  {/* <Button
                     color="secondary"
                     variant="outlined"
                     type="submit"
                     disabled={imageIsUploading}
                   >
                     Save changes!
-                  </Button>
+                  </Button> */}
                 </div>
 
               {/* <button type="submit" disabled={imageIsUploading}>
