@@ -7,7 +7,8 @@ import ReviewForm from "../ReviewForm";
 import {Container, Button,  Typography, Card, CardContent, Box, CardMedia} from '@material-ui/core'
 import reviewService from "../../services/review-service";
 import userService from "../../services/user-service";
-import ShowPost from "../Posts/ShowPost";
+
+import Payment from "../Payment/Payment"
 
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -16,6 +17,10 @@ class EventDetails extends Component {
     singleEvent: null,
     isLoading: true,
   };
+
+  handleClick = (item) => {
+    this.setState({itemToBuy: item})
+  }
 
   componentDidMount() {
     const { id } = this.props.match.params;
@@ -46,7 +51,7 @@ class EventDetails extends Component {
   };
 
   render() {
-    const { isLoading, singleEvent } = this.state;
+    const { isLoading, singleEvent, itemToBuy } = this.state;
     const formattedDate = singleEvent && new Date(singleEvent.date)
     
     const { id } = this.props.match.params;
@@ -108,6 +113,13 @@ class EventDetails extends Component {
               >
                   Attend!
               </Button>
+              <Button color="primary"
+                  variant="contained" onClick={() => this.handleClick(singleEvent)} href={'/products/payments/create-payment-intent'}>
+                  <Typography component="div" variant="p">
+                  Pay to go!</Typography></Button>
+                      {itemToBuy && itemToBuy._id === singleEvent._id && <Payment itemToBuy={singleEvent}/>}
+
+
               <Box sx={{ flexGrow: 1 }} />
 
               <Button
