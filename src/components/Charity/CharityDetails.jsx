@@ -104,7 +104,7 @@ class CharityDetails extends Component {
         />
         {singleCharity &&
           singleCharity.posts.map((post) => <p>{post.description}</p>)}
-        <ReviewForm id={id} service={reviewService} />
+        {/* <ReviewForm id={id} service={reviewService} /> */}
       </Container>
     );
   }

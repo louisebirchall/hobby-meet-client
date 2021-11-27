@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import generalService from "../../services/general-service";
 import queryString from "query-string";
 import { useScrollTrigger } from "@material-ui/core";
+import {Container, Button, Card, CardMedia, Typography, Grid, CardContent, CardActions} from '@material-ui/core'
 import SearchResult from "./SearchResult";
+import { PuffLoader } from "react-spinners";
+
 
 export class SearchResults extends Component {
   state = {
@@ -35,7 +38,10 @@ export class SearchResults extends Component {
 
     return (
       <>
-        <h1>Search Results</h1>
+      <Container style={{ paddingBottom: 60}}>
+      <div align="center" style={{marginBottom: 10}}>  <Typography variant="h2">Here's what you've been searching for</Typography> </div>
+      {/* <Grid container spacing={3} style={{ display: "flex", justifyContent: "center" }}> */}
+          {isLoading && <PuffLoader  size="100px" color="orchid" />}
         {isLoading && <div>loading</div>}
         {!isLoading && (
           <>
@@ -68,7 +74,10 @@ export class SearchResults extends Component {
             })}
           </>
         )}
-      </>
+        {/* </Grid> */}
+     
+       </Container>
+    </>
     );
   }
 }

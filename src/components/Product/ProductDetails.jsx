@@ -88,15 +88,15 @@ class ProductDetails extends Component {
                 <Typography variant="p" color="text.secondary" component="div">
                   Price: {singleProduct.price}
                 </Typography>
-                <Typography variant="p" color="text.secondary" component="div">
+                {/* <Typography variant="p" color="text.secondary" component="div">
                   Donations for: {singleProduct.charity_id}
-                </Typography>
+                </Typography> */}
                 {/* <Typography variant="p" color="text.secondary" component="div">Made in the event: {singleProduct.event_id}</Typography> */}
-                <Typography variant="p" color="text.secondary" component="div">
+                {/* <Typography variant="p" color="text.secondary" component="div">
                   Created by: {singleProduct.username}
-                </Typography>
+                </Typography> */}
 
-                <Button
+                {/* <Button
                 color="primary"
                   variant="contained"
                   component={Link}
@@ -104,7 +104,7 @@ class ProductDetails extends Component {
                 >
                   {" "}
                   Edit{" "}
-                </Button>
+                </Button> */}
                 <Button
                   color="secondary"
                   variant="contained"
