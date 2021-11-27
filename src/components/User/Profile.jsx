@@ -49,7 +49,7 @@ class Profile extends Component {
                    {user.email}
                 </Typography>
                 <Typography variant="p" color="text.secondary" component="div">Name - {user.fullName}</Typography>
-                <Typography variant="p" color="text.secondary" component="div">Hobbies - {user.hobbies}</Typography>
+                {/* <Typography variant="p" color="text.secondary" component="div">Hobbies - {user.hobbies}</Typography> */}
                 <Typography variant="p" color="text.secondary" component="div">Attending - {user.events}</Typography>
                 <Typography variant="p" color="text.secondary" component="div">Age - {user.age}</Typography>
                 <Typography variant="p" color="text.secondary" component="div">User type - {user.type}</Typography>
