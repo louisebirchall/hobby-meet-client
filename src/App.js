@@ -171,7 +171,7 @@ class App extends Component {
             <Route
               exact
               path="/events/:id"
-              render={(props) => <EventDetails {...props} />}
+              render={(props) => <EventDetails {...props} user={user} />}
             />
 
             <Route

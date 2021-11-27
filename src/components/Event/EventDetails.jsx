@@ -4,12 +4,20 @@ import eventService from "../../services/event-service";
 import AddPostForm from "../AddPostForm";
 import EditPostForm from "../Posts/EditPostForm";
 import ReviewForm from "../ReviewForm";
-import {Container, Button,  Typography, Card, CardContent, Box, CardMedia} from '@material-ui/core'
+import {
+  Container,
+  Button,
+  Typography,
+  Card,
+  CardContent,
+  Box,
+  CardMedia,
+} from "@material-ui/core";
 import reviewService from "../../services/review-service";
 import userService from "../../services/user-service";
 import ShowPost from "../Posts/ShowPost";
 
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from "@mui/icons-material/Delete";
 
 class EventDetails extends Component {
   state = {
@@ -20,7 +28,7 @@ class EventDetails extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     eventService
-    .getEvent(id)
+      .getEvent(id)
       .then((response) => {
         this.setState({ singleEvent: response.data, isLoading: false });
       })
@@ -32,7 +40,7 @@ class EventDetails extends Component {
   handleDelete = () => {
     const { id } = this.props.match.params;
     eventService
-    .delete(id)
+      .delete(id)
       .then((data) => {
         this.props.history.push("/events"); // to check if /events here
       })
@@ -41,12 +49,28 @@ class EventDetails extends Component {
       });
   };
 
-  
+  handleAttend = () => {
+    const { id } = this.props.match.params;
+    eventService
+      .attend(id)
+      .then((response) => {
+        this.setState({ singleEvent: response.data.event });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   render() {
     const { isLoading, singleEvent } = this.state;
-    const formattedDate = singleEvent && new Date(singleEvent.date)
-    
+    const { user } = this.props;
+    const formattedDate = singleEvent && new Date(singleEvent.date);
+    const userIsAttending =
+      user &&
+      singleEvent &&
+      singleEvent.attendees &&
+      singleEvent.attendees.includes(user._id);
+
     const { id } = this.props.match.params;
 
     return (
@@ -54,7 +78,7 @@ class EventDetails extends Component {
         <Card sx={{ display: "flex" }}>
           {isLoading && <h1>...Loading</h1>}
 
-          {!isLoading && (
+          {!isLoading && singleEvent && (
             <Box sx={{ display: "flex", flexDirection: "row" }}>
               <CardContent sx={{ flex: "1 0 auto" }}>
                 <Typography variant="h2">{singleEvent.title}</Typography>
@@ -82,34 +106,43 @@ class EventDetails extends Component {
                 <Typography>Organizer: {singleEvent.organizedBy}</Typography>
 
                 <Typography> Attending: {singleEvent.attendees}</Typography>
-
-                <Typography>
-                  Maximum attendees: {singleEvent.attendees_max}{" "}
-                </Typography>
-
-                <Typography>
-                  Minimum attendees: {singleEvent.attendees_min}{" "}
-                </Typography>
-
-                <Typography> Price policy: {singleEvent.pricePolicy} </Typography>
+                {singleEvent.attendees_max && (
+                  <Typography>
+                    Maximum attendees: {singleEvent.attendees_max}
+                  </Typography>
+                )}
+                {singleEvent.attendees_min && (
+                  <Typography>
+                    Minimum attendees: {singleEvent.attendees_min}
+                  </Typography>
+                )}
+                <Typography>Price policy: {singleEvent.pricePolicy}</Typography>
 
                 <Typography> price: {singleEvent.price} </Typography>
-            
-  
-             
 
-              {/* <Button component={Link} to={`/events/${singleEvent._id}/edit`}>
+                {/* <Button component={Link} to={`/events/${singleEvent._id}/edit`}>
                 Edit
               </Button> */}
-              <Button
-              color="primary" variant="contained"
-              >
-                  Attend!
-              </Button>
-              <Box sx={{ flexGrow: 1 }} />
+                <Box sx={{ flexGrow: 1 }} />
+                {userIsAttending && (
+                  <span style={{ color: "#3aefd5" }}>
+                    You're attending this event.
+                  </span>
+                )}
+                {!userIsAttending && (
+                  <Button
+                    onClick={this.handleAttend}
+                    color="primary"
+                    variant="contained"
+                  >
+                    Attend!
+                  </Button>
+                )}
+                <Box sx={{ flexGrow: 1 }} />
 
-              <Button
-                color="secondary" variant="contained"
+                <Button
+                  color="secondary"
+                  variant="contained"
                   component={Link}
                   to={`/events/${singleEvent._id}/edit`}
                 >
@@ -117,16 +150,20 @@ class EventDetails extends Component {
                   Edit{" "}
                 </Button>
 
-              
-
-              <Button color="secondary" variant="contained" startIcon={<DeleteIcon />} onClick={this.handleDelete}>Delete</Button>
-              
-            </CardContent>
-          </Box>
-        )}
+                <Button
+                  color="secondary"
+                  variant="contained"
+                  startIcon={<DeleteIcon />}
+                  onClick={this.handleDelete}
+                >
+                  Delete
+                </Button>
+              </CardContent>
+            </Box>
+          )}
         </Card>
-        
-      {/*   <ShowPost /> */}
+
+        {/*   <ShowPost /> */}
         <AddPostForm id={id} service={eventService} />
 
         <ReviewForm id={id} service={reviewService} />

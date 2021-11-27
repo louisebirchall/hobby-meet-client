@@ -102,6 +102,10 @@ class EventService {
     });
   };
 
+  attend = (id) => {
+    return this.service.post(`/${id}/attend`)
+  }
+
 }
 
 const eventService = new EventService();
