@@ -132,7 +132,7 @@ class EventDetails extends Component {
         {singleEvent &&
           singleEvent.posts.map((post) => <p>{post.description}</p>)}
 
-        <ReviewForm id={id} service={reviewService} />
+        {/* <ReviewForm id={id} service={reviewService} /> */}
       </Container>
     );
   }
