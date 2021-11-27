@@ -102,7 +102,14 @@ class EventDetails extends Component {
                 Edit
               </Button> */}
               <Button
-                color="primary" variant="contained"
+              color="primary" variant="contained"
+              >
+                  Attend!
+              </Button>
+              <Box sx={{ flexGrow: 1 }} />
+
+              <Button
+                color="secondary" variant="contained"
                   component={Link}
                   to={`/events/${singleEvent._id}/edit`}
                 >
@@ -113,9 +120,7 @@ class EventDetails extends Component {
               
 
               <Button color="secondary" variant="contained" startIcon={<DeleteIcon />} onClick={this.handleDelete}>Delete</Button>
-              <Button>
-                  Attend Event
-              </Button>
+              
             </CardContent>
           </Box>
         )}
