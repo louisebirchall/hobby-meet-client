@@ -7,7 +7,12 @@ import { PuffLoader } from "react-spinners";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Container from "@mui/material/Container";
+//import Button from "@mui/material/Button";
 // import MenuItem from '@mui/material/MenuItem';
+//import {Container, Button, TextField, } from '@material-ui/core'
+import { Button } from "@material-ui/core";
+import { Input } from "@material-ui/core";
+import { Card } from "@material-ui/core";
 
 class CharityForm extends Component {
   state = {
@@ -70,15 +75,13 @@ class CharityForm extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     if (id) {
-      charityService
-        .getCharity(id)
-        .then((result) => {
-          this.setState({
-            name: result.data.name,
-            description: result.data.description,
-            image: result.data.image,
-          });
-        })
+      charityService.getCharity(id).then((result) => {
+        this.setState({
+          name: result.data.name,
+          description: result.data.description,
+          image: result.data.image,
+        });
+      });
     }
   }
 
@@ -86,26 +89,47 @@ class CharityForm extends Component {
     const { name, description, image, imageIsUploading } = this.state;
 
     return (
-      <div style={{ paddingBottom: 60 }}>
-      <Container align="justify" style={{ paddingBottom: 60 }}>
-      <Box
-      sx={{
-        "& > :not(style)": { m: 1, width: "50ch" },
-        "& .MuiTextField-root": { m: 1, width: "50ch" },
-        display: "flex",
+      <Container align="justify">
+      <Card style={{ paddingBottom: 60 }}>
+        <Box
+          sx={{
+            "& > :not(style)": { m: 1, width: "50ch" },
+            "& .MuiTextField-root": { m: 1, width: "50ch" },
+            display: "flex",
             flexDirection: "column",
             alignItems: "center",
-      }}
-      noValidate
-      autoComplete="off"
-    >
-        <form onSubmit={this.handleSubmit}>
-            {image && <img src={image} alt={name} width="150px"/>}
-            <PuffLoader loading={imageIsUploading} size="100px"color="orchid"/>
-            <label htmlFor="Image">Representative image </label>
-            <input onChange={this.handleImageUpload} type="file" name="image" />
-          
-          <TextField
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <div align="center">
+            {" "}
+            <h2>Charity Form</h2>
+            <h3>Please enter your information</h3>
+          </div>
+          <form onSubmit={this.handleSubmit}>
+            {image && <img src={image} alt={name} width="150px" />}
+            <PuffLoader
+              loading={imageIsUploading}
+              size="100px"
+              color="orchid"
+            />
+            <div align="center">
+            <label htmlFor="contained-button-file" >
+              <Input 
+                accept="image/*"
+                type="file"
+                onChange={this.handleImageUpload}
+              />
+              {/* <Button onChange={this.handleImageUpload} variant="contained" component="span">
+                Upload
+              </Button> */}
+            </label>
+            </div>
+            {/* <input onChange={this.handleImageUpload} type="file" name="image" /> */}
+
+            <TextField
+              style={{ marginTop: 20 }}
               onChange={this.handleChange}
               id="outlined-basic"
               label="Name"
@@ -113,8 +137,8 @@ class CharityForm extends Component {
               name="name"
               value={name}
             />
-          
-          <TextField
+
+            <TextField
               onChange={this.handleChange}
               id="outlined-multiline-flexible"
               label="Description"
@@ -124,22 +148,38 @@ class CharityForm extends Component {
               name="description"
               value={description}
             />
+            <div
+              style={{
+                marginTop: 10,
+                display: "flex",
+                justifyContent: "space-around",
+              }}
+            >
+              <Button
+                color="primary"
+                variant="outlined"
+                type="submit"
+                disabled={imageIsUploading}
+              >
+                Add this Charity!
+              </Button>
 
-          <button type="submit" disabled={imageIsUploading}>
-            Add this Charity!
-          </button>
+              <Button
+                color="secondary"
+                variant="outlined"
+                type="submit"
+                disabled={imageIsUploading}
+              >
+                Save changes!
+              </Button>
+            </div>
+          </form>
 
-          <button type="submit" disabled={imageIsUploading}>
-            Save changes!
-          </button>
-        </form>
-
-        <p>Do you want to delete this charity?</p>
-        <button type="submit" disabled={imageIsUploading}> Delete </button>
-
-      </Box>
-      </Container>
-    </div>  
+          {/* <p>Do you want to delete this charity?</p>
+        <button type="submit" disabled={imageIsUploading}> Delete </button> */}
+        </Box>
+        </Card>
+      </Container>   
     );
   }
 }

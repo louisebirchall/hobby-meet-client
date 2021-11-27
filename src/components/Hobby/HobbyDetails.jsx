@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import hobbyService from "../../services/hobby-service";
 import AddPostForm from "../AddPostForm";
 // import EditPostForm from "../Posts/EditPostForm";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 class HobbyDetails extends Component {
   state = {
@@ -61,15 +62,16 @@ class HobbyDetails extends Component {
 
             {/* <EditPostForm id={id} service={charityService} /> */}
 
-            <Button component={Link} to="/hobbies/create">
+            {/* <Button component={Link} to="/hobbies/create">
               Create!
-            </Button>
+            </Button> */}
 
             <Button component={Link} to={`/hobbies/${singleHobby._id}/edit`}>
               Edit
             </Button>
+            <Button color="secondary" variant="contained" startIcon={<DeleteIcon />} onClick={this.handleDelete}>Delete</Button>
 
-            <Button onClick={this.handleDelete}>Delete</Button>
+            {/* <Button onClick={this.handleDelete}>Delete</Button> */}
 
             {/* <button onClick={this.handleDelete}>Delete</button> */}
           </div>

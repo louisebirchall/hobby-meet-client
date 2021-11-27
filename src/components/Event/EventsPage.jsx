@@ -1,7 +1,18 @@
 import React, { Component } from "react";
 import eventService from "../../services/event-service";
-import {Container, Button, Card, CardMedia, Typography, Grid, CardContent, CardActions} from '@material-ui/core'
-import { useTheme } from '@mui/material/styles';
+import { Link } from "react-router-dom";
+import {
+  Container,
+  Button,
+  Card,
+  CardMedia,
+  Typography,
+  Grid,
+  CardContent,
+  CardActions,
+} from "@material-ui/core";
+import { useTheme } from "@mui/material/styles";
+import { PuffLoader } from "react-spinners";
 
 class EventsPage extends Component {
   state = {
@@ -10,7 +21,8 @@ class EventsPage extends Component {
   };
 
   componentDidMount() {
-    eventService.getEvents()
+    eventService
+      .getEvents()
       .then((response) => {
         this.setState({ listOfEvents: response.data, isLoading: false });
       })
@@ -24,40 +36,66 @@ class EventsPage extends Component {
 
     return (
       <Container style={{ paddingBottom: 60 }}>
-        <Typography variant="h2">All The Events</Typography>
-        <Grid container spacing={3}>
-          {isLoading && <h1>...isLoading</h1>}
+        <div align="center" style={{ marginBottom: 10 }}>
+          <Typography variant="h2">All The Events</Typography>
+        </div>
+        <Grid
+          container
+          spacing={3}
+          style={{ display: "flex", justifyContent: "center" }}
+        >
+          {isLoading && <PuffLoader size="100px" color="orchid" />}
 
-            {!isLoading &&
-              listOfEvents.map((eachEvent) => {
-                return (
-                  <Grid item key={eachEvent._id}>
-                    <Card xs={12} md={6} lg={4}>
-                      <CardMedia>
-                      {eachEvent.image && ( <img src={eachEvent.image} alt={eachEvent.name} width="200px"/>  )}
-                      </CardMedia>
-                      <CardContent sx={{ flex: '1 0 auto' }}>
-                        <Typography component="div" variant="h5">{eachEvent.title}</Typography>
-                        <Typography component="div" variant="p">{eachEvent.attendees}</Typography>
-                      </CardContent>
-                      <CardActions>
-                        <Button href={`/events/${eachEvent._id}`}>
+          {!isLoading &&
+            listOfEvents.map((eachEvent) => {
+              return (
+                <Grid item key={eachEvent._id}>
+                  <Card xs={12} md={6} lg={4}>
+                    <CardMedia align="center">
+                      {eachEvent.image && (
+                        <img
+                          src={eachEvent.image}
+                          alt={eachEvent.name}
+                          height="150px"
+                        />
+                      )}
+                    </CardMedia>
+                    <CardContent sx={{ flex: "1 0 auto" }}>
+                      {/* <Typography component="div" variant="h5">{eachEvent.title}</Typography>
+                        <Typography component="div" variant="p">{eachEvent.attendees}</Typography> */}
+                    </CardContent>
+                    <CardActions>
+                      <Button
+                        variant="outlined"
+                        href={`/events/${eachEvent._id}`}
+                      >
+                        <Typography component="div" variant="h5">
                           {eachEvent.title}
-                        </Button>
-                        
-                      </CardActions>
-                    </Card>
-                  </Grid>
+                        </Typography>
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </Grid>
               );
             })}
         </Grid>
+        <div align="center">
+          <Button
+            style={{ marginTop: 20 }}
+            color="secondary"
+            variant="contained"
+            component={Link}
+            to="/events/create"
+          >
+            Add Event!
+          </Button>
+        </div>
       </Container>
     );
   }
-} 
+}
 
 export default EventsPage;
-
 
 /* return (
   <Container>

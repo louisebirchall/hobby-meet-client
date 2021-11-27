@@ -8,7 +8,9 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import Container from "@mui/material/Container";
-import { FormControl, InputLabel, Select } from "@mui/material";
+import { Card, FormControl, InputLabel, Select } from "@mui/material";
+import { Button } from "@material-ui/core";
+import { Input } from "@material-ui/core";
 
 class HobbyForm extends Component {
   state = {
@@ -118,6 +120,7 @@ class HobbyForm extends Component {
 
     return (
       <Container align="justify" style={{ paddingBottom: 60 }}>
+      <Card>
         <Box
           sx={{
             "& > :not(style)": { m: 1, width: "50ch" },
@@ -130,17 +133,35 @@ class HobbyForm extends Component {
           autoComplete="off"
           style={{ paddingBottom: 60 }}
         >
+        <div align="center">
+            {" "}
+            <h2>Hobby Form</h2>
+            <h3>Please enter your information</h3>
+          </div>
           <form onSubmit={this.handleSubmit}>
-            {image && <img src={image} alt="hobbypic" width="150" />}
+            {image && <img src={image} alt="{name}" width="150" />}
             <PuffLoader
               loading={imageIsUploading}
               size="100px"
               color="orchid"
             />
-            <label htmlFor="image">Representative image </label>
-            <input onChange={this.handleImageUpload} type="file" name="image" />
+            <div align="center">
+            <label htmlFor="contained-button-file" >
+              <Input 
+                accept="image/*"
+                type="file"
+                onChange={this.handleImageUpload}
+              />
+              {/* <Button onChange={this.handleImageUpload} variant="contained" component="span">
+                Upload
+              </Button> */}
+            </label>
+            </div>
+            {/* <label htmlFor="image">Representative image </label>
+            <input onChange={this.handleImageUpload} type="file" name="image" /> */}
 
             <TextField
+              style={{ marginTop: 20 }}
               onChange={this.handleChange}
               id="outlined-basic"
               label="Name"
@@ -159,29 +180,29 @@ class HobbyForm extends Component {
             value={name}
           />
 
-          {/*  <TextField
-            id="outlined-select"
-            select
-            label="Please select the type of the activity."
-            value={typeOfActivity}
-            onChange={this.handleChange}
-          >
-            {typeOfActivity.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem> 
-          ))}  
-          </TextField> */}
 
-            <FormControl sx={{ m: 1, width: 400 }}>
+          {/* max 4 and then scrollbar, maybe limit the characters? */}
+          <TextField
+              onChange={this.handleChange}
+              id="outlined-multiline-flexible"
+              label="Description"
+              multiline
+              maxRows={4}
+              variant="outlined"
+              name="description"
+              value={description}
+            />
+
+
+            <FormControl sx={{ m: 1, width: 530 }}>
               <InputLabel id="demo-multiple-name-label">
-                Please select the type of the activity.
+                Please select the type of the activity
               </InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={typeOfActivity}
-                label="Please select the type of the activity."
+                label="Please select the type of the activity"
                 name="typeOfActivity"
                 onChange={this.handleChange}
               >
@@ -200,27 +221,17 @@ class HobbyForm extends Component {
               </Select>
             </FormControl>
 
-            {/* max 4 and then scrollbar, maybe limit the characters? */}
-            <TextField
-              onChange={this.handleChange}
-              id="outlined-multiline-flexible"
-              label="Description"
-              multiline
-              maxRows={4}
-              variant="outlined"
-              name="description"
-              value={description}
-            />
+            
 
-            <FormControl sx={{ m: 1, width: 400 }}>
+            <FormControl sx={{ m: 1, width: 530 }}>
               <InputLabel id="demo-multiple-name-label">
-                Please select the place of the activity.
+                Please select the place of the activity
               </InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={placeOfActivity}
-                label="Please select the place of the activity."
+                label="Please select the place of the activity"
                 name="placeOfActivity"
                 onChange={this.handleChange}
               >
@@ -244,7 +255,33 @@ class HobbyForm extends Component {
           ))} 
           </TextField>*/}
 
-            <button type="submit" disabled={imageIsUploading}>
+          <div
+                style={{
+                  marginTop: 10,
+                  display: "flex",
+                  justifyContent: "space-around",
+                }}
+              >
+                <Button
+                  color="primary"
+                  variant="outlined"
+                  type="submit"
+                  disabled={imageIsUploading}
+                >
+                  Add this Hobby!
+                </Button>
+
+                <Button
+                  color="secondary"
+                  variant="outlined"
+                  type="submit"
+                  disabled={imageIsUploading}
+                >
+                  Save changes!
+                </Button>
+              </div>
+
+            {/* <button type="submit" disabled={imageIsUploading}>
               Add this hobby!
             </button>
 
@@ -256,9 +293,13 @@ class HobbyForm extends Component {
             <button type="submit" disabled={imageIsUploading}>
               {" "}
               Delete{" "}
-            </button>
+            </button> */}
+
           </form>
+
         </Box>
+        </Card>
+
       </Container>
     );
   }

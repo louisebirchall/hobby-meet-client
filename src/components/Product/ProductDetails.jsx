@@ -7,6 +7,7 @@ import reviewService from "../../services/review-service";
 import ReviewForm from "../ReviewForm";
 //import Payment from "../Payment/Payment"
 import { Container, Button, Card, CardMedia, CardContent, Box, Typography } from "@material-ui/core";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 class ProductDetails extends Component {
@@ -68,12 +69,13 @@ class ProductDetails extends Component {
                 <Typography variant="p" color="text.secondary" component="div">Price Policy: {singleProduct.pricePolicy}</Typography>
                 <Typography variant="p" color="text.secondary" component="div">Price: {singleProduct.price}</Typography>
                 <Typography variant="p" color="text.secondary" component="div">Donations for: {singleProduct.charity_id}</Typography>
-                <Typography variant="p" color="text.secondary" component="div">Made in the event: {singleProduct.event_id}</Typography>
+                {/* <Typography variant="p" color="text.secondary" component="div">Made in the event: {singleProduct.event_id}</Typography> */}
                 <Typography variant="p" color="text.secondary" component="div">Created by: {singleProduct.username}</Typography>
 
-                
                 <Button component={Link} to={`/products/${singleProduct._id}/edit`}> Edit </Button>
-                <Button onClick={this.handleDelete}>Delete</Button>
+                <Button color="secondary" variant="contained" startIcon={<DeleteIcon />} onClick={this.handleDelete}>Delete</Button>
+
+                {/* <Button onClick={this.handleDelete}>Delete</Button> */}
               </CardContent>
               </Box> 
               )}   

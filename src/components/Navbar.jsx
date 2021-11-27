@@ -69,7 +69,7 @@ function Navbar({ isLoggedIn, user, setUser }) {
       <ThemeProvider theme={theme}>
         <AppBar
           position="static"
-          style={{ backgroundColor: "#3aefd5", Typography: "Montserrat" }}
+          style={{ backgroundColor: "#3aefd5", Typography: "Montserrat", marginBottom:"20px" }}
         >
           <Toolbar>
             <IconButton>

@@ -5,7 +5,17 @@ import AddPostForm from "../AddPostForm";
 import EditPostForm from "../Posts/EditPostForm";
 import reviewService from "../../services/review-service";
 import ReviewForm from "../ReviewForm";
-import { Container, Button, Card, CardActions, CardContent, CardMedia, Typography } from "@material-ui/core";
+import {
+  Container,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@material-ui/core";
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 class CharityDetails extends Component {
   state = {
@@ -65,16 +75,17 @@ class CharityDetails extends Component {
               <h2>{singleCharity.name}</h2>
               <Typography>Description: {singleCharity.description} </Typography>
               <CardActions>
-                <Button component={Link} to="/charities/create">
+                {/* <Button component={Link} to="/charities/create">
                   Create!
-                </Button>
-                <Button
+                </Button> */}                
+                <Button color="primary" variant="contained"
                   component={Link}
                   to={`/charities/${singleCharity._id}/edit`}
                 >
                   Edit
                 </Button>
-                <Button onClick={this.handleDelete}>Delete</Button>
+                <Button color="secondary" variant="contained" startIcon={<DeleteIcon />} onClick={this.handleDelete}>Delete</Button>
+
               </CardActions>
             </div>
           </div>

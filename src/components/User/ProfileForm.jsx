@@ -8,10 +8,11 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
-import Select from '@mui/material/Select';
-import { FormControl, InputLabel } from "@mui/material";
-
-
+import Select from "@mui/material/Select";
+import { FormControl, Input, InputLabel } from "@mui/material";
+import { Button } from "@material-ui/core";
+import { Card } from "@material-ui/core";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 class ProfileFom extends Component {
   state = {
@@ -112,51 +113,81 @@ class ProfileFom extends Component {
     } = this.state;
 
     return (
-      <Container>
-      <Box
-        sx={{
-          "& > :not(style)": { m: 1, width: "50ch" },
-          "& .MuiTextField-root": { m: 1, width: "50ch" },
-          display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <form onSubmit={this.handleSubmit}>
-          {image && <img src={image} alt="postImg" width="150px"/>}
-          <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
-          <input onChange={this.handleImageUpload} type="file" name="image" />
+      <Container align="justify" style={{ paddingBottom: 60 }}>
+        <Card>
+          <Box
+            sx={{
+              "& > :not(style)": { m: 1, width: "50ch" },
+              "& .MuiTextField-root": { m: 1, width: "50ch" },
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+            noValidate
+            autoComplete="off"
+          >
+          <div align="center">
+              {" "}
+              <h2>Profile Changes</h2>
+              <h3>Please update your profile</h3>
+              </div>
+            <form onSubmit={this.handleSubmit}>
+              <div align="center">
+              {image && <img style={{borderRadius: 100, marginBottom: 10}} src={image} alt="postImg" width="150px" />}
+              <PuffLoader
+                loading={imageIsUploading}
+                size="100px"
+                color="orchid"
+              />
+              </div>
 
-          <TextField
-            onChange={this.handleChange}
-            id="outlined-basic"
-            label="Username"
-            variant="outlined"
-            name="username"
-            value={username}
-          />
+<div align="center">
+                  <label htmlFor="contained-button-file">
+                    <Input
+                      accept="image/*"
+                      type="file"
+                      onChange={this.handleImageUpload}
+                    />
+                    {/* <Button onChange={this.handleImageUpload} variant="contained" component="span">
+                Upload
+              </Button> */}
+                  </label>
+                </div>
 
-          <TextField
-            onChange={this.handleChange}
-            id="outlined-basic"
-            label="@"
-            variant="outlined"
-            name="email"
-            value={email}
-          />
+              {/* <input
+                onChange={this.handleImageUpload}
+                type="file"
+                name="image"
+              /> */}
 
-          <TextField
-            onChange={this.handleChange}
-            id="outlined-basic"
-            label="Full name"
-            variant="outlined"
-            name="fullName"
-            value={fullName}
-          />
+              <TextField
+                style={{ marginTop: 20 }}
+                onChange={this.handleChange}
+                id="outlined-basic"
+                label="Username"
+                variant="outlined"
+                name="username"
+                value={username}
+              />
 
-          {/* <label htmlFor="sex">Sex</label>
+              <TextField
+                onChange={this.handleChange}
+                id="outlined-basic"
+                label="Full name"
+                variant="outlined"
+                name="fullName"
+                value={fullName}
+              />
+              <TextField
+                onChange={this.handleChange}
+                id="outlined-basic"
+                label="@"
+                variant="outlined"
+                name="email"
+                value={email}
+              />
+
+              {/* <label htmlFor="sex">Sex</label>
           <select
             onChange={this.handleChange}
             type="text"
@@ -167,7 +198,7 @@ class ProfileFom extends Component {
             <option value="Male">Male</option>
           </select> */}
 
-          {/*<TextField
+              {/*<TextField
             id="outlined-select"
             select
             label="Sex"
@@ -182,35 +213,33 @@ class ProfileFom extends Component {
           ))}   
           </TextField>*/}
 
-          <FormControl sx={{ m: 1, width: 530 }}>
-          <InputLabel id="demo-multiple-name-label">Sex</InputLabel>
-          <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={sex}
-          label="Sex"
-          name="sex"
-          onChange={this.handleChange}
-          >
-          <MenuItem value="Female">Female</MenuItem>
-          <MenuItem value="Male">Male</MenuItem>
-          </Select>
-          </FormControl>
-    
-          
+              <FormControl sx={{ m: 1, width: 530 }}>
+                <InputLabel id="demo-multiple-name-label">Sex</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={sex}
+                  label="Sex"
+                  name="sex"
+                  onChange={this.handleChange}
+                >
+                  <MenuItem value="Female">Female</MenuItem>
+                  <MenuItem value="Male">Male</MenuItem>
+                </Select>
+              </FormControl>
 
-          <TextField
-            //  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
-            onChange={this.handleChange}
-            id="outlined-basic"
-            label="Age"
-            variant="outlined"
-            name="age"
-            type="number"
-            value={age}
-          />
+              <TextField
+                //  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                onChange={this.handleChange}
+                id="outlined-basic"
+                label="Age"
+                variant="outlined"
+                name="age"
+                type="number"
+                value={age}
+              />
 
-          {/* <TextField
+              {/* <TextField
             id="outlined-select"
             select
             label="Type of user"
@@ -225,31 +254,50 @@ class ProfileFom extends Component {
           ))}  
           </TextField> */}
 
-          <FormControl sx={{ m: 1, width: 530 }}>
-          <InputLabel id="label">Type of user</InputLabel>
-          <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={type}
-          name="type"
-          label="Type of user"
-          onChange={this.handleChange}
-          >
-          <MenuItem value="Company">Company</MenuItem>
-          <MenuItem value="User">User</MenuItem>
-          </Select>
-          </FormControl>
-
-          <button type="submit" disabled={imageIsUploading}>
-            Save changes!
-          </button>
-        </form>
-
-        <p>Do you want to delete your profile?</p>
-        <button type="submit" disabled={imageIsUploading}>
-          Delete
-        </button>
-      </Box>
+              <FormControl sx={{ m: 1, width: 530 }}>
+                <InputLabel id="label">Type of user</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={type}
+                  name="type"
+                  label="Type of user"
+                  onChange={this.handleChange}
+                >
+                  <MenuItem value="Company">Company</MenuItem>
+                  <MenuItem value="User">User</MenuItem>
+                </Select>
+              </FormControl>
+              <div
+                style={{
+                  marginTop: 10,
+                  display: "flex",
+                  justifyContent: "space-around",
+                }}
+              >
+                <Button
+                  color="primary"
+                  variant="outlined"
+                  type="submit"
+                  disabled={imageIsUploading}
+                >
+                  Save changes!
+                </Button>
+              </div>
+            </form>
+            <div align="center" style={{ marginBottom: 30}}>
+              <p>Do you want to delete your profile?</p>
+              <Button
+                color="secondary"
+                variant="contained"
+                startIcon={<DeleteIcon />}
+                onClick={this.handleDelete}
+              >
+                Delete
+              </Button>
+            </div>
+          </Box>
+        </Card>
       </Container>
     );
   }

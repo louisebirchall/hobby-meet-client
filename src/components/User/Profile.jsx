@@ -35,11 +35,11 @@ class Profile extends Component {
         {!isLoading && (
           <Card sx={{ display: "flex" }}>
             <Box sx={{ display: "flex", flexDirection: "row" }}>
-              <CardMedia
+              <CardMedia                
                 component="img"
-                sx={{ width: 111 }}
+                sx={{ width: 111, borderRadius: 80}}
                 image={user.image}
-                width="150"
+                alt={user.username}
               />
 
               <CardContent sx={{ flex: "1 0 auto" }}>

@@ -7,8 +7,10 @@ import generalService from "../../services/general-service";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
-import { FormControl, InputLabel, Select } from "@mui/material";
+import { FormControl, Input, InputLabel, Select } from "@mui/material";
 import Container from "@mui/material/Container";
+import { Button } from "@material-ui/core";
+import { Card } from "@material-ui/core";
 
 class ProductForm extends Component {
   state = {
@@ -18,7 +20,7 @@ class ProductForm extends Component {
     user_id: "",
     pricePolicy: "",
     price: "",
-    event_id: "",    
+    event_id: "",
     charity_id: "",
     imageIsUploading: false,
   };
@@ -139,85 +141,110 @@ class ProductForm extends Component {
 
     return (
       <Container align="justify" style={{ paddingBottom: 60 }}>
-      <Box
-        sx={{
-          "& > :not(style)": { m: 1, width: "50ch" },
-          "& .MuiTextField-root": { m: 1, width: "50ch" },
-          display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-        }}
-        noValidate
-        autoComplete="off"
-        style={{ paddingBottom: 60 }}
-      >
-        <form onSubmit={this.handleSubmit}>
-          {image && <img src={image} alt="productpic" width="150px" />}
-          <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
-          <label htmlFor="image">Representative image </label>
-          <input onChange={this.handleImageUpload} type="file" name="image" />
+        <Card>
+          <Box
+            sx={{
+              "& > :not(style)": { m: 1, width: "50ch" },
+              "& .MuiTextField-root": { m: 1, width: "50ch" },
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+            noValidate
+            autoComplete="off"
+            style={{ paddingBottom: 60 }}
+          >
+            <div align="center">
+              {" "}
+              <h2>Product Form</h2>
+              <h3>Please enter your information</h3>
+            </div>
+            <form onSubmit={this.handleSubmit}>
+              {image && <img src={image} alt={title} width="150px" />}
+              <PuffLoader
+                loading={imageIsUploading}
+                size="100px"
+                color="orchid"
+              />
 
-          <TextField
-            onChange={this.handleChange}
-            id="outlined-basic"
-            label="Name"
-            variant="outlined"
-            name="title"
-            value={title}
-          />
+              <div align="center">
+                <label htmlFor="contained-button-file">
+                  <Input
+                    accept="image/*"
+                    type="file"
+                    onChange={this.handleImageUpload}
+                  />
+                  {/* <Button onChange={this.handleImageUpload} variant="contained" component="span">
+                Upload
+              </Button> */}
+                </label>
+              </div>
 
-          <TextField
-            onChange={this.handleChange}
-            id="outlined-multiline-flexible"
-            label="Description"
-            multiline
-            maxRows={4}
-            variant="outlined"
-            name="description"
-            value={description}
-          />
+              {/* <label htmlFor="image">Representative image </label>
+          <input onChange={this.handleImageUpload} type="file" name="image" /> */}
 
-          {/* causes error 500 */}
-          <FormControl sx={{ m: 1, width: 400 }}>
-            <InputLabel id="demo-multiple-name-label">
-              Please select the price policy.
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={pricePolicy}
-              label="Please select the price policy."
-              name="pricePolicy"
-              onChange={this.handleChange}
-            >
-              <MenuItem value="Fixed Price">Fixed Price</MenuItem>
-              <MenuItem value="Voluntary">Voluntary</MenuItem>
-            </Select>
-          </FormControl>
+              <TextField
+                style={{ marginTop: 20 }}
+                onChange={this.handleChange}
+                id="outlined-basic"
+                label="Name"
+                variant="outlined"
+                name="title"
+                value={title}
+              />
 
-          <TextField
-            //  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
-            onChange={this.handleChange}
-            id="outlined-basic"
-            label="€"
-            variant="outlined"
-            name="price"
-            type="number"
-            value={price}
-            placeholder="€"
-          />
+              <TextField
+                onChange={this.handleChange}
+                id="outlined-multiline-flexible"
+                label="Description"
+                multiline
+                maxRows={4}
+                variant="outlined"
+                name="description"
+                value={description}
+              />
 
-          <TextField
-            onChange={this.handleChange}
-            id="outlined-basic"
-            label="Where was it created?"
-            variant="outlined"
-            name="event_id"
-            value={event_id}
-          />
+              {/* causes error 500 */}
+              <FormControl sx={{ m: 1, width: 530 }}>
+                <InputLabel id="demo-multiple-name-label">
+                  Please select the price policy
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={pricePolicy}
+                  label="Please select the price policy."
+                  name="pricePolicy"
+                  onChange={this.handleChange}
+                >
+                  <MenuItem value="Fixed Price">Fixed Price</MenuItem>
+                  <MenuItem value="Voluntary">Voluntary</MenuItem>
+                </Select>
+              </FormControl>
 
-          {/* not needed as textfield: its the creator = username */}
-          {/* <TextField
+              <TextField
+                //  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                onChange={this.handleChange}
+                id="outlined-basic"
+                label="€"
+                variant="outlined"
+                name="price"
+                type="number"
+                value={price}
+                placeholder="€"
+              />
+
+              {/* <TextField
+                onChange={this.handleChange}
+                id="outlined-basic"
+                label="Where was it created?"
+                variant="outlined"
+                name="event_id"
+                value={event_id}
+              /> */}
+
+              {/* not needed as textfield: its the creator = username */}
+              {/* <TextField
             onChange={this.handleChange}
             id="outlined-basic"
             label="Who was the creator?"
@@ -226,43 +253,79 @@ class ProductForm extends Component {
             value={user_id}
           /> */}
 
-          {/* causes error 500 */}
-          <FormControl sx={{ m: 1, width: 400 }}>
-            <InputLabel id="demo-multiple-name-label">
-              Which Charity is it for?
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={charity_id}
-              label="Which Charity is it for?"
-              name="charity_id"
-              onChange={this.handleChange}
-            >
-              <MenuItem value={charity_id}>
-                  {charity_id}
-              </MenuItem>
-              <MenuItem value="charities need to be hardcoded in here">
-                charities need to be hardcoded in here
-              </MenuItem>
-            </Select>
-          </FormControl>
+              {/* causes error 500 */}
+              <FormControl sx={{ m: 1, width: 530 }}>
+                <InputLabel id="demo-multiple-name-label">
+                  Which Charity is it for?
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={charity_id}
+                  label="Which Charity is it for?"
+                  name="charity_id"
+                  onChange={this.handleChange}
+                >
+                  <MenuItem value={charity_id}>{charity_id}</MenuItem>
+                  <MenuItem value="Unicef">Unicef </MenuItem>
+                  <MenuItem value="Doctors without borders">
+                    Doctors without borders{" "}
+                  </MenuItem>
+                  <MenuItem value="Unicef">Unicef </MenuItem>
+                  <MenuItem value="World Food Programme">
+                    World Food Programme{" "}
+                  </MenuItem>
+                  <MenuItem value="WWF">
+                    WWF{" "}
+                  </MenuItem>
+                  <MenuItem value="Local organizations">
+                  Local organizations{" "}
+                  </MenuItem>
+                </Select>
+              </FormControl>
 
-          <button type="submit" disabled={imageIsUploading}>
-            Add this product!
-          </button>
+              <div
+                  style={{
+                    marginTop: 10,
+                    display: "flex",
+                    justifyContent: "space-around",
+                  }}
+                >
+                  <Button
+                    color="primary"
+                    variant="outlined"
+                    type="submit"
+                    disabled={imageIsUploading}
+                  >
+                    Add this Product!
+                  </Button>
 
-          <button type="submit" disabled={imageIsUploading}>
-            Save changes!
-          </button>
-        </form>
+                  <Button
+                    color="secondary"
+                    variant="outlined"
+                    type="submit"
+                    disabled={imageIsUploading}
+                  >
+                    Save changes!
+                  </Button>
+                </div>
 
-        <p>Do you want to delete this charity?</p>
+              {/* <button type="submit" disabled={imageIsUploading}>
+                Add this product!
+              </button>
+
+              <button type="submit" disabled={imageIsUploading}>
+                Save changes!
+              </button>*/}
+            </form> 
+
+            {/* <p>Do you want to delete this charity?</p>
         <button type="submit" disabled={imageIsUploading}>
           {" "}
           Delete{" "}
-        </button>
-      </Box>
+        </button> */}
+          </Box>
+        </Card>
       </Container>
     );
   }

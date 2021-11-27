@@ -8,7 +8,7 @@ import {Container, Button,  Typography, Card, CardContent, Box, CardMedia} from 
 import reviewService from "../../services/review-service";
 import userService from "../../services/user-service";
 
-
+import DeleteIcon from '@mui/icons-material/Delete';
 
 class EventDetails extends Component {
   state = {
@@ -95,9 +95,7 @@ class EventDetails extends Component {
                 <Typography> price: {singleEvent.price} </Typography>
             
   
-              <Button component={Link} to="/events/create">
-              Create!
-              </Button>
+             
 
               <Button component={Link} to={`/events/${singleEvent._id}/edit`}>
                 Edit
@@ -107,7 +105,7 @@ class EventDetails extends Component {
                   Attend Event
               </Button>
 
-                <Button onClick={this.handleDelete}>Delete</Button>
+              <Button color="secondary" variant="contained" startIcon={<DeleteIcon />} onClick={this.handleDelete}>Delete</Button>
             </CardContent>
           </Box>
         )}

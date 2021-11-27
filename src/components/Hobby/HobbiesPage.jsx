@@ -1,6 +1,18 @@
 import React, { Component } from "react";
 import hobbyService from "../../services/hobby-service";
-import {Container, Button, Card, CardMedia, Typography, Grid, CardContent, CardActions} from '@material-ui/core'
+import { Link } from "react-router-dom";
+import {
+  Container,
+  Button,
+  Card,
+  CardMedia,
+  Typography,
+  Grid,
+  CardContent,
+  CardActions,
+} from "@material-ui/core";
+import { PuffLoader } from "react-spinners";
+
 
 class HobbiesPage extends Component {
   state = {
@@ -24,22 +36,35 @@ class HobbiesPage extends Component {
 
     return (
       <Container style={{ paddingBottom: 60 }}>
-        <Typography variant="h2">All The Hobbies</Typography>
-        <Grid container spacing={3}>
-          {isLoading && <h1>...isLoading</h1>}
+        <div align="center" style={{ marginBottom: 10 }}>
+          {" "}
+          <Typography variant="h2">All The Hobbies</Typography>
+        </div>
+        <Grid
+          container
+          spacing={3}
+          style={{ display: "flex", justifyContent: "center" }}
+        >
+          {isLoading && <PuffLoader  size="100px" color="orchid" />}
 
           {!isLoading &&
             listOfHobbies.map((eachHobby) => {
               return (
                 <Grid item key={eachHobby._id}>
                   <Card xs={12} md={6} lg={4}>
-                    <CardMedia>
+                    <CardMedia align="center">
                       {eachHobby.image && (
-                        <img src={eachHobby.image} alt={eachHobby.name} width="200px" />
+                        <img
+                          src={eachHobby.image}
+                          alt={eachHobby.name}
+                          height="150px"
+                        />
                       )}
                     </CardMedia>
-                    <CardContent sx={{ flex: '1 0 auto' }}>
-                      <Typography component="div" variant="h5">{eachHobby.title}</Typography>
+                    <CardContent sx={{ flex: "1 0 auto" }}>
+                      <Typography component="div" variant="h5">
+                        {eachHobby.title}
+                      </Typography>
                     </CardContent>
                     <CardActions>
                       <Button href={`/hobbies/${eachHobby._id}`}>
@@ -51,6 +76,18 @@ class HobbiesPage extends Component {
               );
             })}
         </Grid>
+        <div align="center">
+          {" "}
+          <Button
+            style={{ marginTop: 20 }}
+            color="secondary"
+            variant="contained"
+            component={Link}
+            to="/hobbies/create"
+          >
+            Add Hobby!
+          </Button>
+        </div>
       </Container>
     );
   }
