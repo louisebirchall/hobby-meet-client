@@ -98,15 +98,24 @@ class EventDetails extends Component {
   
              
 
-              <Button component={Link} to={`/events/${singleEvent._id}/edit`}>
+              {/* <Button component={Link} to={`/events/${singleEvent._id}/edit`}>
                 Edit
-              </Button>
+              </Button> */}
+              <Button
+                color="primary" variant="contained"
+                  component={Link}
+                  to={`/events/${singleEvent._id}/edit`}
+                >
+                  {" "}
+                  Edit{" "}
+                </Button>
 
-              <Button >
-                  Attend Event
-              </Button>
+              
 
               <Button color="secondary" variant="contained" startIcon={<DeleteIcon />} onClick={this.handleDelete}>Delete</Button>
+              <Button>
+                  Attend Event
+              </Button>
             </CardContent>
           </Box>
         )}

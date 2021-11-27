@@ -53,10 +53,19 @@ class ProductsPage extends Component {
                       <Typography  component="div" variant="p">{eachProduct.price} €</Typography>
                     </CardContent>
                     <CardActions>
-                      <Button onClick={() => this.handleClick(eachProduct)} href={'/products/payments/create-payment-intent'}>Buy it!</Button>
+                      <Button color="primary"
+                  variant="contained" onClick={() => this.handleClick(eachProduct)} href={'/products/payments/create-payment-intent'}>
+                  <Typography component="div" variant="h5">
+                  Buy it!</Typography></Button>
                       {itemToBuy && itemToBuy._id === eachProduct._id && <Payment itemToBuy={itemToBuy}/>}
 
-                      <Button href={`/products/${eachProduct._id}`}>See details!</Button>
+                      <Button 
+                      variant="outlined" 
+                      href={`/products/${eachProduct._id}`}>
+                      <Typography component="div" variant="h5">
+                      details!</Typography>
+                      </Button>
+
                     </CardActions>
                   </Card>
                   

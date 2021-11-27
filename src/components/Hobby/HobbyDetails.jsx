@@ -75,11 +75,19 @@ class HobbyDetails extends Component {
                   Category: {singleHobby.typeOfActivity}{" "}
                 </Typography>
 
-                <Button
+                {/* <Button
                   component={Link}
                   to={`/hobbies/${singleHobby._id}/edit`}
                 >
                   Edit
+                </Button> */}
+                <Button
+                color="primary" variant="contained"
+                  component={Link}
+                  to={`/hobbies/${singleHobby._id}/edit`}
+                >
+                  {" "}
+                  Edit{" "}
                 </Button>
                 <Button
                   color="secondary"
