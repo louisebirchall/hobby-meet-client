@@ -31,6 +31,10 @@ class HobbyDetails extends Component {
       });
   };
 
+  handleNewData = (data) => {
+    this.setState({ singleHobby: data.hobby });
+  };
+
   componentDidMount() {
     const { id } = this.props.match.params;
     hobbyService
@@ -82,7 +86,8 @@ class HobbyDetails extends Component {
                   Edit
                 </Button> */}
                 <Button
-                color="primary" variant="contained"
+                  color="primary"
+                  variant="contained"
                   component={Link}
                   to={`/hobbies/${singleHobby._id}/edit`}
                 >
@@ -101,7 +106,13 @@ class HobbyDetails extends Component {
             </Box>
           )}
         </Card>
-        <AddPostForm id={id} service={hobbyService} />
+        <AddPostForm
+          id={id}
+          service={hobbyService}
+          saveUpdatedData={this.handleNewData}
+        />
+        {singleHobby &&
+          singleHobby.posts.map((post) => <p>{post.description}</p>)}
       </Container>
     );
   }

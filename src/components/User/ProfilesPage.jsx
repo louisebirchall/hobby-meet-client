@@ -1,15 +1,22 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import userService from '../../services/user-service'
-import {Container, Button, Card, CardMedia, Typography, Grid, CardContent, CardActions} from '@material-ui/core'
-
+import userService from "../../services/user-service";
+import {
+  Container,
+  Button,
+  Card,
+  CardMedia,
+  Typography,
+  Grid,
+  CardContent,
+  CardActions,
+} from "@material-ui/core";
 
 class ProfilesPage extends Component {
   state = {
     listOfProfiles: null,
     isLoading: true,
   };
-
 
   componentDidMount() {
     userService
@@ -37,15 +44,19 @@ class ProfilesPage extends Component {
                 <Grid item key={eachProfile._id}>
                   <Card xs={12} md={6} lg={4}>
                     <CardMedia>
-                      {eachProfile.image && ( <img src={eachProfile.image} alt={eachProfile.name}/>  )}
+                      {eachProfile.image && (
+                        <img src={eachProfile.image} alt={eachProfile.name} />
+                      )}
                     </CardMedia>
-                    <CardContent sx={{ flex: '1 0 auto' }}>
-                    <Typography component="div" variant="h4">{eachProfile.title}</Typography>
+                    <CardContent sx={{ flex: "1 0 auto" }}>
+                      <Typography component="div" variant="h4">
+                        {eachProfile.title}
+                      </Typography>
                     </CardContent>
                     <CardActions>
                       <Button>
-                        <Link to={`/profiles/${eachProfile._id}`}>
-                          {eachProfile.name}
+                        <Link to={`/users/${eachProfile._id}`}>
+                          {eachProfile.username}
                         </Link>
                       </Button>
                     </CardActions>

@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 class UserService {
   constructor() {
     this.service = axios.create({
@@ -9,28 +8,17 @@ class UserService {
     });
   }
 
-
-  edit = (
-    id,
-    username,
-    email,
-    fullName,
-    image,
-    sex,
-    age,
-    type,
-    hobbies,
-  ) => {
+  edit = (id, username, email, fullName, image, sex, age, type, hobbies) => {
     return this.service.patch(`/${id}`, {
-        username,
-        email,
-        fullName,
-        image,
-        sex,
-        age,
-        type,
-        hobbies,
-      })
+      username,
+      email,
+      fullName,
+      image,
+      sex,
+      age,
+      type,
+      hobbies,
+    });
   };
 
   delete = (id) => {

@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import { PuffLoader } from "react-spinners";
 import generalService from "../services/general-service";
 import postService from "../services/post-service";
 
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { Button } from '@material-ui/core';
+import { Button } from "@material-ui/core";
 
 class AddPostForm extends Component {
   state = {
@@ -19,10 +19,12 @@ class AddPostForm extends Component {
     const { image, description } = this.state;
     const { id } = this.props;
 
-    postService
-      .create(id, description, image)
+    this.props.service
+      .createPost(id, description, image)
       .then((response) => {
-        this.props.history.push(`/posts`);
+        console.log(response);
+        this.props.saveUpdatedData(response.data);
+        //this.props.history.push(`/posts`);
       })
       .catch((err) => {
         //console.log(err)
@@ -85,8 +87,7 @@ class AddPostForm extends Component {
             Post!
           </Button>
         </form>
-        </Box>
-
+      </Box>
     );
   }
 }

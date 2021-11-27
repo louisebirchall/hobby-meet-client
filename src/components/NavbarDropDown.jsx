@@ -1,13 +1,12 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import Button from '@mui/material/Button';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import { Link } from 'react-router-dom';
-
+import * as React from "react";
+import Box from "@mui/material/Box";
+import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+import Button from "@mui/material/Button";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import { Link } from "react-router-dom";
 
 export default function SwipeableTemporaryDrawer() {
   const [state, setState] = React.useState({
@@ -17,8 +16,8 @@ export default function SwipeableTemporaryDrawer() {
   const toggleDrawer = (anchor, open) => (event) => {
     if (
       event &&
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
     ) {
       return;
     }
@@ -27,44 +26,41 @@ export default function SwipeableTemporaryDrawer() {
 
   const list = (anchor) => (
     <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-          <ListItem button >
-            <ListItemIcon>
-              <Button href="/profiles">Profiles</Button>
-              <Button href="/hobbies">Hobbies</Button>
-              <Button href="/events">Events</Button>
-              <Button href="/charities">Charities</Button>
-              <Button href="/products">Products</Button>
-            </ListItemIcon>
-            <ListItemText />
-          </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <Button href="/users">Profiles</Button>
+            <Button href="/hobbies">Hobbies</Button>
+            <Button href="/events">Events</Button>
+            <Button href="/charities">Charities</Button>
+            <Button href="/products">Products</Button>
+          </ListItemIcon>
+          <ListItemText />
+        </ListItem>
       </List>
     </Box>
   );
-
+  const anchor = "top";
   return (
     <div>
-      {[ 'top'].map((anchor) => (
-        <React.Fragment key={anchor}>
-        <Box sx={{ textAlign: 'center', pt: 1 }}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}
-          </Button>
+      <React.Fragment key={anchor}>
+        <Box sx={{ textAlign: "center" }}>
+          <Button onClick={toggleDrawer(anchor, true)}>Menu</Button>
         </Box>
-          <SwipeableDrawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-            onOpen={toggleDrawer(anchor, true)}
-          >
-            {list(anchor)}
-          </SwipeableDrawer>
-        </React.Fragment>
-      ))}
+        <SwipeableDrawer
+          anchor={anchor}
+          open={state[anchor]}
+          onClose={toggleDrawer(anchor, false)}
+          onOpen={toggleDrawer(anchor, true)}
+        >
+          {list(anchor)}
+        </SwipeableDrawer>
+      </React.Fragment>
     </div>
   );
 }

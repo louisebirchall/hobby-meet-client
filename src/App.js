@@ -30,7 +30,7 @@ import PageNotFound from "./components/ErrorHandling/PageNotFound";
 // import Typography from "@material-ui/core/Typography";
 import { ThemeProvider, createTheme } from "@material-ui/core/styles";
 import theme from "./theme";
-import Payment from './components/Payment/Payment'
+import Payment from "./components/Payment/Payment";
 import SearchResults from "./components/Search/SearchResults";
 import ShowPost from "./components/Posts/ShowPost";
 
@@ -41,7 +41,6 @@ const montserrat = createTheme({
 });
 
 class App extends Component {
-
   state = {
     isLoggedIn: null,
     user: null,
@@ -83,7 +82,6 @@ class App extends Component {
           <Navbar isLoggedIn={isLoggedIn} user={user} setUser={this.setUser} />
 
           <Switch>
-          
             <Route exact path="/" render={(props) => <Homepage {...props} />} />
 
             {/* User */}
@@ -106,20 +104,20 @@ class App extends Component {
             />
             <Route
               exact
-              path="/profiles"
+              path="/users"
               render={(props) => <ProfilesPage {...props} />}
             />
             <Route
               exact
-              path="/profile/:id"
+              path="/users/:id"
               render={(props) => <Profile {...props} setUser={this.setUser} />}
             />
             <Route
-              path="/profile/:id/create"
+              path="/users/:id/create"
               render={(props) => <Profile {...props} isEdit={false} />}
             />
             <Route
-              path="/profile/:id/edit"
+              path="/users/:id/edit"
               render={(props) => <ProfileFom {...props} isEdit={true} />}
             />
 
@@ -141,7 +139,10 @@ class App extends Component {
 
             <Route
               path="/hobbies/create"
-              render={(props) => <HobbyForm {...props} isEdit={false} isLoggedIn={isLoggedIn}/>}/>
+              render={(props) => (
+                <HobbyForm {...props} isEdit={false} isLoggedIn={isLoggedIn} />
+              )}
+            />
 
             <Route
               exact
@@ -231,7 +232,6 @@ class App extends Component {
               render={(props) => <ProductForm {...props} isEdit={true} />}
             />
 
-
             <Route
               exact
               path="/posts"
@@ -243,7 +243,6 @@ class App extends Component {
             <Route path="/500" component={ServerError} />
 
             <Route component={PageNotFound} />
-        
           </Switch>
 
           <Footer />

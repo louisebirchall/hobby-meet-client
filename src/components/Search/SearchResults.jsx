@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import generalService from "../../services/general-service";
 import queryString from "query-string";
 import { useScrollTrigger } from "@material-ui/core";
+import SearchResult from "./SearchResult";
 
 export class SearchResults extends Component {
   state = {
@@ -38,7 +39,7 @@ export class SearchResults extends Component {
         {isLoading && <div>loading</div>}
         {!isLoading && (
           <>
-          {/* {Object.keys(listOfResults).map((eachItem) => {
+            {/* {Object.keys(listOfResults).map((eachItem) => {
             if (listOfResults[eachItem].length === 0) {
                 return null;
               }
@@ -54,8 +55,14 @@ export class SearchResults extends Component {
               }
               return (
                 <div>
-                  <p>{category}</p>
-                  <p>{listOfResults[category].populate}</p>
+                  <p>
+                    <h2>
+                      {category} <sup>{listOfResults[category].length}</sup>
+                    </h2>
+                  </p>
+                  {listOfResults[category].map((result) => {
+                    return <SearchResult result={result} category={category} />;
+                  })}
                 </div>
               );
             })}
