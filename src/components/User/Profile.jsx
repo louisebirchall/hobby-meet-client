@@ -58,7 +58,7 @@ class Profile extends Component {
                   color="primary"
                   variant="contained"
                   component={NavLink}
-                  to={`/profile/${user._id}/edit`}
+                  to={`/users/${user._id}/edit`}
                 >
                   Edit
                 </Button>

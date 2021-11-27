@@ -23,7 +23,7 @@ class Signup extends Component {
     authService.signup(username, email, password).then((result) => {
       this.setState({ username: "", email: "", password: "" });
       this.props.setUser(result.data, true);
-      this.props.history.push(`/profile/${result.data._id}`);
+      this.props.history.push(`/users/${result.data._id}`);
     });
     // .catch(() => this.props.history.push("Error while trying to signup"));
   };

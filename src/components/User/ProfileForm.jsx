@@ -60,7 +60,7 @@ class ProfileFom extends Component {
         .edit(id, username, email, fullName, image, sex, age, type)
         .then((newuser) => {
           console.log(newuser);
-          this.props.history.push(`/profile/${id}`);
+          this.props.history.push(`/users/${id}`);
         })
         .catch((err) => {
           this.props.history.push("/500");
@@ -69,7 +69,7 @@ class ProfileFom extends Component {
       userService
         .create(id, username, email, fullName, image, sex, age, isAdmin, type)
         .then((response) => {
-          this.props.history.push(`/profile/${response.data._id}`);
+          this.props.history.push(`/users/${response.data._id}`);
         })
         .catch((err) => {
           this.props.history.push("/500");

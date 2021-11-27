@@ -103,7 +103,7 @@ function Navbar({ isLoggedIn, user, setUser }) {
                   {isLoggedIn && user && (
                     <>
                       <li>
-                        <NavLink to={`/profile/${user._id}`}>
+                        <NavLink to={`/users/${user._id}`}>
                           <Button variant="contained" color="secondary">
                             Profile
                           </Button>
