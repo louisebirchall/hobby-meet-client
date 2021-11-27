@@ -93,6 +93,8 @@ class ProductDetails extends Component {
                 </Typography>
 
                 <Button
+                color="primary"
+                  variant="contained"
                   component={Link}
                   to={`/products/${singleProduct._id}/edit`}
                 >

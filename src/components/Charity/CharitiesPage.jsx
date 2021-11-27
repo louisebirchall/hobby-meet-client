@@ -45,7 +45,14 @@ class CharitiesPage extends Component {
                     {/* <Typography component="div" variant="h5">{eachCharity.name}</Typography> */}
                   </CardContent>
                   <CardActions>
-                    <Button href={`/charities/${eachCharity._id}`}><Typography component="div" variant="h5">{eachCharity.name}</Typography></Button> 
+                  <Button
+                        variant="outlined"
+                        href={`/charities/${eachCharity._id}`}
+                      >
+                        <Typography component="div" variant="h5">
+                          {eachCharity.name}
+                        </Typography>
+                      </Button>
                     
                   </CardActions>
                 </Card>
