@@ -41,7 +41,9 @@ class EventDetails extends Component {
       });
   };
 
-  
+  handleNewData = (data) => {
+    this.setState({ singleEvent: data.event });
+  };
 
   render() {
     const { isLoading, singleEvent } = this.state;
@@ -117,7 +119,6 @@ class EventDetails extends Component {
                   Edit{" "}
                 </Button>
 
-              
 
               <Button color="secondary" variant="contained" startIcon={<DeleteIcon />} onClick={this.handleDelete}>Delete</Button>
               
@@ -126,8 +127,10 @@ class EventDetails extends Component {
         )}
         </Card>
         
-      {/*   <ShowPost /> */}
-        <AddPostForm id={id} service={eventService} />
+ 
+        <AddPostForm id={id} service={eventService}   saveUpdatedData={this.handleNewData} />
+        {singleEvent &&
+          singleEvent.posts.map((post) => <p>{post.description}</p>)}
 
         <ReviewForm id={id} service={reviewService} />
       </Container>
