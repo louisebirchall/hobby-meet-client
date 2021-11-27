@@ -31,25 +31,24 @@ class Profile extends Component {
 
     return (
       <Container style={{ paddingBottom: 60 }}>
-        {isLoading && <h1>...isLoading</h1>}
-        {!isLoading && (
-          <Card sx={{ display: "flex" }}>
+        <Card sx={{ display: "flex" }}>
+          {isLoading && <h1>...isLoading</h1>}
+          {!isLoading && (
             <Box sx={{ display: "flex", flexDirection: "row" }}>
-              <CardMedia                
-                component="img"
-                sx={{ width: 111, borderRadius: 80}}
-                image={user.image}
-                alt={user.username}
-              />
+              <CardContent sx={{ flex: "1 0 auto" }}>
+                <CardMedia                
+                  component="img"
+                  image={user.image}
+                  alt={user.username}
+                />
 
-              <CardContent sx={{ width: 150}}>
                 <Typography component="div" variant="h3">
                   {user.username}
                 </Typography>
                 <Typography variant="p" color="text.secondary" component="div">
-                  Email - {user.email}
+                   {user.email}
                 </Typography>
-                <Typography variant="p" color="text.secondary" component="div">Full name - {user.fullName}</Typography>
+                <Typography variant="p" color="text.secondary" component="div">Name - {user.fullName}</Typography>
                 <Typography variant="p" color="text.secondary" component="div">Hobbies - {user.hobbies}</Typography>
                 <Typography variant="p" color="text.secondary" component="div">Attending - {user.events}</Typography>
                 <Typography variant="p" color="text.secondary" component="div">Age - {user.age}</Typography>
@@ -66,8 +65,8 @@ class Profile extends Component {
               </CardContent>
 
             </Box>
-          </Card>
-        )}
+          )}
+        </Card>
       </Container>
     );
   }
