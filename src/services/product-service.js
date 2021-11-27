@@ -15,7 +15,7 @@ class ProductService {
     user_id,
     pricePolicy,
     price,
-    event_id,
+   // event_id,
     charity_id
   ) => {
     return this.service.post("/create", {
@@ -25,7 +25,7 @@ class ProductService {
       user_id,
       pricePolicy,
       price,
-      event_id,
+      //event_id,
       charity_id,
     });
   };
@@ -38,7 +38,7 @@ class ProductService {
     user_id,
     pricePolicy,
     price,
-    event_id,
+    //event_id,
     charity_id
   ) => {
     return this.service.patch(`/${id}`, {
@@ -48,7 +48,7 @@ class ProductService {
       user_id,
       pricePolicy,
       price,
-      event_id,
+      //event_id,
       charity_id,
     });
   };

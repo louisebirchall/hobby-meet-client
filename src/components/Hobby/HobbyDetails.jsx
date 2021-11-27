@@ -2,9 +2,16 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import hobbyService from "../../services/hobby-service";
 import AddPostForm from "../AddPostForm";
-// import EditPostForm from "../Posts/EditPostForm";
-import DeleteIcon from '@mui/icons-material/Delete';
-import { Container, Button, Card, CardContent, CardMedia, Typography, Box } from "@material-ui/core";
+import DeleteIcon from "@mui/icons-material/Delete";
+import {
+  Container,
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Box,
+} from "@material-ui/core";
 
 class HobbyDetails extends Component {
   state = {
@@ -41,7 +48,7 @@ class HobbyDetails extends Component {
     const { id } = this.props.match.params;
 
     return (
-      <Container  style={{ paddingBottom: 60 }}>
+      <Container style={{ paddingBottom: 60 }}>
         <Card sx={{ display: "flex" }}>
           {isLoading && <h1>...Loading</h1>}
           {!isLoading && (
@@ -49,42 +56,44 @@ class HobbyDetails extends Component {
               <CardContent sx={{ flex: "1 0 auto" }}>
                 {singleHobby.image && (
                   <CardMedia
+                    component="img"
                     src={singleHobby.image}
                     alt={singleHobby.name}
                     width="150px"
                   />
                 )}
-                <Typography component="div" variant="h3">{singleHobby.name}</Typography>
-                <Typography variant="p" color="text.secondary" component="div">Description: {singleHobby.description} </Typography>
-                <Typography variant="p" color="text.secondary" component="div">Where: {singleHobby.placeOfActivity} </Typography>
-                <Typography variant="p" color="text.secondary" component="div">Category: {singleHobby.typeOfActivity} </Typography>
+                <Typography component="div" variant="h3">
+                  {singleHobby.name}
+                </Typography>
+                <Typography variant="p" color="text.secondary" component="div">
+                  Description: {singleHobby.description}{" "}
+                </Typography>
+                <Typography variant="p" color="text.secondary" component="div">
+                  Where: {singleHobby.placeOfActivity}{" "}
+                </Typography>
+                <Typography variant="p" color="text.secondary" component="div">
+                  Category: {singleHobby.typeOfActivity}{" "}
+                </Typography>
 
-                <Button component={Link} to="/hobbies/create">
-                  Create
+                <Button
+                  component={Link}
+                  to={`/hobbies/${singleHobby._id}/edit`}
+                >
+                  Edit
                 </Button>
-
-            <AddPostForm id={id} service={hobbyService} />
-
-            {/* <EditPostForm id={id} service={charityService} /> */}
-
-            {/* <Button component={Link} to="/hobbies/create">
-              Create!
-            </Button> */}
-
-            <Button component={Link} to={`/hobbies/${singleHobby._id}/edit`}>
-              Edit
-            </Button>
-            <Button color="secondary" variant="contained" startIcon={<DeleteIcon />} onClick={this.handleDelete}>Delete</Button>
-
-            {/* <Button onClick={this.handleDelete}>Delete</Button> */}
-
-            {/* <button onClick={this.handleDelete}>Delete</button> */}
-            </CardContent>
+                <Button
+                  color="secondary"
+                  variant="contained"
+                  startIcon={<DeleteIcon />}
+                  onClick={this.handleDelete}
+                >
+                  Delete
+                </Button>
+              </CardContent>
             </Box>
-          
-        )}
+          )}
         </Card>
-            <AddPostForm id={id} service={hobbyService} />
+        <AddPostForm id={id} service={hobbyService} />
       </Container>
     );
   }

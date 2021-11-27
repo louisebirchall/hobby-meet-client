@@ -13,7 +13,6 @@ import {
 } from "@material-ui/core";
 import { PuffLoader } from "react-spinners";
 
-
 class HobbiesPage extends Component {
   state = {
     listOfHobbies: null,
@@ -45,7 +44,7 @@ class HobbiesPage extends Component {
           spacing={3}
           style={{ display: "flex", justifyContent: "center" }}
         >
-          {isLoading && <PuffLoader  size="100px" color="orchid" />}
+          {isLoading && <PuffLoader size="100px" color="orchid" />}
 
           {!isLoading &&
             listOfHobbies.map((eachHobby) => {
@@ -61,16 +60,18 @@ class HobbiesPage extends Component {
                         />
                       )}
                     </CardMedia>
+
                     <CardContent sx={{ flex: "1 0 auto" }}>
-                      <Typography component="div" variant="h5">
-                        {eachHobby.title}
-                      </Typography>
-                    </CardContent>
-                    <CardActions>
-                      <Button href={`/hobbies/${eachHobby._id}`}>
-                        {eachHobby.name}
+                      <Button
+                        variant="outlined"
+                        href={`/hobbies/${eachHobby._id}`}
+                      >
+                        <Typography component="div" variant="h5">
+                          {eachHobby.name}
+                        </Typography>
                       </Button>
-                    </CardActions>
+                    </CardContent>
+                    <CardActions></CardActions>
                   </Card>
                 </Grid>
               );

@@ -6,21 +6,28 @@ import AddPostForm from "../AddPostForm";
 import reviewService from "../../services/review-service";
 import ReviewForm from "../ReviewForm";
 //import Payment from "../Payment/Payment"
-import { Container, Button, Card, CardMedia, CardContent, Box, Typography } from "@material-ui/core";
-import DeleteIcon from '@mui/icons-material/Delete';
-
+import {
+  Container,
+  Button,
+  Card,
+  CardMedia,
+  CardContent,
+  Box,
+  Typography,
+} from "@material-ui/core";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 class ProductDetails extends Component {
   state = {
     singleProduct: null,
     isLoading: true,
-//    itemToBuy: null,
+    //    itemToBuy: null,
   };
 
   componentDidMount() {
     const { id } = this.props.match.params;
     productService
-    .getProduct(id)
+      .getProduct(id)
       .then((response) => {
         this.setState({ singleProduct: response.data, isLoading: false });
       })
@@ -36,7 +43,7 @@ class ProductDetails extends Component {
   handleDelete = () => {
     const { id } = this.props.match.params;
     productService
-    .delete(id)
+      .delete(id)
       .then((data) => {
         this.props.history.push("/products");
       })
@@ -51,44 +58,69 @@ class ProductDetails extends Component {
 
     return (
       <Container style={{ paddingBottom: 60 }}>
-          <Card sx={{ display: "flex" }}>
-        {isLoading && <h1>...Loading</h1>}
+        <Card sx={{ display: "flex" }}>
+          {isLoading && <h1>...Loading</h1>}
 
-        {!isLoading && (            
+          {!isLoading && (
             <Box sx={{ display: "flex", flexDirection: "row" }}>
               <CardContent sx={{ flex: "1 0 auto" }}>
-              {singleProduct.image && (
-                <CardMedia
-                  image={singleProduct.image}
-                  alt={singleProduct.title}
-                  width="150px"
-                />
-              )}
-                <Typography component="div" variant="h3">{singleProduct.title}</Typography>
-                <Typography variant="p" color="text.secondary" component="div">Description: {singleProduct.description} </Typography>
-                <Typography variant="p" color="text.secondary" component="div">Price Policy: {singleProduct.pricePolicy}</Typography>
-                <Typography variant="p" color="text.secondary" component="div">Price: {singleProduct.price}</Typography>
-                <Typography variant="p" color="text.secondary" component="div">Donations for: {singleProduct.charity_id}</Typography>
+                {singleProduct.image && (
+                  <CardMedia
+                    component="img"
+                    image={singleProduct.image}
+                    alt={singleProduct.title}
+                    width="150px"
+                  />
+                )}
+                <Typography component="div" variant="h3">
+                  {singleProduct.title}
+                </Typography>
+                <Typography variant="p" color="text.secondary" component="div">
+                  Description: {singleProduct.description}{" "}
+                </Typography>
+                <Typography variant="p" color="text.secondary" component="div">
+                  Price Policy: {singleProduct.pricePolicy}
+                </Typography>
+                <Typography variant="p" color="text.secondary" component="div">
+                  Price: {singleProduct.price}
+                </Typography>
+                <Typography variant="p" color="text.secondary" component="div">
+                  Donations for: {singleProduct.charity_id}
+                </Typography>
                 {/* <Typography variant="p" color="text.secondary" component="div">Made in the event: {singleProduct.event_id}</Typography> */}
-                <Typography variant="p" color="text.secondary" component="div">Created by: {singleProduct.username}</Typography>
+                <Typography variant="p" color="text.secondary" component="div">
+                  Created by: {singleProduct.username}
+                </Typography>
 
-                <Button component={Link} to={`/products/${singleProduct._id}/edit`}> Edit </Button>
-                <Button color="secondary" variant="contained" startIcon={<DeleteIcon />} onClick={this.handleDelete}>Delete</Button>
+                <Button
+                  component={Link}
+                  to={`/products/${singleProduct._id}/edit`}
+                >
+                  {" "}
+                  Edit{" "}
+                </Button>
+                <Button
+                  color="secondary"
+                  variant="contained"
+                  startIcon={<DeleteIcon />}
+                  onClick={this.handleDelete}
+                >
+                  Delete
+                </Button>
 
                 {/* <Button onClick={this.handleDelete}>Delete</Button> */}
               </CardContent>
-              </Box> 
-              )}   
-          </Card>
+            </Box>
+          )}
+        </Card>
 
-              <Box sx={{ display: "flex", flexDirection: "column" }}>
-                <AddPostForm id={id} service={productService} />
+        <Box sx={{ display: "flex", flexDirection: "column" }}>
+          <AddPostForm id={id} service={productService} />
 
-                {/* <EditPostForm id={id} service={charityService} /> */}
+          {/* <EditPostForm id={id} service={charityService} /> */}
 
-                <ReviewForm id={id} service={reviewService} />
-              </Box>
-        
+          <ReviewForm id={id} service={reviewService} />
+        </Box>
       </Container>
     );
   }

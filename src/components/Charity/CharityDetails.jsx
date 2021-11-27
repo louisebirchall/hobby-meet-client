@@ -59,7 +59,8 @@ class CharityDetails extends Component {
               <CardContent sx={{ flex: "1 0 auto" }}>
                 {singleCharity.image && (
                   <CardMedia
-                    src={singleCharity.image}
+                  component="img"
+                    image={singleCharity.image}
                     alt={singleCharity.name}
                     width="150px"
                   />
