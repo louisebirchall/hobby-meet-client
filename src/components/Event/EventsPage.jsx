@@ -59,32 +59,3 @@ class EventsPage extends Component {
 export default EventsPage;
 
 
-/* return (
-  <Container>
-    <Typography variant="h2">All The Events</Typography>
-    <Grid container spacing={3}>
-    
-      {isLoading && <h1>...isLoading</h1>}
-
-      {!isLoading &&
-        listOfEvents.map((eachEvent) => {
-          return (
-            <Grid item key={eachEvent._id}>
-              <Card xs={12} md={6} lg={4}>
-                <Typography variant="h4">{eachEvent.title}</Typography>
-          
-                <CardMedia>
-                {eachEvent.image && ( <img src={eachEvent.image} alt={eachEvent.name}/>  )}
-                </CardMedia>
-                
-                <Button href="#text-buttons">
-                  <Link to={`/events/${eachEvent._id}`}>{eachEvent.title}</Link>
-                </Button>
-              </Card>
-            </Grid>
-          );
-        })
-      }
-    </Grid>
-  </Container>
-); */

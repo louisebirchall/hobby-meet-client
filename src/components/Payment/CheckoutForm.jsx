@@ -5,6 +5,8 @@ import {
   useElements
 } from "@stripe/react-stripe-js";
 
+import {Container, Button, Card, CardMedia, Typography, Grid, CardContent, CardActions} from '@material-ui/core'
+
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
@@ -77,16 +79,18 @@ export default function CheckoutForm() {
   };
 
   return (
-    <form id="payment-form" onSubmit={handleSubmit}>
-      <PaymentElement id="payment-element" />
-      <button disabled={isLoading || !stripe || !elements} id="submit">
-        <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
-        </span>
-      </button>
+    <Container>
+      <form id="payment-form" onSubmit={handleSubmit}>
+        <PaymentElement id="payment-element" />
+        <Button disabled={isLoading || !stripe || !elements} id="submit">
+          <span id="button-text">
+            {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
+          </span>
+        </Button>
 
-     {/*  Show any error or success messages */}
-    {message && <div id="payment-message">{message}</div>}
-    </form>
+      {/*  Show any error or success messages */}
+      {message && <div id="payment-message">{message}</div>}
+      </form>
+    </Container>
   );
 } 

@@ -22,7 +22,7 @@ class AddPostForm extends Component {
     postService
       .create(id, description, image)
       .then((response) => {
-        this.props.history.push(`/products/${response.data._id}`);
+        this.props.history.push(`/posts`);
       })
       .catch((err) => {
         //console.log(err)

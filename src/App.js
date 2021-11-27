@@ -32,6 +32,7 @@ import { ThemeProvider, createTheme } from "@material-ui/core/styles";
 import theme from "./theme";
 import Payment from './components/Payment/Payment'
 import SearchResults from "./components/Search/SearchResults";
+import ShowPost from "./components/Posts/ShowPost";
 
 const montserrat = createTheme({
   typography: {
@@ -140,8 +141,7 @@ class App extends Component {
 
             <Route
               path="/hobbies/create"
-              render={(props) => <HobbyForm {...props} isEdit={false} />}
-            />
+              render={(props) => <HobbyForm {...props} isEdit={false} isLoggedIn={isLoggedIn}/>}/>
 
             <Route
               exact
@@ -229,6 +229,13 @@ class App extends Component {
             <Route
               path="/products/:id/edit"
               render={(props) => <ProductForm {...props} isEdit={true} />}
+            />
+
+
+            <Route
+              exact
+              path="/posts"
+              render={(props) => <ShowPost {...props} />}
             />
 
             {/* ErrorHandling */}
