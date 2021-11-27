@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import eventService from "../../services/event-service";
 import { Link } from "react-router-dom";
+import Payment from "../Payment/Payment"
 import {
   Container,
   Button,
@@ -20,6 +21,10 @@ class EventsPage extends Component {
     isLoading: true,
   };
 
+  handleClick = (item) => {
+    this.setState({itemToBuy: item})
+  }
+
   componentDidMount() {
     eventService
       .getEvents()
@@ -32,7 +37,7 @@ class EventsPage extends Component {
   }
 
   render() {
-    const { listOfEvents, isLoading } = this.state;
+    const { listOfEvents, isLoading, itemToBuy } = this.state;
 
     return (
       <Container style={{ paddingBottom: 60 }}>
@@ -65,6 +70,11 @@ class EventsPage extends Component {
                         <Typography component="div" variant="p">{eachEvent.attendees}</Typography> */}
                     </CardContent>
                     <CardActions>
+                    <Button color="primary"
+                  variant="contained" onClick={() => this.handleClick(eachEvent)} href={'/products/payments/create-payment-intent'}>
+                  <Typography component="div" variant="h5">
+                  Want to go!</Typography></Button>
+                      {itemToBuy && itemToBuy._id === eachEvent._id && <Payment itemToBuy={itemToBuy}/>}
                       <Button
                         variant="outlined"
                         href={`/events/${eachEvent._id}`}
