@@ -100,6 +100,19 @@ class ProfileFom extends Component {
     }
   }
 
+  
+  handleDelete = () => {
+    const { id } = this.props.match.params;
+    userService
+    .delete(id)
+      .then((data) => {
+        this.props.history.push("/signup"); // to check if /events here
+      })
+      .catch((err) => {
+        this.props.history.push("/500");
+      });
+  };
+
   render() {
     const {
       username,
@@ -288,6 +301,7 @@ class ProfileFom extends Component {
             <div align="center" style={{ marginBottom: 30}}>
               <p>Do you want to delete your profile?</p>
               <Button
+                type="submit"
                 color="secondary"
                 variant="contained"
                 startIcon={<DeleteIcon />}
