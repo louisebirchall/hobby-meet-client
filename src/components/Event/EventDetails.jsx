@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import eventService from "../../services/event-service";
-import AddPostForm from "../AddPostForm";
+import AddPostForm from "../Posts/AddPostForm";
 import EditPostForm from "../Posts/EditPostForm";
 import ReviewForm from "../ReviewForm";
 import {
