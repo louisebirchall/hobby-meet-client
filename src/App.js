@@ -33,6 +33,7 @@ import theme from "./theme";
 import Payment from "./components/Payment/Payment";
 import SearchResults from "./components/Search/SearchResults";
 import ShowPost from "./components/Posts/ShowPost";
+import Contact from "./components/Contact";
 
 const montserrat = createTheme({
   typography: {
@@ -236,6 +237,12 @@ class App extends Component {
               exact
               path="/posts"
               render={(props) => <ShowPost {...props} />}
+            />
+
+            <Route
+              exact
+              path="/contact"
+              render={(props) => <Contact {...props} />}
             />
 
             {/* ErrorHandling */}

@@ -7,35 +7,59 @@ import {Container, Button, Card, CardMedia, CardContent, Box, Typography,
 
 const Footer = () => {
   return (
-      <Box>
-        <Container style={{ backgroundColor: "#3aefd5" }}>
-          <Grid container spacing={5}>
-            <Grid item xs={12} md={6} lg={4}>
-              <Box borderBottom={1}><Typography variant="h6">HobbyMeet</Typography></Box>
-              <Box>Louise, Florian & Carolina &reg; {new Date().getFullYear()} IronHack</Box>
-            </Grid>
-            <Grid item >
-              <Box>
-                <NavLink exact to="/"> Home </NavLink>
-              </Box>
-              <Box>
-                <NavLink exact to="/hobbies"> Hobbies </NavLink>
-              </Box>
-              <Box>
-                <NavLink exact to="/events"> Events </NavLink>
-              </Box>
-            </Grid>
-            <Grid item >
-              <Box>
-                <NavLink exact to="/charities"> Charities </NavLink>
-              </Box>
-              <Box>
-                <NavLink exact to="/products">Products </NavLink>
-              </Box>
-            </Grid>
-          </Grid> 
-        </Container>
-      </Box>
+    <Box>
+      <Container style={{ backgroundColor: "#3aefd5" }}>
+        <Grid container spacing={5}>
+          <Grid item xs={12} md={6} lg={4}>
+            <Box borderBottom={1}>
+              <Typography variant="h6">HobbyMeet</Typography>
+            </Box>
+            <Box>
+              Louise, Florian & Carolina &reg; {new Date().getFullYear()}{" "}
+              IronHack
+            </Box>
+          </Grid>
+          <Grid item>
+            <Box>
+              <NavLink exact to="/">
+                {" "}
+                Home{" "}
+              </NavLink>
+            </Box>
+            <Box>
+              <NavLink exact to="/hobbies">
+                {" "}
+                Hobbies{" "}
+              </NavLink>
+            </Box>
+            <Box>
+              <NavLink exact to="/events">
+                {" "}
+                Events{" "}
+              </NavLink>
+            </Box>
+          </Grid>
+          <Grid item>
+            <Box>
+              <NavLink exact to="/charities">
+                {" "}
+                Charities{" "}
+              </NavLink>
+            </Box>
+            <Box>
+              <NavLink exact to="/products">
+                Products{" "}
+              </NavLink>
+            </Box>
+            <Box>
+              <NavLink exact to="/contact">
+                Contact Us
+              </NavLink>
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
   );
 };
 
