@@ -72,7 +72,9 @@ class CharityForm extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     if (id) {
-      charityService.getCharity(id).then((result) => {
+      charityService
+      .getCharity(id)
+      .then((result) => {
         this.setState({
           name: result.data.name,
           description: result.data.description,

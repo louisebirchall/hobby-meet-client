@@ -15,6 +15,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { PuffLoader } from "react-spinners";
 
 class CharityDetails extends Component {
   state = {
@@ -38,7 +39,7 @@ class CharityDetails extends Component {
     this.setState({ singleCharity: data.charity });
   };
 
-  handleNewReview= (data) => {
+  handleNewReview = (data) => {
     this.setState({ singleCharity: data.charity });
   };
 
@@ -61,13 +62,14 @@ class CharityDetails extends Component {
     return (
       <Container style={{ paddingBottom: 60 }}>
         <Card sx={{ display: "flex" }}>
-          {isLoading && <h1>...Loading</h1>}
+          {isLoading && <PuffLoader size="100px" color="orchid" />}
+
           {!isLoading && (
             <Box sx={{ display: "flex", flexDirection: "row" }}>
               <CardContent sx={{ flex: "1 0 auto" }}>
                 {singleCharity.image && (
                   <CardMedia
-                  component="img"
+                    component="img"
                     image={singleCharity.image}
                     alt={singleCharity.name}
                     width="150px"
@@ -85,12 +87,12 @@ class CharityDetails extends Component {
                   Create{" "}
                 </Button> */}
                 <Button
-                color="primary" variant="contained"
+                  color="primary"
+                  variant="contained"
                   component={Link}
                   to={`/charities/${singleCharity._id}/edit`}
                 >
-                  {" "}
-                  Edit{" "}
+                  Edit
                 </Button>
                 <Button
                   color="secondary"
@@ -104,15 +106,21 @@ class CharityDetails extends Component {
             </Box>
           )}
         </Card>
-        <AddPostForm id={id} service={charityService}  saveUpdatedData={this.handleNewData}
+        <AddPostForm
+          id={id}
+          service={charityService}
+          saveUpdatedData={this.handleNewData}
         />
         {singleCharity &&
           singleCharity.posts.map((post) => <p>{post.description}</p>)}
 
-        <ReviewForm id={id} service={reviewService} saveUpdatedData={this.handleNewReview}/>
+        <ReviewForm
+          id={id}
+          service={reviewService}
+          saveUpdatedData={this.handleNewReview}
+        />
         {singleCharity &&
           singleCharity.reviews.map((reviews) => <p>{reviews.comment}</p>)}
-          
       </Container>
     );
   }

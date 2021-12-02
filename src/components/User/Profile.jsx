@@ -10,6 +10,7 @@ import {
   Box,
   Typography,
 } from "@material-ui/core";
+import { PuffLoader } from "react-spinners";
 
 class Profile extends Component {
   state = {
@@ -42,7 +43,7 @@ class Profile extends Component {
           <Typography variant="h1">Welcome</Typography>
         </div>
         <Card sx={{ display: "flex" }}>
-          {isLoading && <h1>...isLoading</h1>}
+          {isLoading && <PuffLoader size="100px" color="orchid" />}
 
           {!isLoading && (
             <Box sx={{ display: "flex", flexDirection: "row" }}>
