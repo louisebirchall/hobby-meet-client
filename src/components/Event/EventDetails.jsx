@@ -89,7 +89,11 @@ class EventDetails extends Component {
 
                 <CardMedia>
                   {singleEvent.image && (
-                    <img src={singleEvent.image} alt={singleEvent.title} />
+                    <img 
+                    src={singleEvent.image} 
+                    alt={singleEvent.title}
+                    style={{ height: 250}}
+                    />
                   )}
                 </CardMedia>
 
@@ -98,13 +102,12 @@ class EventDetails extends Component {
                 <Typography>Where: {singleEvent.location} </Typography>
 
                 <Typography>
-                  {" "}
-                  Date: {formattedDate.toLocaleDateString()}{" "}
-                  {formattedDate.toLocaleTimeString()}{" "}
+                  Date: {formattedDate.toLocaleDateString()}
+                  {formattedDate.toLocaleTimeString()}
                 </Typography>
 
                 <Typography>
-                  Equipment required: {singleEvent.equipment}{" "}
+                  Equipment required: {singleEvent.equipment}
                 </Typography>
 
                 <Typography>Organizer: {singleEvent.organizedBy}</Typography>

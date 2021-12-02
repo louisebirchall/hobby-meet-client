@@ -39,7 +39,12 @@ class CharitiesPage extends Component {
                 <Card xs={12} md={6} lg={4}>
                   <CardMedia align="center">
                   {eachCharity.image && ( 
-                    <img src={eachCharity.image} alt={eachCharity.name} maxWidth="300px" height="150px"/> )}
+                    <img 
+                    src={eachCharity.image} 
+                    alt={eachCharity.name} 
+                    style={{ height: 200 }}
+                    /> 
+                    )}
                   </CardMedia>
                   <CardContent sx={{ flex: '1 0 auto' }}>
                     {/* <Typography component="div" variant="h5">{eachCharity.name}</Typography> */}

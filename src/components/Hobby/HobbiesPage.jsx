@@ -36,7 +36,6 @@ class HobbiesPage extends Component {
     return (
       <Container style={{ paddingBottom: 60 }}>
         <div align="center" style={{ marginBottom: 10 }}>
-          {" "}
           <Typography variant="h2">All The Hobbies</Typography>
         </div>
         <Grid
@@ -56,7 +55,7 @@ class HobbiesPage extends Component {
                         <img
                           src={eachHobby.image}
                           alt={eachHobby.name}
-                          height="150px"
+                          style={{ height: 200 }}
                         />
                       )}
                     </CardMedia>
@@ -71,14 +70,12 @@ class HobbiesPage extends Component {
                         </Typography>
                       </Button>
                     </CardContent>
-                    <CardActions></CardActions>
                   </Card>
                 </Grid>
               );
             })}
         </Grid>
         <div align="center">
-          {" "}
           <Button
             style={{ marginTop: 20 }}
             color="secondary"

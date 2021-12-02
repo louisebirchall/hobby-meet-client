@@ -8,9 +8,9 @@ import {Container, Button, Card, CardMedia, CardContent, Box, Typography,
 const Footer = () => {
   return (
     <Box>
-      <Container style={{ backgroundColor: "#3aefd5" }}>
+      <Container style={{ backgroundColor: "#3aefd5" }} maxWidth="lg">
         <Grid container spacing={5}>
-          <Grid item xs={12} md={6} lg={4}>
+          <Grid item xs={12} md={6} lg={4} xl={4}>
             <Box borderBottom={1}>
               <Typography variant="h6">HobbyMeet</Typography>
             </Box>
@@ -52,9 +52,9 @@ const Footer = () => {
               </NavLink>
             </Box>
             <Box>
-              <NavLink exact to="/contact">
-                Contact Us
-              </NavLink>
+            <NavLink exact to="/contact">
+              Contact Us
+            </NavLink>
             </Box>
           </Grid>
         </Grid>

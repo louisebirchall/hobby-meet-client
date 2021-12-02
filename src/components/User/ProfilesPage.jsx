@@ -45,7 +45,7 @@ class ProfilesPage extends Component {
                   <Card xs={12} md={6} lg={4}>
                     <CardMedia>
                       {eachProfile.image && (
-                        <img src={eachProfile.image} alt={eachProfile.name} />
+                        <img src={eachProfile.image} alt={eachProfile.name} width="200px"/>
                       )}
                     </CardMedia>
                     <CardContent sx={{ flex: "1 0 auto" }}>
