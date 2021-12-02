@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { PuffLoader } from "react-spinners";
-import generalService from "../services/general-service";
-import postService from "../services/post-service";
+import generalService from "../../services/general-service";
+import postService from "../../services/post-service";
 
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";

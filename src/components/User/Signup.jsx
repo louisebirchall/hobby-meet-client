@@ -8,6 +8,7 @@ class Signup extends Component {
     username: "",
     email: "",
     password: "",
+    error: "",
   };
 
   handleChange = (event) => {
@@ -20,18 +21,22 @@ class Signup extends Component {
 
     const { username, email, password } = this.state;
 
-    authService.signup(username, email, password).then((result) => {
+    authService
+      .signup(username, email, password)
+      .then((result) => {
       this.setState({ username: "", email: "", password: "" });
       this.props.setUser(result.data, true);
-      this.props.history.push(`/users/${result.data._id}`);
+      this.props.history.push(`/users/${result.data._id}`)
+    })
+      .catch((err) => {this.setState({ error: err.response.data.errorMessage });
     });
-    // .catch(() => this.props.history.push("Error while trying to signup"));
   };
 
   render() {
-    const { username, email, password } = this.state;
+    const { username, email, password, error } = this.state;
 
     return (
+      <div style={{ paddingBottom: 60 }}>
       <form onSubmit={this.handleSubmit}>
         <Box
           sx={{
@@ -41,7 +46,6 @@ class Signup extends Component {
             alignItems: "center",
             paddingTop: 10,
           }}
-          style={{ paddingBottom: 60 }}
         >
           <Typography style={{ textAlign: "center" }}>
             Sign up below to join the fun
@@ -78,6 +82,8 @@ class Signup extends Component {
           </Button>
         </Box>
       </form>
+       {error && <p>{error}</p>}
+    </div>
     );
   }
 }

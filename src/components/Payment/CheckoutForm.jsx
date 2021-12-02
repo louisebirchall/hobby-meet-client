@@ -1,10 +1,5 @@
  import React, { useEffect, useState } from "react";
-import {
-  PaymentElement,
-  useStripe,
-  useElements
-} from "@stripe/react-stripe-js";
-
+import {PaymentElement, useStripe, useElements} from "@stripe/react-stripe-js";
 import {Container, Button, Card, CardMedia, Typography, Grid, CardContent, CardActions} from '@material-ui/core'
 
 export default function CheckoutForm() {

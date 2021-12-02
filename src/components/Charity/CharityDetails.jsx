@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
 import charityService from "../../services/charity-service";
-import AddPostForm from "../AddPostForm";
+import AddPostForm from "../Posts/AddPostForm";
 import EditPostForm from "../Posts/EditPostForm";
 import reviewService from "../../services/review-service";
 import ReviewForm from "../ReviewForm";
@@ -35,6 +35,10 @@ class CharityDetails extends Component {
   };
 
   handleNewData = (data) => {
+    this.setState({ singleCharity: data.charity });
+  };
+
+  handleNewReview= (data) => {
     this.setState({ singleCharity: data.charity });
   };
 
@@ -104,7 +108,11 @@ class CharityDetails extends Component {
         />
         {singleCharity &&
           singleCharity.posts.map((post) => <p>{post.description}</p>)}
-        {/* <ReviewForm id={id} service={reviewService} /> */}
+
+        <ReviewForm id={id} service={reviewService} saveUpdatedData={this.handleNewReview}/>
+        {singleCharity &&
+          singleCharity.reviews.map((reviews) => <p>{reviews.comment}</p>)}
+          
       </Container>
     );
   }

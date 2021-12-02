@@ -34,23 +34,6 @@ class ReviewForm extends Component {
       });
   };
 
-  //   componentDidMount() {
-  //     const { id } = this.props.match.params;
-  //     if (id) {
-  //       reviewService
-  //         .getReview(id)
-  //         .then((result) => {
-  //           this.setState({
-  //             comment: result.data.comment,
-  //             likes: result.data.likes,
-  //           });
-  //         })
-  //         .catch((err) => {
-  //           this.props.history.push("/500");
-  //         });
-  //     }
-  //   }
-
   render() {
     const { comment, likes } = this.state;
     // const { id } = this.params
