@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import eventService from "../../services/event-service";
-import AddPostForm from "../AddPostForm";
+import AddPostForm from "../Posts/AddPostForm";
 import EditPostForm from "../Posts/EditPostForm";
 import ReviewForm from "../ReviewForm";
 import {
@@ -13,11 +13,7 @@ import {
   Box,
   CardMedia,
 } from "@material-ui/core";
-import reviewService from "../../services/review-service";
-import userService from "../../services/user-service";
-
 import Payment from "../Payment/Payment"
-
 import DeleteIcon from "@mui/icons-material/Delete";
 
 class EventDetails extends Component {
@@ -79,7 +75,6 @@ class EventDetails extends Component {
       singleEvent &&
       singleEvent.attendees &&
       singleEvent.attendees.includes(user._id);
-    
     const { id } = this.props.match.params;
 
     return (
@@ -118,26 +113,26 @@ class EventDetails extends Component {
                 <Typography>Organizer: {singleEvent.organizedBy}</Typography>
 
                 <Typography> Attending: {singleEvent.attendees}</Typography>
+
                 {singleEvent.attendees_max && (
                   <Typography>
                     Maximum attendees: {singleEvent.attendees_max}
                   </Typography>
                 )}
+
                 {singleEvent.attendees_min && (
                   <Typography>
                     Minimum attendees: {singleEvent.attendees_min}
                   </Typography>
                 )}
+
                 <Typography>Price policy: {singleEvent.pricePolicy}</Typography>
 
                 <Typography> price: {singleEvent.price} </Typography>
 
-                {/* <Button component={Link} to={`/events/${singleEvent._id}/edit`}>
-                Edit
-              </Button> */}
                 <Box sx={{ flexGrow: 1 }} />
                 {userIsAttending && (
-                  <span style={{ color: "#3aefd5" }}>
+                  <span style={{ backgroundColor: "#3aefd5" }}>
                     You're attending this event.
                   </span>
                 )}

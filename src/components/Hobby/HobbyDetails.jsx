@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import hobbyService from "../../services/hobby-service";
-import AddPostForm from "../AddPostForm";
+import AddPostForm from "../Posts/AddPostForm";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {
   Container,
