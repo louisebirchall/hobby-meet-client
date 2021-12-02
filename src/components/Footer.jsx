@@ -12,7 +12,7 @@ const Footer = () => {
           <Grid container spacing={5}>
             <Grid item xs={12} md={6} lg={4}>
               <Box borderBottom={1}><Typography variant="h6">HobbyMeet</Typography></Box>
-              <Box>Louise, Florian & Carolina @2021 IronhHack</Box>
+              <Box>Louise, Florian & Carolina &reg; {new Date().getFullYear()} IronHack</Box>
             </Grid>
             <Grid item >
               <Box>
