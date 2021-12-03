@@ -52,8 +52,7 @@ class CharitiesPage extends Component {
     return (
       <Container style={{ paddingBottom: 60 }}>
         <div align="center" style={{ marginBottom: 10 }}>
-          {" "}
-          <Typography variant="h2">All The Charities</Typography>{" "}
+          <Typography variant="h2">All The Charities</Typography>
         </div>
         <Grid
           container
@@ -72,8 +71,7 @@ class CharitiesPage extends Component {
                         <img
                           src={eachCharity.image}
                           alt={eachCharity.name}
-                          maxWidth="300px"
-                          height="150px"
+                          style={{ height: 200 }}
                         />
                       )}
                     </CardMedia>

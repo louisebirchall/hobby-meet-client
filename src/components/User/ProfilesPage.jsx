@@ -11,6 +11,7 @@ import {
   CardContent,
   CardActions,
 } from "@material-ui/core";
+import { PuffLoader } from "react-spinners";
 
 class ProfilesPage extends Component {
   state = {
@@ -36,7 +37,7 @@ class ProfilesPage extends Component {
       <Container style={{ paddingBottom: 60 }}>
         <Typography variant="h2">All The Profiles</Typography>
         <Grid container spacing={3}>
-          {isLoading && <h1>...isLoading</h1>}
+          {isLoading && <PuffLoader size="100px" color="orchid" />}
 
           {!isLoading &&
             listOfProfiles.map((eachProfile) => {
@@ -45,7 +46,7 @@ class ProfilesPage extends Component {
                   <Card xs={12} md={6} lg={4}>
                     <CardMedia>
                       {eachProfile.image && (
-                        <img src={eachProfile.image} alt={eachProfile.name} />
+                        <img src={eachProfile.image} alt={eachProfile.name} width="200px"/>
                       )}
                     </CardMedia>
                     <CardContent sx={{ flex: "1 0 auto" }}>

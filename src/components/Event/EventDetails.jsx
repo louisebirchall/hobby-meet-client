@@ -16,6 +16,7 @@ import {
 } from "@material-ui/core";
 import Payment from "../Payment/Payment";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { PuffLoader } from "react-spinners";
 
 class EventDetails extends Component {
   state = {
@@ -81,7 +82,7 @@ class EventDetails extends Component {
     return (
       <Container style={{ paddingBottom: 60 }}>
         <Card sx={{ display: "flex" }}>
-          {isLoading && <h1>...Loading</h1>}
+          {isLoading && <PuffLoader size="100px" color="orchid" />}
 
           {!isLoading && singleEvent && (
             <Box sx={{ display: "flex", flexDirection: "row" }}>
@@ -90,7 +91,11 @@ class EventDetails extends Component {
 
                 <CardMedia>
                   {singleEvent.image && (
-                    <img src={singleEvent.image} alt={singleEvent.title} />
+                    <img 
+                    src={singleEvent.image} 
+                    alt={singleEvent.title}
+                    style={{ height: 250}}
+                    />
                   )}
                 </CardMedia>
 
@@ -99,13 +104,12 @@ class EventDetails extends Component {
                 <Typography>Where: {singleEvent.location} </Typography>
 
                 <Typography>
-                  {" "}
-                  Date: {formattedDate.toLocaleDateString()}{" "}
-                  {formattedDate.toLocaleTimeString()}{" "}
+                  Date: {formattedDate.toLocaleDateString()}
+                  {formattedDate.toLocaleTimeString()}
                 </Typography>
 
                 <Typography>
-                  Equipment required: {singleEvent.equipment}{" "}
+                  Equipment required: {singleEvent.equipment}
                 </Typography>
 
                 <Typography>Organizer: {singleEvent.organizedBy}</Typography>

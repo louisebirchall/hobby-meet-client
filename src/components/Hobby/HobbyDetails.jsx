@@ -12,6 +12,7 @@ import {
   Typography,
   Box,
 } from "@material-ui/core";
+import { PuffLoader } from "react-spinners";
 
 class HobbyDetails extends Component {
   state = {
@@ -54,7 +55,8 @@ class HobbyDetails extends Component {
     return (
       <Container style={{ paddingBottom: 60 }}>
         <Card sx={{ display: "flex" }}>
-          {isLoading && <h1>...Loading</h1>}
+          {isLoading && <PuffLoader size="100px" color="orchid" />}
+          
           {!isLoading && (
             <Box sx={{ display: "flex", flexDirection: "row" }}>
               <CardContent sx={{ flex: "1 0 auto" }}>

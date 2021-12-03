@@ -21,8 +21,6 @@ class EventsPage extends Component {
     isLoading: true,
   };
 
-
-
   componentDidMount() {
     eventService
       .getEvents()
@@ -59,16 +57,14 @@ class EventsPage extends Component {
                         <img
                           src={eachEvent.image}
                           alt={eachEvent.name}
-                          height="150px"
+                          style={{ height: 200 }}
                         />
                       )}
                     </CardMedia>
                     <CardContent sx={{ flex: "1 0 auto" }}>
                       {/* <Typography component="div" variant="h5">{eachEvent.title}</Typography>
                         <Typography component="div" variant="p">{eachEvent.attendees}</Typography> */}
-                    </CardContent>
-                    <CardActions>
-                    
+
                       <Button
                         variant="outlined"
                         href={`/events/${eachEvent._id}`}
@@ -77,7 +73,7 @@ class EventsPage extends Component {
                           {eachEvent.title}
                         </Typography>
                       </Button>
-                    </CardActions>
+                    </CardContent>
                   </Card>
                 </Grid>
               );
@@ -100,4 +96,3 @@ class EventsPage extends Component {
 }
 
 export default EventsPage;
-
