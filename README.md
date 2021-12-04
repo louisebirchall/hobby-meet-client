@@ -1,4 +1,4 @@
-# Project 3: **Name TBA**
+# Project 3: **HobbyMeet**
 
 ## Description
 **Name TBA** is a social media for a growing community with different kind of hobbies that can be done together in events or workshops. The revenues will be donated to different charities.
