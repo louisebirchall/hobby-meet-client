@@ -65,7 +65,7 @@ class CharityDetails extends Component {
           {isLoading && <PuffLoader size="100px" color="orchid" />}
 
           {!isLoading && (
-            <Box sx={{ display: "flex", flexDirection: "row" }}>
+            <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
               <CardContent sx={{ flex: "1 0 auto" }}>
                 {singleCharity.image && (
                   <CardMedia

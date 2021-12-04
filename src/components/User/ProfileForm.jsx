@@ -140,7 +140,6 @@ class ProfileFom extends Component {
             autoComplete="off"
           >
           <div align="center">
-              {" "}
               <h2>Profile Changes</h2>
               <h3>Please update your profile</h3>
               </div>
