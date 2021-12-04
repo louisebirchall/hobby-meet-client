@@ -94,7 +94,7 @@ class EventDetails extends Component {
                     <img 
                     src={singleEvent.image} 
                     alt={singleEvent.title}
-                    style={{ height: 250}}
+                    style={{width: 300}}
                     />
                   )}
                 </CardMedia>

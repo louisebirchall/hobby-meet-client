@@ -1,7 +1,9 @@
-import { Button, TextField, Typography } from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { Component } from "react";
 import authService from "../../services/auth-service";
+import { Button } from "@material-ui/core";
+
 
 class Login extends Component {
   state = {
@@ -69,12 +71,26 @@ class Login extends Component {
               value={password}
               onChange={this.handleChange}
             />
-            <Button onSubmit={this.handleSubmit} type="submit">
+            <Button 
+            onSubmit={this.handleSubmit} 
+            type="submit"
+            color="primary"
+            variant="outlined"
+            >
               Login
             </Button>
           </Box>
         </form>
+        <div 
+       style={{
+         display: "flex",
+         justifyContent: "center",
+         color: "#edb5f7",
+         fontWeight: "bold"
+        }}
+       >
         {error && <p>{error}</p>}
+        </div>
       </div>
     );
   }

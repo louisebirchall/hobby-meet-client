@@ -74,7 +74,7 @@ class ProductDetails extends Component {
                     component="img"
                     image={singleProduct.image}
                     alt={singleProduct.title}
-                    width="150px"
+                    style={{width: 300}}
                   />
                 )}
                 <Typography component="div" variant="h3">

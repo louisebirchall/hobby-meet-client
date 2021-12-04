@@ -23,7 +23,7 @@ function Contact() {
       <h3>Florian Becker:</h3>
       <h4>
         <a
-          href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          href="https://www.linkedin.com/in/florian-b-0b4609124"
           target="_blank"
           rel="noreferrer"
         >

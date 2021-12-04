@@ -72,7 +72,7 @@ class CharityDetails extends Component {
                     component="img"
                     image={singleCharity.image}
                     alt={singleCharity.name}
-                    width="150px"
+                    style={{width: 300}}
                   />
                 )}
 
