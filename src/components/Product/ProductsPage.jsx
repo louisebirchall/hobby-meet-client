@@ -76,8 +76,7 @@ class ProductsPage extends Component {
                     <CardActions>
                       <Button
                         variant="outlined"
-                        href={`/products/${eachProduct._id}`}
-                      >
+                        href={`/products/${eachProduct._id}`} >
                         <Typography component="div" variant="h5">
                           details
                         </Typography>
@@ -86,15 +85,15 @@ class ProductsPage extends Component {
                         color="primary"
                         variant="contained"
                         onClick={() => this.handleClick(eachProduct)}
-                        href={"/products/payments/create-payment-intent"}
+                        href={"payments/create-payment-intent"}
                       >
                         <Typography component="div" variant="h5">
                           Buy it!
                         </Typography>
                       </Button>
-                      {itemToBuy && itemToBuy._id === eachProduct._id && (
+                        {itemToBuy && itemToBuy._id === eachProduct._id && (
                         <Payment itemToBuy={itemToBuy} />
-                      )}
+                      )} 
                     </CardActions>
                   </Card>
                 </Grid>

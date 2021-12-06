@@ -39,13 +39,14 @@ class Profile extends Component {
 
     return (
       <Container style={{ paddingBottom: 60 }}>
-        <div align="center" style={{ marginBottom: 10 }}>
-          <Typography variant="h1">Welcome</Typography>
-        </div>
-        <Card sx={{ display: "flex" }}>
           {isLoading && <PuffLoader size="100px" color="orchid" />}
 
+        <Card sx={{ display: "flex" }}>
           {!isLoading && (
+            <>
+            <Box align="center" style={{ marginBottom: 10 }} sx={{ flex: "1 0 auto" }}>
+              <Typography variant="h2">Welcome {user.username}</Typography>
+            </Box>
             <Box sx={{ display: "flex", flexDirection: "row" }}>
               <CardContent sx={{ flex: "1 0 auto" }}>
                 
@@ -57,18 +58,11 @@ class Profile extends Component {
                   style={{ borderRadius: 50, width: 250 }}
                 />
 
-                <Typography component="div" variant="h3">
-                  {user.username}
+                <Typography variant="p" color="text.secondary" component="div">
+                  Full name - {user.fullName}
                 </Typography>
                 <Typography variant="p" color="text.secondary" component="div">
-                  {user.email}
-                </Typography>
-                <Typography variant="p" color="text.secondary" component="div">
-                  Name - {user.fullName}
-                </Typography>
-                {/* <Typography variant="p" color="text.secondary" component="div">Hobbies - {user.hobbies}</Typography> */}
-                <Typography variant="p" color="text.secondary" component="div">
-                  Attending - {user.events}
+                  Email -{user.email}
                 </Typography>
                 <Typography variant="p" color="text.secondary" component="div">
                   Age - {user.age}
@@ -77,7 +71,14 @@ class Profile extends Component {
                   User type - {user.type}
                 </Typography>
                 <Typography variant="p" color="text.secondary" component="div">
+                  Are you an admin?- {user.isAdmin}
+                </Typography>
+                <Typography variant="p" color="text.secondary" component="div">
                   Gender - {user.sex}
+                </Typography>
+                <Typography variant="p" color="text.secondary" component="div">Hobbies - {user.hobbies}</Typography>
+                <Typography variant="p" color="text.secondary" component="div">
+                  Attending events- {user.events}
                 </Typography>
                 <Button
                   color="primary"
@@ -89,11 +90,11 @@ class Profile extends Component {
                 </Button>
               </CardContent>
             </Box>
+            </>
           )}
         </Card>
       </Container>
-    );
-  }
-}
+  );
+}}
 
 export default Profile;

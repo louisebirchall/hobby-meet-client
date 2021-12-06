@@ -147,7 +147,7 @@ class EventDetails extends Component {
 
                 <Typography>Price policy: {singleEvent.pricePolicy}</Typography>
 
-                <Typography> price: {singleEvent.price} </Typography>
+                <Typography> Price: {singleEvent.price} €</Typography>
 
                 <Box sx={{ flexGrow: 1 }} />
                 {userIsAttending && (
