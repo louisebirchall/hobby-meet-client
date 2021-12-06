@@ -39,62 +39,109 @@ class Profile extends Component {
 
     return (
       <Container style={{ paddingBottom: 60 }}>
-          {isLoading && <PuffLoader size="100px" color="orchid" />}
+        {isLoading && <PuffLoader size="100px" color="orchid" />}
 
         <Card sx={{ display: "flex" }}>
           {!isLoading && (
             <>
-            <Box align="center" style={{ marginBottom: 10 }} sx={{ flex: "1 0 auto" }}>
-              <Typography variant="h2">Welcome {user.username}</Typography>
-            </Box>
-            <Box sx={{ display: "flex", flexDirection: "row" }}>
-              <CardContent sx={{ flex: "1 0 auto" }}>
-                
-                <CardMedia
+              <Box
                 align="center"
-                  component="img"
-                  image={user.image}
-                  alt={user.username}
-                  style={{ borderRadius: 50, width: 250 }}
-                />
+                style={{ marginBottom: 10 }}
+                sx={{ flex: "1 0 auto" }}
+              >
+                <Typography variant="h2">Welcome {user.username}</Typography>
+              </Box>
+              <Box sx={{ display: "flex", flexDirection: "row" }}>
+                <CardContent sx={{ flex: "1 0 auto" }}>
+         
+                  <CardMedia
+                    component="img"
+                    image={user.image}
+                    alt={user.username}
+                    style={{
+                      borderRadius: "50%",
+                      borderStyle: "solid",
+                      borderWidth: "thin",
+                      borderColor: "#3AEFD5",
+                      width: 250,
+                    }}
+                  />
 
-                <Typography variant="p" color="text.secondary" component="div">
-                  Full name - {user.fullName}
-                </Typography>
-                <Typography variant="p" color="text.secondary" component="div">
-                  Email -{user.email}
-                </Typography>
-                <Typography variant="p" color="text.secondary" component="div">
-                  Age - {user.age}
-                </Typography>
-                <Typography variant="p" color="text.secondary" component="div">
-                  User type - {user.type}
-                </Typography>
-                <Typography variant="p" color="text.secondary" component="div">
-                  Are you an admin?- {user.isAdmin}
-                </Typography>
-                <Typography variant="p" color="text.secondary" component="div">
-                  Gender - {user.sex}
-                </Typography>
-                <Typography variant="p" color="text.secondary" component="div">Hobbies - {user.hobbies}</Typography>
-                <Typography variant="p" color="text.secondary" component="div">
-                  Attending events- {user.events}
-                </Typography>
-                <Button
-                  color="primary"
-                  variant="contained"
-                  component={NavLink}
-                  to={`/users/${user._id}/edit`}
-                >
-                  Edit
-                </Button>
-              </CardContent>
-            </Box>
+                  <Typography
+                    variant="p"
+                    color="text.secondary"
+                    component="div"
+                  >
+                    Full name - {user.fullName}
+                  </Typography>
+                  <Typography
+                    variant="p"
+                    color="text.secondary"
+                    component="div"
+                  >
+                    Email -{user.email}
+                  </Typography>
+                  <Typography
+                    variant="p"
+                    color="text.secondary"
+                    component="div"
+                  >
+                    Age - {user.age}
+                  </Typography>
+                  <Typography
+                    variant="p"
+                    color="text.secondary"
+                    component="div"
+                  >
+                    User type - {user.type}
+                  </Typography>
+                  <Typography
+                    variant="p"
+                    color="text.secondary"
+                    component="div"
+                  >
+                    Are you an admin?- {user.isAdmin}
+                  </Typography>
+                  <Typography
+                    variant="p"
+                    color="text.secondary"
+                    component="div"
+                  >
+                    Gender - {user.sex}
+                  </Typography>
+                  <Typography
+                    variant="p"
+                    color="text.secondary"
+                    component="div"
+                  >
+                    Hobbies - {user.hobbies}
+                  </Typography>
+                  <Typography
+                    variant="p"
+                    color="text.secondary"
+                    component="div"
+                  >
+                    Attending events- {user.events}
+                  </Typography>
+
+                  <Box align="center" style={{ marginTop: 30 }}>
+                    <Button
+                      color="primary"
+                      variant="contained"
+                      component={NavLink}
+                      to={`/users/${user._id}/edit`}
+                    >
+                      Edit Profile
+                    </Button>
+                  </Box>
+                </CardContent>
+              </Box>
             </>
           )}
         </Card>
       </Container>
-  );
-}}
+    );
+  }
+}
 
 export default Profile;
