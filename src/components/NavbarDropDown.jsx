@@ -6,7 +6,8 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
+import Link from "@mui/material/Link";
 
 export default function SwipeableTemporaryDrawer() {
   const [state, setState] = React.useState({
@@ -34,11 +35,31 @@ export default function SwipeableTemporaryDrawer() {
       <List>
         <ListItem button>
           <ListItemIcon>
-            <Button href="/users">Profiles</Button>
-            <Button href="/hobbies">Hobbies</Button>
-            <Button href="/events">Events</Button>
-            <Button href="/charities">Charities</Button>
-            <Button href="/products">Products</Button>
+            <Button>
+              <Link component={RouterLink} to="/users">
+                Profiles
+              </Link>
+            </Button>
+            <Button>
+              <Link component={RouterLink} to="/hobbies">
+                Hobbies
+              </Link>
+            </Button>
+            <Button>
+              <Link component={RouterLink} to="/events">
+                Events
+              </Link>
+            </Button>
+            <Button href="/">
+              <Link component={RouterLink} to="/charities">
+                Charities
+              </Link>
+            </Button>
+            <Button href="/">
+              <Link component={RouterLink} to="/products">
+                Products
+              </Link>
+            </Button>
           </ListItemIcon>
           <ListItemText />
         </ListItem>
