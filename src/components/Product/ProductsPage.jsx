@@ -18,11 +18,11 @@ class ProductsPage extends Component {
   state = {
     listOfProducts: null,
     isLoading: true,
-    itemToBuy: null,
+   
   };
 
   handleClick = (item) => {
-    this.setState({ itemToBuy: item });
+    this.props.payForItem(item)
   };
 
   componentDidMount() {
@@ -85,7 +85,6 @@ class ProductsPage extends Component {
                         color="primary"
                         variant="contained"
                         onClick={() => this.handleClick(eachProduct)}
-                        href={"payments/create-payment-intent"}
                       >
                         <Typography component="div" variant="h5">
                           Buy it!

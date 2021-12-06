@@ -7,9 +7,9 @@ import CheckoutForm from "./CheckoutForm";
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
 // loadStripe is initialized with a fake API key.
-const stripePromise = loadStripe("pk_test_51JzF8fKkWmomGiX9Ue6WkLFHppQhlmjuCXdCp2OR3XmMDjHUbhciHQDEly19t7165w86eQw81t2R1YZuRIQLn7SQ00jG1HKETZ");
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_FE_KEY);
 
-export default function Payment(itemToBuy) {
+export default function Payment({itemToBuy}) {
   const [clientSecret, setClientSecret] = useState("");
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function Payment(itemToBuy) {
     })
     .then((res) => res.json())
     .then((data) => setClientSecret(data.clientSecret));
-  }, []);
+  }, [itemToBuy]);
 
   const appearance = {
     theme: 'stripe',

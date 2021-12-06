@@ -41,6 +41,7 @@ export default function CheckoutForm() {
   }, [stripe]);
 
   const handleSubmit = async (e) => {
+    console.log("HELP")
     e.preventDefault();
 
     if (!stripe || !elements) {
@@ -77,7 +78,7 @@ export default function CheckoutForm() {
     <Container>
       <form id="payment-form" onSubmit={handleSubmit}>
         <PaymentElement id="payment-element" />
-        <Button disabled={isLoading || !stripe || !elements} id="submit">
+        <Button disabled={isLoading || !stripe || !elements} type="submit">
           <span id="button-text">
             {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
           </span>
