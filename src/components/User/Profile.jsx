@@ -48,9 +48,8 @@ class Profile extends Component {
           {!isLoading && (
             <Box sx={{ display: "flex", flexDirection: "row" }}>
               <CardContent sx={{ flex: "1 0 auto" }}>
-                
                 <CardMedia
-                align="center"
+                  align="center"
                   component="img"
                   image={user.image}
                   alt={user.username}
