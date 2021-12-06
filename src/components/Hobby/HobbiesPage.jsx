@@ -32,6 +32,9 @@ class HobbiesPage extends Component {
 
   render() {
     const { listOfHobbies, isLoading } = this.state;
+    const { user } = this.props;
+    const { isAdmin } = user;
+
 
     return (
       <Container style={{ paddingBottom: 60 }}>
@@ -75,6 +78,8 @@ class HobbiesPage extends Component {
               );
             })}
         </Grid>
+
+        { user && isAdmin && (
         <div align="center">
           <Button
             style={{ marginTop: 20 }}
@@ -85,7 +90,7 @@ class HobbiesPage extends Component {
           >
             Add Hobby!
           </Button>
-        </div>
+        </div>)}
       </Container>
     );
   }

@@ -18,9 +18,6 @@ class CharitiesPage extends Component {
   state = {
     listOfCharities: null,
     isLoading: true,
-    isAdmin: true,
-    isLoggedIn: true,
-    user: true,
   };
 
   componentDidMount() {
@@ -33,21 +30,11 @@ class CharitiesPage extends Component {
         // this.props.history.push("/500");
       });
   }
-  /* 
-  handleShow = () => {
-    this.setState({
-      isAdmin: true,
-    });
-  };
-
-  handleHide = () => {
-    this.setState({
-      isAdmin: false,
-    });
-  }; */
 
   render() {
-    const { listOfCharities, isLoading, isAdmin, isLoggedIn, user } = this.state;
+    const { listOfCharities, isLoading } = this.state;
+    const { user } = this.props;
+    const { isAdmin } = user;
 
     return (
       <Container style={{ paddingBottom: 60 }}>
@@ -92,19 +79,19 @@ class CharitiesPage extends Component {
             })}
         </Grid>
 
-        {isLoggedIn && user && isAdmin ? (
+        {user && isAdmin && (
           <div align="center">
             <Button
-              style={{ marginTop: 20 }}
+              component={Link}
               color="secondary"
               variant="contained"
-              component={Link}
               to="/charities/create"
+              style={{ marginTop: 20 }}
             >
               Add Charity!
             </Button>
           </div>
-        ) : null}
+        )}
       </Container>
     );
   }
