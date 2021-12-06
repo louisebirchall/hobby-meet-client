@@ -139,7 +139,18 @@ class HobbyForm extends Component {
             <h3>Please enter your information</h3>
           </div>
           <form onSubmit={this.handleSubmit}>
-            {image && <img src={image} alt="{name}" width="150" />}
+          <div align="center">
+            {image && <img 
+            style={{
+                // display: "flex",
+                // justifyContent: "center",
+                marginBottom: 10,
+                width: 150
+              }}    
+            src={image} 
+            alt={name} 
+            />}
+            </div>
             <PuffLoader
               loading={imageIsUploading}
               size="100px"

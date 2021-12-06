@@ -194,14 +194,24 @@ class EventForm extends Component {
             style={{ paddingBottom: 60 }}
           >
             <div align="center">
-              {" "}
               <h2>Event Form</h2>
               <h3>Please enter your information</h3>
             </div>
 
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <form onSubmit={this.handleSubmit}>
-                {image && <img src={image} alt="{title}" width="150px" />}
+              <div align="center">
+                {image && <img 
+                style={{
+                // display: "flex",
+                // justifyContent: "center",
+                marginBottom: 10,
+                width: 150
+                }} 
+                src={image} 
+                alt={title}
+                />}
+                </div>
                 <PuffLoader
                   loading={imageIsUploading}
                   size="100px"

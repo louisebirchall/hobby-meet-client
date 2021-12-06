@@ -12,6 +12,7 @@ import {
   Typography,
   Box,
 } from "@material-ui/core";
+import { PuffLoader } from "react-spinners";
 
 class HobbyDetails extends Component {
   state = {
@@ -54,7 +55,8 @@ class HobbyDetails extends Component {
     return (
       <Container style={{ paddingBottom: 60 }}>
         <Card sx={{ display: "flex" }}>
-          {isLoading && <h1>...Loading</h1>}
+          {isLoading && <PuffLoader size="100px" color="orchid" />}
+          
           {!isLoading && (
             <Box sx={{ display: "flex", flexDirection: "row" }}>
               <CardContent sx={{ flex: "1 0 auto" }}>
@@ -63,20 +65,20 @@ class HobbyDetails extends Component {
                     component="img"
                     src={singleHobby.image}
                     alt={singleHobby.name}
-                    width="150px"
+                    style={{width: 300}}
                   />
                 )}
                 <Typography component="div" variant="h3">
                   {singleHobby.name}
                 </Typography>
                 <Typography variant="p" color="text.secondary" component="div">
-                  Description: {singleHobby.description}{" "}
+                  Description: {singleHobby.description}
                 </Typography>
                 <Typography variant="p" color="text.secondary" component="div">
-                  Where: {singleHobby.placeOfActivity}{" "}
+                  Where: {singleHobby.placeOfActivity}
                 </Typography>
                 <Typography variant="p" color="text.secondary" component="div">
-                  Category: {singleHobby.typeOfActivity}{" "}
+                  Category: {singleHobby.typeOfActivity}
                 </Typography>
 
                 {/* <Button
@@ -91,8 +93,7 @@ class HobbyDetails extends Component {
                   component={Link}
                   to={`/hobbies/${singleHobby._id}/edit`}
                 >
-                  {" "}
-                  Edit{" "}
+                  Edit
                 </Button>
                 <Button
                   color="secondary"

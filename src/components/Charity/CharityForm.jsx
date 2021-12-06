@@ -72,7 +72,9 @@ class CharityForm extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     if (id) {
-      charityService.getCharity(id).then((result) => {
+      charityService
+      .getCharity(id)
+      .then((result) => {
         this.setState({
           name: result.data.name,
           description: result.data.description,
@@ -100,12 +102,22 @@ class CharityForm extends Component {
           autoComplete="off"
         >
           <div align="center">
-            {" "}
             <h2>Charity Form</h2>
             <h3>Please enter your information</h3>
           </div>
           <form onSubmit={this.handleSubmit}>
-            {image && <img src={image} alt={name} width="150px" />}
+          <div align="center">
+            {image && <img 
+            style={{ 
+              // display: "flex",
+              // justifyContent: "center",
+              marginBottom: 10,
+              width: 150
+              }}
+            src={image} 
+            alt={name} 
+             />}
+             </div>
             <PuffLoader
               loading={imageIsUploading}
               size="100px"

@@ -12,9 +12,11 @@ import {
   CardContent,
   Box,
   CardMedia,
+  Grid,
 } from "@material-ui/core";
-import Payment from "../Payment/Payment"
+import Payment from "../Payment/Payment";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { PuffLoader } from "react-spinners";
 
 class EventDetails extends Component {
   state = {
@@ -23,8 +25,8 @@ class EventDetails extends Component {
   };
 
   handleClick = (item) => {
-    this.setState({itemToBuy: item})
-  }
+    this.setState({ itemToBuy: item });
+  };
 
   componentDidMount() {
     const { id } = this.props.match.params;
@@ -61,7 +63,7 @@ class EventDetails extends Component {
         console.log(err);
       });
   };
-  
+
   handleNewData = (data) => {
     this.setState({ singleEvent: data.event });
   };
@@ -80,7 +82,7 @@ class EventDetails extends Component {
     return (
       <Container style={{ paddingBottom: 60 }}>
         <Card sx={{ display: "flex" }}>
-          {isLoading && <h1>...Loading</h1>}
+          {isLoading && <PuffLoader size="100px" color="orchid" />}
 
           {!isLoading && singleEvent && (
             <Box sx={{ display: "flex", flexDirection: "row" }}>
@@ -92,7 +94,7 @@ class EventDetails extends Component {
                     <img 
                     src={singleEvent.image} 
                     alt={singleEvent.title}
-                    style={{ height: 250}}
+                    style={{width: 300}}
                     />
                   )}
                 </CardMedia>
@@ -145,40 +147,58 @@ class EventDetails extends Component {
                     Attend!
                   </Button>
                 )}
+
                 <Box sx={{ flexGrow: 1 }} />
-              <Button color="primary"
-                  variant="contained" onClick={() => this.handleClick(singleEvent)} href={'/products/payments/create-payment-intent'}>
-                  <Typography component="div" variant="p">
-                  Pay to go!</Typography></Button>
-                      {itemToBuy && itemToBuy._id === singleEvent._id && <Payment itemToBuy={singleEvent}/>}
-
-
-              <Box sx={{ flexGrow: 1 }} />
-
-              <Button
-                color="secondary" variant="contained"
-                  component={Link}
-                  to={`/events/${singleEvent._id}/edit`}
-                >
-                  {" "}
-                  Edit{" "}
-                </Button>
 
                 <Button
-                  color="secondary"
+                  color="primary"
                   variant="contained"
-                  startIcon={<DeleteIcon />}
-                  onClick={this.handleDelete}
+                  onClick={() => this.handleClick(singleEvent)}
+                  href={"/products/payments/create-payment-intent"}
                 >
-                  Delete
+                  <Typography component="div" variant="p">
+                    Pay to go!
+                  </Typography>
                 </Button>
+                {itemToBuy && itemToBuy._id === singleEvent._id && (
+                  <Payment itemToBuy={singleEvent} />
+                )}
+
+                <Box sx={{ flexGrow: 1 }} />
+                <Grid
+                  container
+                  spacing={3}
+                  
+                >
+                  <Button
+                    color="secondary"
+                    variant="contained"
+                    component={Link}
+                    to={`/events/${singleEvent._id}/edit`}
+                  >
+                    {" "}
+                    Edit{" "}
+                  </Button>
+
+                  <Button
+                    color="secondary"
+                    variant="contained"
+                    startIcon={<DeleteIcon />}
+                    onClick={this.handleDelete}
+                  >
+                    Delete
+                  </Button>
+                </Grid>
               </CardContent>
             </Box>
           )}
         </Card>
-        
- 
-        <AddPostForm id={id} service={eventService}   saveUpdatedData={this.handleNewData} />
+
+        <AddPostForm
+          id={id}
+          service={eventService}
+          saveUpdatedData={this.handleNewData}
+        />
         {singleEvent &&
           singleEvent.posts.map((post) => <p>{post.description}</p>)}
 

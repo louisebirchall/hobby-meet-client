@@ -16,6 +16,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { PuffLoader } from "react-spinners";
 
 class ProductDetails extends Component {
   state = {
@@ -63,7 +64,7 @@ class ProductDetails extends Component {
     return (
       <Container style={{ paddingBottom: 60 }}>
         <Card sx={{ display: "flex" }}>
-          {isLoading && <h1>...Loading</h1>}
+          {isLoading && <PuffLoader size="100px" color="orchid" />}
 
           {!isLoading && (
             <Box sx={{ display: "flex", flexDirection: "row" }}>
@@ -73,7 +74,7 @@ class ProductDetails extends Component {
                     component="img"
                     image={singleProduct.image}
                     alt={singleProduct.title}
-                    width="150px"
+                    style={{width: 300}}
                   />
                 )}
                 <Typography component="div" variant="h3">

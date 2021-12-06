@@ -43,7 +43,10 @@ class Frontpage extends Component {
             }}
           >
             <h1 style={styles.h1Styles}>
-              <span>
+              <span style={{
+                borderRadius: "4px",
+                padding: "6px 16px 6px 16px"                
+                }}>
                 Find people to share your hobbies with, or even find a new one,
                 while contributing to a good cause!
               </span>
