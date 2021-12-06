@@ -4,6 +4,7 @@ import eventService from "../../services/event-service";
 import AddPostForm from "../Posts/AddPostForm";
 import EditPostForm from "../Posts/EditPostForm";
 import ReviewForm from "../ReviewForm";
+// import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import {
   Container,
   Button,
@@ -91,10 +92,10 @@ class EventDetails extends Component {
 
                 <CardMedia>
                   {singleEvent.image && (
-                    <img 
-                    src={singleEvent.image} 
-                    alt={singleEvent.title}
-                    style={{width: 300}}
+                    <img
+                      src={singleEvent.image}
+                      alt={singleEvent.title}
+                      style={{ width: 300 }}
                     />
                   )}
                 </CardMedia>
@@ -102,6 +103,22 @@ class EventDetails extends Component {
                 <Typography>Description: {singleEvent.description} </Typography>
 
                 <Typography>Where: {singleEvent.location} </Typography>
+
+                {/* <MapContainer
+                  center={[51.505, -0.09]}
+                  zoom={13}
+                  scrollWheelZoom={false}
+                >
+                  <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  />
+                  <Marker position={[51.505, -0.09]}>
+                    <Popup>
+                      A pretty CSS3 popup. <br /> Easily customizable.
+                    </Popup>
+                  </Marker>
+                </MapContainer> */}
 
                 <Typography>
                   Date: {formattedDate.toLocaleDateString()}
@@ -165,11 +182,7 @@ class EventDetails extends Component {
                 )}
 
                 <Box sx={{ flexGrow: 1 }} />
-                <Grid
-                  container
-                  spacing={3}
-                  
-                >
+                <Grid container spacing={3}>
                   <Button
                     color="secondary"
                     variant="contained"
