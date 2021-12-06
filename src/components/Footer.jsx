@@ -22,61 +22,47 @@ const Footer = () => {
     <AppBar
       style={{ backgroundColor: "#3aefd5" }}
       sx={{ top: "auto", bottom: 0 }}
+      maxWidth="xl"
     >
-      <Container style={{ backgroundColor: "#3aefd5" }} maxWidth="xl">
-        <Grid container spacing={5}>
-          <Grid item xs={12} md={6} lg={4} xl={4}>
-            <Box borderBottom={1}>
-              <Typography variant="h6">HobbyMeet</Typography>
-            </Box>
-            <Box>
-              Louise, Florian & Carolina &reg; {new Date().getFullYear()}{" "}
-              IronHack
-            </Box>
-          </Grid>
-          <Grid item sx={{ mr: 2, display: { xs: "none", md: "flex" } }}>
-            <Box>
-              <NavLink exact to="/">
-                {" "}
-                Home{" "}
-              </NavLink>
-            </Box>
-            <Box>
-              <NavLink exact to="/hobbies">
-                {" "}
-                Hobbies{" "}
-              </NavLink>
-            </Box>
-            <Box>
-              <NavLink exact to="/events">
-                {" "}
-                Events{" "}
-              </NavLink>
-            </Box>
-          </Grid>
-          <Grid item>
-            <Box>
-              <NavLink exact to="/charities">
-                {" "}
-                Charities{" "}
-              </NavLink>
-            </Box>
-            <Box>
-              <NavLink exact to="/products">
-                Products{" "}
-              </NavLink>
-            </Box>
-            <Box>
-              <NavLink exact to="/contact">
-                Contact Us
-              </NavLink>
-            </Box>
-          </Grid>
+      <Grid container spacing={5}>
+        <Grid item xs={12} md={6} lg={4} xl={4}>
+          <Box borderBottom={1}>
+            <Typography variant="h6">HobbyMeet</Typography>
+          </Box>
+          <Box>
+            Louise, Florian & Carolina &reg; {new Date().getFullYear()} IronHack
+          </Box>
         </Grid>
-      </Container>
+
+        <Grid item xs={12} md={6} lg={4} xl={4}>
+          <NavLink exact to="/">
+            {" "}
+            Home{" "}
+          </NavLink>
+          <NavLink exact to="/hobbies">
+            {" "}
+            Hobbies{" "}
+          </NavLink>
+          <NavLink exact to="/events">
+            {" "}
+            Events{" "}
+          </NavLink>
+          <NavLink exact to="/charities">
+            {" "}
+            Charities{" "}
+          </NavLink>
+          <NavLink exact to="/products">
+            {" "}
+            Products{" "}
+          </NavLink>
+          <NavLink exact to="/contact">
+            {" "}
+            Contact Us{" "}
+          </NavLink>
+        </Grid>
+      </Grid>
     </AppBar>
   );
 };
 
 export default Footer;
-

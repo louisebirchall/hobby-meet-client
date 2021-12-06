@@ -1,5 +1,5 @@
 // import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link as RouterLink } from "react-router-dom";
 import authService from "../services/auth-service";
 import SearchBar from "./Search/SearchBar";
 import * as React from "react";
@@ -83,13 +83,13 @@ function Navbar({ isLoggedIn, user, setUser }) {
                 }}
               >
                 <List>
-                  <Button href="/">Home</Button>
-                  <Button href="/profile">My profile</Button>
-                  <Button href="/hobbies">Hobbies</Button>
-                  <Button href="/events">Events</Button>
-                  <Button href="/charities">Charities</Button>
-                  <Button href="/products">Products</Button>
-                  <Button href="/contact">Contact us</Button>
+                  <Button component={RouterLink} to="/">Home</Button>
+                  <Button component={RouterLink} to="/users">All users</Button>
+                  <Button component={RouterLink} to="/hobbies">Hobbies</Button>
+                  <Button component={RouterLink} to="/events">Events</Button>
+                  <Button component={RouterLink} to="/charities">Charities</Button>
+                  <Button component={RouterLink} to="/products">Products</Button>
+                  <Button component={RouterLink} to="/contact">Contact us</Button>
                 </List>
               </Menu>
             </Box>
