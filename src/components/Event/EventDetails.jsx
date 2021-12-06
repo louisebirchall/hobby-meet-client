@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import eventService from "../../services/event-service";
 import AddPostForm from "../Posts/AddPostForm";
 import EditPostForm from "../Posts/EditPostForm";
 import ReviewForm from "../ReviewForm";
-// import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import {
   Container,
   Button,
@@ -14,6 +14,7 @@ import {
   Box,
   CardMedia,
   Grid,
+  Link,
 } from "@material-ui/core";
 import Payment from "../Payment/Payment";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -75,11 +76,9 @@ class EventDetails extends Component {
     const { user } = this.props;
     const formattedDate = singleEvent && new Date(singleEvent.date);
     const userIsAttending =
-      user &&
-      singleEvent &&
-      singleEvent.attendees &&
-      singleEvent.attendees.includes(user._id);
+      user && singleEvent?.attendees?.some((attendee) => attendee._id === user._id);
     const { id } = this.props.match.params;
+    const isOwner = user?._id === singleEvent?.user_id?._id;
 
     return (
       <Container style={{ paddingBottom: 60 }}>
@@ -105,16 +104,13 @@ class EventDetails extends Component {
 
                 <Typography>Where: {singleEvent.location} </Typography>
 
-                {/* <MapContainer
+                <MapContainer
                   center={[51.505, -0.09]}
                   zoom={13}
                   scrollWheelZoom={false}
+                  style={{ height: "50vh" }}
                 >
                   <TileLayer
-<<<<<<< HEAD
-                    
-=======
->>>>>>> abd0ec47dee7a9a0a99db194fd3fa17910d7852e
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                   />
@@ -123,7 +119,7 @@ class EventDetails extends Component {
                       A pretty CSS3 popup. <br /> Easily customizable.
                     </Popup>
                   </Marker>
-                </MapContainer> */}
+                </MapContainer>
 
                 <Typography>
                   Date: {formattedDate.toLocaleDateString()}
@@ -134,9 +130,32 @@ class EventDetails extends Component {
                   Equipment required: {singleEvent.equipment}
                 </Typography>
 
-                <Typography>Organizer: {singleEvent.organizedBy}</Typography>
+                <Typography>
+                  Organizer:{" "}
+                  <Link
+                    component={RouterLink}
+                    to={`/users/${singleEvent.user_id._id}`}
+                  >
+                    {" "}
+                    {singleEvent.user_id.username}{" "}
+                  </Link>
+                </Typography>
 
-                <Typography> Attending: {singleEvent.attendees}</Typography>
+                <Typography>
+                  {" "}
+                  Attending:{" "}
+                  {singleEvent.attendees.map((attendee) => {
+                    return (
+                      <Link
+                        component={RouterLink}
+                        to={`/users/${attendee._id}`}
+                      >
+                        {" "}
+                        {attendee.username}{" "}
+                      </Link>
+                    );
+                  })}
+                </Typography>
 
                 {singleEvent.attendees_max && (
                   <Typography>
@@ -156,9 +175,12 @@ class EventDetails extends Component {
 
                 <Box sx={{ flexGrow: 1 }} />
                 {userIsAttending && (
-                  <span style={{ backgroundColor: "#3aefd5" }}>
-                    You're attending this event.
-                  </span>
+                  <>
+                    <span style={{ backgroundColor: "#3aefd5" }}>
+                      You're attending this event.
+                    </span>
+                    <Link onClick={this.handleAttend}>Remove</Link>
+                  </>
                 )}
                 {!userIsAttending && (
                   <Button
@@ -185,28 +207,29 @@ class EventDetails extends Component {
                 {itemToBuy && itemToBuy._id === singleEvent._id && (
                   <Payment itemToBuy={singleEvent} />
                 )}
-
+                
                 <Box sx={{ flexGrow: 1 }} />
-                <Grid container spacing={3}>
-                  <Button
-                    color="secondary"
-                    variant="contained"
-                    component={Link}
-                    to={`/events/${singleEvent._id}/edit`}
-                  >
-                    {" "}
-                    Edit{" "}
-                  </Button>
+                {isOwner && (
+                  <Grid container spacing={3}>
+                    <Button
+                      color="secondary"
+                      variant="contained"
+                      component={Link}
+                      to={`/events/${singleEvent._id}/edit`}
+                    >
+                      Edit
+                    </Button>
 
-                  <Button
-                    color="secondary"
-                    variant="contained"
-                    startIcon={<DeleteIcon />}
-                    onClick={this.handleDelete}
-                  >
-                    Delete
-                  </Button>
-                </Grid>
+                    <Button
+                      color="secondary"
+                      variant="contained"
+                      startIcon={<DeleteIcon />}
+                      onClick={this.handleDelete}
+                    >
+                      Delete
+                    </Button>
+                  </Grid>
+                )}
               </CardContent>
             </Box>
           )}
