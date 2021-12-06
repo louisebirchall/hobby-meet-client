@@ -9,7 +9,7 @@ import CheckoutForm from "./CheckoutForm";
 // loadStripe is initialized with a fake API key.
 const stripePromise = loadStripe("pk_test_51JzF8fKkWmomGiX9Ue6WkLFHppQhlmjuCXdCp2OR3XmMDjHUbhciHQDEly19t7165w86eQw81t2R1YZuRIQLn7SQ00jG1HKETZ");
 
-export default function Payment() {
+export default function Payment(itemToBuy) {
   const [clientSecret, setClientSecret] = useState("");
 
   useEffect(() => {
@@ -17,9 +17,10 @@ export default function Payment() {
     fetch(`${process.env.REACT_APP_API_HOST}/payments/create-payment-intent`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items: [ { id: "xl-tshirt" } ] }),
-    }).then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
+      body: JSON.stringify({ items: [ itemToBuy ] }),
+    })
+    .then((res) => res.json())
+    .then((data) => setClientSecret(data.clientSecret));
   }, []);
 
   const appearance = {

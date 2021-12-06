@@ -18,6 +18,7 @@ import {
 import Payment from "../Payment/Payment";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { PuffLoader } from "react-spinners";
+// import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 class EventDetails extends Component {
   state = {
@@ -110,6 +111,10 @@ class EventDetails extends Component {
                   scrollWheelZoom={false}
                 >
                   <TileLayer
+<<<<<<< HEAD
+                    
+=======
+>>>>>>> abd0ec47dee7a9a0a99db194fd3fa17910d7852e
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                   />
@@ -147,7 +152,7 @@ class EventDetails extends Component {
 
                 <Typography>Price policy: {singleEvent.pricePolicy}</Typography>
 
-                <Typography> price: {singleEvent.price} </Typography>
+                <Typography> Price: {singleEvent.price} €</Typography>
 
                 <Box sx={{ flexGrow: 1 }} />
                 {userIsAttending && (

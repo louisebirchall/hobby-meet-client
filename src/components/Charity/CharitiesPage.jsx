@@ -77,8 +77,6 @@ class CharitiesPage extends Component {
                     </CardMedia>
                     <CardContent sx={{ flex: "1 0 auto" }}>
                       {/* <Typography component="div" variant="h5">{eachCharity.name}</Typography> */}
-                    </CardContent>
-                    <CardActions>
                       <Button
                         variant="outlined"
                         href={`/charities/${eachCharity._id}`}
@@ -87,7 +85,7 @@ class CharitiesPage extends Component {
                           {eachCharity.name}
                         </Typography>
                       </Button>
-                    </CardActions>
+                      </CardContent>
                   </Card>
                 </Grid>
               );

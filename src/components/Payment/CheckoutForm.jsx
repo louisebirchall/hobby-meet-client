@@ -1,6 +1,6 @@
  import React, { useEffect, useState } from "react";
 import {PaymentElement, useStripe, useElements} from "@stripe/react-stripe-js";
-import {Container, Button, Card, CardMedia, Typography, Grid, CardContent, CardActions} from '@material-ui/core'
+import {Container, Button} from '@material-ui/core'
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -55,7 +55,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000/home",
+        return_url: "http://localhost:3000",
       },
     });
 

@@ -211,11 +211,6 @@ class App extends Component {
               path="/products"
               render={(props) => <ProductsPage {...props} />}
             />
-            <Route
-              exact
-              path="/products/payments/create-payment-intent"
-              render={(props) => <Payment {...props} />}
-            />
 
             <Route
               path="/products/create"
@@ -244,6 +239,14 @@ class App extends Component {
               path="/contact"
               render={(props) => <Contact {...props} />}
             />
+
+            {/* Payment */}
+            <Route
+              exact
+              path="/payments/create-payment-intent"
+              render={(props) => <Payment {...props} />}
+            />
+
 
             {/* ErrorHandling */}
 
