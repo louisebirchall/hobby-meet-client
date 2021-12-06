@@ -4,6 +4,7 @@ import eventService from "../../services/event-service";
 import AddPostForm from "../Posts/AddPostForm";
 import EditPostForm from "../Posts/EditPostForm";
 import ReviewForm from "../ReviewForm";
+// import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import {
   Container,
   Button,
@@ -92,10 +93,10 @@ class EventDetails extends Component {
 
                 <CardMedia>
                   {singleEvent.image && (
-                    <img 
-                    src={singleEvent.image} 
-                    alt={singleEvent.title}
-                    style={{width: 300}}
+                    <img
+                      src={singleEvent.image}
+                      alt={singleEvent.title}
+                      style={{ width: 300 }}
                     />
                   )}
                 </CardMedia>
@@ -110,7 +111,10 @@ class EventDetails extends Component {
                   scrollWheelZoom={false}
                 >
                   <TileLayer
+<<<<<<< HEAD
                     
+=======
+>>>>>>> abd0ec47dee7a9a0a99db194fd3fa17910d7852e
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                   />
@@ -183,11 +187,7 @@ class EventDetails extends Component {
                 )}
 
                 <Box sx={{ flexGrow: 1 }} />
-                <Grid
-                  container
-                  spacing={3}
-                  
-                >
+                <Grid container spacing={3}>
                   <Button
                     color="secondary"
                     variant="contained"
