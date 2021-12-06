@@ -1,6 +1,6 @@
 import React from "react";
 import { Component } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import authService from "./services/auth-service";
 import "./App.css";
 import Navbar from "./components/Navbar";
@@ -45,6 +45,7 @@ class App extends Component {
   state = {
     isLoggedIn: null,
     user: null,
+    itemToBuy: null,
   };
 
   setUser = (user, loggedInStatus) => {
@@ -74,8 +75,16 @@ class App extends Component {
     this.getUser();
   }
 
+
+  payForItem = (itemToBuy) => {
+    this.setState( {itemToBuy}, () => {
+      // this makes sure it only runs after the state is updated
+      this.props.history.push("/payments/create-payment-intent")
+    } )
+  }
+
   render() {
-    const { user, isLoggedIn } = this.state;
+    const { user, isLoggedIn, itemToBuy } = this.state;
 
     return (
       <div className="App">
@@ -135,7 +144,7 @@ class App extends Component {
             <Route
               exact
               path="/hobbies"
-              render={(props) => <HobbiesPage {...props} />}
+              render={(props) => <HobbiesPage {...props} user={user} />}
             />
 
             <Route
@@ -185,7 +194,7 @@ class App extends Component {
             <Route
               exact
               path="/charities"
-              render={(props) => <CharitiesPage {...props} />}
+              render={(props) => <CharitiesPage {...props} user={user} />}
             />
 
             <Route
@@ -209,7 +218,7 @@ class App extends Component {
             <Route
               exact
               path="/products"
-              render={(props) => <ProductsPage {...props} />}
+              render={(props) => <ProductsPage {...props} payForItem={this.payForItem}/>}
             />
 
             <Route
@@ -244,7 +253,7 @@ class App extends Component {
             <Route
               exact
               path="/payments/create-payment-intent"
-              render={(props) => <Payment {...props} />}
+              render={(props) => <Payment {...props} itemToBuy={itemToBuy}/>}
             />
 
 
@@ -262,4 +271,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
