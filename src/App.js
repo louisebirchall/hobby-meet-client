@@ -137,7 +137,7 @@ class App extends Component {
             <Route
               exact
               path="/hobbies"
-              render={(props) => <HobbiesPage {...props} />}
+              render={(props) => <HobbiesPage {...props} user={user}/>}
             />
             <Route
               path="/hobbies/create"
@@ -177,7 +177,7 @@ class App extends Component {
             <Route
               exact
               path="/charities"
-              render={(props) => <CharitiesPage {...props} />}
+              render={(props) => <CharitiesPage {...props} user={user}/>}
             />
             <Route
               path="/charities/create"
