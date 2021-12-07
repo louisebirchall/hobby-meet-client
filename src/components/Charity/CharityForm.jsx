@@ -109,8 +109,6 @@ class CharityForm extends Component {
           <div align="center">
             {image && <img 
             style={{ 
-              // display: "flex",
-              // justifyContent: "center",
               marginBottom: 10,
               width: 150
               }}
@@ -130,12 +128,8 @@ class CharityForm extends Component {
                 type="file"
                 onChange={this.handleImageUpload}
               />
-              {/* <Button onChange={this.handleImageUpload} variant="contained" component="span">
-                Upload
-              </Button> */}
             </label>
             </div>
-            {/* <input onChange={this.handleImageUpload} type="file" name="image" /> */}
 
             <TextField
               style={{ marginTop: 20 }}

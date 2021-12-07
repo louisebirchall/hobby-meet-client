@@ -9,7 +9,6 @@ import {
   Typography,
   Grid,
   CardContent,
-  CardActions,
   Box
 } from "@material-ui/core";
 import { PuffLoader } from "react-spinners";

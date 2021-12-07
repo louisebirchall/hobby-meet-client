@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import eventService from "../../services/event-service";
 import { Link } from "react-router-dom";
-
 import {
   Container,
   Button,
@@ -10,7 +9,7 @@ import {
   Typography,
   Grid,
   CardContent,
-  CardActions,
+  Box,
 } from "@material-ui/core";
 import { useTheme } from "@mui/material/styles";
 import { PuffLoader } from "react-spinners";
@@ -34,12 +33,13 @@ class EventsPage extends Component {
 
   render() {
     const { listOfEvents, isLoading } = this.state;
+    const { user } = this.props;
 
     return (
       <Container style={{ paddingBottom: 60 }}>
-        <div align="center" style={{ marginBottom: 10 }}>
+        <Box align="center" style={{ marginBottom: 10 }}>
           <Typography variant="h2">All The Events</Typography>
-        </div>
+        </Box>
         <Grid
           container
           spacing={3}
@@ -62,9 +62,6 @@ class EventsPage extends Component {
                       )}
                     </CardMedia>
                     <CardContent sx={{ flex: "1 0 auto" }}>
-                      {/* <Typography component="div" variant="h5">{eachEvent.title}</Typography>
-                        <Typography component="div" variant="p">{eachEvent.attendees}</Typography> */}
-
                       <Button
                         variant="outlined"
                         href={`/events/${eachEvent._id}`}
@@ -79,17 +76,19 @@ class EventsPage extends Component {
               );
             })}
         </Grid>
-        <div align="center">
-          <Button
-            style={{ marginTop: 20 }}
-            color="secondary"
-            variant="contained"
-            component={Link}
-            to="/events/create"
-          >
-            Add Event!
-          </Button>
-        </div>
+        {user && (
+          <div align="center">
+            <Button
+              style={{ marginTop: 20 }}
+              color="secondary"
+              variant="contained"
+              component={Link}
+              to="/events/create"
+            >
+              Add Event!
+            </Button>
+          </div>
+        )}
       </Container>
     );
   }

@@ -44,7 +44,6 @@ class HobbyForm extends Component {
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
-      //[event.target.value]: event.target.value
     });
   };
 
@@ -134,7 +133,6 @@ class HobbyForm extends Component {
           style={{ paddingBottom: 60 }}
         >
         <div align="center">
-            {" "}
             <h2>Hobby Form</h2>
             <h3>Please enter your information</h3>
           </div>
@@ -142,8 +140,6 @@ class HobbyForm extends Component {
           <div align="center">
             {image && <img 
             style={{
-                // display: "flex",
-                // justifyContent: "center",
                 marginBottom: 10,
                 width: 150
               }}    
@@ -163,13 +159,8 @@ class HobbyForm extends Component {
                 type="file"
                 onChange={this.handleImageUpload}
               />
-              {/* <Button onChange={this.handleImageUpload} variant="contained" component="span">
-                Upload
-              </Button> */}
             </label>
             </div>
-            {/* <label htmlFor="image">Representative image </label>
-            <input onChange={this.handleImageUpload} type="file" name="image" /> */}
 
             <TextField
               style={{ marginTop: 20 }}
@@ -180,17 +171,6 @@ class HobbyForm extends Component {
               name="name"
               value={name}
             />
-
-            {/* <label htmlFor="name">Name </label>
-          <input
-            onChange={this.handleChange}
-            id="outlined-basic"
-            label="Name"
-            variant="outlined"
-            name="name"
-            value={name}
-          />
-
 
           {/* max 4 and then scrollbar, maybe limit the characters? */}
           <TextField
@@ -203,7 +183,6 @@ class HobbyForm extends Component {
               name="description"
               value={description}
             />
-
 
             <FormControl sx={{ m: 1, width: 530 }}>
               <InputLabel id="demo-multiple-name-label">
@@ -231,9 +210,7 @@ class HobbyForm extends Component {
                 <MenuItem value="Photography">Photography</MenuItem>
               </Select>
             </FormControl>
-
-            
-
+        
             <FormControl sx={{ m: 1, width: 530 }}>
               <InputLabel id="demo-multiple-name-label">
                 Please select the place of the activity
@@ -290,15 +267,12 @@ class HobbyForm extends Component {
                 >
                   Save changes!
                 </Button>
-              </div>
-
-         
 {/* 
             <p>Do you want to delete this hobby?</p>
             <button type="submit" disabled={imageIsUploading}>
               Delete
             </button>  */}
-
+              </div>
           </form>
 
         </Box>
