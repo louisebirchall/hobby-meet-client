@@ -33,8 +33,8 @@ class CharitiesPage extends Component {
 
   render() {
     const { listOfCharities, isLoading } = this.state;
-    const { user } = this.props;
-    const { isAdmin } = user;
+   /*  const { user } = this.props;
+    const { isAdmin } = user;  */
 
     return (
       <Container style={{ paddingBottom: 60 }}>
@@ -79,7 +79,7 @@ class CharitiesPage extends Component {
             })}
         </Grid>
 
-        {user && isAdmin && (
+{/*         {user && isAdmin && (
           <div align="center">
             <Button
               component={Link}
@@ -91,7 +91,7 @@ class CharitiesPage extends Component {
               Add Charity!
             </Button>
           </div>
-        )}
+        )} */}
       </Container>
     );
   }
