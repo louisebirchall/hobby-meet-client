@@ -18,11 +18,10 @@ class ProductsPage extends Component {
   state = {
     listOfProducts: null,
     isLoading: true,
-   
   };
 
   handleClick = (item) => {
-    this.props.payForItem(item)
+    this.props.payForItem(item);
   };
 
   componentDidMount() {
@@ -38,6 +37,7 @@ class ProductsPage extends Component {
 
   render() {
     const { listOfProducts, isLoading, itemToBuy } = this.state;
+    const { user } = this.props;
 
     return (
       <Container style={{ paddingBottom: 60 }}>
@@ -58,12 +58,12 @@ class ProductsPage extends Component {
                   <Card xs={12} md={6} lg={4}>
                     <CardMedia align="center">
                       {eachProduct.image && (
-                        <img 
-                        src={eachProduct.image}  
-                        alt={eachProduct.title} 
-                        style={{ height: 200 }}
+                        <img
+                          src={eachProduct.image}
+                          alt={eachProduct.title}
+                          style={{ height: 200 }}
                         />
-                        )}
+                      )}
                     </CardMedia>
                     <CardContent sx={{ flex: "1 0 auto" }}>
                       <Typography component="div" variant="h5">
@@ -76,7 +76,8 @@ class ProductsPage extends Component {
                     <CardActions>
                       <Button
                         variant="outlined"
-                        href={`/products/${eachProduct._id}`} >
+                        href={`/products/${eachProduct._id}`}
+                      >
                         <Typography component="div" variant="h5">
                           details
                         </Typography>
@@ -90,26 +91,28 @@ class ProductsPage extends Component {
                           Buy it!
                         </Typography>
                       </Button>
-                        {itemToBuy && itemToBuy._id === eachProduct._id && (
+                      {itemToBuy && itemToBuy._id === eachProduct._id && (
                         <Payment itemToBuy={itemToBuy} />
-                      )} 
+                      )}
                     </CardActions>
                   </Card>
                 </Grid>
               );
             })}
         </Grid>
-        <div align="center" style={{ marginTop: 10 }}>
-          <Button
-            style={{ marginTop: 20 }}
-            color="secondary"
-            variant="contained"
-            component={Link}
-            to="/products/create"
-          >
-            Add Product!
-          </Button>
-        </div>
+        {user && (
+          <div align="center" style={{ marginTop: 10 }}>
+            <Button
+              style={{ marginTop: 20 }}
+              color="secondary"
+              variant="contained"
+              component={Link}
+              to="/products/create"
+            >
+              Add Product!
+            </Button>
+          </div>
+        )}
       </Container>
     );
   }

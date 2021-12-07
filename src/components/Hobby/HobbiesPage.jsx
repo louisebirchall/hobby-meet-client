@@ -10,6 +10,7 @@ import {
   Grid,
   CardContent,
   CardActions,
+  Box
 } from "@material-ui/core";
 import { PuffLoader } from "react-spinners";
 
@@ -33,8 +34,6 @@ class HobbiesPage extends Component {
   render() {
     const { listOfHobbies, isLoading } = this.state;
     const { user } = this.props;
-    const { isAdmin } = user;
-
 
     return (
       <Container style={{ paddingBottom: 60 }}>
@@ -79,18 +78,19 @@ class HobbiesPage extends Component {
             })}
         </Grid>
 
-        { user && isAdmin && (
-        <div align="center">
-          <Button
-            style={{ marginTop: 20 }}
-            color="secondary"
-            variant="contained"
-            component={Link}
-            to="/hobbies/create"
-          >
-            Add Hobby!
-          </Button>
-        </div>)}
+        {user && user.isAdmin && (
+          <Box align="center">
+            <Button
+              style={{ marginTop: 20 }}
+              color="secondary"
+              variant="contained"
+              component={Link}
+              to="/hobbies/create"
+            >
+              Add Hobby!
+            </Button>
+          </Box>
+        )}
       </Container>
     );
   }
