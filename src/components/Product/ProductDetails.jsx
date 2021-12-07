@@ -5,7 +5,6 @@ import AddPostForm from "../Posts/AddPostForm";
 // import EditPostForm from "../Posts/EditPostForm";
 import reviewService from "../../services/review-service";
 import ReviewForm from "../ReviewForm";
-//import Payment from "../Payment/Payment"
 import {
   Container,
   Button,
@@ -14,6 +13,7 @@ import {
   CardContent,
   Box,
   Typography,
+  Grid
 } from "@material-ui/core";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { PuffLoader } from "react-spinners";
@@ -22,7 +22,6 @@ class ProductDetails extends Component {
   state = {
     singleProduct: null,
     isLoading: true,
-    //    itemToBuy: null,
   };
 
   componentDidMount() {
@@ -36,10 +35,6 @@ class ProductDetails extends Component {
         this.props.history.push("/500");
       });
   }
-
-  /*   handleClick = (item) => {
-    this.setState({itemToBuy: item})
-  } */
 
   handleDelete = () => {
     const { id } = this.props.match.params;
@@ -60,6 +55,8 @@ class ProductDetails extends Component {
   render() {
     const { isLoading, singleProduct } = this.state;
     const { id } = this.props.match.params;
+    const { user } = this.props;
+    const isOwner = user?._id === singleProduct?.user_id?._id;
 
     return (
       <Container style={{ paddingBottom: 60 }}>
@@ -74,7 +71,7 @@ class ProductDetails extends Component {
                     component="img"
                     image={singleProduct.image}
                     alt={singleProduct.title}
-                    style={{width: 300}}
+                    style={{ width: 300 }}
                   />
                 )}
                 <Typography component="div" variant="h3">
@@ -96,30 +93,31 @@ class ProductDetails extends Component {
                 {/* <Typography variant="p" color="text.secondary" component="div">
                   Created by: {singleProduct.username}
                 </Typography> */}
-
-                {/* <Button
-                color="primary"
-                  variant="contained"
-                  component={Link}
-                  to={`/products/${singleProduct._id}/edit`}
-                >
-                  {" "}
-                  Edit{" "}
-                </Button> */}
-                <Button
-                  color="secondary"
-                  variant="contained"
-                  startIcon={<DeleteIcon />}
-                  onClick={this.handleDelete}
-                >
-                  Delete
-                </Button>
-
+                {isOwner && (
+                  <Grid container spacing={3}>
+                    <Button
+                      color="primary"
+                      variant="contained"
+                      component={Link}
+                      to={`/products/${singleProduct._id}/edit`}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      color="secondary"
+                      variant="contained"
+                      startIcon={<DeleteIcon />}
+                      onClick={this.handleDelete}
+                    >
+                      Delete
+                    </Button>
+                  </Grid>
+                )}
               </CardContent>
             </Box>
           )}
-    </Card>
-       {/*   <AddPostForm id={id} service={productService}  saveUpdatedData={this.handleNewData}
+        </Card>
+        {/*   <AddPostForm id={id} service={productService}  saveUpdatedData={this.handleNewData}
           <AddPostForm id={id} service={productService}  saveUpdatedData={this.handleNewData}
         />
         {singleProduct &&
@@ -129,7 +127,7 @@ class ProductDetails extends Component {
             <image src={post.image}/>
            </>      
           )} */}
-          {/* <ReviewForm id={id} service={reviewService} /> */}
+        {/* <ReviewForm id={id} service={reviewService} /> */}
       </Container>
     );
   }

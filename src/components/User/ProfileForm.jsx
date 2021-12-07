@@ -14,7 +14,7 @@ import { Button } from "@material-ui/core";
 import { Card } from "@material-ui/core";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-class ProfileFom extends Component {
+class ProfileForm extends Component {
   state = {
     username: "",
     email: "",
@@ -316,4 +316,4 @@ class ProfileFom extends Component {
   }
 }
 
-export default ProfileFom;
+export default ProfileForm;

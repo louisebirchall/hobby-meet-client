@@ -13,6 +13,7 @@ import {
   CardContent,
   CardMedia,
   Typography,
+  Grid
 } from "@material-ui/core";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { PuffLoader } from "react-spinners";
@@ -58,6 +59,8 @@ class CharityDetails extends Component {
   render() {
     const { isLoading, singleCharity } = this.state;
     const { id } = this.props.match.params;
+    const { user } = this.props;
+    const isOwner = user?._id === singleCharity?.user_id?._id;
 
     return (
       <Container style={{ paddingBottom: 60 }}>
@@ -65,14 +68,20 @@ class CharityDetails extends Component {
           {isLoading && <PuffLoader size="100px" color="orchid" />}
 
           {!isLoading && (
-            <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+              }}
+            >
               <CardContent sx={{ flex: "1 0 auto" }}>
                 {singleCharity.image && (
                   <CardMedia
                     component="img"
                     image={singleCharity.image}
                     alt={singleCharity.name}
-                    style={{width: 300}}
+                    style={{ width: 300 }}
                   />
                 )}
 
@@ -83,25 +92,26 @@ class CharityDetails extends Component {
                   Description: {singleCharity.description}{" "}
                 </Typography>
 
-                {/* <Button component={Link} to="/charities/create">
-                  Create{" "}
-                </Button> */}
-                <Button
-                  color="primary"
-                  variant="contained"
-                  component={Link}
-                  to={`/charities/${singleCharity._id}/edit`}
-                >
-                  Edit
-                </Button>
-                <Button
-                  color="secondary"
-                  variant="contained"
-                  startIcon={<DeleteIcon />}
-                  onClick={this.handleDelete}
-                >
-                  Delete
-                </Button>
+                {isOwner && (
+                  <Grid container spacing={3}>
+                    <Button
+                      color="primary"
+                      variant="contained"
+                      component={Link}
+                      to={`/charities/${singleCharity._id}/edit`}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      color="secondary"
+                      variant="contained"
+                      startIcon={<DeleteIcon />}
+                      onClick={this.handleDelete}
+                    >
+                      Delete
+                    </Button>
+                  </Grid>
+                )}
               </CardContent>
             </Box>
           )}

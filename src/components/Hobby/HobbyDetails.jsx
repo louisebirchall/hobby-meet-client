@@ -11,6 +11,7 @@ import {
   CardMedia,
   Typography,
   Box,
+  Grid
 } from "@material-ui/core";
 import { PuffLoader } from "react-spinners";
 
@@ -51,6 +52,8 @@ class HobbyDetails extends Component {
   render() {
     const { isLoading, singleHobby } = this.state;
     const { id } = this.props.match.params;
+    const { user } = this.props;
+    const isOwner = user?._id === singleHobby?.user_id?._id;
 
     return (
       <Container style={{ paddingBottom: 60 }}>
@@ -81,28 +84,26 @@ class HobbyDetails extends Component {
                   Category: {singleHobby.typeOfActivity}
                 </Typography>
 
-                {/* <Button
-                  component={Link}
-                  to={`/hobbies/${singleHobby._id}/edit`}
-                >
-                  Edit
-                </Button> */}
-                <Button
-                  color="primary"
-                  variant="contained"
-                  component={Link}
-                  to={`/hobbies/${singleHobby._id}/edit`}
-                >
-                  Edit
-                </Button>
-                <Button
-                  color="secondary"
-                  variant="contained"
-                  startIcon={<DeleteIcon />}
-                  onClick={this.handleDelete}
-                >
-                  Delete
-                </Button>
+                {isOwner && (
+                  <Grid container spacing={3}>
+                    <Button
+                      color="primary"
+                      variant="contained"
+                      component={Link}
+                      to={`/hobbies/${singleHobby._id}/edit`}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      color="secondary"
+                      variant="contained"
+                      startIcon={<DeleteIcon />}
+                      onClick={this.handleDelete}
+                    >
+                      Delete
+                    </Button>
+                  </Grid>
+                )}
               </CardContent>
             </Box>
           )}

@@ -19,7 +19,6 @@ import {
 import Payment from "../Payment/Payment";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { PuffLoader } from "react-spinners";
-// import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 class EventDetails extends Component {
   state = {
@@ -76,7 +75,8 @@ class EventDetails extends Component {
     const { user } = this.props;
     const formattedDate = singleEvent && new Date(singleEvent.date);
     const userIsAttending =
-      user && singleEvent?.attendees?.some((attendee) => attendee._id === user._id);
+      user &&
+      singleEvent?.attendees?.some((attendee) => attendee._id === user._id);
     const { id } = this.props.match.params;
     const isOwner = user?._id === singleEvent?.user_id?._id;
 
@@ -131,27 +131,24 @@ class EventDetails extends Component {
                 </Typography>
 
                 <Typography>
-                  Organizer:{" "}
+                  Organizer:
                   <Link
                     component={RouterLink}
                     to={`/users/${singleEvent.user_id._id}`}
                   >
-                    {" "}
-                    {singleEvent.user_id.username}{" "}
+                    {singleEvent.user_id.username}
                   </Link>
                 </Typography>
 
                 <Typography>
-                  {" "}
-                  Attending:{" "}
+                  Attending:
                   {singleEvent.attendees.map((attendee) => {
                     return (
                       <Link
                         component={RouterLink}
                         to={`/users/${attendee._id}`}
                       >
-                        {" "}
-                        {attendee.username}{" "}
+                        {attendee.username}
                       </Link>
                     );
                   })}
@@ -207,7 +204,7 @@ class EventDetails extends Component {
                 {itemToBuy && itemToBuy._id === singleEvent._id && (
                   <Payment itemToBuy={singleEvent} />
                 )}
-                
+
                 <Box sx={{ flexGrow: 1 }} />
                 {isOwner && (
                   <Grid container spacing={3}>
@@ -219,10 +216,10 @@ class EventDetails extends Component {
                     >
                       Edit
                     </Button>
-
                     <Button
                       color="secondary"
                       variant="contained"
+                      component={Link}
                       startIcon={<DeleteIcon />}
                       onClick={this.handleDelete}
                     >

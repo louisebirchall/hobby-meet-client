@@ -35,7 +35,6 @@ class HobbiesPage extends Component {
     const { user } = this.props;
     const { isAdmin } = user;
 
-
     return (
       <Container style={{ paddingBottom: 60 }}>
         <div align="center" style={{ marginBottom: 10 }}>
@@ -79,18 +78,19 @@ class HobbiesPage extends Component {
             })}
         </Grid>
 
-        { user && isAdmin && (
-        <div align="center">
-          <Button
-            style={{ marginTop: 20 }}
-            color="secondary"
-            variant="contained"
-            component={Link}
-            to="/hobbies/create"
-          >
-            Add Hobby!
-          </Button>
-        </div>)}
+        {user && isAdmin && (
+          <div align="center">
+            <Button
+              style={{ marginTop: 20 }}
+              color="secondary"
+              variant="contained"
+              component={Link}
+              to="/hobbies/create"
+            >
+              Add Hobby!
+            </Button>
+          </div>
+        )}
       </Container>
     );
   }
