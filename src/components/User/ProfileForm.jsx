@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import userService from "../../services/user-service";
 import generalService from "../../services/general-service";
 import { PuffLoader } from "react-spinners";
-
-// textfield / form
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -153,7 +151,7 @@ class ProfileFom extends Component {
               />
               </div>
 
-<div align="center">
+                <div align="center">
                   <label htmlFor="contained-button-file">
                     <Input
                       accept="image/*"
@@ -199,32 +197,6 @@ class ProfileFom extends Component {
                 value={email}
               />
 
-              {/* <label htmlFor="sex">Sex</label>
-          <select
-            onChange={this.handleChange}
-            type="text"
-            name="sex"
-            value={sex}
-          >
-            <option value="Female">Female</option>
-            <option value="Male">Male</option>
-          </select> */}
-
-              {/*<TextField
-            id="outlined-select"
-            select
-            label="Sex"
-            value={sex}
-            onChange={this.handleChange}
-            //helperText="Please select your sex."
-          >
-             {sex.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem> 
-          ))}   
-          </TextField>*/}
-
               <FormControl sx={{ m: 1, width: 530 }}>
                 <InputLabel id="demo-multiple-name-label">Sex</InputLabel>
                 <Select
@@ -250,21 +222,6 @@ class ProfileFom extends Component {
                 type="number"
                 value={age}
               />
-
-              {/* <TextField
-            id="outlined-select"
-            select
-            label="Type of user"
-            value={type}
-            onChange={this.handleChange}
-            // helperText="Please select your sex."
-          >
-          {sex.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem> 
-          ))}  
-          </TextField> */}
 
               <FormControl sx={{ m: 1, width: 530 }}>
                 <InputLabel id="label">Type of user</InputLabel>

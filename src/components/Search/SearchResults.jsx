@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import generalService from "../../services/general-service";
 import queryString from "query-string";
-import { useScrollTrigger } from "@material-ui/core";
-import {Container, Button, Card, CardMedia, Typography, Grid, CardContent, CardActions} from '@material-ui/core'
+import {Container, Typography } from '@material-ui/core'
 import SearchResult from "./SearchResult";
 import { PuffLoader } from "react-spinners";
 

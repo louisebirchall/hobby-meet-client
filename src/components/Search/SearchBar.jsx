@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import generalService from "../../services/general-service";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";

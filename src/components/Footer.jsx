@@ -1,21 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { AppBar, Stack } from "@mui/material";
+import { AppBar } from "@mui/material";
 import {
-  Container,
-  Button,
-  Card,
-  CardMedia,
-  CardContent,
   Box,
   Typography,
   Grid,
 } from "@material-ui/core";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import List from "@mui/material/List";
 
 const Footer = () => {
   return (
@@ -34,30 +24,24 @@ const Footer = () => {
           </Box>
         </Grid>
 
-        <Grid item xs={12} md={6} lg={4} xl={4}>
+        <Grid item xs={12} md={6} lg={4} xl={4} style={{display: "flex", justifyContent: "space-between"}}>
           <NavLink exact to="/">
-            {" "}
-            Home{" "}
+            Home
           </NavLink>
           <NavLink exact to="/hobbies">
-            {" "}
-            Hobbies{" "}
+            Hobbies
           </NavLink>
           <NavLink exact to="/events">
-            {" "}
-            Events{" "}
+            Events
           </NavLink>
           <NavLink exact to="/charities">
-            {" "}
-            Charities{" "}
+            Charities
           </NavLink>
           <NavLink exact to="/products">
-            {" "}
-            Products{" "}
+            Products
           </NavLink>
           <NavLink exact to="/contact">
-            {" "}
-            Contact Us{" "}
+            Contact Us
           </NavLink>
         </Grid>
       </Grid>
