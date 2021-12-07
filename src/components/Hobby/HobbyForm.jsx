@@ -292,19 +292,12 @@ class HobbyForm extends Component {
                 </Button>
               </div>
 
-            {/* <button type="submit" disabled={imageIsUploading}>
-              Add this hobby!
-            </button>
-
-            <button type="submit" disabled={imageIsUploading}>
-              Save changes!
-            </button>
-
+         
+{/* 
             <p>Do you want to delete this hobby?</p>
             <button type="submit" disabled={imageIsUploading}>
-              {" "}
-              Delete{" "}
-            </button> */}
+              Delete
+            </button>  */}
 
           </form>
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link as RouterLink} from "react-router-dom";
 import productService from "../../services/product-service";
 import AddPostForm from "../Posts/AddPostForm";
 // import EditPostForm from "../Posts/EditPostForm";
@@ -13,7 +13,8 @@ import {
   CardContent,
   Box,
   Typography,
-  Grid
+  Grid,
+  Link
 } from "@material-ui/core";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { PuffLoader } from "react-spinners";
@@ -90,15 +91,23 @@ class ProductDetails extends Component {
                   Donations for: {singleProduct.charity_id}
                 </Typography> */}
                 {/* <Typography variant="p" color="text.secondary" component="div">Made in the event: {singleProduct.event_id}</Typography> */}
-                {/* <Typography variant="p" color="text.secondary" component="div">
-                  Created by: {singleProduct.username}
-                </Typography> */}
+
+                <Typography variant="p" color="text.secondary" component="div">
+                <Link
+                    component={RouterLink}
+                    to={`/users/${singleProduct.user_id._id}`}
+                  >
+                   Created by: {singleProduct.user_id.username}
+                  </Link>
+                </Typography>
+
                 {isOwner && (
                   <Grid container spacing={3}>
                     <Button
                       color="primary"
                       variant="contained"
                       component={Link}
+                      // onClick={this.}
                       to={`/products/${singleProduct._id}/edit`}
                     >
                       Edit

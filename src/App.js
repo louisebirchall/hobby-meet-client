@@ -197,7 +197,7 @@ class App extends Component {
             <Route
               exact
               path="/products"
-              render={(props) => <ProductsPage {...props} payForItem={this.payForItem}/>}
+              render={(props) => <ProductsPage {...props} payForItem={this.payForItem} user={user}/>}
             />
             <Route
               path="/products/create"

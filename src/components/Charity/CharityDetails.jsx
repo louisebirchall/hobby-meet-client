@@ -122,7 +122,7 @@ class CharityDetails extends Component {
           saveUpdatedData={this.handleNewData}
         />
         {singleCharity &&
-          singleCharity.posts.map((post) => <p>{post.description}</p>)}
+          singleCharity.posts.map((post) => <p>{post.image}<span>{post.description}</span></p>)}
 
         <ReviewForm
           id={id}

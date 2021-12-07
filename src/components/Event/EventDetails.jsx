@@ -78,7 +78,7 @@ class EventDetails extends Component {
       user &&
       singleEvent?.attendees?.some((attendee) => attendee._id === user._id);
     const { id } = this.props.match.params;
-    // const isOwner = user?._id === singleEvent?.user_id?._id;
+    const isOwner = user?._id === singleEvent?.user_id?._id;
 
     return (
       <Container style={{ paddingBottom: 60 }}>
@@ -130,7 +130,7 @@ class EventDetails extends Component {
                   Equipment required: {singleEvent.equipment}
                 </Typography>
 
- {/*                <Typography>
+                <Typography>
                   Organizer:
                   <Link
                     component={RouterLink}
@@ -138,7 +138,7 @@ class EventDetails extends Component {
                   >
                     {singleEvent.user_id.username}
                   </Link>
-                </Typography> */}
+                </Typography>
 
                 <Typography>
                   Attending:
@@ -206,12 +206,13 @@ class EventDetails extends Component {
                 )}
 
                 <Box sx={{ flexGrow: 1 }} />
-            {/*     {isOwner && (
+                {isOwner && (
                   <Grid container spacing={3}>
                     <Button
                       color="secondary"
                       variant="contained"
                       component={Link}
+                      // onClick={this.}
                       to={`/events/${singleEvent._id}/edit`}
                     >
                       Edit
@@ -226,7 +227,7 @@ class EventDetails extends Component {
                       Delete
                     </Button>
                   </Grid>
-                )} */}
+                )} 
               </CardContent>
             </Box>
           )}

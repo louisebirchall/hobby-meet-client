@@ -125,6 +125,7 @@ class Profile extends Component {
                   </Typography>
 
                   <Box align="center" style={{ marginTop: 30 }}>
+
                     <Button
                       color="primary"
                       variant="contained"
@@ -133,6 +134,7 @@ class Profile extends Component {
                     >
                       Edit Profile
                     </Button>
+       
                   </Box>
                 </CardContent>
               </Box>
