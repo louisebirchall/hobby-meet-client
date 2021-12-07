@@ -21,7 +21,8 @@ class EventService {
     pricePolicy,
     price,
     location,
-    organizedBy,
+    coordinates,
+    organizedBy
     //charity_id
   ) => {
     return this.service.post("/create", {
@@ -37,8 +38,9 @@ class EventService {
       pricePolicy,
       price,
       location,
+      coordinates,
       organizedBy,
-     // charity_id,
+      // charity_id,
     });
   };
 
@@ -56,25 +58,27 @@ class EventService {
     pricePolicy,
     price,
     location,
-    organizedBy,
-   // charity_id
+    coordinates,
+    organizedBy
+    // charity_id
   ) => {
-    return this.service.patch(`/${id}`,{
-        image,
-        title,
-        description,
-        equipment,
-        date,
-        user_id,
-        attendees,
-        attendees_max,
-        attendees_min,
-        pricePolicy,
-        price,
-        location,
-        organizedBy,
-        //charity_id,
-      })
+    return this.service.patch(`/${id}`, {
+      image,
+      title,
+      description,
+      equipment,
+      date,
+      user_id,
+      attendees,
+      attendees_max,
+      attendees_min,
+      pricePolicy,
+      price,
+      location,
+      coordinates,
+      organizedBy,
+      //charity_id,
+    });
   };
 
   delete = (id) => {
@@ -103,9 +107,8 @@ class EventService {
   };
 
   attend = (id) => {
-    return this.service.post(`/${id}/attend`)
-  }
-
+    return this.service.post(`/${id}/attend`);
+  };
 }
 
 const eventService = new EventService();
