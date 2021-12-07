@@ -29,7 +29,6 @@ function Contact() {
         >
           Contact Florian Here
         </a>
-        {/* https://www.linkedin.com/in/florian-b-0b4609124/ */}
       </h4>
       <h3>Louise Birchall:</h3>
       <h4>

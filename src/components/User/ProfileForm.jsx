@@ -104,7 +104,7 @@ class ProfileForm extends Component {
     userService
     .delete(id)
       .then((data) => {
-        this.props.history.push("/signup"); // to check if /events here
+        this.props.history.push("/signup");
       })
       .catch((err) => {
         this.props.history.push("/500");
@@ -158,17 +158,8 @@ class ProfileForm extends Component {
                       type="file"
                       onChange={this.handleImageUpload}
                     />
-                    {/* <Button onChange={this.handleImageUpload} variant="contained" component="span">
-                Upload
-              </Button> */}
                   </label>
                 </div>
-
-              {/* <input
-                onChange={this.handleImageUpload}
-                type="file"
-                name="image"
-              /> */}
 
               <TextField
                 style={{ marginTop: 20 }}

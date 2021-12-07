@@ -174,14 +174,9 @@ class ProductForm extends Component {
                     type="file"
                     onChange={this.handleImageUpload}
                   />
-                  {/* <Button onChange={this.handleImageUpload} variant="contained" component="span">
-                Upload
-              </Button> */}
                 </label>
               </div>
 
-              {/* <label htmlFor="image">Representative image </label>
-          <input onChange={this.handleImageUpload} type="file" name="image" /> */}
 
               <TextField
                 style={{ marginTop: 20 }}
@@ -243,15 +238,6 @@ class ProductForm extends Component {
                 value={event_id}
               /> */}
 
-              {/* not needed as textfield: its the creator = username */}
-              {/* <TextField
-            onChange={this.handleChange}
-            id="outlined-basic"
-            label="Who was the creator?"
-            variant="outlined"
-            name="user_id"
-            value={user_id}
-          /> */}
 
               {/* causes error 500 */}
               <FormControl sx={{ m: 1, width: 530 }}>
@@ -269,17 +255,17 @@ class ProductForm extends Component {
                   <MenuItem value={charity_id}>{charity_id}</MenuItem>
                   <MenuItem value="Unicef">Unicef </MenuItem>
                   <MenuItem value="Doctors without borders">
-                    Doctors without borders{" "}
+                    Doctors without borders
                   </MenuItem>
                   <MenuItem value="Unicef">Unicef </MenuItem>
                   <MenuItem value="World Food Programme">
-                    World Food Programme{" "}
+                    World Food Programme
                   </MenuItem>
                   <MenuItem value="WWF">
-                    WWF{" "}
+                    WWF
                   </MenuItem>
                   <MenuItem value="Local organizations">
-                  Local organizations{" "}
+                  Local organizations
                   </MenuItem>
                 </Select>
               </FormControl>
@@ -308,22 +294,14 @@ class ProductForm extends Component {
                   >
                     Save changes!
                   </Button> */}
-                </div>
-
-              {/* <button type="submit" disabled={imageIsUploading}>
-                Add this product!
-              </button>
-
-              <button type="submit" disabled={imageIsUploading}>
-                Save changes!
-              </button>*/}
-            </form> 
 
             {/* <p>Do you want to delete this charity?</p>
         <button type="submit" disabled={imageIsUploading}>
-          {" "}
-          Delete{" "}
+          Delete
         </button> */}
+                </div>
+            </form> 
+
           </Box>
         </Card>
       </Container>
