@@ -229,20 +229,6 @@ class HobbyForm extends Component {
               </Select>
             </FormControl>
 
-            {/*  <TextField
-            id="outlined-select"
-            select
-            label="Please select the place of activity"
-            value={placeOfActivity}
-            onChange={this.handleChange}
-          >
-             {typeOfActivity.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))} 
-          </TextField>*/}
-
           <div
                 style={{
                   marginTop: 10,
@@ -267,11 +253,6 @@ class HobbyForm extends Component {
                 >
                   Save changes!
                 </Button>
-{/* 
-            <p>Do you want to delete this hobby?</p>
-            <button type="submit" disabled={imageIsUploading}>
-              Delete
-            </button>  */}
               </div>
           </form>
 

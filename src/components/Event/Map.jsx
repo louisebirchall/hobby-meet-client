@@ -9,6 +9,7 @@ import {
   Circle
 } from "react-leaflet";
 
+
 const events = [
   { id: "3ee3rwegwegw4", name: "Leos Party", location: [51.505, -0.09] },
   { id: "esgergerb", name: "Ale Party", location: [51.505, -0.087] },
