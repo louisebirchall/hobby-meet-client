@@ -98,6 +98,7 @@ class CharityDetails extends Component {
                       color="primary"
                       variant="contained"
                       component={Link}
+                      // onClick={this.}
                       to={`/charities/${singleCharity._id}/edit`}
                     >
                       Edit

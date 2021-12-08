@@ -9,12 +9,10 @@ class ReviewService {
   }
 
   // for "creating" a like
-
   create = ( comment, likes, dislikes) => {
     return this.service.post("/create",  { comment,  likes,})};
 
   // only editing or deleting a like necessary? to discuss!
-
   edit = (id, comment, likes, dislikes) => {
     return (
       this.service.patch(`/${id}/edit`),

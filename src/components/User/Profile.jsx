@@ -53,7 +53,6 @@ class Profile extends Component {
               </Box>
               <Box sx={{ display: "flex", flexDirection: "row" }}>
                 <CardContent sx={{ flex: "1 0 auto" }}>
-         
                   <CardMedia
                     component="img"
                     image={user.image}
@@ -125,7 +124,6 @@ class Profile extends Component {
                   </Typography>
 
                   <Box align="center" style={{ marginTop: 30 }}>
-
                     <Button
                       color="primary"
                       variant="contained"
@@ -134,7 +132,6 @@ class Profile extends Component {
                     >
                       Edit Profile
                     </Button>
-       
                   </Box>
                 </CardContent>
               </Box>

@@ -31,7 +31,7 @@ class EditPostForm extends Component {
       this.setState({ [event.target.name]: event.target.value });
   };
 
-  // for changing the image of the post -> do we want the users to change the image or just the "description?"
+  // for changing the image of the post
   handleImageUpload = (event) => {
     this.setState({ imageIsUploading: true });
 

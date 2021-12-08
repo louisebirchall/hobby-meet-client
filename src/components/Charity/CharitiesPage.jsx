@@ -9,9 +9,7 @@ import {
   Typography,
   Grid,
   CardContent,
-  CardActions,
 } from "@material-ui/core";
-import { Box } from "@material-ui/core";
 import { PuffLoader } from "react-spinners";
 
 class CharitiesPage extends Component {
@@ -62,7 +60,6 @@ class CharitiesPage extends Component {
                       )}
                     </CardMedia>
                     <CardContent sx={{ flex: "1 0 auto" }}>
-                      {/* <Typography component="div" variant="h5">{eachCharity.name}</Typography> */}
                       <Button
                         variant="outlined"
                         href={`/charities/${eachCharity._id}`}

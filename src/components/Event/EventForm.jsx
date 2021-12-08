@@ -200,17 +200,17 @@ class EventForm extends Component {
 
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <form onSubmit={this.handleSubmit}>
-              <div align="center">
-                {image && <img 
-                style={{
-                // display: "flex",
-                // justifyContent: "center",
-                marginBottom: 10,
-                width: 150
-                }} 
-                src={image} 
-                alt={title}
-                />}
+                <div align="center">
+                  {image && (
+                    <img
+                      style={{
+                        marginBottom: 10,
+                        width: 150,
+                      }}
+                      src={image}
+                      alt={title}
+                    />
+                  )}
                 </div>
                 <PuffLoader
                   loading={imageIsUploading}
@@ -225,17 +225,8 @@ class EventForm extends Component {
                       type="file"
                       onChange={this.handleImageUpload}
                     />
-                    {/* <Button onChange={this.handleImageUpload} variant="contained" component="span">
-                Upload
-              </Button> */}
                   </label>
                 </div>
-
-                {/* <input
-                onChange={this.handleImageUpload}
-                type="file"
-                name="event image"
-              /> */}
 
                 <TextField
                   style={{ marginTop: 20 }}
@@ -299,7 +290,6 @@ class EventForm extends Component {
           />*/}
 
                 <TextField
-                  //  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                   onChange={this.handleChange}
                   id="outlined-basic"
                   label="Maximum number of attendees"
@@ -310,7 +300,6 @@ class EventForm extends Component {
                 />
 
                 <TextField
-                  //  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                   onChange={this.handleChange}
                   id="outlined-basic"
                   label="Set minimum number of attendees (if required)"
@@ -339,7 +328,6 @@ class EventForm extends Component {
                 </FormControl>
 
                 <TextField
-                  //  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                   onChange={this.handleChange}
                   id="outlined-basic"
                   label="€"
@@ -410,21 +398,12 @@ class EventForm extends Component {
                   >
                     Save changes!
                   </Button>
+                {/* <p>Do you want to delete this event?</p>
+                    <button type="submit" disabled={imageIsUploading}>
+                    Delete
+                    </button> */}
                 </div>
-                {/* <button type="submit" disabled={imageIsUploading}>
-            Add this event!
-          </button>
-
-          <button type="submit" disabled={imageIsUploading}>
-            Save changes!
-          </button> */}
               </form>
-
-              {/* <p>Do you want to delete this event?</p>
-        <button type="submit" disabled={imageIsUploading}>
-          {" "}
-          Delete{" "}
-        </button> */}
             </LocalizationProvider>
           </Box>
         </Card>

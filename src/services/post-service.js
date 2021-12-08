@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 class PostService {
   constructor() {
     this.service = axios.create({

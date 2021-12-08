@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import hobbiespic from "../images/hobbies.png";
-// import h3 from "../images/hobbies3.jpeg"
-// import h4 from "../images/hobbies4.jpeg"
-// import h5 from "../images/hobbies5.jpeg"
 import { Paper } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import { Box } from "@mui/system";
@@ -13,7 +10,6 @@ const styles = {
     backgroundImage: `url(${hobbiespic})`,
     height: "500px",
   },
-  // why isn't this working?
   h1Styles: {
     display: "flex",
     justifyContent: "center",
