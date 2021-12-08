@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
 import charityService from "../../services/charity-service";
 import AddPostForm from "../Posts/AddPostForm";
-import EditPostForm from "../Posts/EditPostForm";
 import reviewService from "../../services/review-service";
 import ReviewForm from "../ReviewForm";
 import {
@@ -98,7 +97,6 @@ class CharityDetails extends Component {
                       color="primary"
                       variant="contained"
                       component={Link}
-                      // onClick={this.}
                       to={`/charities/${singleCharity._id}/edit`}
                     >
                       Edit

@@ -31,7 +31,7 @@ const LocationMarker = () => {
       console.log("locationfound", e);
       setPosition(e.latlng);
       setAccuracy(e.accuracy);
-      map.flyTo(e.latlng, map.getZoom());
+      // map.flyTo(e.latlng, map.getZoom());
     },
   });
 

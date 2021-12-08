@@ -155,7 +155,6 @@ class ProductForm extends Component {
             style={{ paddingBottom: 60 }}
           >
             <div align="center">
-              {" "}
               <h2>Product Form</h2>
               <h3>Please enter your information</h3>
             </div>
@@ -199,7 +198,6 @@ class ProductForm extends Component {
                 value={description}
               />
 
-              {/* causes error 500 */}
               <FormControl sx={{ m: 1, width: 530 }}>
                 <InputLabel id="demo-multiple-name-label">
                   Please select the price policy
@@ -229,15 +227,6 @@ class ProductForm extends Component {
                 placeholder="€"
               />
 
-              {/* <TextField
-                onChange={this.handleChange}
-                id="outlined-basic"
-                label="Where was it created?"
-                variant="outlined"
-                name="event_id"
-                value={event_id}
-              /> */}
-
 
               {/* causes error 500 */}
               <FormControl sx={{ m: 1, width: 530 }}>
@@ -257,7 +246,6 @@ class ProductForm extends Component {
                   <MenuItem value="Doctors without borders">
                     Doctors without borders
                   </MenuItem>
-                  <MenuItem value="Unicef">Unicef </MenuItem>
                   <MenuItem value="World Food Programme">
                     World Food Programme
                   </MenuItem>
@@ -286,19 +274,14 @@ class ProductForm extends Component {
                     Add this Product!
                   </Button>
 
-                  {/* <Button
+                <Button
                     color="secondary"
                     variant="outlined"
                     type="submit"
                     disabled={imageIsUploading}
                   >
                     Save changes!
-                  </Button> */}
-
-            {/* <p>Do you want to delete this charity?</p>
-        <button type="submit" disabled={imageIsUploading}>
-          Delete
-        </button> */}
+                  </Button>
                 </div>
             </form> 
 

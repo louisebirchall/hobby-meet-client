@@ -31,7 +31,7 @@ class EventForm extends Component {
     attendees_min: "",
     pricePolicy: "",
     price: "",
-    location: "",
+    // location: "",
     organizedBy: "",
     // charity_id: "",
     imageIsUploading: false,
@@ -72,7 +72,7 @@ class EventForm extends Component {
       attendees_min,
       pricePolicy,
       price,
-      location,
+      // location,
       organizedBy,
       // charity_id,
     } = this.state;
@@ -94,7 +94,7 @@ class EventForm extends Component {
           attendees_min,
           pricePolicy,
           price,
-          location,
+          // location,
           organizedBy
           // charity_id
         )
@@ -118,7 +118,7 @@ class EventForm extends Component {
           attendees_min,
           pricePolicy,
           price,
-          location,
+          // location,
           organizedBy
           // charity_id
         )
@@ -149,7 +149,7 @@ class EventForm extends Component {
             attendees_min: result.data.attendees_min,
             pricePolicy: result.data.pricePolicy,
             price: result.data.price,
-            location: result.data.location,
+            // location: result.data.location,
             organizedBy: result.data.organizedBy,
             // charity_id: result.data.charity_id,
           });
@@ -167,13 +167,13 @@ class EventForm extends Component {
       description,
       equipment,
       date,
-      user_id,
-      attendees,
+      // user_id,
+      // attendees,
       attendees_max,
       attendees_min,
       pricePolicy,
       price,
-      location,
+      // location,
       organizedBy,
       // charity_id,
       imageIsUploading,
@@ -259,15 +259,6 @@ class EventForm extends Component {
                   value={equipment}
                 />
 
-                <TextField
-                  onChange={this.handleChange}
-                  id="outlined-basic"
-                  label="Where shall we hold this event?"
-                  variant="outlined"
-                  name="location"
-                  value={location}
-                />
-
                 <Map />
 
                 <Stack spacing={3}>
@@ -282,15 +273,6 @@ class EventForm extends Component {
                   />
                 </Stack>
 
-                {/* not needed as textfield? 
-          <TextField
-            onChange={this.handleChange}
-            id="outlined-basic"
-            label="Who's in charge?"
-            variant="outlined"
-            name="user_id"
-            value={user_id}
-          />*/}
 
                 <TextField
                   onChange={this.handleChange}
@@ -359,23 +341,7 @@ class EventForm extends Component {
                   </Select>
                 </FormControl>
 
-                {/* causes error 500 */}
-                {/* <FormControl sx={{ m: 1, width: 400 }}>
-            <InputLabel id="demo-multiple-name-label">
-              Which Charity is it for?
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={charity_id}
-              label="Which Charity is it for?"
-              name="charity_id"
-              onChange={this.handleChange}
-            >
-              <MenuItem value="won't have options to select from db">won't have options to select from db</MenuItem>
-              <MenuItem value="charities need to be hardcoded in here">charities need to be hardcoded in here</MenuItem>
-            </Select>
-          </FormControl> */}
+              
 
                 <div
                   style={{
@@ -401,10 +367,6 @@ class EventForm extends Component {
                   >
                     Save changes!
                   </Button>
-                {/* <p>Do you want to delete this event?</p>
-                    <button type="submit" disabled={imageIsUploading}>
-                    Delete
-                    </button> */}
                 </div>
               </form>
             </LocalizationProvider>

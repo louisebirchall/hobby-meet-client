@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import eventService from "../../services/event-service";
 import AddPostForm from "../Posts/AddPostForm";
-import EditPostForm from "../Posts/EditPostForm";
 import ReviewForm from "../ReviewForm";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import {
@@ -48,7 +47,7 @@ class EventDetails extends Component {
     eventService
       .delete(id)
       .then((data) => {
-        this.props.history.push("/events"); // to check if /events here
+        this.props.history.push("/events"); 
       })
       .catch((err) => {
         this.props.history.push("/500");
@@ -200,8 +199,7 @@ class EventDetails extends Component {
                     <Button
                       color="secondary"
                       variant="contained"
-                      component={Link}
-                      // onClick={this.}
+                      component={RouterLink}
                       to={`/events/${singleEvent._id}/edit`}
                     >
                       Edit
@@ -209,7 +207,7 @@ class EventDetails extends Component {
                     <Button
                       color="secondary"
                       variant="contained"
-                      component={Link}
+                      component={RouterLink}
                       startIcon={<DeleteIcon />}
                       onClick={this.handleDelete}
                     >

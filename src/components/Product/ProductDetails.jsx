@@ -103,18 +103,23 @@ class ProductDetails extends Component {
 
                 {isOwner && (
                   <Grid container spacing={3}>
-                    <Button
+                    {/* <Button
                       color="primary"
                       variant="contained"
-                      component={Link}
-                      // onClick={this.}
+                      component={RouterLink}
                       to={`/products/${singleProduct._id}/edit`}
                     >
                       Edit
-                    </Button>
+                    </Button> */}
+
+                    <Link 
+                    component={RouterLink}
+                    to={`/products/${singleProduct._id}/edit`}> Edit </Link>
+
                     <Button
                       color="secondary"
                       variant="contained"
+                      component={RouterLink}
                       startIcon={<DeleteIcon />}
                       onClick={this.handleDelete}
                     >

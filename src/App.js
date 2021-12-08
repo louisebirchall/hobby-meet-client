@@ -141,7 +141,7 @@ class App extends Component {
             />
             <Route
               path="/hobbies/create"
-              render={(props) =>  <HobbyForm {...props} isEdit={false} />}
+              render={(props) =>  <HobbyForm {...props} isEdit={false} user={user} />}
             />
             <Route
               exact
@@ -150,7 +150,7 @@ class App extends Component {
             />
             <Route
               path="/hobbies/:id/edit"
-              render={(props) => <HobbyForm {...props} isEdit={true} />}
+              render={(props) => <HobbyForm {...props} isEdit={true} user={user}/>}
             />
 
             {/* Events */}
@@ -170,14 +170,14 @@ class App extends Component {
             />
             <Route
               path="/events/:id/edit"
-              render={(props) => <EventForm {...props} isEdit={true} />}
+              render={(props) => <EventForm {...props} isEdit={true} user={user} />}
             />
 
             {/* Charities */}
             <Route
               exact
               path="/charities"
-              render={(props) => <CharitiesPage {...props} user={user}/>}
+              render={(props) => <CharitiesPage {...props} user={user} />}
             />
             <Route
               path="/charities/create"
@@ -186,7 +186,7 @@ class App extends Component {
             <Route
               exact
               path="/charities/:id"
-              render={(props) => <CharityDetails {...props} user={user}/>}
+              render={(props) => <CharityDetails {...props} user={user} />}
             />
             <Route
               path="/charities/:id/edit"
@@ -201,7 +201,7 @@ class App extends Component {
             />
             <Route
               path="/products/create"
-              render={(props) => <ProductForm {...props} isEdit={false} user={user}/>}
+              render={(props) => <ProductForm {...props} isEdit={false} />}
             />
             <Route
               exact
