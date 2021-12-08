@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import bookBitch from "../../images/bookBitch.png";
+// import bookBitch from "../../images/bookBitch.png";
 import { CardContent } from "@material-ui/core";
 import { Typography, Button } from "@material-ui/core";
 import { Card } from "@material-ui/core";
 import { CardMedia } from "@material-ui/core";
 import { Box } from "@mui/system";
+import eventService from "../../services/event-service";
 
 const styles = {
   divStyle: {
@@ -24,7 +25,32 @@ const styles = {
 };
 
 class EventLead extends Component {
+  state = {
+    image: "",
+    title: "",
+    description: ""
+  };
+
+  // componentDidMount() {
+  //   const { id } = this.props.match.params;
+  //   if (id) {
+  //     eventService
+  //       .random(id)
+  //       .then((result) => {
+  //         this.setState({
+  //           image: result.data.image,
+  //           title: result.data.title,
+  //           description: result.data.description,
+  //         });
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }
+  // }
+
   render() {
+    const { image, title, description } = this.state;
     return (
       <div style={styles.divStyle}>
         <div>
@@ -35,19 +61,15 @@ class EventLead extends Component {
             <CardMedia
               component="img"
               height="250"
-              image={bookBitch}
-              alt="book bitch"
+              image={image}
+              alt={title}
             />
             <CardContent>
               <Typography gutterBottom variant="h4" component="div">
-                Book Bitch
+                {title}
               </Typography>
               <Typography variant="h5" color="text.secondary">
-                This time we were reading the Davinci Code. We hated it, it was
-                almost as bad as Twilight. We all got together and had a great
-                time talking about how terrible the plot holes were. Sharon
-                brought some lovely scones, too. I recommend this event to
-                anyone with actual taste.
+                {description}
               </Typography>
             </CardContent>
           </Card>
@@ -68,8 +90,8 @@ class EventLead extends Component {
             </Typography>
             <Box sx={{ height: 10 }} />
             <Link style={styles.buttonStyle} exact to="/events">
-            <Button color="primary" variant="contained">
-              See all the Events
+              <Button color="primary" variant="contained">
+                See all the Events
               </Button>
             </Link>
           </CardContent>

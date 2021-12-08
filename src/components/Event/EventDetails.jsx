@@ -19,6 +19,7 @@ import {
 import Payment from "../Payment/Payment";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { PuffLoader } from "react-spinners";
+import Map from "./Map";
 
 class EventDetails extends Component {
   state = {
@@ -70,6 +71,9 @@ class EventDetails extends Component {
     this.setState({ singleEvent: data.event });
   };
 
+
+
+
   render() {
     const { isLoading, singleEvent, itemToBuy } = this.state;
     const { user } = this.props;
@@ -102,24 +106,7 @@ class EventDetails extends Component {
 
                 <Typography>Description: {singleEvent.description} </Typography>
 
-                <Typography>Where: {singleEvent.location} </Typography>
-
-                <MapContainer
-                  center={[51.505, -0.09]}
-                  zoom={13}
-                  scrollWheelZoom={false}
-                  style={{ height: "50vh" }}
-                >
-                  <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                  />
-                  <Marker position={singleEvent.coordinates}>
-                    <Popup>
-                      {singleEvent.title} <br /> {singleEvent.location}
-                    </Popup>
-                  </Marker>
-                </MapContainer>
+                {/* <Typography>Where: {singleEvent.location} </Typography> */}
 
                 <Typography>
                   Date: {formattedDate.toLocaleDateString()}
@@ -129,6 +116,8 @@ class EventDetails extends Component {
                 <Typography>
                   Equipment required: {singleEvent.equipment}
                 </Typography>
+
+                <Map />
 
                 <Typography>
                   Organizer:
@@ -227,7 +216,7 @@ class EventDetails extends Component {
                       Delete
                     </Button>
                   </Grid>
-                )} 
+                )}
               </CardContent>
             </Box>
           )}

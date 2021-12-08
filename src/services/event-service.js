@@ -21,7 +21,6 @@ class EventService {
     pricePolicy,
     price,
     location,
-    coordinates,
     organizedBy
     //charity_id
   ) => {
@@ -38,7 +37,6 @@ class EventService {
       pricePolicy,
       price,
       location,
-      coordinates,
       organizedBy,
       // charity_id,
     });
@@ -58,7 +56,6 @@ class EventService {
     pricePolicy,
     price,
     location,
-    coordinates,
     organizedBy
     // charity_id
   ) => {
@@ -75,7 +72,6 @@ class EventService {
       pricePolicy,
       price,
       location,
-      coordinates,
       organizedBy,
       //charity_id,
     });
@@ -108,6 +104,10 @@ class EventService {
 
   attend = (id) => {
     return this.service.post(`/${id}/attend`);
+  };
+
+  random = (number) => {
+    return this.service.get(`/random/${number}`);
   };
 }
 
