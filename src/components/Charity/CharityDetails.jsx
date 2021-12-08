@@ -89,10 +89,10 @@ class CharityDetails extends Component {
                   {singleCharity.name}
                 </Typography>
                 <Typography variant="p" color="text.secondary" component="div">
-                  Description: {singleCharity.description}{" "}
+                  Description: {singleCharity.description}
                 </Typography>
 
-                {isOwner && (
+                {user && user.isAdmin && (
                   <Grid container spacing={3}>
                     <Button
                       color="primary"

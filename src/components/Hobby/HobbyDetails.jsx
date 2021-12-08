@@ -84,7 +84,7 @@ class HobbyDetails extends Component {
                   Category: {singleHobby.typeOfActivity}
                 </Typography>
 
-                {isOwner && (
+                {user && user.isAdmin &&(
                   <Grid container spacing={3}>
                     <Button
                       color="primary"
