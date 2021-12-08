@@ -268,7 +268,7 @@ class EventForm extends Component {
                   value={location}
                 />
 
-                <Map />
+                {/* <Map /> */}
 
                 <Stack spacing={3}>
                   <DateTimePicker

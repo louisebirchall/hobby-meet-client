@@ -117,7 +117,7 @@ class EventDetails extends Component {
                   Equipment required: {singleEvent.equipment}
                 </Typography>
 
-                <Map />
+                {/* <Map /> */}
 
                 <Typography>
                   Organizer:

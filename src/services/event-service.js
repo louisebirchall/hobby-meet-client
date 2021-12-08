@@ -105,6 +105,10 @@ class EventService {
   attend = (id) => {
     return this.service.post(`/${id}/attend`);
   };
+
+  random = (number) => {
+    return this.service.get(`/random/${number}`);
+  };
 }
 
 const eventService = new EventService();

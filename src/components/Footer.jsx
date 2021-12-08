@@ -24,7 +24,7 @@ const Footer = () => {
           </Box>
         </Grid>
 
-        <Grid item xs={12} md={6} lg={4} xl={4} style={{display: "flex", justifyContent: "space-between"}}>
+        <Grid item xs={12} md={6} lg={4} xl={4} style={{display: "flex", justifyContent: "space-around", alignItems: "center"}}>
           <NavLink exact to="/">
             Home
           </NavLink>
