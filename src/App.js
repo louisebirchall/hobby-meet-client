@@ -157,7 +157,7 @@ class App extends Component {
             <Route
               exact
               path="/events"
-              render={(props) => <EventsPage {...props} />}
+              render={(props) => <EventsPage {...props} user={user}/>}
             />
             <Route
               path="/events/create"
