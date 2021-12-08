@@ -31,23 +31,23 @@ class EventLead extends Component {
     description: ""
   };
 
-  componentDidMount() {
-    const { id } = this.props.match.params;
-    if (id) {
-      eventService
-        .random(id)
-        .then((result) => {
-          this.setState({
-            image: result.data.image,
-            title: result.data.title,
-            description: result.data.description,
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }
+  // componentDidMount() {
+  //   const { id } = this.props.match.params;
+  //   if (id) {
+  //     eventService
+  //       .random(id)
+  //       .then((result) => {
+  //         this.setState({
+  //           image: result.data.image,
+  //           title: result.data.title,
+  //           description: result.data.description,
+  //         });
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }
+  // }
 
   render() {
     const { image, title, description } = this.state;
