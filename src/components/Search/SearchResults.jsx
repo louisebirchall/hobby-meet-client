@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import generalService from "../../services/general-service";
 import queryString from "query-string";
-import {Container, Typography } from '@material-ui/core'
+import { Grid, Container, Typography } from '@material-ui/core'
 import SearchResult from "./SearchResult";
 import { PuffLoader } from "react-spinners";
 
@@ -13,8 +13,6 @@ export class SearchResults extends Component {
     type: "",
     isLoading: true,
   };
-
-  // q=${this.state.search}&type=${this.state.type}
 
   componentDidMount() {
     const query = queryString.parse(this.props.location.search);
@@ -44,16 +42,6 @@ export class SearchResults extends Component {
         {isLoading && <div>loading</div>}
         {!isLoading && (
           <>
-            {/* {Object.keys(listOfResults).map((eachItem) => {
-            if (listOfResults[eachItem].length === 0) {
-                return null;
-              }
-              return (
-              <div>
-                <p>{listOfResults[eachItem.name && eachItem.title]}</p>
-              </div>
-              )
-          })} */}
             {Object.keys(listOfResults).map((category) => {
               if (listOfResults[category].length === 0) {
                 return null;
@@ -73,7 +61,7 @@ export class SearchResults extends Component {
             })}
           </>
         )}
-        {/* </Grid> */}
+       {/* </Grid>  */}
      
        </Container>
     </>
