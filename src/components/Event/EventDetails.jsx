@@ -19,6 +19,7 @@ import {
 import Payment from "../Payment/Payment";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { PuffLoader } from "react-spinners";
+import Map from "./Map";
 
 class EventDetails extends Component {
   state = {
@@ -115,6 +116,8 @@ class EventDetails extends Component {
                 <Typography>
                   Equipment required: {singleEvent.equipment}
                 </Typography>
+
+                <Map />
 
                 <Typography>
                   Organizer:

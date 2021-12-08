@@ -16,6 +16,7 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DateTimePicker from "@mui/lab/DateTimePicker";
 import { Button } from "@material-ui/core";
 import { Card } from "@material-ui/core";
+import Map from "./Map";
 
 class EventForm extends Component {
   state = {
@@ -266,6 +267,8 @@ class EventForm extends Component {
                   name="location"
                   value={location}
                 />
+
+                <Map />
 
                 <Stack spacing={3}>
                   <DateTimePicker

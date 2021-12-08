@@ -16,15 +16,24 @@ const [selection, setSelection] = useState(null);
 
 const map = useMapEvents({
     click: (e) => {
-      console.log('click', e);
-      setSelection(e.latlng);
+        console.log('click', e);
+        setSelection(e.latlng);
     },
     locationfound: (e) => {
-      console.log('locationfound', e);
-      setPosition(e.latlng);
-      map.flyTo(e.latlng, map.getZoom());
+        console.log('locationfound', e);
+        setPosition(e.latlng);
+        map.flyTo(e.latlng, map.getZoom());
     },
-  });
+});
+
+// componentDidMount() {
+//     if (position === null) {
+//     return null;
+//   },
+//   useEffect(() => {
+//       useMapEvents()
+//       }
+//     }
 
   function Map() {
   return (
@@ -33,19 +42,18 @@ const map = useMapEvents({
         zoom={13}
         scrollWheelZoom={true}
         center={defaultLocation}
-        style={{ height: '40vh' }}
+        style={{ height: "40vh" }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
+        <LocationMarker />
         {events.map(({ title, location }) => {
           return (
             <Marker position={location}>
-              <Popup>
-                {title}
-              </Popup>
+              <Popup>{title}</Popup>
             </Marker>
           );
         })}
