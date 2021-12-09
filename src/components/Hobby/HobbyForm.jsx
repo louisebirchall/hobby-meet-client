@@ -77,18 +77,6 @@ class HobbyForm extends Component {
     }
   };
 
-  // handleDelete = () => {
-  //   const { id } = this.props.match.params;
-  //   hobbyService
-  //     .delete(id)
-  //     .then((data) => {
-  //       this.props.history.push("/hobbies");
-  //     })
-  //     .catch((err) => {
-  //       this.props.history.push("/500");
-  //     });
-  // };
-
   componentDidMount() {
     const { id } = this.props.match.params;
     if (id) {

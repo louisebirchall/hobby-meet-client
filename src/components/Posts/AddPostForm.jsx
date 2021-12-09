@@ -3,13 +3,30 @@ import { PuffLoader } from "react-spinners";
 import generalService from "../../services/general-service";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { Button } from "@material-ui/core";
+import { Button, Input } from "@material-ui/core";
 
 class AddPostForm extends Component {
   state = {
     image: "",
     description: "",
     imageIsUploading: false,
+  };
+
+  handleImageUpload = (event) => {
+    this.setState({ imageIsUploading: true });
+
+    const uploadData = new FormData();
+    uploadData.append("image", event.target.files[0]);
+
+    generalService
+      .upload(uploadData)
+      .then((result) => {
+        this.setState({
+          image: result.data.imagePath,
+          imageIsUploading: false,
+        });
+      })
+      .catch(() => this.props.history.push("/500"));
   };
 
   handleSubmit = (event) => {
@@ -34,23 +51,6 @@ class AddPostForm extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  handleImageUpload = (event) => {
-    this.setState({ imageIsUploading: true });
-
-    const formdata = new FormData();
-    formdata.append("image", event.target.files[0]);
-
-    generalService
-      .upload(formdata)
-      .then((result) => {
-        this.setState({
-          image: result.data.imagePath,
-          imageIsUploading: false,
-        });
-      })
-      .catch(() => this.props.history.push("/500"));
-  };
-
   render() {
     const { image, description, imageIsUploading } = this.state;
 
@@ -65,9 +65,15 @@ class AddPostForm extends Component {
         autoComplete="off"
       >
         <form onSubmit={this.handleSubmit}>
-          {image && <img src={image} alt="postImg" width="150px" />}
+          {/* {image && <img src={image} alt="postImg" width="150px" />}
           <PuffLoader loading={imageIsUploading} size="100px" color="orchid" />
-          <input onChange={this.handleImageUpload} type="file" name="image" />
+          <label htmlFor="contained-button-file" >
+          <Input
+            onChange={this.handleImageUpload}
+            accept="image/*"
+            type="file"
+          />
+          </label> */}
 
           <TextField
             onChange={this.handleChange}

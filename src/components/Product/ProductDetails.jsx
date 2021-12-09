@@ -131,16 +131,15 @@ class ProductDetails extends Component {
             </Box>
           )}
         </Card>
-        {/*   <AddPostForm id={id} service={productService}  saveUpdatedData={this.handleNewData}
-          <AddPostForm id={id} service={productService}  saveUpdatedData={this.handleNewData}
+         <AddPostForm id={id} service={productService}  saveUpdatedData={this.handleNewData}
         />
         {singleProduct &&
           singleProduct.posts.map((post) => 
           <>
-            <p>{post.description}</p>
+            {/* <p>{post.description}</p> */}
             <image src={post.image}/>
            </>      
-          )} */}
+          )}
         {/* <ReviewForm id={id} service={reviewService} /> */}
       </Container>
     );

@@ -121,15 +121,15 @@ class CharityDetails extends Component {
           saveUpdatedData={this.handleNewData}
         />
         {singleCharity &&
-          singleCharity.posts.map((post) => <p>{post.image}<span>{post.description}</span></p>)}
+          singleCharity.posts.map((post) => <p>{post.description}</p>)}
 
-        <ReviewForm
+       {/*  <ReviewForm
           id={id}
           service={reviewService}
           saveUpdatedData={this.handleNewReview}
         />
         {singleCharity &&
-          singleCharity.reviews.map((reviews) => <p>{reviews.comment}</p>)}
+          singleCharity.reviews.map((reviews) => <p>{reviews.comment}</p>)} */}
       </Container>
     );
   }

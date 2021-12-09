@@ -53,7 +53,7 @@ class HobbyDetails extends Component {
     const { isLoading, singleHobby } = this.state;
     const { id } = this.props.match.params;
     const { user } = this.props;
-    const isOwner = user?._id === singleHobby?.user_id?._id;
+  
 
     return (
       <Container style={{ paddingBottom: 60 }}>
@@ -147,7 +147,12 @@ class HobbyDetails extends Component {
           saveUpdatedData={this.handleNewData}
         />
         {singleHobby &&
-          singleHobby.posts.map((post) => <p>{post.description}</p>)}
+          singleHobby.posts.map((post) =>
+          <>
+           {/*  <image src={post.image}/> */}
+            <p>{post.description}</p>
+           </>   
+          )}
       </Container>
     );
   }
