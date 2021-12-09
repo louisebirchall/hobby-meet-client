@@ -108,7 +108,7 @@ function Navbar({ isLoggedIn, user, setUser }) {
 
             <SearchBar />
 
-            <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <Box sx={{ display: { xs: "none", md: "flex" } }} style={{paddingRight: 5}}>
               <ul>
                 <Stack direction="row" spacing={2}>
                   {isLoggedIn && user && (
