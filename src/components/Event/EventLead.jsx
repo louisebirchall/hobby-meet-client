@@ -11,12 +11,12 @@ import eventService from "../../services/event-service";
 const styles = {
   divStyle: {
     display: "flex",
-    flexDirection: "Row",
+    flexDirection: "row",
     gap: 20,
     justifyContent: "space-evenly",
     paddingTop: 20,
     paddingBottom: 60,
-    textAlign: "center"
+    textAlign: "center",
   },
   buttonStyle: {
     display: "flex",
@@ -26,55 +26,50 @@ const styles = {
 
 class EventLead extends Component {
   state = {
-    image: "",
-    title: "",
-    description: ""
+    event: null,
   };
 
-  // componentDidMount() {
-  //   const { id } = this.props.match.params;
-  //   if (id) {
-  //     eventService
-  //       .random(id)
-  //       .then((result) => {
-  //         this.setState({
-  //           image: result.data.image,
-  //           title: result.data.title,
-  //           description: result.data.description,
-  //         });
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }
-  // }
+  componentDidMount() {
+    eventService
+      .getRandom(1)
+      .then((result) => {
+        console.log(result);
+        this.setState({
+          event: result.data[0],
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   render() {
-    const { image, title, description } = this.state;
+    const { event } = this.state;
     return (
       <div style={styles.divStyle}>
-        <div>
-          <Card
-            sx={{ maxWidth: 550, boxShadow: "-12px 12px 64px 0 #F0FFF0" }}
-            variant="outlined"
-          >
-            <CardMedia
-              component="img"
-              height="250"
-              image={image}
-              alt={title}
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h4" component="div">
-                {title}
-              </Typography>
-              <Typography variant="h5" color="text.secondary">
-                {description}
-              </Typography>
-            </CardContent>
-          </Card>
-        </div>
-
+        {event && (
+          <div>
+            <Card
+              sx={{ maxWidth: 550, boxShadow: "-12px 12px 64px 0 #F0FFF0" }}
+              variant="outlined"
+            >
+              <CardMedia
+                component="img"
+                height="250"
+                image={event.image}
+                alt={event.title}
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h4" component="div">
+                  {event.title}
+                </Typography>
+                <Typography variant="h5">
+                  {event.description}
+                </Typography>
+              </CardContent>
+            </Card>
+          </div>
+        )}
         <Card
           sx={{ maxWidth: 550, boxShadow: "-12px 12px 64px 0 #F0FFF0" }}
           variant="outlined"

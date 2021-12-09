@@ -106,8 +106,8 @@ class EventService {
     return this.service.post(`/${id}/attend`);
   };
 
-  random = (number) => {
-    return this.service.get(`/random/${number}`);
+  getRandom = (potato) => {
+    return this.service.get(`/random/${potato}`);
   };
 }
 
