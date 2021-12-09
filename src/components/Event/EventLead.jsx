@@ -74,31 +74,30 @@ class EventLead extends Component {
     return (
       <div style={styles.divStyle}>
         {event && (
-            <Card
-              sx={{ maxWidth: 550, boxShadow: "-12px 12px 64px 0 #F0FFF0" }}
-              variant="outlined"
-            >
-              <CardMedia
-                component="img"
-                height="250"
-                image={event.image}
-                alt={event.title}
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h4" component="div">
-                  {event.title}
-                </Typography>
-                <Typography variant="h5">
-                  {event.description}
-                </Typography>
-              </CardContent>
-            </Card>
+          <Card
+            sx={{ maxWidth: 550, boxShadow: "-12px 12px 64px 0 #F0FFF0" }}
+            variant="outlined"
+          >
+            <CardMedia
+              component="img"
+              height="250"
+              image={event.image}
+              alt={event.title}
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h4" component="div">
+                {event.title}
+              </Typography>
+              <Typography variant="h5">{event.description}</Typography>
+            </CardContent>
+          </Card>
         )}
         <Card
-          sx={{ maxWidth: 550, boxShadow: "-12px 12px 64px 0 #F0FFF0" }}
+          sx={{ boxShadow: "-12px 12px 64px 0 #F0FFF0" }}
           variant="outlined"
+          style={{ maxWidth: 550 }}
         >
-        {cardE}
+          {cardE}
         </Card>
       </div>
     );

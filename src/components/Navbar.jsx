@@ -101,7 +101,7 @@ function Navbar({ isLoggedIn, user, setUser }) {
               component="div"
               sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
             >
-              <Button href="/">HobbyMeet</Button>
+              <Button href="/" style={{fontWeight:"bold"}}>HobbyMeet</Button>
             </Typography>
 
             <Box sx={{ flexGrow: 1 }} />

@@ -6,6 +6,7 @@ import Card from "@mui/material/Card";
 import { CardMedia } from "@material-ui/core";
 import { Box } from "@mui/system";
 import hobbyService from "../../services/hobby-service";
+import bookPub from "../../images/bookBitch.png";
 
 const styles = {
   divStyle: {
@@ -15,11 +16,11 @@ const styles = {
     justifyContent: "space-evenly",
     paddingTop: 20,
     paddingBottom: 20,
-    textAlign: "center"
+    textAlign: "center",
   },
   buttonStyle: {
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
   },
 };
 
@@ -70,7 +71,7 @@ class HobbyLead extends Component {
   }
 
   render() {
-      const { hobby } = this.state;
+    // const { hobby } = this.state;
     return (
       <div style={styles.divStyle}>
         <Card
@@ -79,7 +80,7 @@ class HobbyLead extends Component {
         >
           {cardH}
         </Card>
-        {hobby && (
+        {/* {hobby && (
         <Card
           sx={{ maxWidth: 550, boxShadow: "-12px 12px 64px 0 #F0FFF0" }}
           variant="outlined"
@@ -99,7 +100,31 @@ class HobbyLead extends Component {
             </Typography>
           </CardContent>
         </Card>
-      )}
+      )} */}
+        <Card
+          sx={{ maxWidth: 550, boxShadow: "-12px 12px 64px 0 #F0FFF0" }}
+          variant="outlined"
+        >
+          <CardMedia
+            component="img"
+            height="250"
+            image={bookPub}
+            alt={"happy readers in the pub"}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h4" component="div">
+              What's your pleasure?
+            </Typography>
+            <Typography variant="h5">
+              With everything going on in the world these days, and let's be
+              honest, beforehand, it's the perfect time to get into a hobby.
+              Whether you're looking for a group of like-minded people to enjoy
+              your hobby with, looking for a new hobby to pass the time, or just
+              seeing what's going on around you; there's plenty here to keep you
+              occupied.
+            </Typography>
+          </CardContent>
+        </Card>
       </div>
     );
   }
