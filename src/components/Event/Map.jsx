@@ -1,121 +1,71 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
+import React from "react";
+import { useState, useEffect } from "react";
 import {
   MapContainer,
   TileLayer,
   Marker,
   Popup,
   useMapEvents,
-  Circle
+  
 } from "react-leaflet";
 
+// This map is the one to create the location and edit it.
 
-const events = [
-  { id: "3ee3rwegwegw4", name: "Leos Party", location: [51.505, -0.09] },
-  { id: "esgergerb", name: "Ale Party", location: [51.505, -0.087] },
-  { id: "3ee3r4yrhthwegwegw4", name: "Nick Party", location: [51.515, -0.081] },
-];
-const defaultLocation = [38.643969, 0.065911];
-const LocationMarker = () => {
-  const [position, setPosition] = useState(null);
+const LocationMarker = ({updateLocation, location}) => {
   const [selection, setSelection] = useState(null);
-  const [accuracy, setAccuracy] = useState(null);
 
   const map = useMapEvents({
     click: (e) => {
-      console.log("click", e);
-      // when the user clicks we set the selection to the one from the click
-      // which will in turn show a marker on that specific location
+      console.log("click", e.latlng);
       setSelection(e.latlng);
+      const locationObj = {
+        type: "Point",
+        coordinates: [e.latlng.lat, e.latlng.lng]
+      }
+      updateLocation(locationObj)
     },
-    locationfound: (e) => {
-      console.log("locationfound", e);
-      setPosition(e.latlng);
-      setAccuracy(e.accuracy);
-      // map.flyTo(e.latlng, map.getZoom());
-    },
-  });
+  })
 
   useEffect(() => {
-    // gets the location of the user and when its done triggers the locationfound method
     map.locate();
   });
 
-  if (position === null) {
-    return null;
-  }
+  // const leafletObj = location && {
+  //   lat: location.coordinates[0],
+  //   lng: location.coordinates[1]
+  //  }
+
+  //  console.log(leafletObj)
+ 
   return (
     <>
-      <Marker position={position}>
-        <Popup>This is where you are, give or take {accuracy} meters.</Popup>
+    {selection &&(
+      <Marker position={selection}>
+        <Popup>Event title</Popup>
       </Marker>
-      {selection && (
-        <Marker position={selection}>
-          <Popup>This is your selection!</Popup>
-        </Marker>
-      )}
-      <Circle
-        center={position}
-        pathOptions={{ fillColor: "blue" }}
-        radius={accuracy}
-      />
+    )}
     </>
   );
 };
 
-    export default function Map() {
-
+export default function Map({updateLocation, location}) {
+  //console.log(location)
   return (
-    <div>
-      <MapContainer
-        zoom={13}
-        scrollWheelZoom={true}
-        center={defaultLocation}
-        style={{ height: "40vh" }}
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-
-        <LocationMarker />
-        {events.map(({ location, name, id }) => {
-          return (
-            <Marker key={id} position={location}>
-              <Popup>
-                This is an event <br />
-                name: {name}
-              </Popup>
-            </Marker>
-          );
-        })}
-      </MapContainer>
-    </div>
+    <MapContainer
+      center={location ? [location.coordinates[0], location.coordinates[1]] : [51.505, -0.09]}
+      zoom={13}
+      scrollWheelZoom={false}
+      style={{ height: "50vh", width: "50vw" }}
+    >
+      <TileLayer
+        id="mapbox/streets-v11"
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}"
+        accessToken="pk.eyJ1IjoiY2Fyb2wtaW50aGV3aW5kIiwiYSI6ImNrd3lzYmF2eDBwcDMyb3Vyb285enpzY2sifQ.NTD5eDm9k3lQhfBaOWS03w"
+      />
+      <LocationMarker updateLocation={updateLocation} location={location}/>
+ 
+    </MapContainer>
   );
 }
 
-// function Map() {  
-//     return 
-//         <div>
-//         <MapContainer
-//         center={defaultLocation}
-//         zoom={13}
-//         scrollWheelZoom={true}
-//         style={{ height: "50vh" }}
-//         >
-//         <TileLayer
-//         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-//         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-//         />
-        
-//         {!singleEvent.location === null (
-//             <Marker position={singleEvent.location}>
-//                     <Popup>
-//                       {singleEvent.title}
-//                     </Popup>
-//                   </Marker>
-//                   )}
-//                   </MapContainer>
-//                   </div>
-                  
-//                 });
