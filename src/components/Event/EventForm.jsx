@@ -31,7 +31,7 @@ class EventForm extends Component {
     attendees_min: "",
     pricePolicy: "",
     price: "",
-    // location: "",
+    location: "",
     organizedBy: "",
     // charity_id: "",
     imageIsUploading: false,
@@ -72,7 +72,7 @@ class EventForm extends Component {
       attendees_min,
       pricePolicy,
       price,
-      // location,
+      location,
       organizedBy,
       // charity_id,
     } = this.state;
@@ -94,7 +94,7 @@ class EventForm extends Component {
           attendees_min,
           pricePolicy,
           price,
-          // location,
+          location,
           organizedBy
           // charity_id
         )
@@ -118,7 +118,7 @@ class EventForm extends Component {
           attendees_min,
           pricePolicy,
           price,
-          // location,
+          location,
           organizedBy
           // charity_id
         )
@@ -149,7 +149,7 @@ class EventForm extends Component {
             attendees_min: result.data.attendees_min,
             pricePolicy: result.data.pricePolicy,
             price: result.data.price,
-            // location: result.data.location,
+            location: result.data.location,
             organizedBy: result.data.organizedBy,
             // charity_id: result.data.charity_id,
           });
@@ -158,6 +158,10 @@ class EventForm extends Component {
           this.props.history.push("/500");
         });
     }
+  }
+
+  updateLocation = (location) => {
+    this.setState({location})
   }
 
   render() {
@@ -173,11 +177,13 @@ class EventForm extends Component {
       attendees_min,
       pricePolicy,
       price,
-      // location,
+      location,
       organizedBy,
       // charity_id,
       imageIsUploading,
     } = this.state;
+
+    console.log(location)
 
     return (
       <Container align="justify" style={{ paddingBottom: 60 }}>
@@ -259,7 +265,7 @@ class EventForm extends Component {
                   value={equipment}
                 />
 
-                <Map />
+                <Map updateLocation={this.updateLocation} location={location}/>
 
                 <Stack spacing={3}>
                   <DateTimePicker
