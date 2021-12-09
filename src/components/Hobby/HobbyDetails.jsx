@@ -56,7 +56,9 @@ class HobbyDetails extends Component {
     const isOwner = user?._id === singleHobby?.user_id?._id;
 
     return (
-      <Container style={{ paddingBottom: 60 }}>
+      <Container style={{ paddingBottom: 60, display: "flex",
+          flexDirection: "column",
+          alignItems: "center" }}>
         <Card sx={{ display: "flex" }}>
           {isLoading && <PuffLoader size="100px" color="orchid" />}
 
@@ -65,6 +67,7 @@ class HobbyDetails extends Component {
               sx={{
                 display: "flex",
                 flexDirection: "column",
+                justifyContent: "center",
                 alignItems: "center",
               }}
             >
@@ -110,29 +113,37 @@ class HobbyDetails extends Component {
                   <Grid container spacing={3}>
                     {/* <Box align="center" style={{marginTop: 15, display: "flex", justifyContent: "center"}}> */}
                     <div
-                    align="center"
-                  style={{
-                    marginTop: 10,
-                    display: "flex",
-                    justifyContent: "space-around",
-                  }}
-                >
-                    <Button
-                      color="primary"
-                      variant="contained"
-                      component={Link}
-                      to={`/hobbies/${singleHobby._id}/edit`}
+                      align="center"
+                      style={{
+                        marginTop: 10,
+                        display: "flex",
+                        justifyContent: "space-around",
+                      }}
                     >
-                      Edit
-                    </Button>
-                    <Button
-                      color="secondary"
-                      variant="contained"
-                      startIcon={<DeleteIcon />}
-                      onClick={this.handleDelete}
-                    >
-                      Delete
-                    </Button>
+                      <div
+                        style={{
+                          width: "50vw",
+                          display: "flex",
+                          justifyContent: "space-around",
+                        }}
+                      >
+                        <Button
+                          color="primary"
+                          variant="contained"
+                          component={Link}
+                          to={`/hobbies/${singleHobby._id}/edit`}
+                        >
+                          Edit
+                        </Button>
+                        <Button
+                          color="secondary"
+                          variant="contained"
+                          startIcon={<DeleteIcon />}
+                          onClick={this.handleDelete}
+                        >
+                          Delete
+                        </Button>
+                      </div>
                     </div>
                     {/* </Box> */}
                   </Grid>

@@ -84,7 +84,7 @@ class EventDetails extends Component {
     const isOwner = user?._id === singleEvent?.user_id?._id;
 
     return (
-      <Container style={{ paddingBottom: 60 }}>
+      <Container style={{ paddingBottom: 60, display: "flex", flexDirection: "column", alignItems: "center" }}>
         <Card sx={{ display: "flex" }}>
           {isLoading && <PuffLoader size="100px" color="orchid" />}
 
@@ -159,6 +159,12 @@ class EventDetails extends Component {
                 <Typography> Price: {singleEvent.price} €</Typography>
 
                 <Box sx={{ flexGrow: 1 }} />
+                <div style={{
+                          marginTop: 10,
+                          width: "50vw",
+                          display: "flex",
+                          justifyContent: "space-around",
+                        }}>
                 {userIsAttending && (
                   <>
                     <span style={{ backgroundColor: "#3aefd5" }}>
@@ -177,7 +183,7 @@ class EventDetails extends Component {
                   </Button>
                 )}
 
-                <Box sx={{ flexGrow: 1 }} />
+                {/* <Box sx={{ flexGrow: 1 }} /> */}
 
                 <Button
                   color="primary"
@@ -192,10 +198,17 @@ class EventDetails extends Component {
                 {itemToBuy && itemToBuy._id === singleEvent._id && (
                   <Payment itemToBuy={singleEvent} />
                 )}
+                </div>
 
                 <Box sx={{ flexGrow: 1 }} />
                 {isOwner && (
-                  <Grid container spacing={3}>
+                  <Grid container spacing={3} style={{
+                          marginTop: 10,
+                          marginLeft: 5,
+                          width: "50vw",
+                          display: "flex",
+                          justifyContent: "space-evenly",
+                        }}>
                     <Button
                       color="secondary"
                       variant="contained"
