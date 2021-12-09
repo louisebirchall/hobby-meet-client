@@ -11,7 +11,7 @@ import {
   CardMedia,
   Typography,
   Box,
-  Grid
+  Grid,
 } from "@material-ui/core";
 import { PuffLoader } from "react-spinners";
 
@@ -59,33 +59,64 @@ class HobbyDetails extends Component {
       <Container style={{ paddingBottom: 60 }}>
         <Card sx={{ display: "flex" }}>
           {isLoading && <PuffLoader size="100px" color="orchid" />}
-          
+
           {!isLoading && (
-            <Box sx={{ display: "flex", flexDirection: "row" }}>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
               <CardContent sx={{ flex: "1 0 auto" }}>
                 {singleHobby.image && (
                   <CardMedia
                     component="img"
                     src={singleHobby.image}
                     alt={singleHobby.name}
-                    style={{width: 300}}
+                    style={{
+                      width: 300,
+                      marginBottom: 20,
+                    }}
                   />
                 )}
-                <Typography component="div" variant="h3">
-                  {singleHobby.name}
-                </Typography>
-                <Typography variant="p" color="text.secondary" component="div">
-                  Description: {singleHobby.description}
-                </Typography>
-                <Typography variant="p" color="text.secondary" component="div">
-                  Where: {singleHobby.placeOfActivity}
-                </Typography>
-                <Typography variant="p" color="text.secondary" component="div">
-                  Category: {singleHobby.typeOfActivity}
-                </Typography>
-
-                {user && user.isAdmin &&(
+                <Box align="center">
+                  <Typography component="div" variant="h3">
+                    {singleHobby.name}
+                  </Typography>
+                  <Typography
+                    variant="p"
+                    color="text.secondary"
+                    component="div"
+                  >
+                    Description: {singleHobby.description}
+                  </Typography>
+                  <Typography
+                    variant="p"
+                    color="text.secondary"
+                    component="div"
+                  >
+                    Where: {singleHobby.placeOfActivity}
+                  </Typography>
+                  <Typography
+                    variant="p"
+                    color="text.secondary"
+                    component="div"
+                  >
+                    Category: {singleHobby.typeOfActivity}
+                  </Typography>
+                </Box>
+                {user && user.isAdmin && (
                   <Grid container spacing={3}>
+                    {/* <Box align="center" style={{marginTop: 15, display: "flex", justifyContent: "center"}}> */}
+                    <div
+                    align="center"
+                  style={{
+                    marginTop: 10,
+                    display: "flex",
+                    justifyContent: "space-around",
+                  }}
+                >
                     <Button
                       color="primary"
                       variant="contained"
@@ -102,6 +133,8 @@ class HobbyDetails extends Component {
                     >
                       Delete
                     </Button>
+                    </div>
+                    {/* </Box> */}
                   </Grid>
                 )}
               </CardContent>

@@ -51,8 +51,11 @@ class Profile extends Component {
               >
                 <Typography variant="h2">Welcome {user.username}</Typography>
               </Box>
-              <Box sx={{ display: "flex", flexDirection: "row" }}>
-                <CardContent sx={{ flex: "1 0 auto" }}>
+              <Box >
+                <CardContent style={{ display: "flex", flexDirection: "row", flex: "1 0 auto" }}>
+                {/* for responsiveness use this one: */}
+                {/* <CardContent style={{ display: "flex", flexDirection: "row", flex: "1 0 auto" }}> */}
+
                   <CardMedia
                     component="img"
                     image={user.image}
@@ -63,9 +66,12 @@ class Profile extends Component {
                       borderWidth: "thin",
                       borderColor: "#3AEFD5",
                       width: 250,
+                      marginRight: 50,
                     }}
                   />
-
+                  {/* for responsiveness mute this one, will then be displayed img on top info below (on desktop): */}
+                  <Box style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                
                   <Typography
                     variant="p"
                     color="text.secondary"
@@ -132,6 +138,7 @@ class Profile extends Component {
                     >
                       Edit Profile
                     </Button>
+                    </Box>
                   </Box>
                 </CardContent>
               </Box>
