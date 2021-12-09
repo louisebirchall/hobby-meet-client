@@ -62,7 +62,14 @@ class CharityDetails extends Component {
     const isOwner = user?._id === singleCharity?.user_id?._id;
 
     return (
-      <Container style={{ paddingBottom: 60 }}>
+      <Container
+        style={{
+          paddingBottom: 60,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center"
+        }}
+      >
         <Card sx={{ display: "flex" }}>
           {isLoading && <PuffLoader size="100px" color="orchid" />}
 
@@ -92,7 +99,16 @@ class CharityDetails extends Component {
                 </Typography>
 
                 {user && user.isAdmin && (
-                  <Grid container spacing={3}>
+                  <Grid
+                    container
+                    spacing={3}
+                    style={{
+                      marginTop: 10,
+                      width: "50vw",
+                      display: "flex",
+                      justifyContent: "space-evenly",
+                    }}
+                  >
                     <Button
                       color="primary"
                       variant="contained"

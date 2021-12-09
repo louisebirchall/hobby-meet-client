@@ -60,7 +60,14 @@ class ProductDetails extends Component {
     const isOwner = user?._id === singleProduct?.user_id?._id;
 
     return (
-      <Container style={{ paddingBottom: 60 }}>
+      <Container
+        style={{
+          paddingBottom: 60,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
         <Card sx={{ display: "flex" }}>
           {isLoading && <PuffLoader size="100px" color="orchid" />}
 
@@ -93,16 +100,25 @@ class ProductDetails extends Component {
                 {/* <Typography variant="p" color="text.secondary" component="div">Made in the event: {singleProduct.event_id}</Typography> */}
 
                 <Typography variant="p" color="text.secondary" component="div">
-                <Link
+                  <Link
                     component={RouterLink}
                     to={`/users/${singleProduct.user_id._id}`}
                   >
-                   Created by: {singleProduct.user_id.username}
+                    Created by: {singleProduct.user_id.username}
                   </Link>
                 </Typography>
 
                 {isOwner && (
-                  <Grid container spacing={3}>
+                  <Grid
+                    container
+                    spacing={3}
+                    style={{
+                      marginTop: 10,
+                      // width: "50vw",
+                      display: "flex",
+                      justifyContent: "space-evenly",
+                    }}
+                  >
                     {/* <Button
                       color="primary"
                       variant="contained"
@@ -112,9 +128,14 @@ class ProductDetails extends Component {
                       Edit
                     </Button> */}
 
-                    <Link 
-                    component={RouterLink}
-                    to={`/products/${singleProduct._id}/edit`}> Edit </Link>
+                    <Button
+                      color="secondary"
+                      variant="contained"
+                      component={RouterLink}
+                      to={`/products/${singleProduct._id}/edit`}
+                    >
+                      Edit
+                    </Button>
 
                     <Button
                       color="secondary"
