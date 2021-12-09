@@ -1,11 +1,11 @@
 import { CardContent } from "@material-ui/core";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import cheeseRolling from "../../images/cheeseRolling.jpeg";
 import { Typography, Button } from "@material-ui/core";
 import Card from "@mui/material/Card";
 import { CardMedia } from "@material-ui/core";
 import { Box } from "@mui/system";
+import hobbyService from "../../services/hobby-service";
 
 const styles = {
   divStyle: {
@@ -32,7 +32,7 @@ const cardH = (
         alignContent: "space-around",
       }}
     >
-      <Typography variant="h3" color="text.secondary" gutterBottom>
+      <Typography variant="h3" gutterBottom>
         Hobbies
       </Typography>
       <Typography variant="h5">
@@ -51,7 +51,26 @@ const cardH = (
 );
 
 class HobbyLead extends Component {
+  state = {
+    event: null,
+  };
+
+  componentDidMount() {
+    hobbyService
+      .getRandom(1)
+      .then((result) => {
+        console.log(result);
+        this.setState({
+          event: result.data[0],
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   render() {
+      const { hobby } = this.state;
     return (
       <div style={styles.divStyle}>
         <Card
@@ -60,6 +79,7 @@ class HobbyLead extends Component {
         >
           {cardH}
         </Card>
+        {hobby && (
         <Card
           sx={{ maxWidth: 550, boxShadow: "-12px 12px 64px 0 #F0FFF0" }}
           variant="outlined"
@@ -67,20 +87,19 @@ class HobbyLead extends Component {
           <CardMedia
             component="img"
             height="250"
-            image={cheeseRolling}
-            alt="cheese rolling"
+            image={hobby.image}
+            alt={hobby.name}
           />
           <CardContent>
             <Typography gutterBottom variant="h4" component="div">
-              Cheese Rolling
+              {hobby.name}
             </Typography>
             <Typography variant="h5">
-              People chase a wheel of Double Gloucester down a very steep hill
-              in Gloucestershire. The cheese has a one-second head start, and
-              the first one down wins the cheese
+              {hobby.description}
             </Typography>
           </CardContent>
         </Card>
+      )}
       </div>
     );
   }

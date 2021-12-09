@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-// import bookBitch from "../../images/bookBitch.png";
 import { CardContent } from "@material-ui/core";
 import { Typography, Button } from "@material-ui/core";
 import { Card } from "@material-ui/core";
@@ -23,6 +22,33 @@ const styles = {
     justifyContent: "center",
   },
 };
+
+const cardE = (
+  <React.Fragment>
+    <CardContent
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignContent: "space-around",
+      }}
+    >
+      <Typography variant="h3" gutterBottom>
+        Events
+      </Typography>
+      <Typography variant="h5">
+        If you want to find other like-minded people to enjoy your hobbies with
+        you can find then via events, or even set up your own! What are you
+        waiting for?
+      </Typography>
+      <Box sx={{ height: 10 }} />
+      <Link style={styles.buttonStyle} exact to="/events">
+        <Button color="primary" variant="contained">
+          See all the Events
+        </Button>
+      </Link>
+    </CardContent>
+  </React.Fragment>
+);
 
 class EventLead extends Component {
   state = {
@@ -48,7 +74,6 @@ class EventLead extends Component {
     return (
       <div style={styles.divStyle}>
         {event && (
-          <div>
             <Card
               sx={{ maxWidth: 550, boxShadow: "-12px 12px 64px 0 #F0FFF0" }}
               variant="outlined"
@@ -68,28 +93,12 @@ class EventLead extends Component {
                 </Typography>
               </CardContent>
             </Card>
-          </div>
         )}
         <Card
           sx={{ maxWidth: 550, boxShadow: "-12px 12px 64px 0 #F0FFF0" }}
           variant="outlined"
         >
-          <CardContent>
-            <Typography variant="h3" gutterBottom>
-              Events
-            </Typography>
-            <Typography variant="h5">
-              If you want to find other like-minded people to enjoy your hobbies
-              with you can find then via events, or even set up your own! What
-              are you waiting for?
-            </Typography>
-            <Box sx={{ height: 10 }} />
-            <Link style={styles.buttonStyle} exact to="/events">
-              <Button color="primary" variant="contained">
-                See all the Events
-              </Button>
-            </Link>
-          </CardContent>
+        {cardE}
         </Card>
       </div>
     );

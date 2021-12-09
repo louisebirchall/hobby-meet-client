@@ -10,22 +10,22 @@ class HobbyService {
 
   create = (name, typeOfActivity, description, placeOfActivity, image) => {
     return this.service.post("/create", {
-      name, 
-      typeOfActivity, 
-      description, 
-      placeOfActivity, 
-      image
+      name,
+      typeOfActivity,
+      description,
+      placeOfActivity,
+      image,
     });
   };
 
   edit = (id, name, typeOfActivity, description, placeOfActivity, image) => {
     return this.service.patch(`/${id}`, {
-      name, 
-      typeOfActivity, 
-      description, 
-      placeOfActivity, 
-      image
-      })
+      name,
+      typeOfActivity,
+      description,
+      placeOfActivity,
+      image,
+    });
   };
 
   delete = (id) => {
@@ -46,6 +46,11 @@ class HobbyService {
       image,
     });
   };
+
+  getRandom = (potato) => {
+    return this.service.get(`/random/${potato}`);
+  };
+
 }
 
 const hobbyService = new HobbyService();
